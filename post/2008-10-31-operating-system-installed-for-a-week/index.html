@@ -1,0 +1,36 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 装了一个星期的操作系统～～ · 我是思聪</title><meta name="description" content="装了一个星期的操作系统～～ - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">装了一个星期的操作系统～～</h1><div class="post-info">Oct 31, 2008</div><div class="post-content"><p>这个星期还真的是很好很强大。兴奋的看着Ubuntu 8.10 RC版本发布了，就赶紧在８.04的基础上升级了。结果中间遇到无数的配置文件是我修改过得，非要选择要不要保留以前的版本，我怎么知道以前版本的配置文件和现在的配置文件是不是兼容的呢？有些就选择了不保留，有些是保留。这下就好了，启动的时候貌似出了些小问题，菜单配置上也发生了一些变动。</p>
+<p>后来心想算了吧，从头开始。于是刻盘，装上了RC。哈哈，很漂亮的字体，装上VMware 6.5虚拟机，奇怪了，怎么箭头键没法使用了？？８.04都是好好的嘛。糟了，中招了。网上搜索了很久，终于发现<a href="https://bugs.launchpad.net/ubuntu/intrepid/+bug/289098" target="_blank" rel="noopener">也有人遇到了相同的问题</a>。</p>
+<p>果然是8.10的一个bug。好啦，根据提供的解决方案(见上一篇文章)这个问题就修正了。好了，VNC远程连接也用的爽爽的，把开发需要的windows 2000和windows 98(～～变态，还用win98)装上，恩，很顺利。开发环境Borland C++ Builder(其实用来看看窗口而已)和Visual Studio 2003(为了一个项目，不得不返古)装好了，开始些程序。void main，哟，括号打不了了。怎么回事？？？在外面试试，可以的嘛，VNC连接到的台式机也是可以的，怎么回事哦。郁闷了，后来发现加上了去掉了不准进行键盘映射选项后，能够打笔记本能够打括号了，而台式机不可以了，笔记本还不能输入&lt;，出来的是|。靠，怎么那么多问题？？？好吧，折腾了一天找解决方案，最后决定，重装。</p>
+<p>后来一想，是不是笔记本的8.04和这个有所区别？好吧，把笔记本装上8.10。因为笔记本光驱是坏的，所以只有按照以前的方案将ISO拷贝到硬盘，进行硬盘安装，郁闷了，分区的时候没法检测到。网上看了看，因为挂载了iso无法写在，所以没法找到分区，只能用USB盘进行，靠～～～要知道我的笔记本BIOS启动读USB是１.1的……好吧，我忍了，给台式机重装8.10了。</p>
+<p>这下，噩梦就开始了。我选择了一种不正规的分区，用Acronis Disk Suite将以前的Ｃ盘分小了，将Ｄ，Ｅ往后挪，然后腾出了80G的空间，建立逻辑分区，这下好了，进入LiveCD，找不到分区……原因是分区不标准，普通的原则是主分区、逻辑分区，但现在我的逻辑分区在最前面，然后是主分区，然后又是逻辑分区，就搞混乱了。大多数分区软件都不认识这样的分区，只能用Acronis Disk Suite这下好了，Windows也没法进入了，grub也不能启动了。找了半天找到一张年逾古稀的Windows系统安装盘的控制台模式，fixmbr，fixboot，终于能够进入Windows了，又花了一个小时，把分区慢慢挪回去，Ｃ盘还是原来的开始的位置，把Ubuntu放到稍微靠后的位置，以增强磁盘性能。</p>
+<p>好，这下按照“正常”的顺序进行安装8.04。很，很好。晚上老爸想QQ语音，在Linux下面只有wine模拟用，我倒是能够听到对方的，对方听不到我的话筒的。后来到网上一查，也是有人遇到了相同问题。是ALSA和OSS的兼容问题。把wine选择为用OSS输入，好了，对方能够听到，但我这里没声音了。靠……装个驱动试试，网上下载了Realtek的驱动，装到一半，编译挂了……整个系统没声音了……重装吧。</p>
+<p>后来不知道折腾了好久。重装后又出现了一个奇怪的现象，登录后gnome就死了，鼠标能动，硬盘没动静，隔了一会儿出现了一个灰色的框框，没写什么东西。很郁闷。就这样死了，怎么回事呢？想了想，可能是驱动、vmware等等这些问题，但经历了N次重装后，也没有找到具体原因，还是这样。抓狂了。</p>
+<p>一次，我没有管他，去上了个厕所，回来一看，矣，启动了，说什么gnome-setting-daemon守护进程启动失败……网上查了查，看有人说和/etc/network/interface文件有关。确实，我改过这个文件，为了配置单网卡双IP。最后发现，可能是我把auto lo和iface lo inet loopback这两句删除了的原因，造成没有loopback网卡，守护进程没法和需要守护的进程进行通讯的原因。问题找到了，依然装上vnc，vmware。试试键盘，台式机上没有问题，笔记本通过vnc接入，输入括号是对的，可怜输入&lt;又变成了，天啊～崩溃。</p>
+<p>好吧，既然这样，那台式机还是装8.10吧。网上搜索了一下，下载到了正式版的8.10。刻盘，安装。安装过程都不顺利，装了3次，终于搞定了。这天太郁闷了，都是人为的因素。</p>
+<p>好了好了，终于可以用了，Vmware找到了解决方案，直接使用内置的VNC连接，也不会键盘映射出问题了。语音用了skype，linux下面工作良好，老爸也装上了skype，终于通话不是问题了。很好。</p>
+<p>晚上下载了红警３、辐射３，开战，哈哈。这周什么事情都没有做，光装系统了，仅此怀念……</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2008-11-02-wine-under-the-normal-use-of-the-thunder/" class="prev">PREV</a><a href="/post/2008-10-27-vmware-workstation-6-5-under-ubuntu-8-10-key-position-in-the-failure-of-problem-solving/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

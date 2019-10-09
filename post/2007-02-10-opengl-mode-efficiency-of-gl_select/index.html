@@ -1,0 +1,35 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> OpenGL的GL_Select模式的效率问题 · 我是思聪</title><meta name="description" content="OpenGL的GL_Select模式的效率问题 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">OpenGL的GL_Select模式的效率问题</h1><div class="post-info">Feb 10, 2007</div><div class="post-content"><p>每一本OpenGL入门的书都会讲到OpenGL的Select模式，它采用一种方法使得可以获取当前鼠标点选的几何图形。简单的来说这种方式就是首先调整Projection矩阵，使得你透过从鼠标点选附近的一个正方形(大小可设置)看到的世界。然后开始绘制，当每一次绘制的时候都会判断你会不会看到。如果看到，那么，你就是选择了这个几何图形了。更为具体的过程可以参见相关的书籍。</p>
+<p>我重点要提到的是它的效率。</p>
+<p>今天我在弯管机程序里面多加了一些代码，实现可以选择机器的各个部件。但是发现每次点选的时候反应速度很慢，以至于我可以看到明显的停顿。而在直接渲染的时候就没有这个问题，相当流畅。最后我用PerformanceCounter计时，一步一步的找问题的根源，发现在glRenderMode(GL_Select)设置以后，在执行相同的绘图指令会相当的慢。经我测试，在我6600GT显卡上，使用官方93.50驱动程序，渲染相同的画面，用选择模式以后平均速度低于10％，也就是说渲染时间增加10倍以上。较为简单的图形渲染起来性能也低于普通渲染的30％。而这样所造成的后果就是严重的延迟。</p>
+<p>刚开始我以为是我程序优化的问题，然而即便所有的物体都使用显示列表，也存在这样的问题。我想到这可能是OpenGL实现上的问题。</p>
+<p>晚上我把Quadro FX1100专业显卡(芯片和GeForce FX5700相同)装上以后，使用一样的93.50驱动，再进行测试。发现情况有所好转，选择模式下平均速度是正常渲染模式下面的60%左右。已经感觉不出延时。</p>
+<p>然后我又在虚拟机下面进行测试，然而得到的现象却截然不同。虚拟机下面的SVGA显卡在选择模式下面的速度比正常渲染快10倍左右。</p>
+<p>很是迷茫，毕竟选择模式下面要多一些操作，速度应该要慢一些，怎么会快这么多呢？虚拟机的测试可信么？是NVIDIA的驱动的问题么？网络上也有人提到MAYA在NVIDIA显卡上面模式东西的时候运行很慢，可能问题是出现在驱动上吧。</p>
+<p>另外身边又没有ATI显卡，所以暂时不能用ATI显卡作测试。但从网络上很多人反馈得知，ATI也存在相同的问题。</p>
+<p>解决方法也有，就是自己写相关的程序，看一个人的回帖说比较简单，而他用的是BSP数据结构，对于通用的程序可能不太适用吧。</p>
+<p>今天就暂时研究这么多，也比较晚了，改日在进行相关的实验。</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2007-02-10-5200-miraculously-revived/" class="prev">PREV</a><a href="/post/2007-02-09-oh-bad-luck/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

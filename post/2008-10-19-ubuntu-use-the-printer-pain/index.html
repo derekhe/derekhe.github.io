@@ -1,0 +1,40 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> Ubuntu下使用打印机～痛苦 · 我是思聪</title><meta name="description" content="Ubuntu下使用打印机～痛苦 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">Ubuntu下使用打印机～痛苦</h1><div class="post-info">Oct 19, 2008</div><div class="post-content"><p>记得好像是5.12地震以前用过打印机，后来就再也没有用过了。这会儿都10月中旬了，拿出来晒晒。</p>
+<p>插上电源，接上USB，呵呵，Ubuntu真好，打印机就识别到了。来，打印个测试也看看，哟，没动静？怎么回事～！</p>
+<p>网上一搜，晕，HP的打印机Ubuntu是认识了，可是用不了。郁闷，按照大家的说法到<a href="http://hplipopensource.com/hplip-web/gethplip.html" target="_blank" rel="noopener">得到打印机驱动</a>。经过一番安装，OK了。可恶的是中间竟然要求网络连接下载一个Plug-in，看来Linux真是一个网络操作系统，不错，确实，网络不好别想用。</p>
+<p>很好，打印测试很顺利。来吧，打印那篇论文。</p>
+<p>双面打印吧，靠，驱动不支持……</p>
+<p>好吧，单面打印。貌似我把驱动里面有一个假的双面选项打开了，打出来的东西乱套的。</p>
+<p>好吧，再来……晕，中途缺纸了，怎么弄？Ubuntu上面倒是显示了图标了，怎么继续打印呢？不会……没看到相关按钮，只有取消——莫非就只能取消？？？？？</p>
+<p>搜……</p>
+<p>好了，知道了一个CUPS打印管理程序。打开控制页面<a href="http://localhost:631，很帅的web页面，看了看，怎么重新开始呢？？？？" target="_blank" rel="noopener">http://localhost:631，很帅的web页面，看了看，怎么重新开始呢？？？？</a></p>
+<p>明白了，先stop printer，再start printer搞定……</p>
+<p>双面打印怎么弄呢，查了半天无果。[后来找到一个解决方案[cref 387]]</p>
+<p>好吧，那就只有奇数页先打，然后偶数页。要记得，要把纸转180度放进去，然后记得打印选项里面要在打印偶数页的时候设置为“逆序”。</p>
+<p>天，万一忘了“逆序”，那就傻逼了……</p>
+<p>看来哪天得研究一下CUPS怎么弄了。不会LINUX下面的打印那么麻烦吧……或许命令行的东东会好一些？？？</p>
+<p>先这样吧，改天有精力再来弄～～～～</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2008-10-21-summary-of-linux-sided-printing/" class="prev">PREV</a><a href="/post/2008-10-16-phone-recruited/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

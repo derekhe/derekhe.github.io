@@ -1,0 +1,59 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 我是思聪</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2008-05-27-how-to-get-the-object-world-coordinate-shader/" class="post-title-link">如何用Shader得到物体的世界坐标</a></h2><div class="post-info">May 27, 2008</div><div class="post-content"><p>最近群里面有个朋友问我关于如何得到OpenGL世界坐标的问题，当时我还弄错了，误以为<code>gl_ModelViewMatrix*gl_Vertex</code>就是世界坐标。因最近也突然遇到了世界坐标的问题，所以花了一些时间来研究这个问题，网上也有人问，但或许没有答案，或许是错的。<br>其实，OpenGL的转换管道直接将gl_Vertex，也就是物体坐标，用gl_ModelViewMatrix相乘，得到的是眼坐标。如果将gl_ModelViewMatirx拆分为gl_ModelMatrix和gl_ViewMatrix，那么问题就好解决了。但事实上没有提供。要清楚OpenGL其实没有世界坐标系，世界坐标系是应用程序的概念。其实可以将OpenGL的摄像机看作是固定的，其坐标系就是眼坐标系，移动摄像机和移动物体的位置是一个相反的转换，对于观察者来说根本不知道是摄像机在动，还是物体在动(想想大卫的大变自由女神像的魔术吧，呵呵)<br>说回来，最终的变换是这样的：</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">eyePos</span>=viewMatrix * modelMatrix * modelVertex</span><br></pre></td></tr></table></figure>
+
+<p>在OpenGL里面viewMatrix和modelMatrix合并了，因为OpenGL里面并没有设置摄像机的参数，所以OpenGL并不知道viewMatrix到底是什么。viewMatrix是用户自己定义的，所以如果能够得到这个viewMatrix并能得到其逆矩阵，就可以得到worldPos:</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">worldPos</span>=viewMatrixInv * viewMatrix * modelMatrix * modelVertex</span><br></pre></td></tr></table></figure>
+
+<p>传统的OpenGL程序里面，你得自己计算这个viewMatrixInv，还好OSG的Camera提供了一个getViewMatrixInverse()方法，通过这个方法我们就可以轻松的获得viewMatrixInv，然后传递给Vertex Shader(用一个Uniform就可以)，然后进行这个计算就可以了。<br>记得每一帧都需要Update这个viewMatrixInv，只需要一个updateCallBack就可以了。<br>好了，看几个图，我用3DSMAX创建了两个盒子，为了便于观察，模型的顶点值限制在0-1之间，然后用osgExp导出，没有选中Flatten Static Transform这样就不会把模型定点转换成世界坐标系的顶点。<br>源代码中可以改变gl_FragColor=的值来修改为相应的坐标系的值显示。<br>世界坐标系的最终输出，可见颜色连续变换的。</p>
+<p><a href="/images/others/world.jpg"></a><img src="/images/others/image/thumb/world.jpg" alt><br>眼坐标系的图，可见屏幕中间偏左的部分是黑的。因为其值是负的。平移拖动盒子可见相应像素着色不变。</p>
+<p><a href="/images/others/eye.jpg"></a><img src="/images/others/image/thumb/eye.jpg" alt></p>
+<p>物体坐标系的图，可见两个盒子的颜色一样，因为其值是相同的。<br><a href="/images/others/local.jpg"></a><img src="/images/others/image/thumb/local.jpg" alt><br>源代码也附后，可以运行着看看，虽然程序简单，但用到的时候再也不用苦苦思考了，呵呵。</p>
+<p><a href="http://www.hesicong.net/blog/upload/2008/5/RenderWorldCoordinate.tar" target="_blank" rel="noopener">[download id=”5”]
+</a></p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2008-05-26-chen-finished-yet/" class="post-title-link">震完了没？</a></h2><div class="post-info">May 26, 2008</div><div class="post-content"><p>地震都有１３天了，余震不断，大大小小的，已经形成了习惯。现在遇到５秒钟以下的地震大家都不跑了，坐在寝室静观其变。上次政府发的地震预报的６～７级余震终于在今天兑现了，６.４级，寝室只是桌子轻轻的摇晃，然后一大群人感觉不对劲呢，就跑了下去。好久没看到那么多人一起跑下去了。倒也好笑，跑的时候大家都在议论，都跑的慢，有些还回头看后面的同学，好玩得很。</p>
+<p>除了地震是最近最时髦的话题以外似乎生活还少了些滋味。今天把Windows Server 2008删除了，又重新装上了XP，主要是因为Nvidia的调试工具暂时还不支持2008，有些功能用不了，给调试造成了比较大的麻烦。还有Vista下面的现实模式也有问题，一旦Shader程序死锁了，过几秒钟就黑屏了，就再也无法起死还生了，而在XP下面可以，只要是窗口模式运行的都可以点X按钮关闭，只是要等待一段时间而已。</p>
+<p>还有游戏也令人激动啦，CodeMaster公司开发的Race Driver:GRID出了DEMO，昨天才发现的，装上玩了一下，很爽啦，基于改进的DIRT引擎的GRID简直是真实，突然感觉极品11就是一个垃圾，回放镜头更是引人入胜，大的碰撞还增加了撞击力的显示，HAPPY！好像６月就要出正式版了，又听说是下个星期五就要出来了，期待啊！</p>
+<p>呵呵，最近把QQ签名也改成了“少玩游戏多做事”，前段时间玩战地2142玩得太多了，耽误了些时间。这周任务好多啦，ICMA、项目、课程，我郁闷咋个不能分身呢……还有那个体渲染，越来越慢了，5555</p>
+<p>只能说加油了，争取在６月前能够多做点事情！</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2008-05-15-earthquake-day/" class="post-title-link">地震第三天</a></h2><div class="post-info">May 15, 2008</div><div class="post-content"><p>上一篇日志是在手机上写的，当时外面下着大雨，我送人回家的路上雨刮器最大档都还不怎么起作用，大个大个的水坑只能慢慢开过。晚上歇下来以后就开始写日志了，虽然附近有电脑，但还是坐在车里面感觉比较好。还好手机打字速度还很快，只是按久了网络也很通畅，包年的每月32M流量起了很大的作用。</p>
+<p>昨天晚上一个人在车里面睡的，大家都睡在外面的帐篷里面，很安全。我怕他们的呼噜声比余震还强烈，所以就一个人睡在车里面了。通讯的抢修看来有些成果，更重要可能是用手机的人不再那么集中了，所以电话更容易接通了，短信也时不时的能够发出去了。雯雯也联系上了，晚上睡在体育场附近的，能够遮雨也穿足了衣物，一切安好，我也就放心了。想到那天出去青城后山玩才是后怕，本来说有三天可以任意选择，星期六星期天星期一。星期六星期天本来有事没法安排，我差点就安排到星期一的，后来我们把一些事情推了，才最终在星期六去了青城后山，天气也好，心情也好。想想要是星期一出去玩，我们的命可能就不保了……万幸！现在也没有心情去写那天的游记了，以后看有时间再补上。</p>
+<p>白天一天在了解一些抗震信息后，就睡了一觉。中午受到自来水污染的谣言，大量的蓄水，估计家里面两个浴缸+洗衣机+N多盆子桶子能够装上几顿水吧，相信能够支持足够几天了。结果后来只有我们一楼的能够放水了，楼上的点点水都没有。后来媒体及时辟谣，后来水供应才慢慢恢复正常。倒是把那些卖水的好死了，水价狂涨。可见谣言的祸害！！！！！！！</p>
+<p>下午还好，又睡了会儿。说实在，睡了3天汽车了，在车上睡觉特别不是滋味。回忆一下上个星期六晚上因为回不了寝室了，没有地方地方睡了，也只有睡车里面，热啊，凌晨三四点的样子又冷得很，郁闷的很。睡觉也打不直，身上压得极为不舒服。迷迷糊糊睡到早上5点三十几就醒了，天亮了，我看了看好大好红的太阳，又是一个炎热的一天。看来地震前的一些天气的变化还真是有关联。今天早上也是五点过就醒了，天亮了，雨停了，似乎一切都好了，收拾了，回家了，不再住在外面了，虽然有些余震，但1楼还没有什么问题的。</p>
+<p>晚上又陆陆续续的有朋友慰问，有从QQ上面发信息的，有发短信的，我想那几天可能还有朋友发短信慰问的，可能因为通讯的问题没有收到。还有直接打电话的，金马逊的祝师傅在广州打来电话，很让人感动。</p>
+<p>现在的状况是越来越好了，余震似乎也感觉不出来了，从电视上看到救援工作也进行的紧张有序，希望一切安好！<img src="http://imgcache.qq.com/ac/qzone_v4/b.gif" alt></p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2008-05-15-earthquake-two-days/" class="post-title-link">地震这两天</a></h2><div class="post-info">May 15, 2008</div><div class="post-content"><p>正在睡觉中，突然觉得有人在摇床，还正想骂的，结果站起来才发现这并不是谁在摇，直觉告诉我，地震了。什么也没想，第一时间冲出去！</p>
+<p>安全的下楼了，寝室外墙的瓷砖有些掉了下来，一楼的楼梯旁边也有裂缝了。下来几分钟了，地还在摇，人越来越多了，还好大家都还安全的，没有人受伤。</p>
+<p>等第一次地震结束了后，我回寝室把衣服钱包相机背上了，骑车出去看看情况。全城都下班了，学校都放假了，人都在外面空旷的地方，有些高一些的公寓房都发生了变形。</p>
+<p>家的电话打不通，雯雯的电话也打不通。找了一圈也没有见到雯雯…那么多人，要找到谈何容易。一直都在联系家人，最后终于打通了，大地震，父母要我回来。七点左右，我骑车到家了。一路上人很多，有些地方交通比较混乱，但整体还好。</p>
+<p>晚上家人都转移到安全的地方了。给朋友打电话都打不通，无奈，只得等待。晚上通讯要好一些了，重复了很多次终于在晚上拨通了蒋的电话，聊了很久，他们也在外面睡了。然后又拨通了陈老师的电话，一切安泰。最后凌晨二十几了终于拨通了雯雯的电话问了问情况。</p>
+<p>第二天依旧余震不断，都在关注着震情。一晚上都在听收音机，也没有怎么睡。一大早很幸运的又拨通了雯雯的电话，正在吃早饭，看来学校的秩序都在恢复了。</p>
+<p>下午很无聊，还是等待消息。晚上吃了些好吃的，把铁篷多加了几个帆布挡风，又弄了个电视机，比收音机形象多了。看了下真是触目惊心啊！</p>
+<p>七点，雯雯手机应该是没电了，说关机了。一直那么大的雨，而且越来越大了，冷啊，听同学说今天研究生都搬到教研室了，雯雯是不是也搬到了安全、暖和的地方了？</p>
+<p>大风大雨继续着，希望这个灾难能够尽快结束，一切都快快好起来吧…</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2008-05-03-detergent-wipe-display-a-thief-light/" class="post-title-link">洗洁精擦显示器，贼亮</a></h2><div class="post-info">May 3, 2008</div><div class="post-content"><p>实在看不惯我的显示器肮脏的样子了，其实也没多脏，就是有些水印子罢了，不爽，决定试试餐具洗洁精能不能搞定。将眼镜布打湿，倒上洗洁精，保证不要滴水，要不然滴到显示器下面的缝里面就麻烦了。然后擦屏幕，怎么擦都无所谓，涂满吧。最后用柔和的卫生纸擦干净，ＯＫ～～最好液晶显示器用一段时间，让他热了以后再来擦比较好，热的屏幕会将水尽快蒸发掉，避免留下水印。</p>
+<p>另外附带的效果是显示器散发出一股洗洁精的芳香，可谓一举两得，那种什么液晶专用清洗液快滚蛋吧～</p>
+</div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/63/" class="prev">PREV</a><a href="/page/65/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

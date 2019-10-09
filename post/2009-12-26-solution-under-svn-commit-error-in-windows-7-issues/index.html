@@ -1,0 +1,32 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 解决SVN在Windows 7下commit出错的问题 · 我是思聪</title><meta name="description" content="解决SVN在Windows 7下commit出错的问题 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">解决SVN在Windows 7下commit出错的问题</h1><div class="post-info">Dec 26, 2009</div><div class="post-content"><p>自从操作系统升级到Win 7以后，SVN Commit就经常出现类似错误：</p>
+<blockquote>
+<p>Commit<br>G:doc\projects\estar\trunk\vs\EstarSharp\EstarSharp\DataWorkData.cs<br>G:doc\projects\estar\trunk\vs\EstarSharp\EstarSharp\GUIFormsAbout.cs<br>G:doc\projects\estar\trunk\vs\EstarSharp\EstarSharp\GUIFormsMainForm.cs<br>G:doc\projects\estar\trunk\vs\EstarSharp\EstarSharp\GUIFormsMainForm.cs<br>G:doc\projects\estar\trunk\vs\EstarSharp\EstarSharp\DataWorkData.cs<br>G:doc\projects\estar\trunk\vs\EstarSharp\EstarSharp\GUIFormsAbout.cs<br>Commit succeeded, but other errors follow:<br>Error bumping revisions post-commit (details follow):<br>Can’t move<br>‘G:doc\projects\estar\trunk\vs\EstarSharp\EstarSharp\Data.svntmpentries’ to<br>‘G:doc\projects\estar\trunk\vs\EstarSharp\EstarSharp\Data.svnentries’: The<br>file or directory is corrupted and unreadable.</p>
+</blockquote>
+<p>说文件损坏或者无法读取。这是一个很令人费解的问题，到底commit是成功还是失败了？网上查询一番后找到有朋友遇到相同的问题并且给出了解决方案(见：<a href="http://schleichermann.wordpress.com/2009/12/09/svn-tortoisesvn-cant-move-the-file-or-directory-is-corrupted-and-unreadable-windows-7/" target="_blank" rel="noopener">http://schleichermann.wordpress.com/2009/12/09/svn-tortoisesvn-cant-move-the-file-or-directory-is-corrupted-and-unreadable-windows-7/</a>)</p>
+<p>原因是Win7启动了索引服务和SVN Commit时候移动文件冲突了。解决方法是关闭Win 7的对SVN仓库的索引服务。</p>
+<p>打开Win7的控制面选，选择“索引选项”，然后选择“修改”，将<code>G:\doc\projects\estar</code>全部反选即可</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2009-12-31-happy-new-year-2/" class="prev">PREV</a><a href="/post/2009-12-24-christmas-2/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

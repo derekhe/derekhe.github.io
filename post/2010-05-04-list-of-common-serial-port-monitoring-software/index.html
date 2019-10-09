@@ -1,0 +1,42 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 常用串口监视软件一览 · 我是思聪</title><meta name="description" content="常用串口监视软件一览 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">常用串口监视软件一览</h1><div class="post-info">May 4, 2010</div><div class="post-content"><p>在工控的开发当中常常要应用到串口，应该说串口通信是最基本的通讯工具。不仅在我们编程的时候可以应用一些简单的串口工具进行调试和监控，在做黑箱分析的时候用这些软件能够将串口的通讯协议抓取下来以便进行分析。</p>
+<p>以前我做NOKIA的FBUS协议的分析的时候，就是利用HDDSoft的Serial Port Monitor软件进行抓取数据的，用同样的方法在NOKIA PC Suite上也大获成功。最近使用串口监视的例子是应用在HOLIP变频器的通讯协议的模拟上，其基本功能包括初始化、设置速度、得到速度、关闭变频器几个。通过其他的DEMO程序就能获得串口协议，再通过我们软件的模拟就可以用了。对于我的HOLUX GPS而言，前段时间也知道了它的和电脑的通讯协议，这样我就好写一个程序来获取它存储的轨迹信息了。当然最新的百度地图的更新幅度还是挺大的，连我家门口的路口都改了，但坐标的偏移比较大，要是有一个不偏移的地图就好咯。扯远了，下面来介绍一下我用过的一些软件：</p>
+<p>*<em>. HDDSoft Serial Port Monitor<br>*</em>最新的产品在这里可以找到(<a href="http://www.hhdsoftware.com/Products/home/serial-monitor.html" target="_blank" rel="noopener">http://www.hhdsoftware.com/Products/home/serial-monitor.html</a>)
+我最早用的是Serial Port Monitor 3.x版本，以前还做过这个软件的破解。该软件功能强大，能够支持到API级的分析。但唯一不好的就是没有破解，比较昂贵。但所谓物有所值嘛。最近发现这个API级的分析确实有用。举个例子来说：</p>
+<p>最近HOLIP变频器的问题可以说说。当时有一套DEMO程序，可以很顺利的操作，但是我写的软件就不行。协议是一样的，波特率、停止位、奇偶校验也都一样。发了数据以后，返回的数据没几下就混乱了。然后变频器返回的数据全是乱码。我当时都在怀疑.NET 2.0的串口通讯是不是有问题咯。后来仔细对比DEMO程序和我的程序，发现Handshake参数不对。但是我们的485转接器上就RX和TX两根线，没有其他的了。查看了一下串口类的说明，决定试试流控制，看看是不是有问题。</p>
+<p>SerilaPort的类有三个Handshake枚举：</p>
+<blockquote>
+<p>None 没有用于握手的控件。<br>RequestToSend 使用请求发送 (RTS) 硬件流控制。RTS 发出信号，指出数据可用于传输。如果输入缓冲区已满，RTS &gt; 行将被设置为 false。当输入缓冲区中有更多可用空间时，RTS 行将被设置为 true。<br>RequestToSendXOnXOff 同时使用请求发送 (RTS) 硬件控制和 XON/XOFF 软件控制。<br>XOnXOff 使用 XON/XOFF 软件控制协议。发送 XOFF 控制以停止数据传输。发送 XON &gt; 控制以继续传输。使用这些软件控制，而不是使用请求发送 (RTS) 和清除发送 (CTS) 硬件控制。</p>
+</blockquote>
+<p>最终，只有RequestToSendXOnXOff才能使连接稳定。很是奇怪。最终可能是变频器的流控制没有自适应，导致上位机和下位机之间的通讯发生错位的。</p>
+<p>试想，如果没有这个API级的监控，怎么能够想到握手协议的问题呢。</p>
+<p>HDDSoft还有USB监视器等等，如果有需要可以研究研究。</p>
+<p><strong>. SUDT SerialTrace</strong></p>
+<p>下载地址：<a href="http://www.sudt.com/cn/index.html" target="_blank" rel="noopener">http://www.sudt.com/cn/index.html</a></p>
+<p>比较好用的一个软件，国产的，属于小巧玲珑型。SUDT还有很多其他串口相关的软件，可以下载来用用。</p>
+<p>还有一些其他开发的小的串口调试助手软件，还是有点用处。只是这些小软件的GUI过于花哨了点(比如背景)，建议这些软件作者把软件整的专业点点，呵呵。</p>
+<p>另外串口调试还是需要自己的耐心和运气的，特别是协议分析，合理的运用上述软件，事半功倍。</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2010-05-05-sell-domain-name/" class="prev">PREV</a><a href="/post/2010-05-02-bfbc2-arms-full-solution/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 在Linux下开发Python S60程序初步——连上手机 · 我是思聪</title><meta name="description" content="在Linux下开发Python S60程序初步——连上手机 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">在Linux下开发Python S60程序初步——连上手机</h1><div class="post-info">Dec 25, 2008</div><div class="post-content"><p>今天突然想起来了，以前在Windows里面可以用超级终端链接通过蓝牙连接手机，但在Linux下面怎么做呢？做个笔记：</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">sdptool <span class="builtin-name">add</span> <span class="attribute">--channel</span>=10 SP</span><br><span class="line"><span class="keyword">while</span> <span class="literal">true</span>; <span class="keyword">do</span> rfcomm listen /dev/rfcomm0 10; done</span><br><span class="line"></span><br><span class="line"><span class="comment"># On the cell phone, Open "Bluetooth Console" in Python menu and</span></span><br><span class="line"><span class="comment"># choose the Linux PC as the machine to connect to</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Once the phone is connected, open another terminal and type</span></span><br><span class="line"></span><br><span class="line">screen /dev/rfcomm0</span><br></pre></td></tr></table></figure>
+
+<p>输入后会出现以下字样：</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">hesicong@hesicong-desktop:~$ sdptool <span class="builtin-name">add</span> <span class="attribute">--channel</span>=10 SP</span><br><span class="line">Serial<span class="built_in"> Port service </span>registered</span><br><span class="line">hesicong@hesicong-desktop:~$ <span class="keyword">while</span> <span class="literal">true</span>; <span class="keyword">do</span> rfcomm listen /dev/rfcomm0 10;done</span><br><span class="line">Waiting <span class="keyword">for</span><span class="built_in"> connection </span>on channel 10</span><br><span class="line">Connection <span class="keyword">from</span> 00:1D:FD:F0:A5:AD <span class="keyword">to</span> /dev/rfcomm0</span><br><span class="line">Press CTRL-C <span class="keyword">for</span> hangup</span><br></pre></td></tr></table></figure>
+
+<p>也就打开了蓝牙的串口，然后在手机上打开Python的蓝牙控制台就就可以连接了。连接上以后，输入</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">screen <span class="regexp">/dev/</span>rfcomm0</span><br></pre></td></tr></table></figure>
+
+<p>就将手机的串口数据发送到电脑屏幕上了。<br>今天是做了第一步，能连上了就好。Ubuntu 8.10下面的自带的蓝牙还有些问题，譬如目前还不能发送文件给我手机，提示出错，很郁闷。接收貌似也有问题。</p>
+<p>还找到一个<a href="http://epx.com.br/artigos/pys60.php" target="_blank" rel="noopener">讲解的很详细的网站</a>，上面的信息就是从这里得到的。</p>
+<p>有空在看看Sybmain的Open C/C++是用来干嘛的，听说还有点好玩。</p>
+<p>好了，洗脚洗脸，休息一下，准备玩GTA4～</p>
+<p>PS:晚上又找到了一个网站：</p>
+<p><a href="http://www.martin.st/symbian/" target="_blank" rel="noopener">http://www.martin.st/symbian/</a></p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2008-12-26-easy-streaming-media-server-built-linux/" class="prev">PREV</a><a href="/post/2008-12-24-christmas/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

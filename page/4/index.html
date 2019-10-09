@@ -1,0 +1,185 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 我是思聪</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2017-02-12-mobike-api-analysis/" class="post-title-link">摩拜单车爬虫解析——找到API</a></h2><div class="post-info">Feb 12, 2017</div><div class="post-content"><blockquote>
+<p>警告：此篇文章仅作为学习研究参考用途，请不要用于非法目的。</p>
+</blockquote>
+<p>在上一篇文章<a href="http://www.jianshu.com/p/2a20d2a97ac0" target="_blank" rel="noopener">《摩拜单车非官方大数据分析》</a>中提到了我在春节期间对摩拜单车的数据分析，在后面的系列文章中我将进一步的阐述我的爬虫是如何高效的爬到这些数据的。</p>
+<h1 id="为什么爬摩拜的数据"><a href="#为什么爬摩拜的数据" class="headerlink" title="为什么爬摩拜的数据"></a>为什么爬摩拜的数据</h1><p>摩拜是最早进入成都的共享单车，每天我从地铁站下来的时候，在APP中能看到很多单车，但走到那里的时候，才发现车并不在那里。有些车不知道藏到了哪里；有些车或许是在高楼的后面，由于有GPS的误差而找不到了；有些车被放到了小区里面，一墙之隔让骑车人无法获得到车。</p>
+<p>那么有没有一个办法通过获得这些单车的数据，来分析这些车是否变成了僵尸车？是否有人故意放到小区里面让人无法获取呢？</p>
+<p>带着这些问题，我开始了研究如何获取这些数据。</p>
+<h1 id="从哪里获得数据"><a href="#从哪里获得数据" class="headerlink" title="从哪里获得数据"></a>从哪里获得数据</h1><p>如果你能够看到数据，那么我们总有办法自动化的获取到这些数据。只不过获取数据的方式方法决定了获取数据的效率，对于摩拜单车的数据分析这个任务而言，这个爬虫要能够在短时间内（通常是10分钟左右）获取到更多的数据，对于数据分析才有用处。那么数据来源于哪里？</p>
+<p>最直接的来源是摩拜单车的APP。现代的软件设计都讲究前后端分离，而且服务端会同时服务于APP、网页等。在这种趋势下我们只需要搞清楚软件的HTTP请求就好了。一般而言有以下一些工具可以帮忙：</p>
+<p>直接抓包：</p>
+<ul>
+<li>Wireshark （在路由器或者电脑）</li>
+<li>Shark for Root (Android)</li>
+</ul>
+<p>用代理进行HTTP请求抓包及调试：</p>
+<ul>
+<li>Fiddler 4</li>
+<li>Charles</li>
+<li>Packet Capture (Android)</li>
+</ul>
+<p>由于我的手机没有root，在路由器上抓包又太多的干扰，对于https也不好弄。所以只能首先采用Fiddler或者Charles的方式试试。挂上Fiddler的代理，然后在手机端不停的移动位置，看有没有新的请求。但遗憾的是似乎请求都是去拿高德地图的，并没有和摩拜车相关的数据。</p>
+<p>那怎么一回事？试试手机端的。换成Packet Capture后果然就有流量了，在请求中找到了我最关心的那个：</p>
+<p><img src="/images/2017/02-12/4372317-de272f8395d2106f.png" alt></p>
+<p>这个API请求一看就很显然了，在postman中试了一下能够正确的返回信息，看来就是你了！</p>
+<h1 id="高兴得太早"><a href="#高兴得太早" class="headerlink" title="高兴得太早"></a>高兴得太早</h1><p>连续爬了几天的数据，将数据进行一分析，发现摩拜单车的GPS似乎一直在跳动，有时候跳动会超过几公里的距离，显然不是一个正常的值。</p>
+<p>难道是他们的接口做了手脚返回的是假数据？我观察到即便在APP中，单车返回的数据也有跳动。有某一天凌晨到第二天早上，我隔段时间刷新一下我家附近的车，看看是否真的如此。</p>
+<p>图片我找不到了，但是观察后得出的结论是，APP中返回的位置确实有问题。有一台车放在一个很偏僻的位置，一会儿就不见了，待会儿又回来了，和我抓下来的数据吻合。而且这个跳动和手机、手机号、甚至移动运营商没有关系，说明这个跳动是摩拜接口的问题，也可以从另一方面解释为什么有时候看到车但其实那里没有车。</p>
+<p>这是之前发的一个朋友圈的视频截图，可以看到在营门口附近有一个尖，在那里其实车是停住的，但是GPS轨迹显示短时间内在附近攒动，甚至攒动到很远，又回到那个位置。</p>
+<p><img src="/images/2017/02-12/4372317-64fd9ff2d577ee19.png" alt></p>
+<p>这样的数据对于数据分析来讲根本没法用，我差点就放弃了。</p>
+<h1 id="转机"><a href="#转机" class="headerlink" title="转机"></a>转机</h1><p>随着微信小程序的火爆，摩拜单车也在第一时间出了小程序。我一看就笑了，不错，又给我来了一个数据源，试试。用Packet Capture抓了一次数据后很容易确定API，具体过程就不在阐述。抓取后爬取了两三天的数据，发现出现了转机，数据符合正常的单车的轨迹。</p>
+<p>剩下事情，就是提高爬虫的效率了。</p>
+<h1 id="其他尝试"><a href="#其他尝试" class="headerlink" title="其他尝试"></a>其他尝试</h1><p>有时候直接分析APP的源代码会很方便的找到API入口，将摩拜的Android端的APP进行反编译，但发现里面除了一些资源文件有用外，其他的文件都是用奇虎360的混淆器加壳的。网上有文章分析如何进行脱壳，但我没有太多时间去钻研，也就算了。</p>
+<h1 id="也谈API的设计"><a href="#也谈API的设计" class="headerlink" title="也谈API的设计"></a>也谈API的设计</h1><p>摩拜单车的API之所以很容易抓取和分析，很大程度上来讲是由于API设计的太简陋：</p>
+<ul>
+<li>仅使用http请求，使得很容易进行抓包分析</li>
+<li>在这些API中都没有对request进行一些加密，使得自己的服务很容易被人利用。</li>
+<li>另外微信小程序也是泄露API的一个重要来源，毕竟在APP中request请求可以通过native代码进行加密然后在发出，但在小程序中似乎还没有这样的功能。</li>
+</ul>
+<p>如果大家有兴趣，可以试着看一下小蓝单车APP的request，他们使用https请求，对数据的request进行了加密，要抓取到他们的数据难度会增加非常多。</p>
+<p>当然了，如果摩拜单车官方并不care数据的事情的话，这样的API设计也是ok的。</p>
+<p>下一篇文章将开源爬虫的源代码，敬请期待！如果您觉得文章有用，请打赏一杯咖啡，谢谢：）</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2017-02-05-mobike-unofficial-data-analysis/" class="post-title-link">摩拜单车非官方大数据分析</a></h2><div class="post-info">Feb 5, 2017</div><div class="post-content"><p>趁着过年的清闲时光，我抓取了摩拜单车的数据并进行了大数据分析。以下数据分析自1月19日整日的数据，范围成都绕城区域以及至华阳附近（天府新区）内。成都的摩拜单车的整体情况如下：</p>
+<h3 id="标准车型和Lite车型数量相当"><a href="#标准车型和Lite车型数量相当" class="headerlink" title="标准车型和Lite车型数量相当"></a>标准车型和Lite车型数量相当</h3><p>摩拜单车在成都大约已经有6万多辆车，两种类型的车分别占有率为55%和44%，可见更为好骑的Lite版本的占有率在提高。（1为标准车，2为Lite车型）</p>
+<p><img src="/images/2017/02-05/4372317-405ce446062c7b91.png" alt="单车类型"></p>
+<h3 id="三成左右的车没有移动过"><a href="#三成左右的车没有移动过" class="headerlink" title="三成左右的车没有移动过"></a>三成左右的车没有移动过</h3><p>数据分析显示，有三成的单车并没有任何移动，这说明这些单车有可能被放在不可获取或者偏僻地方。市民的素质还有待提高啊。</p>
+<h3 id="出行距离以3公里以下为主"><a href="#出行距离以3公里以下为主" class="headerlink" title="出行距离以3公里以下为主"></a>出行距离以3公里以下为主</h3><p>数据分析显示3公里以下的出行距离占据了87.2%，这也十分符合共享单车的定位。100米以下的距离也占据了大量的数据，但认为100米以下的数据为GPS的波动，所以予以排除。</p>
+<p><img src="/images/2017/02-05/4372317-949249de77f94715.png" alt="出行距离分布"></p>
+<h3 id="单车骑行次数以5次以下居多"><a href="#单车骑行次数以5次以下居多" class="headerlink" title="单车骑行次数以5次以下居多"></a>单车骑行次数以5次以下居多</h3><p>单车的使用频率越高共享的效果越好。从摩拜单车的数据看，在流动的单车中，5次以下占据了60%左右的出行。但1次、2次的也占据了30%左右的份额，说明摩拜单车的利用率也不是很高。</p>
+<p><img src="/images/2017/02-05/4372317-b63819b5686de984.png" alt="单车骑行次数"></p>
+<p><img src="/images/2017/02-05/4372317-c2b03aee9fa7ddca.png" alt="单车骑行次数"></p>
+<h3 id="从单车看城市发展"><a href="#从单车看城市发展" class="headerlink" title="从单车看城市发展"></a>从单车看城市发展</h3><p>从摩拜单车的热图分布来看，成都已经逐步呈现“双核”发展的态势，城市的新中心天府新区正在聚集更多的人和机会。</p>
+<p><img src="/images/2017/02-05/4372317-900aca43266cc17d.png" alt="双核发展"></p>
+<p>原来的老城区占有大量的单车，在老城区，热图显示在东城区占有更多的单车，可能和这里的商业（春熙路、太古里、万达）及人口密集的小区有直接的联系。</p>
+<p><img src="/images/2017/02-05/4372317-2c5cc0f5d8bc3ada.png" alt="老城区"></p>
+<p>而在成都的南部天府新区越来越多也茁壮的发展起来，商业区域和住宅区域区分明显。在晚上，大量的单车聚集在华阳、世纪城、中和，而在上班时间，则大量聚集在软件园附近。</p>
+<p><img src="/images/2017/02-05/4372317-529e0b586124777b.png" alt="软件园夜间"></p>
+<p><img src="/images/2017/02-05/4372317-330ae930b2fc2934.png" alt="软件园白天"></p>
+<h3 id="在线网站"><a href="#在线网站" class="headerlink" title="在线网站"></a>在线网站</h3><p>如果你对数据感兴趣，我已经创建了一个网站供大家使用，请用电脑访问：<a href="http://www.april1985.com/mobike/">http://www.april1985.com/mobike/</a><br>（为节省开支，后端服务器已经关闭）</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2016-12-09-why-docker-use-up-all-your-disk-space/" class="post-title-link">Why docker use up all your disk space?</a></h2><div class="post-info">Dec 9, 2016</div><div class="post-content"><p>I noticed that the docker containers are using more and more disk spaces on host machine. By looking at the disk usage inside docker container, you will not see any disk usage increase. But the aufs file system is increasing.</p>
+<p>I found out that there are two days we can use to clean up the space:</p>
+<ol>
+<li>Restart docker service</li>
+<li>Delete the docker container and add it back again.</li>
+</ol>
+<p>But these ways need stop your service and we still don’t know the root cause.</p>
+<p>After a deep search, I finally found that the log file is eating my disk space and docker will not clean or limit the file size by default. My docker container has plenty of logs output to console, so the log file will keep increasing. If I restarted the docker service or recreate docker container, the log is clean up. Fortunately, docker provide us a <a href="https://docs.docker.com/engine/admin/logging/overview/" target="_blank" rel="noopener">option</a> to limit the log size:</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">--<span class="built_in">log</span>-<span class="keyword">opt</span> <span class="built_in">max</span>-size=[<span class="number">0</span>-<span class="number">9</span>]+[kmg]</span><br><span class="line">--<span class="built_in">log</span>-<span class="keyword">opt</span> <span class="built_in">max</span>-<span class="keyword">file</span>=[<span class="number">0</span>-<span class="number">9</span>]+</span><br><span class="line">--<span class="built_in">log</span>-<span class="keyword">opt</span> labels=label1,label2</span><br><span class="line">--<span class="built_in">log</span>-<span class="keyword">opt</span> env=env1,env2</span><br></pre></td></tr></table></figure>
+
+<p>I recreated my container using max-size option to limit the log size to 100M when running docker.</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">docker <span class="builtin-name">run</span> <span class="built_in">..</span><span class="built_in">..</span> --log-opt <span class="attribute">max-size</span>=100M</span><br></pre></td></tr></table></figure>
+
+<p>By doing this, the problem is solved. You can find out more options for log on that page to manage your log.</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2016-08-24-api-deisgn-best-practices-txt/" class="post-title-link">再看API设计——从黑客的角度</a></h2><div class="post-info">Aug 24, 2016</div><div class="post-content"><p>互联网的高速发展以及多终端设备的广泛使用使得前后端分离架构变成了必须，越来越多的网络应用暴露出API以便于前端的使用，RESTFul API的设计成为了业界主流的设计范式。在持续的业务增长以及后端技术的革新中，微服务架构(Microservice)崭露头角，解决了单体应用(Monolithic Application)的诸多问题而越来越流行。现在，在客户端与服务、服务与服务之间，有更多的数据通过常用的json等结构化的方式进行交互。这些交互过程在单体应用中对外并不可见，但在微服务架构下对于却变得透明，黑客可以通过窥探及猜测系统内部的结构，会比以前更容易攻击系统。在这篇文章中，我将以一个数据黑客的角度，展示如何利用API来大规模的获取所要的信息。</p>
+<h2 id="数据黑客"><a href="#数据黑客" class="headerlink" title="数据黑客"></a>数据黑客</h2><p>数据黑客没有一个准确的定义，在我看来这帮人对于数据具有敏锐的嗅觉；他们尝试得到一切能够获得的数据并进行数据分析；他们尝试在数据的云海中找出规律以便预测未来。在程序员拯救世界的今天，数据黑客则掌握了世界的未来。</p>
+<p>在若干年前，前后端分离的架构还尚未普及，很多数据的呈现方式都是直接在页面中打印出来，为了解析数据，数据黑客们使用XPATH去解析数据，将数据装入数据库进行分析，甚至从中赚钱。如今，我们有着大量的API供使用，数据变得唾手可得。我们不用再去繁琐的解析易变的HTML，只需要访问一个URL即可获得我们需要的数据。</p>
+<h3 id="10天内获得自由职业网站8百万项目数据"><a href="#10天内获得自由职业网站8百万项目数据" class="headerlink" title="10天内获得自由职业网站8百万项目数据"></a>10天内获得自由职业网站8百万项目数据</h3><p>我对自由职业充满了好奇，想试一下自由职业是怎么接到活的。在Freelancer网站上，几乎每分钟都有新的项目发布，一般一分钟之内就有好几个投标信息(bid)。每个投标信息包含了投标的内容、价格以及完成时间，然后雇主根据这些信息来筛选谁可能接这个项目。一般来讲会在交谈之后，明确所有的事宜后，再将项目分配给自由职业者。</p>
+<p>作为自由职业者，我们可以看到其他人投标的价格以及别人的信誉度、别人做过的项目等信息，但不能看到具体的投标内容。作为雇主，价格、自由职业者的信誉度、是否通过一些测试可能都是影响雇主是否第一轮筛选进行交谈。那么，通过数据分析，能否回答以下几个问题以便帮助我们正确的投标：</p>
+<ul>
+<li>针对投标信息，雇主对自由职业者的信誉度和价格，哪个看得更重？</li>
+<li>针对澳洲的雇主，我如何能够增加我被选中的几率，是通过降低价格还是提升自己的质量？</li>
+</ul>
+<p>为了回答这些问题，我需要尽快的将网站上所有可能拿到的信息都拿下来进行分析。</p>
+<h4 id="网站及API分析"><a href="#网站及API分析" class="headerlink" title="网站及API分析"></a>网站及API分析</h4><p>打开一个项目<a href="https://www.freelancer.com/projects/Javascript/Web-Page-Scraper/" target="_blank" rel="noopener">页面(注：你需要翻墙)</a>，你会看到页面如图所示：</p>
+<p><img src="/images/2016/8/1.png" alt="image"></p>
+<p>简单的看一下HTML后，发现网站将所有的信息都内嵌到HTML中的一个script中，在浏览器执行完成后会得到project变量。这个变量包含了项目的所有信息，所以理论上讲，我们拿到一个HTML然后解析Javascript，是可以得到我们需要的数据的。</p>
+<p><img src="/images/2016/8/2.png" alt="image"></p>
+<p>但这种方式也存在一些问题，一来是解析HTML非常费事，二来是执行Javascript也比较繁琐。并且没有一个办法能够遍历所有的项目，可行性并不大。</p>
+<p>通常来讲，我不会去解析主网站，因为其防范一般比较严。但很多网站的马奇诺防线在移动端就失效了，Freelancer也不例外。</p>
+<p>打开<a href="https://m.freelancer.com/projects/Javascript/Web-Page-Scraper/#info" target="_blank" rel="noopener">移动端的网页</a>。简单看一下可以知道它是基于AngularJS写的网站。</p>
+<p><img src="/images/2016/8/3.png" alt="image"></p>
+<p>通过分析API的请求，可以很快的看到API的样子：</p>
+<p><img src="/images/2016/8/4.png" alt="image"></p>
+<p>我们来分析一下这个URL，红色部分代表了这个项目的简写名字，将其改为其他的项目名称以后能够得到对应的信息。</p>
+<p><img src="/images/2016/8/5.png" alt="image"></p>
+<p>理论上我只要得到所有项目的简写名字，再用这个地址就可以获得所有的信息了。但且慢，我注意到了投标信息的API：</p>
+<p><img src="/images/2016/8/7.png" alt="image"></p>
+<p>红色部分用的是一串数字，如果你了解RESTFul API，则很容易知道这个bids的信息是属于9844976项目的。将之前的projects后面的名字变为数字，果然返回ID为9844976的项目的信息，和用简写名字同样的效果。这样的话我就确定了网站每个项目的ID是可以直接访问的，从0开始遍历这个ID即可得到所有网站的信息。</p>
+<p><img src="/images/2016/8/8.png" alt="image"></p>
+<h4 id="阻力：API访问速度限制"><a href="#阻力：API访问速度限制" class="headerlink" title="阻力：API访问速度限制"></a>阻力：API访问速度限制</h4><p>当爬到1000个左右的时候，网站就报告API Rate Limit限制了，大概需要一个小时左右才能再次访问。作为一个大型的网站，API访问速度限制是很平常的事情。如果照这个速度访问，则爬完所有的信息需要将近一年。能不能更快呢？</p>
+<p>通过匿名代理可以让访问的服务器无法识别出您的真实的IP地址，所以如果有大量的匿名代理，就可以满足爬虫的需求。但这个网站使用的是HTTPS，要找到大量稳定的HTTPS代理需要较高的代价，网络上常见的匿名代理网站提供的代理通常都不稳定。</p>
+<p><img src="/images/2016/8/10.png" alt="image"></p>
+<p>那么，有没有一个更廉价的方式能够获得更多的IP地址呢？洋葱网络为我们提供可以非常好的途径来隐藏自己的真实身份，并能够得到大量稳定的IP，并且能够在达到API Rate Limit之前就更新IP地址，非常符合我们的要求。</p>
+<p><img src="/images/2016/8/11.png" alt="image"></p>
+<p>为了让多线程并行，我在<a href="https://m.do.co/c/4bc532e3ef94" target="_blank" rel="noopener">DigitalOcean的5美元的服务器</a>上用Docker启动了10个Tor的客户端，这样每个客户端就拥有一个独立的IP，并且每10秒钟切换一次。脚本连续运行10天后，所有的数据全部到达本地。</p>
+<h4 id="从黑客的角度看"><a href="#从黑客的角度看" class="headerlink" title="从黑客的角度看"></a>从黑客的角度看</h4><p>好的几点：</p>
+<ul>
+<li>该网站提供了移动端的API。</li>
+<li>有API的限速。</li>
+</ul>
+<p>需要改进的有：</p>
+<ul>
+<li>ID号可遍历：通过将ID变为UUID，可以解决资源被遍历的问题。但这个要视业务场景来定，如果业务上并没有需要保护数据，则简单的ID也是一种选择。</li>
+<li>加载的数据包含了很多额外的信息，造成一些信息泄露：在返回的数据中包含了大量的其他信息，黑客可以利用此信息得到页面上没有显示的信息。例如网站上对投标者对雇主的id、用户名等信息是不知道的，但API返回的数据中却有这些信息。这样黑客可以通过这些信息通过其他渠道联系上雇主。</li>
+<li>保护网站遭受匿名网络攻击：根据业务的不同，可以设置针对地域的IP限制。例如如果网站大部分针对澳洲客户，则澳洲客户的API使用量可以设置为1千/小时，而其他国家则设置为100个/小时，并且在适当时候显示验证码。</li>
+</ul>
+<p><img src="/images/2016/8/12.png" alt="image"></p>
+<h3 id="获得一年中6亿的机票数据"><a href="#获得一年中6亿的机票数据" class="headerlink" title="获得一年中6亿的机票数据"></a>获得一年中6亿的机票数据</h3><p>由于家庭的需要，我会在节假日往返成都和广州，而我想买到最便宜的机票。那么问题在于，我需要提前多少天才能买到足够便宜的机票呢？在我得到数据之前，我曾手工的看机票的数据，但很难发现规律，往往意识到涨价的时候，已经比最低值高出了很多。如果我能持续的抓取每天看到的30天之内的机票的数据，并用于一年后的数据分析，我是否能够找到一些规律呢？</p>
+<p>为了完成这个任务，从2012年开始，我开始从各大机票售卖网站抓取机票信息。这里想举一个从某网站中获取机票的例子来看看我们能够从中学到一些什么。</p>
+<p>我之前说过从主站入手往往很难攻破，所以直接打开移动的网站：</p>
+<p><img src="/images/2016/8/13.png" alt="image"></p>
+<p>只需要看一下网络的请求就可以很方便的定位到获取机票的API以及返回值：</p>
+<p><img src="/images/2016/8/14.png" alt="image"></p>
+<h4 id="API分析"><a href="#API分析" class="headerlink" title="API分析"></a>API分析</h4><p>来我们看看API中包含了些什么：</p>
+<figure class="highlight gcode"><table><tr><td class="code"><pre><span class="line">data=<span class="meta">%</span><span class="number">7</span>B<span class="meta">%</span><span class="number">22</span>searchType<span class="meta">%</span><span class="number">22</span><span class="meta">%</span><span class="number">3</span>A<span class="meta">%</span>……</span><br></pre></td></tr></table></figure>
+
+<p>这部分应该是存储的数据，很简单，我们通过decodeURI即可得到可见的信息：</p>
+<p><img src="/images/2016/8/15.png" alt="image"></p>
+<p>后面一部分是固定的串，有API的key以及版本信息</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">useNative</span>=<span class="literal">true</span>&amp;ttid=<span class="number">201300</span>@travel_h<span class="number">5_3</span>.<span class="number">1.0</span>&amp;appKey=<span class="number">12574478</span></span><br></pre></td></tr></table></figure>
+
+<p>对于爬虫来讲，最麻烦的部分在于：</p>
+<figure class="highlight excel"><table><tr><td class="code"><pre><span class="line"><span class="built_in">t</span>=<span class="number">1426062775998</span>&amp;<span class="built_in">sign</span>=<span class="number">3</span>feb52aed67967a2c47aa7a2b9f2a417</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2016/8/16.png" alt="image"></p>
+<p>这部分一直在变，并且若干秒后会失效。sign的计算和cookie中的<em>m</em>h5_tk有很大的关系，并且每次服务器要返回新的<em>m</em>h5_tk的token用于下一次请求。所以如果要生成这个url，必须要将他的计算规律搞清楚。对手前端的加密来讲，基本上如果了解js的开发，能够较快的找出来。首先搜索API中包含的字符串h5apiUpdate，很容易就定位到这里：</p>
+<p><img src="/images/2016/8/17.png" alt="image"></p>
+<p>但这部分代码已经被压缩，无法打断点。Chrome提供了一个非常棒的代码格式化工具可以方便的将代码格式化为可读性很好的代码：</p>
+<p><img src="/images/2016/8/18.png" alt="image"><br><img src="/images/2016/8/19.png" alt="image"></p>
+<p>再在这里打上断点，所有的秘密都呈现在了眼前：</p>
+<p><img src="/images/2016/8/20.png" alt="image"><br><img src="/images/2016/8/21.png" alt="image"></p>
+<p>剩下的事情就是将这个写成脚本即可，请参考后记。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>从这个例子中我们学到了什么：</p>
+<ul>
+<li>可以用时间作为token来生成动态的url</li>
+<li>用sign去检查请求是否合法</li>
+<li>服务端可以用时间token来拒绝重发的请求</li>
+<li>JS端的压缩可以较为容易的破解</li>
+</ul>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>以上的代码我都分享在我的<a href="https://github.com/derekhe/" target="_blank" rel="noopener">github账号</a>。仅用于学习用途，请勿用于恶意攻击。</p>
+<ul>
+<li>关于爬Freelancer那的<a href="https://github.com/derekhe/freelancer-crawler" target="_blank" rel="noopener">代码</a>。</li>
+<li>机票爬取的部分<a href="https://github.com/derekhe/alitripAPI" target="_blank" rel="noopener">代码</a>。由于网站已经升级，反爬措施变得比较难于琢磨，所以这段代码已经无法正常运行了，仅供参考。</li>
+<li>还有1分钟启动10个tor的<a href="https://github.com/derekhe/tor-client-minimal" target="_blank" rel="noopener">代码</a>。</li>
+</ul>
+<p>后来我发现Freelancer网站有一个隐藏的<a href="https://www.freelancer.com/api/docs/" target="_blank" rel="noopener">API接口文档</a>，在这个文档中还有更多的信息可以参考。另外知乎上也有一些反爬虫的一些讨论，挺有趣，可以<a href="https://www.zhihu.com/question/28168585" target="_blank" rel="noopener">参考</a>。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2016-04-05-api-deisgn-best-practices/" class="post-title-link">API Design Best Practices -- From a hacker's view</a></h2><div class="post-info">Apr 5, 2016</div><div class="post-content"><p>两个星期前接到一个大坑，成都办公室需要人去参加客户的一个API的活动。和几个同事头脑风暴一番以后，发现客户已经有我们需要讲的议题了。那么我们搞点特别的吧，他们讲一些小正面的，我面来一些反面的。然后我就跳到了这个坑里。</p>
+<p>从准备材料到最终讲只剩下一个多星期，花了两天多准备PPT，板式采用纯黑的主题，加上一些在flaticon上面找的图标，配起来自我感觉良好^_^。PPT在分享在<a href="http://www.slideshare.net/hesicong/api-design-best-practices-from-a-hackers-view" target="_blank" rel="noopener">这里</a>，有兴趣的可以看。</p>
+<p>关于Freelancer那的<a href="https://github.com/derekhe/freelancer-crawler" target="_blank" rel="noopener">代码</a>，阿里那一段段的<a href="https://github.com/derekhe/alitripAPI" target="_blank" rel="noopener">代码</a>，还有1分钟启动10个tor的<a href="https://github.com/derekhe/tor-client-minimal" target="_blank" rel="noopener">代码</a>。</p>
+<p>其实最近我发现Freelancer也是提供了API的文档的，只是这个网站的页面设计得很奇葩，找东西非常难找，在<a href="https://www.freelancer.com/api/docs/" target="_blank" rel="noopener">这里</a>。</p>
+</div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/3/" class="prev">PREV</a><a href="/page/5/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

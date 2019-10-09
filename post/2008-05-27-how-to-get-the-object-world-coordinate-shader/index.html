@@ -1,0 +1,37 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 如何用Shader得到物体的世界坐标 · 我是思聪</title><meta name="description" content="如何用Shader得到物体的世界坐标 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">如何用Shader得到物体的世界坐标</h1><div class="post-info">May 27, 2008</div><div class="post-content"><p>最近群里面有个朋友问我关于如何得到OpenGL世界坐标的问题，当时我还弄错了，误以为<code>gl_ModelViewMatrix*gl_Vertex</code>就是世界坐标。因最近也突然遇到了世界坐标的问题，所以花了一些时间来研究这个问题，网上也有人问，但或许没有答案，或许是错的。<br>其实，OpenGL的转换管道直接将gl_Vertex，也就是物体坐标，用gl_ModelViewMatrix相乘，得到的是眼坐标。如果将gl_ModelViewMatirx拆分为gl_ModelMatrix和gl_ViewMatrix，那么问题就好解决了。但事实上没有提供。要清楚OpenGL其实没有世界坐标系，世界坐标系是应用程序的概念。其实可以将OpenGL的摄像机看作是固定的，其坐标系就是眼坐标系，移动摄像机和移动物体的位置是一个相反的转换，对于观察者来说根本不知道是摄像机在动，还是物体在动(想想大卫的大变自由女神像的魔术吧，呵呵)<br>说回来，最终的变换是这样的：</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">eyePos</span>=viewMatrix * modelMatrix * modelVertex</span><br></pre></td></tr></table></figure>
+
+<p>在OpenGL里面viewMatrix和modelMatrix合并了，因为OpenGL里面并没有设置摄像机的参数，所以OpenGL并不知道viewMatrix到底是什么。viewMatrix是用户自己定义的，所以如果能够得到这个viewMatrix并能得到其逆矩阵，就可以得到worldPos:</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">worldPos</span>=viewMatrixInv * viewMatrix * modelMatrix * modelVertex</span><br></pre></td></tr></table></figure>
+
+<p>传统的OpenGL程序里面，你得自己计算这个viewMatrixInv，还好OSG的Camera提供了一个getViewMatrixInverse()方法，通过这个方法我们就可以轻松的获得viewMatrixInv，然后传递给Vertex Shader(用一个Uniform就可以)，然后进行这个计算就可以了。<br>记得每一帧都需要Update这个viewMatrixInv，只需要一个updateCallBack就可以了。<br>好了，看几个图，我用3DSMAX创建了两个盒子，为了便于观察，模型的顶点值限制在0-1之间，然后用osgExp导出，没有选中Flatten Static Transform这样就不会把模型定点转换成世界坐标系的顶点。<br>源代码中可以改变gl_FragColor=的值来修改为相应的坐标系的值显示。<br>世界坐标系的最终输出，可见颜色连续变换的。</p>
+<p><a href="/images/others/world.jpg"></a><img src="/images/others/image/thumb/world.jpg" alt><br>眼坐标系的图，可见屏幕中间偏左的部分是黑的。因为其值是负的。平移拖动盒子可见相应像素着色不变。</p>
+<p><a href="/images/others/eye.jpg"></a><img src="/images/others/image/thumb/eye.jpg" alt></p>
+<p>物体坐标系的图，可见两个盒子的颜色一样，因为其值是相同的。<br><a href="/images/others/local.jpg"></a><img src="/images/others/image/thumb/local.jpg" alt><br>源代码也附后，可以运行着看看，虽然程序简单，但用到的时候再也不用苦苦思考了，呵呵。</p>
+<p><a href="http://www.hesicong.net/blog/upload/2008/5/RenderWorldCoordinate.tar" target="_blank" rel="noopener">[download id=”5”]
+</a></p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2008-06-05-cuda-intelisence/" class="prev">PREV</a><a href="/post/2008-05-26-chen-finished-yet/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

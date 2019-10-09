@@ -1,0 +1,49 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> Linux双面打印概要 · 我是思聪</title><meta name="description" content="Linux双面打印概要 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">Linux双面打印概要</h1><div class="post-info">Oct 21, 2008</div><div class="post-content"><blockquote>
+<p>摘自：<a href="http://www.realss.cn/kb&amp;menuaction=phpbrain.uikb.view_article&amp;art_id=6" target="_blank" rel="noopener">http://www.realss.cn/kb&amp;menuaction=phpbrain.uikb.view_article&amp;art_id=6</a><br><strong>双面打印及小册子打印</strong></p>
+</blockquote>
+<p>网络打印机常常不能像本机上安装的打印机一样实现一步一步指导地双面打印。这样就需要操作人员格外用心，自己在打印时候先打印一面，然后去打印机前重新装纸，回到桌前再打印另一面。</p>
+<p>打印机有两种送纸方式。一般激光打印机送纸时，第一张送入的纸，将会出现在第一页(先进先出)；喷墨打印机第一张送入的纸，将会出现在最后一页。这两种打印机双面打印的方法和小册子打印方法都不同。</p>
+<p>对于激光打印机，双面打印需要先逆序打印左页，回到打印机前装纸，再正序打印右页。打印小册子时候，需要先正序打印右页，回到打印机前装纸，再逆序打印左页。</p>
+<p>对于喷墨打印机，双面打印需要先正序打印奇数页，回到打印机前装纸，再正序打印偶数页。打印小册子时候，需要先</p>
+<ol>
+<li>逆序打印左页，回到打印机前装纸，再逆序打印右页。这样打印出的小册子是先出版芯(不是先出封面)，当左页打印完的时候，需要反过来打右页，并适情况添加一张封页(用于打印封一和封四)。</li>
+<li>正序打印右页，回到打印机前装纸，再正序打印左页。这样打印出的小册子是先出封面，适合封面使用特殊纸张的情况。</li>
+</ol>
+<p><strong>从ps或pdf文件打印小册子</strong></p>
+<p>以激光打印为例，分三步：</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">zhangweiwu@joe:~&gt; psbook herzog.<span class="keyword">ps</span>  booklet.<span class="keyword">ps</span></span><br><span class="line">zhangweiwu@joe:~&gt; lpr -<span class="keyword">o</span> <span class="keyword">number</span>-<span class="keyword">up</span>=<span class="number">2</span> -<span class="keyword">o</span> page-<span class="keyword">set</span>=odd booklet.<span class="keyword">ps</span></span><br><span class="line">zhangweiwu@joe:~&gt; lpr -<span class="keyword">o</span> <span class="keyword">number</span>-<span class="keyword">up</span>=<span class="number">2</span> -<span class="keyword">o</span> page-<span class="keyword">set</span>=even -<span class="keyword">o</span> outputorder=<span class="built_in">reverse</span> booklet.<span class="keyword">ps</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>打印小册子时的检查表</strong></p>
+<p>小册子打印最容易出问题，皆因为纸张奇偶数、方向、正反面、打印质量及顺序无一不需要操心，加之打印时间长，印反面时候又容易再错。即使面面俱到，最后仍然挂一漏万。所以列出这个检查表帮助减少失误。</p>
+<ol>
+<li>检查文件版本是否正确。小册子一般是有多个版本的，确定一定是在使用最新版。</li>
+<li>检查变量设置是否正确。如EIP手册“受众”可能是管理员，而您正在准备打印用户手册。</li>
+<li>打印之前，检查目录、域代码、索引是否全部正确，是否已经设置为不显示隐藏段落和隐藏字符(否则页码可能是错的)用OpenOffice  “工具” 里的“全部更新”更新文档。</li>
+<li>保存文档以免印反面之前误关闭程序。</li>
+<li>打印时要检查设置：纸张尺寸是否正确，纸张朝向要确认是Landscape(横向)，打印精度是否正确；</li>
+</ol>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2008-10-21-you-definitely-do-not-know-the-earth-mars-base/" class="prev">PREV</a><a href="/post/2008-10-19-ubuntu-use-the-printer-pain/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

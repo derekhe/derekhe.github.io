@@ -1,0 +1,33 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> HP1018 Ubuntu 10.04 安装指导 · 我是思聪</title><meta name="description" content="HP1018 Ubuntu 10.04 安装指导 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">HP1018 Ubuntu 10.04 安装指导</h1><div class="post-info">Nov 10, 2012</div><div class="post-content"><p>惠普打印机在Ubuntu下 需要安装opensource的驱动，郁闷的是hplip.sf.net在伟大的CN是访问不了的，所以驱动下载fireware的时候就死掉了。所以只好翻墙过去看看怎么回事。</p>
+<p>通过hp-plugin -g可以发现驱动是到hplip.sf.net/plugin.conf里面取东东，那么翻墙过去看看这里有什么：</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="section">[3.12.10]</span></span><br><span class="line"><span class="attr">url</span> = http://www.openprinting.org/download/printdriver/auxfiles/HP/plugins/hplip-<span class="number">3.12</span>.<span class="number">10</span>-plugin.run</span><br><span class="line"><span class="attr">size</span> = <span class="number">1808025</span></span><br><span class="line"><span class="attr">timestamp</span> = <span class="number">1349329318.15</span></span><br><span class="line"><span class="attr">datetime</span> = Thu, <span class="number">04</span> Oct <span class="number">2012</span> <span class="number">05</span>:<span class="number">41</span>:<span class="number">58</span> +<span class="number">0000</span></span><br><span class="line"><span class="attr">checksum</span> = ecac4ce4613db41a995df81b2efcbd3e502433ae</span><br><span class="line"><span class="attr">num_files</span> = <span class="number">52</span></span><br><span class="line"><span class="attr">revision</span> = <span class="number">17299</span></span><br><span class="line"></span><br><span class="line"><span class="section">[3.12.11]</span></span><br><span class="line"><span class="attr">url</span> = http://www.openprinting.org/download/printdriver/auxfiles/HP/plugins/hplip-<span class="number">3.12</span>.<span class="number">11</span>-plugin.run</span><br><span class="line"><span class="attr">size</span> = <span class="number">1808048</span></span><br><span class="line"><span class="attr">timestamp</span> = <span class="number">1352274536.66</span></span><br><span class="line"><span class="attr">datetime</span> = Wed, <span class="number">07</span> Nov <span class="number">2012</span> <span class="number">07</span>:<span class="number">48</span>:<span class="number">56</span> +<span class="number">0000</span></span><br><span class="line"><span class="attr">checksum</span> = <span class="number">3376764</span>cf781792662200aa61feaae1cc44f30b1</span><br><span class="line"><span class="attr">num_files</span> = <span class="number">52</span></span><br><span class="line"><span class="attr">revision</span> = <span class="number">17490</span></span><br></pre></td></tr></table></figure>
+
+<p>看吧，那么多地址。</p>
+<p>那么，我们自己去访问看看：</p>
+<p><a href="http://www.openprinting.org/download/printdriver/auxfiles/HP/plugins/" target="_blank" rel="noopener">http://www.openprinting.org/download/printdriver/auxfiles/HP/plugins/</a></p>
+<p>里面有很多驱动，找最新版本的plugin就可以了</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2012-11-10-a-li-yun-diao-zheng-xi-tong-fen-qu-da_xiao/" class="prev">PREV</a><a href="/post/2012-10-20-g330d-ics-yuan-ma-bian-yi-qi-dong-cheng_gong/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

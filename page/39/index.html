@@ -1,0 +1,52 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 我是思聪</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2009-08-16-workaround-for-virtualbox-3-0-4-bridged-networking-issue/" class="post-title-link">Workaround for VirtualBox 3.0.4 Bridged Networking Issue</a></h2><div class="post-info">Aug 16, 2009</div><div class="post-content"><p>I have experienced a bridged networking issue in VirutalBox 3.0.4 with Vista as host and Ubuntu 8.10 as guest.</p>
+<p>My networking is installed as following:</p>
+<p>A TP-LINK WR340G router configured with DHCP on; Vista Host system linked to this router and can get IP automatically; Ubuntu 8.04 refreshly installed in VirtulBox 3.0.4.</p>
+<p>After I installed VirtualBox Addition, guest networking seemed hard to get IP from router. Somestimes it could get a IP. In most time, the networking configuration said that “the link was disconnected”.</p>
+<p>I searched and someone said that change guest’s network card to “Intel PRO/1000 MT Desktop” might solve the problem. I tried it and successed.</p>
+<p>If you have this problem, try to change your guest’s card type.</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2009-08-09-msi-p35-neo2-fr-a-serial-port-but-did-not-pick-up/" class="post-title-link">微星P35 NEO2 FR有串口的，只是没接出来</a></h2><div class="post-info">Aug 9, 2009</div><div class="post-content"><p>我一直以为它没有串口，网上也没有看到有人说它有串口，今天仔细一瞧，和其他主板一样的，还是有串口的，只是要自己接出来而已了。</p>
+<p><a href="/images/others/img_0099.jpg"></a><img src="/images/others/image/thumb/img_0099.jpg" alt></p>
+<p>PCIE4X左边的偏下那个插槽就是COM1的位置，以后可别冤枉了NEO2了……呵呵</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2009-08-08-mini2440-development-board/" class="post-title-link">Mini2440开发板</a></h2><div class="post-info">Aug 8, 2009</div><div class="post-content"><p>前段时间买了个Mini2440开发板(见<a href="http://www.arm9.net)，买的是MINI2440+7寸屏幕，在成都直接提货的，64M" target="_blank" rel="noopener">www.arm9.net)，买的是MINI2440+7寸屏幕，在成都直接提货的，64M</a> Flash的780块钱。</p>
+<p>当时买这个玩意儿是因为有个哥哥说还是有必要了解一些这方面的知识，可以去搞一个平时玩玩。网上找了一圈还是觉得这个便宜实惠。最令我觉得感动的是说明书都写了500多页，网上也有持续的更新。所以我觉得厂商是很负责的态度来做这个事情的。当时看的时候在浙江，回来就买了一个。</p>
+<p>拿回来第一件事就是连接LCD和开发板，很简单的。然后就是找了个USB转串口的转接线。可怜我的P35 NEO2 FR，看起来很华丽的主板，没有COM口，这让人很郁闷。用了转接线插上一看，哟，没反应。捣鼓了好一阵觉得转接线是不是有问题，最后以外之间把USB插了另外一个插口里面，再用PUTTY一连，霍霍，连上了开发板的BootLoader。</p>
+<p>后几天就是看着说明书熟悉一下各种功能。最新版的说明书里面讲的东西需要最新的BootLoader支持，而我的那个板子里面的是今年4月份或者更老的BootLoader。我尝试把supervivi-64M的BootLoader写入到NAND中，但一写入就出现说vivi的size只有123k不够245k，无法写入。我后来尝试在删除了MTD分区的vivi分区和eboot分区，然后建立了一个大一点的vivi分区，就可以写入了。然后把开关变成NAND启动，开机按着开发板的任意一个键，电脑上就可以进入BootLoader操作了。</p>
+<p>后来觉得怎么着这个也不方便，每次都要按着键，不爽。还是看怎么能够把NOR的BootLoader更新了。</p>
+<p>刚开始我还走了弯路，以为H-JTAG还要买一个什么转接的东西。看了附录的SJF2440，按照步骤一操作，傻了，SFJ2440程序不支持我的SST的NOR Flash。刚开始我还以为怎么就那么倒霉呢，后来按照说明书的做法，把H-JTAG装上了。开发板提供的H-JTAG是一个LPT接口的一个小板子，幸亏我的笔记本有这个接口，要不然就郁闷死了，买一个能用的USB转LPT的不知道要多贵。</p>
+<p>按照步骤一步一步的做下去，更新好了，很顺利。开机启动的时候也显示新的BootLoader界面了。</p>
+<p>剩下玩的步骤也就是按照说明书的做点另外的东东啦。最终想看看QT 4.5能不能在上面跑起来。自带的Qtopia确实有点老了，Konquoer浏览器确实还是有点慢了。或者试试WINCE，看看上网效果如何，呵呵。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2009-08-08-weekend-rain/" class="post-title-link">周末下雨</a></h2><div class="post-info">Aug 8, 2009</div><div class="post-content"><p>刚刚热了一阵又开始下雨了，天气又变得凉爽起来。不经意间已经立秋了，苏州的小妹都在卖月饼了，这年头，卖月饼也要提前两个月。</p>
+<p>这周过的很快，一下就到了周末了。周四去调了铣床功能感觉还不错，原本以为比较复杂的问题最后还是开窍了，解决了。其实整个数控项目中最深恶痛绝性能问题都来自于GDI+的性能，缺少GDI的硬件加速，没有提供XOR画笔是最大的一个软肋，直接写屏幕，只能搞迂回战术。最后最让头奇怪的是竟然没有提供画点的函数，还非得用画一个1X1的矩形来解决，莫非当年的.NET 2.0设计者也不知道封装么？~</p>
+<p>当然，最后问题的解决还算是顺利，使用了离屏缓存加直接写屏解决了直接写屏和双缓冲绘制的难点，效率也得以提高，算是one stone two birds~</p>
+<p>本来打算的15号至22号出去旅游的，由于种种原因取消了，弄得心情也不好。今年天灾人祸也多，台风暴雨泥石流，去哪儿都不安全啊，还是呆在家里面算了。</p>
+<p>下午第一次去了美联的双楠校区，很大，人比较少，上课没有八宝街那边拥挤，但多是beginner，有些话题不太好聊，都保持一定的沉默呵呵。在双楠这儿找到个比较稳定也比较快的无线接入点，要是有个笔记本就好了。唯一不好的就是周边没有什么吃的，仅找到一家快餐店，晚上吃了个青椒肉丝炒饭，6块钱，没有吃饱……</p>
+<p>其实从双楠校区到我家挺近的，开车也就10多分钟就到了，晚上坐公交车走的，一折腾折腾了一个小时。可怜的78路啊，老是要等很久，然后突然来了两趟……光在金沙等78路久等了二十多分钟，以后还是开车或者骑车好了，方便快捷。</p>
+<p>下周还是继续调机床了~争取在9月份之前有个了结比较好。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2009-08-02-academic-sentence-forms/" class="post-title-link">Academic Sentence Forms</a></h2><div class="post-info">Aug 2, 2009</div><div class="post-content"><p>Our foreign teacher recommanded us to visit a great online resources for example academic sentnce forms:</p>
+<p><a href="http://www.phrasebank.manchester.ac.uk" target="_blank" rel="noopener">http://www.phrasebank.manchester.ac.uk</a></p>
+<p>I looked at it and it was really useful!</p>
+</div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/38/" class="prev">PREV</a><a href="/page/40/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 寻求最快解决方案 · 我是思聪</title><meta name="description" content="寻求最快解决方案 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">寻求最快解决方案</h1><div class="post-info">Aug 31, 2005</div><div class="post-content"><p>有两个Ulong的数L1和L2，需要将L1的第n位(bit)设置成L2的第m位(bit)。</p>
+<p>比如L1为(binary)10101000010…..(共64位,Low -&gt;High)，L2为(binary)0101110001….(共64位Low -&gt;High)，设置L1的第3位(现在是1)为L2的第1位(现在是0)。</p>
+<p>我写了一个算法，但是发现速度不快(用在加密算法里面)，大部分时间消耗在判断上了。不知道各位能不能写出速度更快的代码，或者有其他优化技巧。以下是我写的算法，大家看看……期待着大家的回答。谢谢！</p>
+<figure class="highlight vbnet"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Private</span> <span class="keyword">Const</span> ULong_1 <span class="keyword">As</span> <span class="built_in">ULong</span> = <span class="built_in">CType</span>(<span class="number">1</span>, <span class="built_in">ULong</span>) <span class="comment">'全部是1的ULong</span></span><br><span class="line"><span class="keyword">Public</span> <span class="keyword">Sub</span> SetBit()<span class="keyword">Sub</span> SetBit(<span class="keyword">ByRef</span> L1 <span class="keyword">as</span> <span class="built_in">ULong</span>,<span class="keyword">ByVal</span> n <span class="keyword">As</span> <span class="built_in">Integer</span>, <span class="keyword">ByVal</span> L2 <span class="keyword">As</span> <span class="built_in">ULong</span>, <span class="keyword">ByVal</span> m <span class="keyword">As</span> <span class="built_in">Integer</span>)</span><br><span class="line"> <span class="keyword">If</span> (L2 <span class="keyword">And</span> (ULong_1 &lt;&lt; m)) = <span class="number">0</span> <span class="keyword">Then</span></span><br><span class="line"> L1 = L1 <span class="keyword">And</span> <span class="keyword">Not</span> (ULong_1 &lt;&lt; n)</span><br><span class="line"> <span class="keyword">Else</span></span><br><span class="line"> L1 = L1 <span class="keyword">Or</span> (ULong_1 &lt;&lt; n)</span><br><span class="line"> <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br></pre></td></tr></table></figure>
+
+<p>经过苦思冥想，问题解决：</p>
+<figure class="highlight vbnet"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Sub</span> SetBit()<span class="keyword">Sub</span> SetBit(<span class="keyword">ByRef</span> L1 <span class="keyword">As</span> <span class="built_in">ULong</span>, <span class="keyword">ByVal</span> n <span class="keyword">As</span> <span class="built_in">Integer</span>, <span class="keyword">ByRef</span> L2 <span class="keyword">As</span> <span class="built_in">ULong</span>, <span class="keyword">ByVal</span> m <span class="keyword">As</span> <span class="built_in">Integer</span>)</span><br><span class="line">L2 = (L2 &gt;&gt; m) <span class="keyword">And</span> CULng(&amp;H1)</span><br><span class="line">L1 = L1 <span class="keyword">And</span> <span class="keyword">Not</span> (CULng(&amp;H1 &lt;&lt; n))</span><br><span class="line">L1 = L1 + (L2 &lt;&lt; n)</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br></pre></td></tr></table></figure>
+
+<p>现在执行1000000次也只需要31.25ms，速度已经达到要求了。</p>
+<p>思路如下：</p>
+<p>思 路为把L2中的m那一位移到最右边，然后和1取AND，这样就把m这位取出来了。对于L1，我把n这一位设置为0，也就是AND 111111..0…111这样，111111..0…111来自1&lt;&lt;n然后取反。最后把L1中取得的那一位和L2 AND以后的值相加即可。</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2005-09-01-whim-transplant-qq/" class="prev">PREV</a><a href="/post/2005-08-21-little-information-3gpp-document-naming/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

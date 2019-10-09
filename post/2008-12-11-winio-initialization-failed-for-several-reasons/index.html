@@ -1,0 +1,34 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> WinIO初始化失败的几个原因 · 我是思聪</title><meta name="description" content="WinIO初始化失败的几个原因 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">WinIO初始化失败的几个原因</h1><div class="post-info">Dec 11, 2008</div><div class="post-content"><p>WinIO是一个能够打开一些操作系统IO特权操作的一个库，简单的来说它加载了一些驱动。通过加载的驱动可以直接的访问端口。在工控上，我们可以利用这个库直接操作IO卡的地址。例如我最近在做的一个数控钻铣床的IO卡和运动控制卡就是很老的一个卡，在WIN98下面工作很正常，但是在NT核心上就会出现非法指令调用的问题。这些非法指令来自于底层对IO卡和运动控制卡的直接地址访问。在98时代，这些操作都没有受到保护的，在NT核心下就会出现保护问题。经试验，经过WinIO初始化载入驱动以后再进行IO卡直接访问，很成功。</p>
+<p>但应用的时候，就出现了一些莫名其妙的问题。应用WinIO只需要调用两个函数InitializeWinIo()，和最后的ShutdownWinIo()即可。InitializeWinIo()将会返回一个bool值指示初始化结果。就是这个函数造成了许多困扰。</p>
+<p>第一次困扰是在一次调试中，经常初始化失败，一旦成功以后就总是成功的。刚开始以为是InitializeWinIo()以后没有ShutdownWinIoI()造成的，后来看了WinIO的C Example证明只写InitializeWinIo()一样能够进程一旦结束，由InitializeWinIo初始化的资源自然就结束了。所以不存在上次运行影响这次运行的事情。后来突然发现，WinIO相关的dll,vxd,sys竟然是绿色的。绿色在WindowsXP系统里面代表了文件是被EFS加密的。我为了工程的保密，把所有的工程目录都进行了EFS加密。EFS加密会影响磁盘性能，原因就在于其加解密过程。但是这里很奇怪，可能是间歇性的EFS解密速度没有跟上WinIO中加载驱动的速度，造成读取的sys和vxd设备驱动是混乱的，最终导致加载失败。将EFS加密取消，问题解决。</p>
+<p>第二次困找在我用C#写了一个dllimport，然后进行调用，结果，总是返回false。很疑惑，WinIO相关的文件都放到一起的，怎么还是这样的呢？VS2005单元测试里也会失败。究其原因还是路径的问题造成。分析WinIO的源代码，可以发现InitializeWinIo()会调用一个GetDriverPath这个函数：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="built_in">bool</span> GetDriverPath()</span><br><span class="line">&#123;</span><br><span class="line">PSTR pszSlash;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!GetModuleFileName(GetModuleHandle(NULL), szWinIoDriverPath, <span class="keyword">sizeof</span>(szWinIoDriverPath)))</span><br><span class="line"><span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">pszSlash = strrchr(szWinIoDriverPath, <span class="string">'\'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (pszSlash)</span><br><span class="line">pszSlash[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line"><span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">strcat(szWinIoDriverPath, <span class="string">"winio.sys"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里面已经很清楚的知道了什么情况下会false了。注意winio.sys存放的位置问题就能使之初始化正常。</p>
+<p>其实还可以更加详细的打印出InitializeWinIo()中每步的执行过程，这样更容易判断是哪个地方出现了问题。</p>
+<p>就先写到这里吧，WinIO是个很好很强大，很黄很暴力的一个库～～～</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2008-12-11-campus-fall/" class="prev">PREV</a><a href="/post/2008-12-10-increase-the-return-e-mail-notifications-blog/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

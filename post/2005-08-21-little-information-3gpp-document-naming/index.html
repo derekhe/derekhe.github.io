@@ -1,0 +1,630 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 小资料——3GPP文档命名规则 · 我是思聪</title><meta name="description" content="小资料——3GPP文档命名规则 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">小资料——3GPP文档命名规则</h1><div class="post-info">Aug 21, 2005</div><div class="post-content"><p>今天正在读Mobile Messaging Technologies and Services一书，其中阐述了3GPP文档命名的原则。我把它翻译成中文并整理一下作为一个小资料供查阅。更为精确的描述请参考Mobile Messaging Technologies and Services一书。</p>
+<p>*<em>3GPP规范：命名方案<br>*</em> 每份3GPP技术文档，技术报告(TR)或者技术规范(TR)，都被一个Reference唯一标示。这个Reference以3GPP前缀开始，后跟 两个字符表示文档的类型(TS为技术报告，TR为技术规范)。在文档类型之后紧接着是规范的号码。规范号码具有aa.bbb或者aa.bb两种形式。其中 aa指示文档的适用范围(见表1)。规范号码后面是版本Vx.y.z，其中x表示release，y表示技术版本，z表示修订版本。</p>
+<p>另外注意每个release都有一个冻结日期，一般3GPP协议在冻结以后就不再修改。一般冻结日期为1年。</p>
+<p>例如：以下文档定义了MMS Stage 1:<br>Reference 3GPP TS 23.140 V5.2.0<br>Title          Multimedia Messaging Service, Stage 1</p>
+<p>文档中有Stage 1,2,3之分。Stage 1规范了从服务使用者的角度阐述的一个服务；Stage 2规范描述了对需要解决的问题的逻辑分析；Stage 3就是技术实现。<br>3GPP规范可以从<a href="http://www.3gpp.org/" target="_blank" rel="noopener">http://www.3gpp.org</a> 获得。</p>
+<p>表一 编号</p>
+<table cellpadding="0" cellspacing="0" border="1" width="490">
+<tbody>
+<tr>
+
+<td width="98" valign="top">Range for GSM up
+</td>
+
+<td width="100" valign="top">Range for GSM
+</td>
+
+<td width="112" valign="top">Range for UMTS
+</td>
+
+<td width="179" valign="top">Type of use
+</td>
+</tr>
+<tr>
+
+<td width="98">to and including
+</td>
+
+<td width="100">release
+</td>
+
+<td width="112">release 1999
+</td>
+
+<td width="179" valign="top">
+</td>
+</tr>
+<tr>
+
+<td width="98" valign="top">release 99
+</td>
+
+<td width="100" valign="top">onwards
+</td>
+
+<td width="112" valign="top">onwards
+</td>
+
+<td width="179" valign="top">
+</td>
+</tr>
+<tr>
+
+<td width="98">01.bb
+</td>
+
+<td width="100">41.bbb
+</td>
+
+<td width="112">21.bbb
+</td>
+
+<td width="179">Requirement specifications
+</td>
+</tr>
+<tr>
+
+<td width="98" valign="top">02.bb
+</td>
+
+<td width="100" valign="top">42.bbb
+</td>
+
+<td width="112" valign="top">22.bbb
+</td>
+
+<td width="179" valign="top">Service aspects
+</td>
+</tr>
+<tr>
+
+<td width="98">03.bb
+</td>
+
+<td width="100">43.bbb
+</td>
+
+<td width="112">23.bbb
+</td>
+
+<td width="179">Technical realizations
+</td>
+</tr>
+<tr>
+
+<td width="98">04.bb
+</td>
+
+<td width="100">44.bbb
+</td>
+
+<td width="112">24.bbb
+</td>
+
+<td width="179">Signalling protocols
+</td>
+</tr>
+<tr>
+
+<td width="98" valign="top">05.bb
+</td>
+
+<td width="100" valign="top">45.bbb
+</td>
+
+<td width="112" valign="top">25.bbb
+</td>
+
+<td width="179" valign="top">Radio access aspects
+</td>
+</tr>
+<tr>
+
+<td width="98">06.bb
+</td>
+
+<td width="100">46.bbb
+</td>
+
+<td width="112">26.bbb
+</td>
+
+<td width="179">Codecs
+</td>
+</tr>
+<tr>
+
+<td width="98">07.bb
+</td>
+
+<td width="100">47.bbb
+</td>
+
+<td width="112">27.bbb
+</td>
+
+<td width="179">Data
+</td>
+</tr>
+<tr>
+
+<td width="98">08.bb
+</td>
+
+<td width="100">48.bbb
+</td>
+
+<td width="112">28.bbb
+</td>
+
+<td width="179">Signalling protocols
+</td>
+</tr>
+<tr>
+
+<td width="98" valign="top">09.bb
+</td>
+
+<td width="100" valign="top">49.bbb
+</td>
+
+<td width="112" valign="top">29.bbb
+</td>
+
+<td width="179" valign="top">Core network signalling protocols
+</td>
+</tr>
+<tr>
+
+<td width="98">10.bb
+</td>
+
+<td width="100">50.bbb
+</td>
+
+<td width="112">30.bbb
+</td>
+
+<td width="179">Programme management
+</td>
+</tr>
+<tr>
+
+<td width="98" valign="top">11.bb
+</td>
+
+<td width="100" valign="top">51.bbb
+</td>
+
+<td width="112" valign="top">31.bbb
+</td>
+
+<td width="179" valign="top">SIM/USIM
+</td>
+</tr>
+<tr>
+
+<td width="98" valign="top">12.bb
+</td>
+
+<td width="100" valign="top">52.bbb
+</td>
+
+<td width="112" valign="top">32.bbb
+</td>
+
+<td width="179" valign="top">Charging and OAM&
+</td>
+</tr>
+<tr>
+
+<td width="98">13.bb
+</td>
+
+<td width="100" valign="top">
+</td>
+
+<td width="112" valign="top">
+</td>
+
+<td width="179">Regulatory test specifications
+</td>
+</tr>
+<tr>
+
+<td width="98" valign="top">
+</td>
+
+<td width="100" valign="top">
+</td>
+
+<td width="112" valign="top">33.bbb
+</td>
+
+<td width="179" valign="top">Security aspects
+</td>
+</tr>
+<tr>
+
+<td width="98" valign="top">
+</td>
+
+<td width="100" valign="top">
+</td>
+
+<td width="112" valign="top">34.bbb
+</td>
+
+<td width="179" valign="top">Test specifications
+</td>
+</tr>
+<tr>
+
+<td width="98" valign="top">
+</td>
+
+<td width="100" valign="top">
+</td>
+
+<td width="112">35.bbb
+</td>
+
+<td width="179">Algorithms
+</td>
+</tr>
+</tbody></table>
+
+<p>表二  对应release的冻结日期</p>
+<table cellpadding="0" cellspacing="0" border="1" width="487">
+<tbody>
+<tr>
+
+<td colspan="2" valign="top" width="113">GSM/edge release
+</td>
+
+<td width="75" valign="top">3G release
+</td>
+
+<td width="71" valign="top">
+Abbreviated
+
+</td>
+
+<td width="82" valign="top">Specification
+</td>
+
+<td width="78" valign="top">Specification
+</td>
+
+<td width="68" valign="top">Freeze date
+</td>
+</tr>
+<tr>
+
+<td colspan="2" valign="top" width="113">
+</td>
+
+<td width="75" valign="top">
+</td>
+
+<td width="71">
+name
+
+</td>
+
+<td width="82">number
+</td>
+
+<td width="78">version
+</td>
+
+<td width="68" valign="top">
+</td>
+</tr>
+<tr>
+
+<td colspan="2" valign="top" width="113">
+</td>
+
+<td width="75" valign="top">
+</td>
+
+<td width="71" valign="top">
+</td>
+
+<td width="82" valign="top">format
+</td>
+
+<td width="78" valign="top">format
+</td>
+
+<td width="68" valign="top">
+</td>
+</tr>
+<tr>
+
+<td width="54">Phase +
+</td>
+
+<td width="60">release
+</td>
+
+<td width="75">
+Release
+
+</td>
+
+<td width="71">Rel-
+</td>
+
+<td width="82">aaa.bb (3G)
+</td>
+
+<td width="78">6.x.(3G)
+</td>
+
+<td width="68">June 2003
+</td>
+</tr>
+<tr>
+
+<td width="54" valign="top">Phase +
+</td>
+
+<td width="60">release
+</td>
+
+<td width="75">
+Release
+
+</td>
+
+<td width="71">Rel-
+</td>
+
+<td width="82">aa.bb (GSM)
+</td>
+
+<td width="78">5.x.(GSM)
+</td>
+
+<td width="68">March 2002
+</td>
+</tr>
+<tr>
+
+<td width="54" valign="top">Phase +
+</td>
+
+<td width="60">release
+</td>
+
+<td width="75">
+Release
+
+</td>
+
+<td width="71">Rel-
+</td>
+
+<td width="82">aaa.bb (3G)
+</td>
+
+<td width="78">4.x.(3G)
+</td>
+
+<td width="68">March 2001
+</td>
+</tr>
+<tr>
+
+<td width="54" valign="top">
+</td>
+
+<td width="60" valign="top">
+</td>
+
+<td width="75" valign="top">
+</td>
+
+<td width="71" valign="top">
+</td>
+
+<td width="82">aa.bb (GSM)
+</td>
+
+<td width="78">9.x.(GSM)
+</td>
+
+<td width="68" valign="top">
+</td>
+</tr>
+<tr>
+
+<td width="54" valign="top">Phase +
+</td>
+
+<td width="60">release 99
+</td>
+
+<td width="75">
+Release 99
+
+</td>
+
+<td width="71">R99
+</td>
+
+<td width="82">aaa.bb (3G)
+</td>
+
+<td width="78">3.x.(3G)
+</td>
+
+<td width="68">March 2000
+</td>
+</tr>
+<tr>
+
+<td width="54" valign="top">
+</td>
+
+<td width="60" valign="top">
+</td>
+
+<td width="75" valign="top">
+</td>
+
+<td width="71" valign="top">
+</td>
+
+<td width="82" valign="top">aa.bb (GSM)
+</td>
+
+<td width="78" valign="top">8.x.(GSM)
+</td>
+
+<td width="68" valign="top">
+</td>
+</tr>
+<tr>
+
+<td width="54" valign="top">Phase +
+</td>
+
+<td width="60">release 98
+</td>
+
+<td width="75" valign="top">
+</td>
+
+<td width="71">R98
+</td>
+
+<td width="82">aa.bb
+</td>
+
+<td width="78">7.x.
+</td>
+
+<td width="68">Early 1999
+</td>
+</tr>
+<tr>
+
+<td width="54" valign="top">Phase +
+</td>
+
+<td width="60">release 97
+</td>
+
+<td width="75" valign="top">
+</td>
+
+<td width="71">R97
+</td>
+
+<td width="82">aa.bb
+</td>
+
+<td width="78">6.x.
+</td>
+
+<td width="68">Early 1998
+</td>
+</tr>
+<tr>
+
+<td width="54" valign="top">Phase +
+</td>
+
+<td width="60">release 96
+</td>
+
+<td width="75" valign="top">
+</td>
+
+<td width="71">R96
+</td>
+
+<td width="82">aa.bb
+</td>
+
+<td width="78">5.x.
+</td>
+
+<td width="68">Early 1997
+</td>
+</tr>
+<tr>
+
+<td width="54">Phase
+</td>
+
+<td width="60" valign="top">
+</td>
+
+<td width="75" valign="top">
+</td>
+
+<td width="71">PH2
+</td>
+
+<td width="82">aa.bb
+</td>
+
+<td width="78">4.x.
+</td>
+
+<td width="68">1995
+</td>
+</tr>
+<tr>
+
+<td width="54">Phase
+</td>
+
+<td width="60" valign="top">
+</td>
+
+<td width="75" valign="top">
+</td>
+
+<td width="71">PH1
+</td>
+
+<td width="82">aa.bb
+</td>
+
+<td width="78">3.x.
+</td>
+
+<td width="68">1992
+</td>
+</tr>
+</tbody></table>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2005-08-31-find-the-fastest-solution/" class="prev">PREV</a><a href="/post/2005-08-17-net-compact-framework-in-decoding-gb2312/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

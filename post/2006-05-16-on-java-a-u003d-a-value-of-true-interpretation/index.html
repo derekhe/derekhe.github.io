@@ -1,0 +1,30 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 关于在Java中 a!=a 值为真的解释 · 我是思聪</title><meta name="description" content="关于在Java中 a!=a 值为真的解释 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">关于在Java中 a!=a 值为真的解释</h1><div class="post-info">May 16, 2006</div><div class="post-content"><p>In java spec , the primitive type is implemented in a certain defined way. The floating-types are implemented in IEEE-754 standard.<br>Ref from java spec:<br>The IEEE 754 standard includes not only positive and negative sign-magnitude numbers, but also positive and negative zeros, positive and negative <em>infinities</em>, and a special _Not-a-Number _value (hereafter abbreviated as “NaN”). The NaN value is used to represent the result of certain invalid operations such as dividing zero by zero.<br>So, in this case , java specified that a!=a is true if the variable is NaN. So does the case i present yesterday (a&lt;b)==(a&gt;=b) if either a or b is NaN.<br>Now I wil give you a example show it:<br>………<br>double a=0;<br>double b=0;<br>a=a/b;<br>if(a!=a) System.out.println(“OK, a!=a is true!”);<br>if((a&lt;b)==(a&gt;=b)) System.out.println(“……..”);</p>
+<p>But I think the problem is a little tricky, If you have not yet read something from the java spec or something other, you will not  know that. But when the problem been proposed to us ,we should think about the problem in a logical way ,but not the way coding it to see if a=0, and then  a!=a is false. What i want to see is not the result of this ,but the thinking way of the job seeker.</p>
+<p>.net 2.0里面也是这样</p>
+<p>Module Test<br>Sub Main()<br>Dim a as double=0<br>Dim b as double=0<br>a=a/b<br>console.writeline(“a ={0}”,a)<br>console.writeline(“a&lt;&gt;a ={0}”,a&lt;&gt;a)<br>console.writeline(“a=a ={0}”,a=a)<br>console.writeline(“a&lt;b ={0}”,a&lt;b)<br>console.writeline(“a&gt;b ={0}”,a&gt;b)<br>console.writeline(“a=b ={0}”,a=b)<br>End Sub<br>end module</p>
+<p>结果：<br>a =非数字<br>a&lt;&gt;a =True<br>a=a =False<br>a&lt;b =False<br>a&gt;b =False<br>a=b =False</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2006-06-06-siemens-cxv65-photoshop-cs2/" class="prev">PREV</a><a href="/post/2006-03-18-on-the-latest-published-in-the-codeproject-article-on-mobile-phone-data-transfer/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

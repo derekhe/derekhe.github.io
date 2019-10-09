@@ -1,0 +1,70 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> .net平台手机管理软件开发(10)—— 短信部分 VB.NET解码PDU · 我是思聪</title><meta name="description" content=".net平台手机管理软件开发(10)—— 短信部分 VB.NET解码PDU - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">.net平台手机管理软件开发(10)—— 短信部分 VB.NET解码PDU</h1><div class="post-info">Feb 19, 2005</div><div class="post-content"><p><strong>(十) **</strong>短信部分——VB.NET<strong>**解码PDU</strong></p>
+<p>早在2004年1月份我就开始初步的研究PDU的编码解码原理，对于PDU也有比较深刻的认识。随后按照3GPP协议写了一个PDU Decoder，后来写成PDU Decoder文章发表在CodeProject上面，有几个好心的外国网友给我指出了一些BUG，现在成了一个比较完善的Decoder。本文讲解编码器的构成以及我所使用的解码方法及技巧。<br><strong>解码器的构成</strong><br>NameSpace <strong>SMS</strong><br>** Decoder**
+MustInheritClass** SMSBase**
+Class ** EMS_RECEIVED**
+Class <strong>EMS_SUBMIT</strong><br>Class <strong>SMS_RECEIVED</strong><br>Class <strong>SMS_STATUS_REPORT</strong><br>Class <strong>SMS_SUBMIT</strong><br>Class <strong>PDUDecoder</strong><br><strong>SMSBase**</strong>部分**
+SMSBase类是必须继承类，它包含了PDU的基本结构以及一些相关辅助函数，是最基本的类，其他的类都是从SMSBase继承的。通过SMSBase的Shared函数GetSMSType可以得到PDU的类型，从而确定使用的Class。<br>SMSBase包含了所有短信类型所共有的基本信息部分以及一个指示短信类型的枚举SMSType，继承的类扩展其特有的基本信息部分。<br>Public SCAddressLength As Byte ‘Service Center Address length<br>Public SCAddressType As Byte ‘Service Center Type[See GSM 03.40]<br>Public SCAddressValue As String ‘Service Center nuber<br>Public FirstOctet As Byte ‘See GSM 03.40</p>
+<p>Public TP_PID As Byte<br>Public TP_DCS As Byte<br>Public TP_UDL As Byte<br>Public TP_UD As String<br>Public Text As String<br>Public Type As SMSType<br>Public UserData As String</p>
+<p>Public Enum SMSType<br>SMS_RECEIVED = 0<br>SMS_STATUS_REPORT = 2<br>SMS_SUBMIT = 1<br>EMS_RECEIVED = 64 ‘It is “Reserved” on my phone??<br>EMS_SUBMIT = 65<br>End Enum</p>
+<p>SMSBase中定义了一个必须重写的过程GetOrignalData，其参数为PDUCode，目的是为了得到PDU的基本信息。不同的短信类型具有不同的解码过程，所以作为一个必须重写的函数。<br>Public MustOverride Sub GetOrignalData(ByVal PDUCode As String)</p>
+<p>SMSBase中还有一系列的辅助函数，具体实现方法见源代码：</p>
+<p>处理PDU代码的：</p>
+<p>处理PDU代码我运用了自称为“按需裁减”的技巧，就是把需要的数据提取出来解码，然后从原PDUCode中删除这一部分，在传递给下一个函数处理。这样就不用考略具体的偏移量，简化了操作，增强了适应性。为了能够减少返回处理过的PDUCode麻烦，我使用了ByRef，执行过程以后PDUCode就自动被裁减了。<br>‘Get a byte from PDU string<br>Shared Function GetByte(ByRef PDUCode As String) As Byte<br>‘Get a string of certain length<br>Shared Function GetString(ByRef PDUCode As String, ByVal Length As Integer) As String<br>‘Get date from SCTS format<br>Shared Function GetDate(ByRef SCTS As String) As Date<br>‘Swap two bit<br>Shared Function Swap(ByRef TwoBitStr As String) As String<br>‘Get phone address<br>Shared Function GetAddress(ByRef Address As String) As String<br>Shared Function GetSMSType(ByVal PDUCode As String) As SMSBase.SMSType<br>TP-UD解码部分：<br>TP-UD的解码的任务主要集中在Unicode的解码和7BitCode的解码。其中Unicode的解码很方便，只需要将两个字节的PDUCode通过Val函数转换成为数字，在通过ChrW函数即可得到。</p>
+<p>而7BitCode就显得比较难，下面以Test四个字符简单介绍其基本原理，具体的编码方式请参考相关资料。<br>Byte1 11010100 0xD4<br>Byte2 11110010 0xF2<br>Byte3 10011100 0x9C<br>Byte4 00001110 0x0E</p>
+<p>注：各字符二进制代码：<br>T：1010100 e：1100101 s：1110011 t：1110100</p>
+<p>从这个例子可以看出一个Byte包含了一个字符的ASCII码的二进制部分及后续字符的二进制部分的低位。这样8个字符可以压缩成为7个Byte，SMS中140Byte的TP-UD长度就可以容纳160个英文字母。</p>
+<p>通过观察可以看出，只要我们从后到前把所有的二进制代码拼接到一块，就能够方便的处理，上面例子通过拼接后得到：<br>00001110100111001111001011010100</p>
+<p>我们可以直接通过从后往前的按7个一组的原则进行截取在处理就可以得到解码后的代码。为了编程的方便，我设计了一个简单易懂的解码过程，比起通过做乘除法来进行运算的简单，但最终效率不及它。但我想在普通场合应用也绰绰有余了。<br>.  Decode7Bit得到一个PDU的TP-UD部分<br>.  InvertHexString反转十六进制代码：例如123456=〉563412<br>.  Binary字符串得到反转后的十六进制代码的二进制表示。注意这里依然使用字符串来表示二进制，为了便于“拼接”和“切割”<br>.  根据charCount所提供的字符数(来自TP_UDL)按7个一组从字符串位往前截取，并用Chr函数转换成ASCII码。</p>
+<p>以下是一些函数的声明部分，具体函数请参见Blog内的PDUDecoder<br>‘Deoce a unicode string<br>Shared Function DecodeUnicode(ByVal strUnicode As String) As String<br>‘Decode 7bit to English<br>Shared Function InvertHexString(ByVal HexString As String) As String<br>Shared Function ByteToBinary(ByVal Dec As Byte) As String<br>Shared Function BinaryToInt(ByVal Binary As String) As Integer<br>Shared Function Decode7Bit(ByVal str7BitCode As String, ByVal charCount As Integer) As String</p>
+<p><strong>SMS_SUBMIT**</strong>、SMS_RECEIVED<strong>**、SMS_STATUS_REPORT</strong></p>
+<p>由于SMS_RECEIVED、SMS_STATUS_REPORT与SMS_SUBMIT比较相似，所以我重点讲讲SMS_SUBMIT。</p>
+<p>当用SMSBase的GetSMSType确定一个PDUCode为SMS_SUBMIT时，就可以声明一个SMS_SUBMIT类的实例，通过传递此PDUCode作为构造函数的参数。构造函数立即调用GetOrignalData函数解码。</p>
+<p>参考协议知道SMS_SUBMIT比SMSBase多出以下部分：<br>Public TP_MR As Byte<br>Public DesAddressLength As Byte<br>Public DesAddressType As Byte<br>Public DesAddressValue As String<br>Public TP_VP As Byte</p>
+<p>参考协议我们可以很方便的得到GetOrignalData函数的实现：<br>Public Overrides Sub GetOrignalData(ByVal PDUCode As String)<br>SCAddressLength = GetByte(PDUCode)<br>SCAddressType = GetByte(PDUCode)<br>SCAddressValue = GetAddress((GetString(PDUCode, (SCAddressLength - 1) * 2)))<br>FirstOctet = GetByte(PDUCode)</p>
+<p>TP_MR = GetByte(PDUCode)</p>
+<p>DesAddressLength = GetByte(PDUCode)<br>DesAddressType = GetByte(PDUCode)<br>DesAddressLength += DesAddressLength Mod 2<br>DesAddressValue = GetAddress((GetString(PDUCode, DesAddressLength)))</p>
+<p>TP_PID = GetByte(PDUCode)<br>TP_DCS = GetByte(PDUCode)<br>TP_VP = GetByte(PDUCode)<br>TP_UDL = GetByte(PDUCode)<br>TP_UD = GetString(PDUCode, TP_UDL * 2)<br>End Sub</p>
+<p>这就完成了整个解码过程，通过SMSBase的巧妙设计，此解码过程显得简单方便。</p>
+<p><strong>EMS_SUBMIT**</strong>、EMS_RECEIVED**</p>
+<p>对于EMS(增强型短信)，其基本结构和SMS类似，主要的区别就是Information Element(IE)。所以EMS_SUBMIT继承了SMS_SUBMIT，EMS_RECEIVED继承了SMS_RECEIVED</p>
+<p>参考3GPP协议EMS部分我们可以做出以下的结构和定义<br>Public Structure InfoElem ‘See document “How to create EMS”<br>Public Identifier As Byte<br>Public Length As Byte<br>Public Data As String<br>End Structure<br>Public TP_UDHL As Byte</p>
+<p>为了得到IE我写了一个函数：<br>Shared Function GetIE(ByVal IECode As String) As InfoElem()<br>Dim tmp As String = IECode, t As Integer = 0<br>Dim result() As InfoElem<br>Do Until IECode = “”<br>ReDim Preserve result(t)<br>With result(t)<br>.Identifier = GetByte(IECode)<br>.Length = GetByte(IECode)<br>.Data = GetString(IECode, .Length * 2)<br>End With<br>t += 1<br>Loop<br>Return result<br>End Function</p>
+<p>然后参考协议可以写出GetOrignalData函数。具体就不再赘述。</p>
+<p><strong>PDUDecoder</strong></p>
+<p>这个类的由一个结构，一个重要的解码函数，组成。</p>
+<p>结构定义了需要取得的基本信息，可以视需要修改。我这里提供一个范例<br>Public Structure BaseInfo<br>Public SourceNumber As String<br>Public DestinationNumber As String<br>Public ReceivedDate As Date<br>Public Text As String<br>Public Type As SMS.Decoder.SMSBase.SMSType<br>Public EMSTotolPiece As Integer<br>Public EMSCurrentPiece As Integer<br>Public StatusFromReport As SMS_STATUS_REPORT.EnumStatus<br>Public DestinationReceivedDate<br>End Structure</p>
+<p>解码函数的声明如下：<br>Public Shared Function Decode(ByVal PDUCode As String) As BaseInfo</p>
+<p>内部主要处理步骤如下(源代码请参考PDUDecoder)</p>
+<ol>
+<li>根据SMSBase的GetSMSType函数得到短信类型SMSType</li>
+<li>根据SMSType生成对应的类的实例</li>
+<li>解码PDU，得到基本结构</li>
+<li>通过基本结构得到BaseInfo结构里面需要的数据</li>
+<li>通过decode7bit或者decodeUnicode函数得到TP_UD数据</li>
+</ol>
+<p>到此为止，这就是整个PDU Decoder的详细介绍，具体使用可以参见Siemens Support Tool里面相关部分，在此不再赘述。</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2005-02-20-net-platform-for-mobile-phone-management-software-11-part-of-the-vb-net-code-sms-pdu/" class="prev">PREV</a><a href="/post/2005-02-18-net-platform-for-mobile-phone-management-software-9-introduction-and-sms-pdu-format-parts/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

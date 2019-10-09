@@ -1,0 +1,433 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 我是思聪</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2005-02-17-net-platform-for-mobile-phone-management-software-7-irmc-introduction/" class="post-title-link">.net平台手机管理软件开发(7)——IrMC简介</a></h2><div class="post-info">Feb 17, 2005</div><div class="post-content"><p>(七)  IrMC简介</p>
+<p>要实现通讯薄、日历、便签的同步，需要用到IrDA协议里面的IrMC部分。<br>IrMC全称为Ir Mobile Communications。它定义了利用IR无线传输的设备之间通讯的规则。IrMC协议文档详细叙述了IrMC的方方面面，可以在我的主页(<a href="http://dream-world.nease.net)下载到PDF版本。" target="_blank" rel="noopener">http://dream-world.nease.net)下载到PDF版本。</a></p>
+<p>下面主要讲述我在开发当中所用到的部分以及实现方法。更为详细的资料请参考IrMC协议。<br>Phonebook</p>
+<p>在手机软件桌面端通讯薄的管理是整个软件的必备功能之一，利用其信息可以方便的和Outlook等软件实现同步，实现更强大的功能。</p>
+<p>通讯薄的管理分为读取、删除、增添、修改。通过这几个功能的组合可以实现更为强大的同步功能。下面分条概述。<br>l         读取</p>
+<p>n         读取所有的Entry</p>
+<p>使用OBEX的GET命令取得telecompb.vcf文件。</p>
+<p>得到的的文件是一个vCard文件，里面包含了所有的通讯薄。其格式为vCard格式。关于vCard的简介及编码器解码器见后。下面给出一个范例：<br>BEGIN:VCARD<br>VERSION:2.1<br>X-IRMC-LUID:1017646<br>X-ESI-CATEGORIES;CHARSET=UTF-8;ENCODING=QUOTED-PRINTABLE:=E5=AE=B6=E4=BA=BA<br>N:test<br>ADR:;;Street;city;;610000;country<br>ORG:company<br>TEL;HOME:123456<br>TEL;WORK:123456<br>TEL;CELL:123456<br>TEL;FAX:123456<br>TEL;FAX;HOME:123456<br>EMAIL;INTERNET:<a href="mailto:a@a.ao" target="_blank" rel="noopener">a@a.ao</a><br>EMAIL;HOME;INTERNET:b@g<br><a href="http://blog.csdn.net/hesicong/admin/http" target="_blank" rel="noopener">URL:http</a><br>BDAY:1985-04-23<br>END:VCARD</p>
+<p>也可以通过X-IRMC-LUID所给的LUID号码直接取得相应的vCard。</p>
+<ol>
+<li>读取指定LUID的Entry</li>
+</ol>
+<p>使用OBEX的GET命令取得telecompbluidxxxx.vcf，其中xxxx代表了LUID号码。</p>
+<p>得到的依然是一个vCard文件，只不过只包含特定LUID号码的vCard信息。可以简单的通过Outlook查看vCard所包含的信息。</p>
+<p>l         删除</p>
+<p>欲删除一个Entry</p>
+<ol>
+<li><p>连接到IrMC_Sync_Service(发送0x80, 0x0, 0x13, 0x10, 0x0, 0x40, 0x6, 0x46, 0x0, 0xC, 0x49, 0x52, 0x4D, 0x43, 0x2D, 0x53, 0x59, 0x4E, 0x43)使手机处于同步状态。</p>
+</li>
+<li><p>得到ChangeCount<br>ChangeCount是手机里面储存修改次数的一个数值，主要用于同步。具体相关资料请参考IrMC协议。</p>
+</li>
+<li><p>构建数据包。<br>Opcode：PUT<br>NameHeader：xxxx.vcf(xxxx为欲删除的entry的LUID)<br>AppParam：0x11，ChangCount字符串形式长度(Integer)，ChangeCount的ANSI形式</p>
+</li>
+<li><p>使用OBEX的PUT命令，传输一个xxxx.vcf(xxxx指LUID)空文件到telecompbluid覆盖即可。</p>
+</li>
+<li><p>发送0x81, 0x0, 0x3断开IrMC_Sync_service</p>
+</li>
+</ol>
+<p>l         添加</p>
+<p>欲添加一个文件：</p>
+<ol>
+<li><p>连接到IrMC_Sync_Service</p>
+</li>
+<li><p>得到ChangeCount</p>
+</li>
+<li><p>构建数据包<br>Opcode：PUT<br>NameHeader：.vcf<br>AppHeader：0x11，ChangeCount字符串长度(Interger)，ChangCount的ANSI形式<br>Body或者End-of-Body Header：vcf文件内容</p>
+</li>
+<li><p>OBEX的PUT命令上传到telecompb.vcf文件即可。</p>
+</li>
+</ol>
+<p>注意：文件名取名为“.vcf”。</p>
+<ol start="5">
+<li>发送0x81, 0x0, 0x3断开IrMC_Sync_service</li>
+</ol>
+<p>l         修改</p>
+<p>修改过程与添加过程相似，只是将文件名改为欲修改的vCard的LUID.vcf就行了。</p>
+<p>Notes</p>
+<p>便签是大多数手机都提供的功能，能够方便的记录简短的信息。在我的M55手机上能够储存150Byte的信息，也就是150个英文或者75个汉字。软件通过管理便签可以与Outlook等软件同步，实现更高级的功能。</p>
+<p>管理Notes的方法和Phonebook类似。得到全部Notes的vNote只需要获取telecomnt.vnt即可。删除、添加、修改只需要把telecompbluid改为telecomntluid即可。在此不再赘述。<br>Calendar</p>
+<p>日历功能提供了事件提醒功能，分为重要记事(vEvent)和任务(vTodo)。通过管理日历，同样可以实现和Outlook同步，实现电脑和手机的同步。</p>
+<p>管理Calendar的方法和Phonebook类似。得到全部vCalendar只需要获取telecomcal.vcs。删除、添加、修改只需要把telecompbluid改为telecomcalluid即可。在此不再赘述。</p>
+<p>但值得注意的是vCalendar的结构<br>BEGIN:VCALENDAR<br>VERSION:1.0<br>BEGIN:VEVENT<br>….<br>END:VEVENT<br>BEGIN:VTODO<br>…
+END:VTODO<br>END:VCALENDAR</p>
+<p>完整的vCalender包含了至少一个vEvent或者一个vTodo，因此在添加、修改vEvent、vTodo时要将其补充为一个完整的vCalender结构，否则服务端会拒绝操作。</p>
+<p>遇到的问题：</p>
+<p>在实际操作中，遇到问题最多的地方在Phonebook部分。我的手机第一次同步的时候经常出现数据库被锁的情况，用SiMoCo读取也是一样，说明是手机拒绝写操作。这时候关闭手机再重新启动就好了。至于原因，我还没有搞清楚，希望能有高人指点。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2005-02-14-net-platform-for-mobile-phone-management-software-6-obex-application-file-transfer-part-of-the/" class="post-title-link">.net平台手机管理软件开发(6)OBEX应用——文件传输部分</a></h2><div class="post-info">Feb 14, 2005</div><div class="post-content"><p>(六) OBEX应用——文件传输部分</p>
+<p>在手机数据传输方面基本OBEX应用分为<br>l 文件传输<br>l IrMC同步</p>
+<p>文件传输又可以细分为以下基本操作<br>l 初始化连接<br>l 断开连接<br>l 设置路径<br>l 取得目录信息<br>l 创建目录<br>l 上传下载文件<br>l 删除文件或空目录</p>
+<p>在笔者的软件当中设计了OBEX这个类，里面包含了以上所有的基本操作。另外针对M55的服务端的特殊性又设计了更名、取得磁盘空间信息、移动、拷贝文件的功能。具体请参考源代码。</p>
+<p>下面具体讲述各个操作的细节。<br>l 初始化连接</p>
+<p>初始化连接包括了使手机进入OBEX状态再到发送Connect指令的一系列过程。具体流程参考下图。<br>ATÆAT^SQWE=0ÆAT^SQWE=3ÆConnectÆ连接到Folder-Listing Service</p>
+<p>其中AT^SQWE=0和AT^SQWE=3是西门子特有的隐藏的AT指令，甚至在官方的AT指令集里面都没有提到。其作用是初始化手机到OBEX模式。</p>
+<p>发送Connect指令收到手机回复以后确定Max Packet Length等参数。最后连接到Folder-Listing Service进行文件操作。如果需要IrMC同步的话，在Connect后直接连接到IrMC Sync Service即可，手机立刻进入同步模式，所有的应用程序退出。</p>
+<p>在笔者的程序中当中首先使用AT指令确定手机当前的工作，如果超时，尝试发送+++并等待1秒钟以便手机从不正常的OBEX状态中退出。然后在此发送AT，成功后即进行文件操作，否则引发一个错误。<br>l 断开连接</p>
+<p>这里的断开连接是指从OBEX模式退出到AT状态中。在AT指令中，连续发送三个0x2B然后等待一秒钟以上即可退出数据模式进入常规AT模式。<br>l 设置路径</p>
+<p>程序中使用SetPath操作设置路径。需要注意的是，可以设计两种风格的过程：一种使用绝对路径，另一种使用相对路径。</p>
+<p>对于手机而言，经笔者实践证明，使用绝对路径要比使用相对路径方便，而且更准确，但效率上稍逊，特别是在多层目录的情况下。由于手机没有能够返回当前路径的方法，所以相对路径总难以控制，只有通过程序控制，极容易出现错误。所以建议使用绝对路径。</p>
+<p>如果使用绝对路径，那么路径名将呈现path1path2这种形式。首先回到根目录，然后一级一级的到达目的。在笔者的OBEX类当中，可以看到BacktoRoot这个过程。其作用就是把当前程序路径切换到根目录以免引起混乱。<br>l 取得目录信息</p>
+<p>要取得一个目录的文件信息可以用发送Get指令。该Get指令需要一个TypeHeader，其值为x-obex/folder-listing</p>
+<p>随后服务端会返回一个xml文件，包含了整个目录的信息。例如子目录名、文件名、大小、最后修改时间。再通过xml解析后就会得到目录信息。<br>l 创建目录</p>
+<p>当SetPath的Flags的Bit1设为1并且无法找到目录时，服务端会创建这个目录并进入。</p>
+<p>请注意，再次使用SetPath并将Flags的Bit0设为1返回上层目录，否则容易引起混乱。<br>l 上传下载文件</p>
+<p>使用Put和Get命令可以实现上传和下载文件。注意所有的文件操作都在SetPath所指定的目录下进行。</p>
+<p>使用Put命令实现上传时，至少需要提供NameHeader，BodyHeader，一般还要提供LengthHeader，DateTimeHeader。大文件传输需要正确处理BodyHeader，不能超出了服务端最大所能接收的Packet的大小，否则会出现错误。</p>
+<p>需要注意的是如果当前文件存在，那么Put命令不会覆盖已有的文件而是追加，导致错误。传输文件之前需要首先删除同名文件。</p>
+<p>使用Get命令实现下载时，只需要提供NameHeader即可。具体例子参考上一节。<br>l 删除文件或空目录</p>
+<p>使用Put命令，其NameHeader指定为文件名或目录名并将BodyHeader设置为空即可。</p>
+<p>非空目录无法删除，会返回错误。</p>
+<p>西门子手机还有移动、拷贝等功能，具体实现方法请参阅OBEX源代码。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2005-02-14-net-platform-for-mobile-phone-management-software-5-obex-introduction/" class="post-title-link">.net平台手机管理软件开发(5)——OBEX介绍</a></h2><div class="post-info">Feb 14, 2005</div><div class="post-content"><p>No Content Found</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2005-02-13-net-platform-for-mobile-phone-management-software-development-1-4/" class="post-title-link">.net平台手机管理软件开发(1-4)</a></h2><div class="post-info">Feb 13, 2005</div><div class="post-content"><p>.net平台手机管理软件开发<br>(一) 简介</p>
+<p>通过几个月零零碎碎地学习各方面知识之后在这个大二的寒假笔者终于用VB.Net写出了西门子手机的辅助软件——Siemens Support Tool。虽然我没有最终的完成这个软件的所有设计，但核心的功能已经开发完成，界面也基本到位，我的学习的目的也就达到了。在2月12日正式停止开发的以后，我想到把寒假20几天的辛苦历程作一个总结，为以后重温这部分知识起到一定的作用，也为广大编程爱好者提供一些帮助和启发。笔者才疏学浅，编程也是零碎时间自学过来的，所以有缺陷和谬误请大家斧正。</p>
+<p>(二) 为何要设计？设计目的？</p>
+<p>用过西门子手机的都知道西门子手机在人性化设计方面做得比较好，但是让笔者失望的是电脑端上使用的官方软件SDS，其缺点是操作不方便，速度比较慢，感觉人性化设计不到位。后来官方推出了用于65系列的Mobile Phone Manager，界面很好看，但安装后大于120MB的容量及其较慢的速度又让人大跌眼镜。<br>GhostMobile(简称GM)是我用过的国产非官方软件里面比较好的一款，但经常出现传输中一直等待的情况。估计作者并没有超时设计。另外GM文件传输速度很慢，短信管理不方便，后来也由于作者使用了新的手机，也就放弃了GM。后来又找到一款Siemens Mobile Control，简称SiMoCo，是国外的非官方软件。800多kb的身躯及其速度、功能方面都超过了官方及GM，令人刮目相看，一度成为我最喜欢的软件。但用后发现一些问题，软件过于专业，选项太多，对中文的支持不好。</p>
+<p>所以最终的目的就是做一款能够实现文件传输、短信、便签、任务、重要记事管理的软件。</p>
+<p>(三) 准备工作<br>2004的暑假我已经做了一部分，实现了基本的文件传输和短信功能，当时取名叫作M55 File Transfer Tool。后来在东北手机网上公开了，有一些GM无法连接的手机我的软件都可以连接，所以到现在为止有些网友还在使用我的这个软件。但由于知识不够，做得不是很理想，经常出现问题。</p>
+<p>短信部分是官方网站下载的ATC_Command_Set_For_L55_Platform，详细地讲述了55平台上的AT指令集。其实SMS部分的AT指令各大手机厂商都是通用的，已基本上属于同一的指令集了。但是发现文件传输是OBEX却不是那么简单。</p>
+<p>官方并没有任何开发文档说明数据传输使用的是什么协议，我用Serial Monitor监视到了数据传输的过程，全是HEX代码，不知道是什么意思。那段时间一度陷入迷茫状态，不知道如何下手。后来在google搜索，又在CSDN里发了一些帖子求救，但却没有一个能够明确说明的。有一个网友的留言给了我一些线索，他说可能是蓝牙协议里面的部分。</p>
+<p>这条线索给我了极大的鼓舞，因为后来，顺藤摸瓜找到了红外线传输协议，意外地发现了IrOBEX的描述协议竟然和监视到的HEX代码的结构一样。随后经过仔细的研究发现就是OBEX协议，此协议可以作为上层协议用在红外线协议、蓝牙协议等。此过程大约经历了2个多月。其实现在看来这个问题简单了，手机的工厂模式的串口监视里面就会显示当前使用的协议。当数据传输开始时，会自动从GIPSY变为OBEX。但那个时候哪知道呢？</p>
+<p>跨越了OBEX协议的障碍以后我写了一个OBEX-Multithread类，写得很垃圾，把十六进制转换成字符串，然后再转回来在发送。中间使用了string作字符串操作，速度很慢，测试以后只能勉强超过GM的传输速度。</p>
+<p>后来借着Serial Monitor监视GM读取手机通讯薄的原理，发现通讯薄是在telecompb目录里面，但是这个目录在手机里面是隐藏的，无法直接访问。由于原来写得OBEX库很糟糕，只能对应文件传输，对于这个特殊文件夹里面的文件都无法操作。修改了之后效果不好，遂放弃了OBEX-Multithread。</p>
+<p>由于学习的原因，中途也只得停下来准备期末考试和六级。中途无聊的时候研究IrMC里面的vCard、vNote、vCalc格式，基本弄懂了如何同步通讯薄、便签、日历。2005年1月14日，放假回家了就正式开始动工，把所有的东西都重新写，对我来说，这是一个巨大的挑战。</p>
+<p>(四) AT指令简介<br>AT指令在当代手机通讯中起着重要的作用，能够通过AT指令控制手机的许多行为，包括拨叫号码、按键控制、传真、GPRS等。西门子M55手机为我提供了很多的AT指令，网络上关于AT指令的资料也很多，我这里提取一些比较重要的做个简单解释。其他的手机也基本上通用，更详细的资料请查阅手机生产商的资料。</p>
+<p>欲使用AT命令，可以安装微软的超级终端程序，选择好端口连接速度以后就可以正常使用了。</p>
+<p>AT指令用法</p>
+<p>.  测试命令(Test Command)</p>
+<p>在AT指令后面加上“=?”即构成测试命令。</p>
+<p>例如“AT+CSCS=?”会列举出所有支持的字符集。</p>
+<p>.  读取命令(Read Command)</p>
+<p>在AT指令后面加上“?”即构成读取命令。</p>
+<p>例如“AT+CSCS?”会列举出当前设置。</p>
+<p>.  执行命令(Execute Command)</p>
+<p>一般而言在AT指令后加上“=”及命令参数即可。有些命令例如AT+CMGR命令没有参数，直接就可以执行。</p>
+<p>注：并不是所有的AT指令都支持1和2。</p>
+<p>常用基本AT指令</p>
+<table style="border: medium none; width: 100%; border-collapse: collapse;" border="1" width="100%" cellpadding="0" cellspacing="0" class="MsoTableGrid">
+<tbody>
+<tr>
+
+<td width="18%" style="border: 1pt solid windowtext; padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+
+<p>命令</p>
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>作用</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>测试连接是否正确</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+ATE0
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>关闭回显。程序初始化AT部分首先关闭回显。</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+ATE1
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>打开回显。使用超级终端测试命令时打开。</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CGMI
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>得到厂商信息</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CGMR
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>得到手机版本号</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CGSN
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>得到手机序列号(IMEI)</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CIMI
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>得到手机IMSI号码</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CSCS
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>获取、设置手机当前字符集。可设置为GSM或UCS2</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CBC
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>获取手机电量</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CCLK
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>获取设置手机时钟</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CNUM
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>机身号码。分为线路一和线路二</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CSQ
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>当前信号</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+COPS
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>网络营运商</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CSCA
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>短信中心号码</p>
+</td>
+</tr>
+</tbody></table>
+
+<p>以上这些指令都用于与手机连接的时候初始化用。取得手机IMEI及IMSI可以给使程序支持更多的手机连接并且保持数据独立。</p>
+<p>短信部分</p>
+<table style="border: medium none; width: 100%; border-collapse: collapse;" border="1" width="100%" cellpadding="0" cellspacing="0" class="MsoTableGrid">
+<tbody>
+<tr>
+
+<td width="18%" style="border: 1pt solid windowtext; padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+
+<p>命令</p>
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>作用</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CPMS
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>选择短信储存地点。可选择ME(SIM卡)和MT(机身)</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CMGL
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>列出指定状态的短信息的PDU代码</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CMGR
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>列出指定序号的短信息PDU代码</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CMGS
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>发送短信</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CMGD
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>删除指定的短信</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CMGF
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>短信格式。分为Text模式和PDU模式</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CNMI
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>设置新短消息通知电脑端</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CSCA
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>短信中心</p>
+</td>
+</tr>
+</tbody></table>
+
+<p>以上命令是短消息部分最经常使用的命令。具体条目及使用方法会在后面重点讲解。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2005-02-09-net-ide-interface-programming-autoscale-property-mess-in-big-trouble/" class="post-title-link">.net IDE 界面编程AutoScale属性惹的大麻烦</a></h2><div class="post-info">Feb 9, 2005</div><div class="post-content"><p>最近我我在英文XP SP2环境下制作了一个比较精美的界面，请一个同学帮忙测试。他用的是中文版的操作系统。然而奇怪的是界面大小发生了改变，在中文环境下窗体变大了，按钮 也变大了，所有的Label也移位了。我开始以为是他那里Windows设置的问题，后来在我新装的一个中文环境当中也出现了同样的问题，很是纳闷。</p>
+<p>后来到处寻找原因，以为是微软的一个BUG。后在CSDN里面找到了答案，竟然是小小的AutoScale属性惹得货。<br>AutoScale属性默认设置为True，也就是根据字体的大小自动缩放窗体。很有可能在英文XP环境下的字体和中文环境里面的不一样(但看起来是一样的)，导致了这个问题。最终把AutoScale属性设置为False，再编译，一切问题都解决了。</p>
+<p>所以得到一个小经验，在需要开发多语言的程序的时候一定要把AutoScale属性设置为False，不然很好的界面(特别是图形化的)就会变得面目全非。另外使用Dock，Anchor也对界面维护起到一定的效果。</p>
+</div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/137/" class="prev">PREV</a><a href="/page/139/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

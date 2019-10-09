@@ -1,0 +1,88 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 我是思聪</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2007-02-28-removed-flash-head-title/" class="post-title-link">Removed Flash Head Title</a></h2><div class="post-info">Feb 28, 2007</div><div class="post-content"><p>It appears that Flash 9.0 under Linux could not handle transparent Flash which causes my negative tool-bar unclickable. I fixed this problem by adding one line to WriteHeadFlash function in “common/common.js”:<br>function WriteHeadFlash(Path,Width,Height,Transparent){<br>if(isIE()==false) return;     //If not IE, disable flash head<br>…<br>}</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2007-02-27-overclocking-test/" class="post-title-link">超频测试</a></h2><div class="post-info">Feb 27, 2007</div><div class="post-content"><p>今天玩C&amp;C3 DEMO，画面质量最高(我是找死，赫赫)，2X FSAA，效果倒是有，只是一旦单位太多了，FPS就落到了5左右，很不流畅。然后想到的就是看看显卡的极限频率。网上有一个变态的把6600GT超频到了核心600，显存1.2G，而99.9%的6600GT最高只能到550。一步一步的调整NVIDIA控制面板里面的核心频率，然后测试，最后稳定在核心540，显存1.03G(2ns)，还是可以了，满足了。<br>CPU超频不理想。BARTON核心，3200+可以开机，但是不稳定，在外频200MHZ的情况下是标准频率，加电压到1.67V还是无法完成3DMARK05的测试，经常重启。最终，还是只有用193MHZ外频，这样系统性能就有些折扣了。</p>
+<p>最后3DMARK05 build 130测试下来3563分，基本满足了。至于C&amp;C3，不敢再开最高画质，要玩得舒畅，还是调低点吧。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2007-02-27-learning-openscenegraph/" class="post-title-link">学习OpenSceneGraph</a></h2><div class="post-info">Feb 27, 2007</div><div class="post-content"><p>OpenSceneGraph是基于OpenGL的跨平台的开源的SceneGraph。和OpenSG的区别见<a href="http://opensg.vrsource.org/trac/wiki/OSGComparison" target="_blank" rel="noopener">这里</a><br>SceneGraph就是场景图，在学习计算机图形学的时候提到过这个名词，隐约的感觉就是一个层次式的结构。后来在做弯管机的虚拟现实的时候就用到了层次式的结构，也用到了Node等概念，其实也就是场景图的简单应用而已，只用于变换各个部件和层次式的渲染。</p>
+<p>前些天看了Avi Bar-Zeev的<a href="http://www.realityprime.com/scenegraph.php" target="_blank" rel="noopener">Scenegraphs: Past, Present and Future</a>，知道了场景图的各种用途－－渲染前剔除、层次结构渲染、碰撞检测等等。</p>
+<p>为了体验其强大的功能，今天写了一个小小的几行验证了一下：</p>
+<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">osg::<span class="keyword">Node</span><span class="title">* testNode</span>=NULL;</span><br><span class="line"><span class="attr">testNode=</span>osgDB::readNodeFile(<span class="string">"F:/machine.3DS"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>哇，顺利读出文件！</p>
+<p>后来经过测试完美支持3DS文件，这下爽坏了！！3DS文件里模型的层次式结构也可以很方便的调用出来，这下弯管机的虚拟现实就能做得更好了！</p>
+<p>高兴高兴……!</p>
+<p>一个遗留问题，和MFC的交流如何……</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2007-02-26-strongly-recommended-and-at-command-vs2005-sms-source-code-including-plug-in-structure-easy-expansion/" class="post-title-link">[强烈推荐]手机短信和AT指令VS2005源代码，含插件式结构，方便扩展</a></h2><div class="post-info">Feb 26, 2007</div><div class="post-content"><p>这是我2年前的一些代码，由于一个朋友需要，所以我就整理出来了，去掉了一些东西，精简为只有串口通讯、AT指令操作、短信、通讯薄的几个部分。<br>[download id=”15”]<br>YOU CAN ALSO ACCESS TO:<br><a href="http://www.codeplex.com/ATSMSLibrary" target="_blank" rel="noopener">CodePlex OpenSource</a><br>or This should be a better version:<br><a href="http://www.jianghanxia.com/Blog/article.asp?id=70" target="_blank" rel="noopener">Better Version Provided by Jianghanxia</a><br>下面是说明：</p>
+<p>//////////////////////////////////////////////////////////////////////////////<br>//              .NET 2.0 AT and SMS Library with PlugIn Support             //<br>//              Author: hesicong      Homepage: <a href="http://www.hesicong.net" target="_blank" rel="noopener">www.hesicong.net</a>            //<br>//              Contact me: hesicong2005(at)163.com                         //<br>//////////////////////////////////////////////////////////////////////////////</p>
+<p>Description:<br>This is a .NET 2.0 AT library and SMS/EMS library with Plug-In support.<br>You can develop your own Plug-In to support multi phones.<br>ATCommandBase is a class to execute AT commands.<br>CommPhone is a class with minimal set of functions of a phone.<br>Usually be used in phone detect.<br>PhoneControllerSDK is a SDK for you to develop your own phone plugin.<br>PluginForNokia is a DEMO PLUGIN for demostrate how to use these classes.<br>ShortMessageService is a class for decoding and encoding SMS.<br>Test AT is a test project offering some Test Cases to<br>test AT,SMS Read, Write, send.<br>Be sure Test Case 3 and Test Case 4 for SMS Receving and Sending should be passed!
+CodeDemoForCSharp is a C# project for some C# developer.</p>
+<p>Licence:<br>Be free to use use my code, and please let me know if bug was found.<br>And if you correct it, please give a copy of your code.<br>Commerial use is unaviable without my permission.<br>But if you use my library and create something, please give me a copy!</p>
+<p>And ultimately, thank you to use my code, thank you to visit my homepage!</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2007-02-25-zijia-you-jiuzhaigou/" class="post-title-link">自驾游九寨沟</a></h2><div class="post-info">Feb 25, 2007</div><div class="post-content"><p>很久没有出远门了，今年春节终于爸爸妈妈有空，一起策划到九寨沟游玩，可是奶奶身体不好就只能在家了，还好有我弟弟天天陪奶奶。我爸经验丰富，准备了防滑链条、便携式打气筒、补胎工具、修车工具、电筒、方便面、小吃、墨镜、地图······我带了PDA，装了一些地图而已。大年初一就出发了，总共出去了三天，本想到绵羊的千佛山等等景点去玩的，可惜实在是太累了。来回总路程有950公里，我开了500公里，过瘾啊！<br>来，一路看图一路听我将将这三天是怎么过的。<br>初一<br>一大早就出发了，路上车很少，路上到处都是晚上爆的烟花的残骸，环卫工人辛苦的打扫，哎，在家家户户都在闭门休息的时候，环卫工人还在劳作，很是辛苦啊！<br>图一：过了都江堰的路上的一个水库，忘了这个地方叫什么名字了，相机照下来的水不好看，本来是蓝蓝的，很美！<br><a href="/images/2007-2-25/IMG_0416.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0416.JPG" alt></p>
+<p>过了水库一路上风景比较单调，直到看到第一座雪山。说道路上的厕所，标注了厕所的地方千万不要去，除非是加油站的厕所，一般来说进了那种“貌似无人看管”的厕所以后，出来就会发现，原来有人在附近收钱，5角，统一价，哈哈。倒是男同胞可以省省……<br>图二：远处的雪山<br><a href="/images/2007-2-25/IMG_0418.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0418.JPG" alt></p>
+<p>一路上都是阳光明媚，但阴山还是有部分积雪，第一次看到那么多雪还是有些激动，激动之余，只好把汽车的防滑链条挂上。没有冰雪的路面开起来想是坦克一样，在冰上就没有声音了。有些车没有做准备的，就只能小心的开，这里的冰雪还不是很厚，坡度也不大，不用链条稍重一些汽车慢慢开还是没有问题的。<br>图三：冰雪路面，小心驾驶<br><a href="/images/2007-2-25/IMG_0422.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0422.JPG" alt></p>
+<p>图四：漂亮的雪，来一张<br><a href="/images/2007-2-25/IMG_0424.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0424.JPG" alt></p>
+<p>图五：雪越来越多<br><a href="/images/2007-2-25/IMG_0426.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0426.JPG" alt></p>
+<p>过了这段冰雪路面以后就到了路上比较好看的景点之一(又忘了叫什么了！)，下面被山的影子遮住的地方是冰，而那面却是绿绿的水。顺便在这里也休息一下，活动活动。<br>图六：一个景点<br><a href="/images/2007-2-25/IMG_0429.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0429.JPG" alt></p>
+<p>过了这个景点就没有什么好看的啦，一路上继续前行，到了松潘，歇脚<br>图七：松潘，和妈妈合影<br><a href="/images/2007-2-25/IMG_0440.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0440.JPG" alt></p>
+<p>图八：爸爸妈妈和我<br><a href="/images/2007-2-25/IMG_0441.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0441.JPG" alt></p>
+<p>终于到达九寨机场附近了，这里雪山越来越多，蓝天白云煞是可爱！<br>图九：蓝天白云<br><a href="/images/2007-2-25/IMG_0442.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0442.JPG" alt></p>
+<p>图十：蓝天白云，只是窗户玻璃上面有两个黑点点……，回来才发现<br><a href="/images/2007-2-25/IMG_0444.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0444.JPG" alt></p>
+<p>走不远，突然发现远处有一个碑，我爸说这是岷江源头，哇，真的啦，下来看看，合影！<br>我还在碑后面撒了一泡尿，不知道什么时候才能化成水流下来啊~!：)<br>图十一：岷江源<br><a href="/images/2007-2-25/IMG_0446.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0446.JPG" alt></p>
+<p>我们在照相的时候，有个停下车来告诉我们前面有一段冰雪路面，结果真的不久就看到了冰雪，挂上链条继续前进。不久，等进了原始森林，去的路上最长的一段冰雪路面开始了。<br>图十二：又是冰雪，有些时候好刺眼的<br><a href="/images/2007-2-25/IMG_0448.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0448.JPG" alt></p>
+<p>图十三：甲蕃古城。你看当地的建筑物都有四个角，很特别。可能是当地人对某种长角的动物的崇拜吧<br><a href="/images/2007-2-25/IMG_0450.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0450.JPG" alt></p>
+<p>到了这里，基本上就接近九寨沟了，也越来越繁华了，到处都是酒店，住哪儿呢？因为是初一，大多数酒店都是关门，只有5家，还好，找到的这一家还不算贵，130一天，房间还是可以，至少我觉得已经够温馨了。只是配套设施有问题，经常因为都在使用大功率电器而全体停电，然后又没有热水，我的房间空调倒还可以，热和得很。爸妈那个房间的空调竟然是坏的，光吹风没有热气，哎，第二天总算弄了一个电热取暖的，要不然晚上很冷的哦。<br>图十四：我的房间，感觉还可以。<br><a href="/images/2007-2-25/IMG_0452.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0452.JPG" alt></p>
+<p><a href="/images/2007-2-25/IMG_0453.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0453.JPG" alt></p>
+<p>晚上没有睡好，可能生物钟还没有调整过来，也或许是比较兴奋吧，第二天怎么那么快就到了……早上吃了“老佛爷稀饭”和几个“皇上馒头”外加“太监小菜”(这些名字都是我取的)，一个人10块钱，好黑啊，幸好吃饱了。<br>大门口第一次照的时候是逆光的，所有效果不好，到最后下午的时候再来补照了一张：)<br>冬季，学生票70，只比成人票便宜10块钱，好像夏天的时候便宜的多。车票每人80，总共门票就是400多。<br>图十五：箭竹海，漂亮的倒映<br><a href="/images/2007-2-25/IMG_0457.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0457.JPG" alt></p>
+<p><a href="/images/2007-2-25/IMG_0457.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0457.JPG" alt></p>
+<p>图十六：箭竹海瀑布。这是我觉得最美的一幅画面，很神奇，在这个视点，旁边枯萎的数目团团围住瀑布，冰雪衬托其间，好一幅人间仙境！<br><a href="/images/2007-2-25/IMG_0471.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0471.JPG" alt></p>
+<p><a href="/images/2007-2-25/IMG_0472.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0472.JPG" alt></p>
+<p>图十七：熊猫海。都结冰了……~
+<a href="/images/2007-2-25/IMG_0479.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0479.JPG" alt></p>
+<p>图十七：熊猫海瀑布。都结冰了，还是蓝色的冰……~
+<a href="/images/2007-2-25/IMG_0481.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0481.JPG" alt></p>
+<p>最漂亮的地方！走到这儿的时候太阳正好，又有些微风，水面波光点点，好漂亮！<br>图十八：哈哈，和风景来一个合影！太阳太强了挣不开眼睛<br><a href="/images/2007-2-25/IMG_0501.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0501.JPG" alt><br><a href="/images/2007-2-25/IMG_0505.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0505.JPG" alt><br><a href="/images/2007-2-25/IMG_0506.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0506.JPG" alt><br><a href="/images/2007-2-25/IMG_0513.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0513.JPG" alt></p>
+<p>图十九：珍珠滩瀑布上面。珍珠滩瀑布就是西游记里面唐僧牵马走过的地方，哈哈，今天我也来走走，可能不是在我脚下，哈哈<br><a href="/images/2007-2-25/IMG_0518.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0518.JPG" alt></p>
+<p><a href="/images/2007-2-25/IMG_0520.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0520.JPG" alt></p>
+<p><a href="/images/2007-2-25/IMG_0522.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0522.JPG" alt></p>
+<p>图二十：顺带照一些树，没有照好，单手照手抖了<br><a href="/images/2007-2-25/IMG_0515.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0515.JPG" alt></p>
+<p>图二十一：从珍珠滩瀑布走下来一路上照的<br><a href="/images/2007-2-25/IMG_0532.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0532.JPG" alt></p>
+<p><a href="/images/2007-2-25/IMG_0533.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0533.JPG" alt></p>
+<p>下午我们走左边那条沟，到最高峰－－长海，看看。这里海拔3千多米，空气比较稀薄，多走一些路都觉得累。冬天的长海已经全部结冰，幸运的突然之间飞雪了，哇，好不容易看到啊！<br>图二十二：长海。这棵老松柏树有些别样，只在右边长枝，左边不长，不知道为什么，难道是因为经常风向那方向吹，还是因为曾经被雷击？<br><a href="/images/2007-2-25/IMG_0534.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0534.JPG" alt></p>
+<p><a href="/images/2007-2-25/IMG_0538.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0538.JPG" alt></p>
+<p>然后到了五彩池，听我爸说夏天的五彩池才是漂亮，冬天的五彩池水已经浅了很多，那天的阳光也不是很好，所以也没有达到真正的极致。<br>图二十三：五彩池<br><a href="/images/2007-2-25/IMG_0549.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0549.JPG" alt></p>
+<p>下山，准备回了<br>图二十四：喏日朗瀑布。大块大块的积雪看起来软绵绵的：)<br><a href="/images/2007-2-25/IMG_0554.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0554.JPG" alt></p>
+<p>图二十五：老虎海上面的两只鸳鸯！好小哦，鸳鸯真的是成双成对的哦！<br><a href="/images/2007-2-25/IMG_0555.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0555.JPG" alt></p>
+<p>图二十六：转经桶。旁边那些YY文字是藏文，写的经文，为了祭拜水神而修建，祈祷每天风调雨顺<br><a href="/images/2007-2-25/IMG_0557.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0557.JPG" alt></p>
+<p><a href="/images/2007-2-25/IMG_0558.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0558.JPG" alt></p>
+<p>图二十七：小芦苇。环境的原因长得娇小<br><a href="/images/2007-2-25/IMG_0559.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0559.JPG" alt></p>
+<p>图二十八：随拍<br><a href="/images/2007-2-25/IMG_0564.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0564.JPG" alt></p>
+<p>图二十九：瀑布<br><a href="/images/2007-2-25/IMG_0567.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0567.JPG" alt></p>
+<p>图二十九：寨子。看起来还是挺富有的啦，小轿车都有<br><a href="/images/2007-2-25/IMG_0570.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0570.JPG" alt></p>
+<p>第三天，返程。<br>晚上好好的睡了一觉，早上起来格外的清爽。整理好东西上路了！<br>远处山间的霞光让我眼前一亮！拍下来！我爸拍的：)<br>图三十：霞光<br><a href="/images/2007-2-25/IMG_0579.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0579.JPG" alt></p>
+<p>图三十一：霞光2<br><a href="/images/2007-2-25/IMG_0580.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0580.JPG" alt></p>
+<p>图三十二：发电站水库，下面的淤泥已经干枯龟裂<br><a href="/images/2007-2-25/IMG_0584.JPG"></a><img src="/images/2007-2-25/image/thumb/IMG_0584.JPG" alt></p>
+<p>回来走的北线，路上遇到了长达30公里的冰雪路段，我开了10公里左右，因为没有找到墨镜，所以就顶着开，然而雪的反光确实太强了，最后以至于眼睛看到东西都是红的，不能再开了，就我爸上岗，他有墨镜，开了接近2个小时，哎……<br>过了这段以后就好了，我眼睛也恢复了，就继续我来。<br>山路开起来格外的舒服，没有什么车，沿着河边弯弯曲曲的道路，在山间穿行。<br>这次950多公里的路程，我开了一半的路，冰雪路面也见识过了，以后出门应该准备些什么也知道了。期待下一次的出游！</p>
+</div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/102/" class="prev">PREV</a><a href="/page/104/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

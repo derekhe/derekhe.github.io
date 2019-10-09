@@ -1,0 +1,32 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 提高调试.net cf程序效率一些技巧 · 我是思聪</title><meta name="description" content="提高调试.net cf程序效率一些技巧 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">提高调试.net cf程序效率一些技巧</h1><div class="post-info">Aug 8, 2005</div><div class="post-content"><p>最近在写PPC程序，反复的调试程序以后总结了一些提高调试效率的方法。</p>
+<ul>
+<li>首先最好要有一个真实的PDA。模拟器的运行速度比真实的PDA速度慢很多。</li>
+<li>推荐PDA Controller Professional。用于远程控制PDA，放在桌面上并设置为PDA一连接就启动。可以实时的看到PDA上的画面并提供软启动、任务管理，文件管 理，屏幕截图，操作录像等功能。这就不用每次都去看、去点PDA屏幕，而且输入直接用键盘，挺快的。软启动功能就不用说了吧，经常遇到共享冲突的时候就会 起到很大的作用。</li>
+</ul>
+<p>下面是他的一个截图：<br><img src="http://images.cnblogs.com/cnblogs_com/hesicong/ppc%E8%B0%83%E8%AF%95.JPG" alt></p>
+<p>另外我在PDA上还安装了Battery Pack Pro这个软件，方便关闭程序。<br><img src="http://images.cnblogs.com/cnblogs_com/hesicong/ppc%E8%B0%83%E8%AF%952.JPG" alt><br>. 安装.NET CF SP3。安装后发现程序启动和调试速度有明显的提高。<br>.  如果有VS2005的话可以用它写程序。更好的IDE和更完美的提示可以免除很多烦恼。例如有些时候Dim tmp as OneClass忘了加new关键字，而在后来又使用了tmp.Method()，可就麻烦了，调试器会提示出错，很多时候强行中止程序会导致共享冲突， 无法继续调试。这时候只好软启动。而VS2005里面如果没有初始化的话会给出提示。<br>. ……继续总结中……先就写到这儿。</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2005-08-08-listview-feel-bad-design/" class="prev">PREV</a><a href="/post/2005-08-08-impressions-override-notification/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> OpenSceneGraph编译指导 · 我是思聪</title><meta name="description" content="OpenSceneGraph编译指导 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">OpenSceneGraph编译指导</h1><div class="post-info">Mar 28, 2007</div><div class="post-content"><p>OpenSceneGraph是一个很大的开源工程，如果要自己编译的话要花一些功夫，而且开源的经常有一些依赖库的原因经常编译失败。开源还有一个问题就是文档有时候跟不上源代码，这个是最恼火的事情。通过好几天的摸索，反复阅读<a href="http://www.openscenegraph.org上面的相关文章，终于在VC++2005环境下面编译成功，现分享如下：" target="_blank" rel="noopener">www.openscenegraph.org上面的相关文章，终于在VC++2005环境下面编译成功，现分享如下：</a></p>
+<p>一、OSG源代码的获取：</p>
+<ul>
+<li>SVN的方式：<br>参见<a href="http://www.openscenegraph.com/index.php?page=Downloads.SVN" target="_blank" rel="noopener">http://www.openscenegraph.com/index.php?page=Downloads.SVN</a><br>缺点：速度比较慢</li>
+<li>NightlyTarballs(推荐，以下叙述都以此为基础)：<br>可以自动生成最新的源代码。地址：<a href="http://openscenegraph.org/downloads/developer" target="_blank" rel="noopener">http://openscenegraph.org/downloads/developer</a><br>优点：速度快，源代码保持最新。</li>
+</ul>
+<p>二、第三方代码获取：</p>
+<p>如果你只编译Core osgXXXX的话可以跳过此步骤。<br>由于OSG的有一些plugin需要第三方库的支持，所以必需要找到相应的库才能编译完成。<br>从<a href="http://www.openscenegraph.com/index.php?page=Downloads.Dependencies可以得到一个WIN32库的压缩包(http://openscenegraph.org/downloads/dependencies/3rdParty_Win32binaries_2005_05_10.zip)" target="_blank" rel="noopener">http://www.openscenegraph.com/index.php?page=Downloads.Dependencies可以得到一个WIN32库的压缩包(http://openscenegraph.org/downloads/dependencies/3rdParty_Win32binaries_2005_05_10.zip)</a></p>
+<p>三、准备：</p>
+<p>准备一个空目录，这里暂时取名为osg<br>建立4个目录：<br>解压下载的NightlyTarballs和3rdParty到这个目录<br>这时目录结构为：<br>3rdParty_xxxxxx<br>OpenSceneGraph_xxxxxx<br>OpenThreads_xxxxx<br>Producer_xxxx<br>重命名这些文件夹为3rdParty, OpenSceneGraph, OpenThreads, Producer</p>
+<p>四、编译OpenThreads和Producer</p>
+<p>进入OpenSceneGraphOpenThreadswin32_src，打开OpenThreads.dsw，按提示转换项目。<br>然后各种类型Debug、Release、Debug Static、Release Static各编译一次，得到4种库，方便后面使用。<br>Producer的编译方法基本相同。</p>
+<p>五、编译OpenSceneGraph：</p>
+<p>此文为转载，原文请见<a href="http://www.hesicong.net" target="_blank" rel="noopener">www.hesicong.net</a><br>进入OpenSceneGraphVisualStudio目录可以看到OpenSceneGraph.dsw，直接打开以后VS2005会提示转换为VC8项目，转换并保存sln文件。<br>由于文件较多，载入时间会相应较慢，请耐心等待。<br>下面正式开始批量编译。</p>
+<ul>
+<li>首先保证磁盘有充足的空间。我选择Debug和Release模式编译了Core、Plugin、Example后，OSG目录总共消耗了3.23GB的硬盘空间。如果还有其它需要编译的项目可能需要更大的磁盘空间。</li>
+<li>菜单－》生成－》批生成</li>
+<li>选择需要编译的项目。<br>一般选择配置为Debug和Release的就够了。Debug用于自己写程序调试，Release用于最后的发行。千万不要选择Debug Static和Release Static这种静态链接库，否则消耗大量磁盘空间和编译时间。<br>编译的项目至少包含Core xxx。osgPlugin和Example视情况而定。</li>
+<li>按“生成”就开始了漫长的编译过程，这时候可以出去晒晒太阳，或者出去好好的每餐一顿。如果还编译了Example的话那么推荐再睡一觉，这样就有更多的精力处理编译出错的问题：)</li>
+</ul>
+<p>六、一般编译错误问题：<br>此文为转载，原文请见<a href="http://www.hesicong.net" target="_blank" rel="noopener">www.hesicong.net</a></p>
+<ul>
+<li>找不到一些库，常见于OpenThread32.lib，Producer.lib等。这时候需要确认所有目录是不是放置正确。确认生成了必要的文件。</li>
+<li>找不到头文件。如果是编译osgPlugin出错的话，你可以试着寻找一下所需要的其它库。3rdParty里面的库不完整，比如新的osgPlugin COLLDIA dae就无法编译，少了几个头文件。</li>
+<li>找不到导出的函数。例如说找不到osgSim::xxxxxxx，确认你生成了osgSim这个项目。</li>
+<li>更多问题：订阅OpenSceneGraph Mailing-List</li>
+</ul>
+<p>七、运行Examples<br>编译好的examples最好在shell里面运行。<br>进入osgOpenSceneGraphVisualStudio，运行osgShell.bat。这个批处理文件会注册一些变量以便程序使用。<br>此文为转载，原文请见<a href="http://www.hesicong.net" target="_blank" rel="noopener">www.hesicong.net</a></p>
+<p>八、如果还有问题<br>确认按照此步骤进行。如果还有问题，请留言。<br>其它问题请订阅OpenSceneGraph Mailling-list，前提是需要有一个良好的英文基础：)<br>祝大家成功！为转载，原文请见<a href="http://www.hesicong.net" target="_blank" rel="noopener">www.hesicong.net</a></p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2007-03-30-c-u0026amp-c3-decadent-one-day/" class="prev">PREV</a><a href="/post/2007-03-28-hardware-is-really-troublesome-to-do/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

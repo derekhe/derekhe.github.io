@@ -1,0 +1,69 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 我是思聪</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2009-08-02-too-many-things-to-do/" class="post-title-link">Too many things to do</a></h2><div class="post-info">Aug 2, 2009</div><div class="post-content"><p>These days, after my back to Chengdu, were rainy every day. Temperature got very cool like in Autumn. In this comfortable weather, all the things I wish to do was to have a good sleep.</p>
+<p>But I’m in bad luck, I have quite a lot of stuff to be done.</p>
+<p>The first one is to complete the software for PCB Drill &amp; Route machine. I need to be hurry. If I had my work done early, I could have a trip to LiJiang. I worked hard till very night hoping every piece of the program run smoothly. It was a tough work. The more you wanted it to be correct the worse it got. Computer could only know the logic, but your emotion. So, the best bet, I’m sure, was to calm done.</p>
+<p>The second is to study English. I admitted that I didn’t work hard on this subject as before. I also noticed that my oral English regressed because of the lack of enough practice. What should I do next? Perhaps I must start a plan to balance the work time and study time.</p>
+<p>It seems that there were only two things to do, but they occupied all my time. How can things get better? I think I must make a plan in my mind to work effectively, and study effectively now.</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2009-08-01-raysource-with-netlimiter-thoroughly-clean-up-a-lot-of-upload-bandwidth/" class="post-title-link">用NetLimiter彻底收拾RaySource大量上传带宽占用</a></h2><div class="post-info">Aug 1, 2009</div><div class="post-content"><p>最近“早泄”和“漏点”的Windows 7镜像大多数是RayFile网盘承载的，需要下载一个客户端软件——RaySource。作为P2P软件，上传共享是必不可少的，但是RaySource做得太过分了。软件里面虽然有设置下载带宽和上传带宽，但是下载的时候，你永远看到的都是上传0KB/s，你会发现你的ADSL网络变得特别的卡，上传带宽几乎耗尽，那简直是比迅雷性质还恶劣的软件。</p>
+<p>我检查了一下RaySource的后台文件Peer.exe，杀了以后上传下载都不行了。RaySource就是一个界面而已，并不做任何的实际上下载动作。</p>
+<p>为了能够将带宽限制住，我首先尝试了有名的“P2P终结者”。但最后试用的结果很令人沮丧，依然不能限制上传带宽。</p>
+<p>后来在上网搜索了很久，发现了一款<a href="/images/others/rpc.jpg"></a><img src="/images/others/image/thumb/rpc.jpg" alt></p>
+<p>随后会进入NetLimiter的主程序界面。</p>
+<p><a href="/images/others/netlimiter.jpg"></a><img src="/images/others/image/thumb/netlimiter.jpg" alt></p>
+<p>找到peer.exe一行，将Outgoing下面的Limit一栏打上勾，并点击旁边的默认5.00输入实际需要的数值。我这里输入20.0，因为家里面上传带宽最大50KB/s，还要分给其他程序用。</p>
+<p>最后如果想全局限制上传带宽，在你的计算机名(这里是Derekhe-pc)一行的Limit里面填入所需要的数值即可。</p>
+<p>这样处理以后，整个网络的速度明显变快了。</p>
+<p>小知识：</p>
+<p>ADSL网络由于下载和上传不对称，会造成上传带宽吃紧，而现在大多数P2P软件都是用TCP/IP协议会上传带宽中有一部分TCP/IP的握手包和校验包，而这些包如果被其他包占用了，会延迟下载中的TCP/IP包的确认，进而影响下载速度。更为严重是如果超过了一定的时间没有得到确认，那么下载得到的TCP/IP包会被丢弃。最终的效果就是，整个网络变得特别卡。所以在ADSL网络中，将上传带宽限制实际上传带宽的80%效果会比较好。</p>
+<p>如何测试最大上传带宽呢？方法是找一个很快的服务器，然后上传一个大文件，看看NetLimiter的上传速度即可。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2009-08-01-windows-7/" class="post-title-link">Windows 7</a></h2><div class="post-info">Aug 1, 2009</div><div class="post-content"><p>昨天用RayFiles下载了Windows 7的光盘镜像，网上也已经出现了N多的破解办法，Windows 7就这样“泄漏了”(似乎IT界很喜欢“泄”和“漏”)。下载了归下载，还没有时间装上。</p>
+<p>我在找AutoCAD的光盘的时候突然发现了Vista的Beta 1的光盘，想当年也是无数的泄露，无数的猜疑，无数的激动人心，最终等来了Vista。但今年的Windows 7却没有太令我激动。也许是Vista已经用的很好的，也没有必要装Windows 7，另一方面，我看到Windows 7的截图，任务栏的样子着实让人大跌眼睛。</p>
+<p>估计再过段时间有空了，我会把Windows 7装上，再看看软件的兼容性。</p>
+<p>像Windows 7这样的软件、游戏，我倒是下载了不少，最近确实也没有时间去尝鲜，先把正事做好了再说。最近成都一直下雨，天气很凉快，和秋天一样，睡觉也特别舒服，早上真想多躺一会儿。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2009-07-28-finally-back-from-zhejiang/" class="post-title-link">终于从浙江回来了</a></h2><div class="post-info">Jul 28, 2009</div><div class="post-content"><p>说了几个月的去浙江去浙江拖啊拖，上星期终于去了，去了就好了，去了事情就了了，也好轻松轻松了。</p>
+<p>7月23号出发的，晚上8点30的飞机，我们6点就早早的到了机场。按照通常的规律，晚上的飞机都是要晚点的，结果果不其然，8点30的飞机最终9点45左右才开始登记。去年在双流机场也是晚上飞机晚点，无聊的时候就打开手机的WiFi上上无线网络，但这次怎么也玩不了。CMCC接入点可以用，但是要付费的，FreeWifi接入点怎么也用不了。后来问了保安得知，机场有免费上网的地方，还是电脑上的。有这等好事？机器恐怕已经被占满了吧。按照保安所指方向，最终找到了提供免费上网的携程的柜台。</p>
+<p>这里虽然提供免费上网，但很冷清，有6个笔记本电脑，上网只能站着。我们学机械的天天调机床从早上站到下午，这一两个小时那是小意思。我问了一下，携程的会员是可以享受这个服务的。服务员帮我输入了手机号码和密码，上了网，速度还蛮不错的。我把同行的老师和博士叫过来一起上网，中间有一个小插曲，让我得知原来上网不用验证就可以。博士生也是会员但是没有激活过，所以一直没法登陆，最后服务员小声的说了句：“你输入网址就可以上网了”。原来是这么回事，也就是说根本不用验证了，我说我不上的时候怎么没有任何注销的手续呢。呵呵，看到我这篇日记的朋友下次到成都双流机场候机的时候也不妨去玩玩，别说是我告诉你的哟~</p>
+<p>在这候机的两个多小时里，我下了putty把wiki网站研究了一下。电脑上没有装QQ，倒也好办，直接用WebQQ搞定。这两个小时还算没有浪费。</p>
+<p>10点十几分，飞机终于起飞了。经停长沙，才又飞杭州。这样一来，不仅绕道，而且时间也耽误了太多，用了将近4个小时才到，到的时候已经早上1：50几了。还好有师傅来接，师傅也辛苦。从缙云到杭州有250公里左右，一路高速公路，但也走了两个半小时，一路上我在车最后面睡觉，太恼火了。早上4点半才到，而这时候，天已经微微亮了。</p>
+<p>9点过起床的，没有早饭吃了，随便吃了点东西。第一天很热，还好比较顺利，把拖了一年多的回原点问题解决了。当然这程序不是我写的，我在旁边出主意，回来我一看，这次去的问题90%都是我解决的，还是不错。</p>
+<p>第二天开始就下大雨了，直到我们走的时候还下。幸好这次去带了双拖鞋，要不然整个鞋就没法穿。后来几天就试弯，调试一些功能。前几天比较累，后几天没啥问题了就比较清闲了，就和老师讨论其他问题了。</p>
+<p>这次去我也带了本《More Effective C++》，可我承认，当我一躺下的时候，就没有心思来看书了。在工厂里面也比较闹，最终还是实在无聊看了一些，其余时间还是聊天和打游戏。最后两天真是过得很漫长。</p>
+<p>27号决定走了，下午5点20到了永康，然后坐大巴到杭州。到杭州已经是晚上8点30了，我本来想和在杭州的几个哥们儿和叶舟同学邀出来玩玩的，结果时间确实太紧了。在携程定了房间，在武林广场附近的“星程”。环境还算可以，加了一张床，然后一并住下。值得高兴的是，在房间里面竟然搜索到了一个信号非常好的无线网络结点。我进入了路由器看了看，是PPPoE拨号的，应该是私人的网络。那我就不客气了，偷来用用，速度还蛮快，嘿嘿。就这样用到了11点，终于网络断了，看来是人家睡觉了……</p>
+<p>后来用手机又搜到了一些无线热点，可惜都不能用，可能要进一步配置。笔记本用的是TP-LINK的TL-WN821N这款USB无线网卡，最后还没有我手机搜索到的热点多，不清楚怎么回事。</p>
+<p>第二天很快就到了，觉一直没有睡好。又是下雨。早上9点40多出发的，去萧山机场了，时间还很充裕。</p>
+<p>去年这时候我也在杭州待了也就两个小时，从车站到火车站，就走了一个高架桥而已，也没细细的看一看杭州。这次还算是能够更长时间的停留，也看到了杭州考虑得周到的地方。自行车道停车线附近有一个蓬蓬可以遮阳挡雨，当然上面必定有广告啦，这也无可厚非。人行横道线很干净，到处的车站的广告牌我没有看到一处被污损的迹象。这一点我对成都就感到不满了，到处都是“刻章办证”，斑马线上都有，车站牌也经常被这些乱七八糟的小广告给污损了，很是讨厌。最后我在车上注意到了一句“全力打造全国最清洁的城市”。我想，可能政府是花了大力气来整治这些的。</p>
+<p>离开了城区，对杭州的映像也就到此为止。杭州和成都有很多相似的地方，没有上海的高楼大厦(我想上海得颈椎病的人很少T_T)，也没有苏州的“小气”。我似乎觉得，以后找工作，也多了一项选择。</p>
+<p>下午的航班很准时，中午吃了麦当劳，第一次吃，还是觉得可以的。我点了个巨无霸套餐，当拿到手的时候，倒是让你觉得巨无霸原来就这么点。最后还是抗到了5点过在公交车上的时候才觉得有点饿了，还算是吃饱了吧。</p>
+<p>去的时候做的是波音737，回来做的是空客A320。我倒是觉得每次我坐A320飞机都飞得不稳，感觉飞机遇到气流就摇摇晃晃的，颠簸得厉害。而且737还有一个屏幕显示当前位置的，挺好玩的，A320没有……</p>
+<p>最后不管怎么着，还是降落了。</p>
+<p>剩下的事情就是回家休息了，睡好觉~</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2009-07-22-at-the-airport/" class="post-title-link">在机场</a></h2><div class="post-info">Jul 22, 2009</div><div class="post-content"><p>下午很热，看日食的时候听说湿度99%，我晕，这湿度不是说排汗自己烘干都不行了么？成都这鬼天气~</p>
+<p>下午5点吃完晚饭，就出发了。路上有点堵车，去机场已经不是什么大不了的事情了，也没有第一次乘飞机那么兴奋，反而现在觉得是一种累。到了机场换了登机牌，说是飞机要延误一个半小时，那么算来八点半的飞机就要十点钟才到，然后还要飞2个小时，更为郁闷的是中途可能还要停，天，郁闷。到了杭州还要坐3个小时的车，那几乎是早上四五点钟了，都已经天亮了。</p>
+<p>双流机场的无线网络貌似出了问题，除了ChinaNet收费的Wifi还能用以外，Free Public Wifi是不能用了。想起以前用Wifi看电视还是多可以的。上次上海浦东机场也是无线有问题，超级郁闷。</p>
+<p>咨询了机场工作人员得知在有一个免费的上网的地方。嘿嘿，是不是哟。赶紧过去看看。是携程提供的免费上网，还是可以，网速比较快。开始还以为要登陆呢，后来才发现登陆就是一个摆设罢了，输入地址随便用就是了。</p>
+<p>上网地方没有座位，电脑位置也比较低，可能是故意让你觉得不方便免占用太久的时间。还好我们这些机械出生的天天调机床，也没有座位的，已经练就了一身硬功夫。也就两个多小时嘛，在那儿无聊也是无聊。</p>
+<p>期望晚上能够在飞机上或者车上就睡着了，有点累了~。</p>
+</div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/39/" class="prev">PREV</a><a href="/page/41/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

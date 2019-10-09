@@ -1,0 +1,35 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> Linux下面成功使用Wine模拟TM2008 Beta · 我是思聪</title><meta name="description" content="Linux下面成功使用Wine模拟TM2008 Beta - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">Linux下面成功使用Wine模拟TM2008 Beta</h1><div class="post-info">Dec 28, 2008</div><div class="post-content"><p>零点今天给我说他模拟成功了TM2008，哇，真的啊？他给了我这个网址：<a href="http://linuxtoy.org/archives/running-tm2008-beta-with-wine.html" target="_blank" rel="noopener">Linux 下使用 Wine 安装运行 TM2008 Beta 及乱码、与 Windows 共享聊天记录等相关问题的解决</a></p>
+<p>按照网上给的方法稍作修改以后，安装成功了。</p>
+<p>首先是把以前的wine卸载了。安装了<a href="http://forum.ubuntu.org.cn/viewtopic.php?f=121&t=103958" target="_blank" rel="noopener">打了中文补丁的wine 1.13</a>，就访问<a href="http://ftp.ubuntu.org.cn/home/windowssux/Wine_CN/下载并安装最新的wine1.13就可以解决中文问题了。" target="_blank" rel="noopener">http://ftp.ubuntu.org.cn/home/windowssux/Wine_CN/下载并安装最新的wine1.13就可以解决中文问题了。</a></p>
+<p>然后拷贝<a href="http://www.rainux.org/stuff/rpcrt4.dll.gz" target="_blank" rel="noopener">rpcrt4.dll</a>到wine的system32目录，然后</p>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line"><span class="keyword">sh </span>winetricks msxml3 gdiplus riched20 riched30 ie6 vcrun6 vcrun2005sp1</span><br></pre></td></tr></table></figure>
+
+<p>安装一怕啦东西。</p>
+<p>最后就是执行TM的安装程序就可以啦。</p>
+<p>零点装的是TM Preview 4，貌似字体比较小。我这里装的是TM Beta，但是无法上线，按了上线几秒钟就离开了，郁闷的很。</p>
+<p>但无论杂说，还是基本可用了，比用QQ几分钟挂一次好多了，比用QQ FOR LINUX好太太太多了～～感谢wine</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2008-12-29-no-hardware-to-install-ubuntu-8-10-partition-problem-solving/" class="prev">PREV</a><a href="/post/2008-12-27-exquisite-beauty/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> .net平台手机管理软件开发(12)—— 短信部分 通过RS232发送和接收短信 · 我是思聪</title><meta name="description" content=".net平台手机管理软件开发(12)—— 短信部分 通过RS232发送和接收短信 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">.net平台手机管理软件开发(12)—— 短信部分 通过RS232发送和接收短信</h1><div class="post-info">Feb 21, 2005</div><div class="post-content"><p><strong>(十二) **</strong>短信部分——通过RS232<strong>**发送和接收短信</strong></p>
+<p>通常，发送和接收短信的终端都是通过串行接口连接电脑，这类设备用得比较多的是GSM Modem和手机。这类设备通常都支持PDU模式，但仍有少数设备只支持Text模式。</p>
+<p>设备硬件连接好以后可以通过发送AT指令测试设备是否连接正确能否正常通讯。在这里我使用Windows自带的“超级终端”工具进行通讯。此工具可以在程序——附件——通讯里面找到，如果没有请确认是否安装了此组件。或者在运行里面输入“hypertrm”也可以快速启动“超级终端”。</p>
+<p>以下所有范例均以Siemens M55手机作为终端，有可能跟你设备返回的不同。具体参数清参阅设备相关AT指令集。本手机AT指令集在我主页上有下载。<br><strong>准备工作：</strong><br>.  <strong>测试连接</strong>：“AT8 ”测试终端是否连接正确。成功后返回“OK”。<br>.  <strong>设置回显</strong>：(此步骤为了测试方便)ATE18</p>
+<p>.  <strong>查阅及设置字符集：</strong><br>AT+CSCS=?8<br>+CSCS: (“GSM”,”UCS2”)</p>
+<p>说明该终端支持GSM与UCS2两种字符集。一般对于中文环境设置为UCS2<br>AT+CSCS=”UCS2”8</p>
+<p>.  *<em>取得短信中心号码：<br>*</em>AT+CSCA? 8<br>+CSCA: “+8613800280500”,145</p>
+<p>.  <strong>查询并设置SMS**</strong>格式：<br><strong>**查询</strong>：AT+CMGF= 8<br><strong>返回</strong>：+CMGF: (0)<br>0代表PDU模式。你的设备可能有其他的选项，请参考设备的AT指令集。</p>
+<p>设置：AT+CMGF=08</p>
+<p>.  <strong>查询并设置短信储存位置：</strong><br><strong>查询</strong>：AT+CPMS=?8<br><strong>返回</strong>：+CPMS: (“MT”,”SM”,”ME”),(“MT”,”SM”,”ME”),(“MT”,”SM”,”ME”)</p>
+<p>其中MT表示设备所有可用储存位置。SM代表SIM卡，ME代表机身。</p>
+<p>一般设置为：AT+CPMS= “MT”,”MT”,”MT”8<br><strong>查询短信：</strong></p>
+<p>.  <strong>查询具有相同状态的所有短信<br>**</strong>指令**：AT+CMGL=n</p>
+<p>其中n代表0-4的数字。<br>0——未读得短信。执行命令以后自行变为已读取。<br>1——已读短信。<br>2——草稿。<br>3——已发送短信。<br>4——全部<br>*<em>返回(例)：<br>*</em>+CMGL: 76,3,,20</p>
+<p>0891683108200805F011620D91683194041338F50000FF0530972D8603<br>76——序号<br>3——状态：发送<br>20——PDU串长度</p>
+<p>.  <strong>查询特定序号的短信<br>**</strong>指令**：AT+CMGR=n8</p>
+<p>其中n代表序号<br><strong>返回(例)：</strong><br>+CMGR: 3,,20<br>0891683108200805F011620D91683195041338F50000FF0530972D8603<br>3——状态：发送<br>20——PDU串长度<br><strong>注意：PDU**</strong>串长度表示PDU<strong><strong>中除去短信中心部分剩下的代码的长度的1/2</strong></strong>。例如上述PDU<strong><strong>中PDU</strong></strong>长度部分为11620D91683195041338F50000FF0530972D8603<strong><strong>，40</strong></strong>个字符，表示20<strong>**个字节。</strong></p>
+<hr>
+<p><strong>储存PDU<br>**</strong>指令**：<br>AT+CMGW=[PDU长度] 8</p>
+<blockquote>
+<p>[PDU串]<br><strong>例如</strong>：
+AT+CMGW=208</p>
+</blockquote>
+<blockquote>
+<p>0891683108200805F011620D91683195041338F50000FF0530972D8603</p>
+</blockquote>
+<p>注意，输入PDU后按“CTRL+Z”终止。程序中使用0x1A，0x1D作为终止。</p>
+<p><strong>返回</strong>：+CMGW: 85<br>85——序号</p>
+<p><strong>发送PDU**</strong>串**</p>
+<p>.  发送输入的PDU串<br><strong>指令：</strong><br>AT+CMGS=[PDU长度] 8</p>
+<blockquote>
+<p>[PDU代码]</p>
+</blockquote>
+<p>.  发送指定序号的PDU串<br>*<em>指令：<br>*</em>AT+CMSS=[序号] 8</p>
+<p><strong>接收短信</strong></p>
+<p>接收刚收到的短信有两种方法：轮询终端；使用事件</p>
+<p>轮询终端可以定期的使用AT+CMGL=0指令读取未读取得指令。方法简单，但许多时候都在做无用功，效率低下，一般不建议采用。下面主要讲解事件法：</p>
+<p>*<em>指令：<br>*</em> AT+CNMI=<mode>,<mt>,<bm>,<ds>,<brf></brf></ds></bm></mt></mode></p>
+<p><strong>参数：<br>mode**</strong>：**
+** 0<strong>**——</strong>缓存在终端<br><strong>1**</strong>——<strong>直接发送到TE<br><strong>mt</strong></strong>：**
+** 0<strong>**——</strong>接收到新的SMS不返回事件</p>
+<p>** 1<strong>**——</strong>如果接收到的SMS存储在ME，则返回<br>+CMTI:<mem>,<index></index></mem></p>
+<p>** 2<strong>**——</strong>除了Class2 SMS，新的SMS直接发送到终端，返回：<br>+CMT:<length><cr><lf><pdu><br><strong>3**</strong>——<strong>Class3 SMS使用mt=2的方法返回，其他类型的使用mt=1的方法返回。<br><strong>bm</strong></strong>：**
+** 0<strong>**——</strong>小区广播不通知</pdu></lf></cr></length></p>
+<p>** 2<strong>**——</strong>新的小区广播通知，返回<br>+CBM:<length><cr><lf><pdu><br><strong>3**</strong>——<strong>Class3格式的小区广播通知，使用bm=2格式<br><strong>ds</strong></strong>：**
+** 0<strong>**——</strong>状态报告不通知</pdu></lf></cr></length></p>
+<p>** 1<strong>**——</strong>新的状态报告通知，返回：<br>+CDS:<length><cr><lf><pdu><br><strong>2**</strong>——<strong>如果新的状态报告存储到ME，则返回：<br>+CDSI:<mem>,<index><br><strong>brf</strong></index></mem></strong>：**
+** 1<strong>**——</strong>始终为1<br><strong>例：</strong></pdu></lf></cr></length></p>
+<p>一般我们使用AT+CNMI=1,1,0,2,1</p>
+<p>当收到新的短信时终端返回：<br>+CMTI:ME,5</p>
+<p>新的状态报告：<br>+CDSI:ME,6</p>
+<p>程序可以通过判断返回值并使用AT+CMGR指令返回新到短信。</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2005-02-24-net-platform-for-mobile-phone-management-software-for-the-time-being-come-to-an-end/" class="prev">PREV</a><a href="/post/2005-02-20-net-platform-for-mobile-phone-management-software-11-part-of-the-vb-net-code-sms-pdu/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

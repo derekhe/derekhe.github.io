@@ -1,0 +1,35 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> OpenGL Have a Try · 我是思聪</title><meta name="description" content="OpenGL Have a Try - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">OpenGL Have a Try</h1><div class="post-info">Dec 16, 2006</div><div class="post-content"><p>看了一个多星期的OpenGL的书，对OpenGL总算有一个粗浅的了解，昨天和今天开始进行实战。</p>
+<p>首先从最基本的画一些图形开始，这个很简单。</p>
+<p>然后就是视角的转换，这个稍微有些麻烦，很多时候辛辛苦苦做了一个程序，结果什么都看不到，就是视角没有弄好。好好的看看书问题就解决了。做好视角的基础以后就继续做可以动的视角，期间发现glutSetWindowTitle的函数执行会影响opengl程序运行，所以把所有的字都打印在了窗体里面。终于，视角处于一个球坐标系里面，可以任意移动。</p>
+<p>然后就是开始尝试着色颜色、灯光、隐面消除、Alpha混合。隐面消除的时候于到了一些问题，glut库里面的teapot和其他的图形的三角形的绕向是相反的，所以只好做一个转换。另外，gluPerspective的zNear参数如果设置为0的话，DepthTest会出现问题(如下图)。呵呵，最初我就是这样设置，结果我找了好久的问题，最后还是不断的比较找到了：)</p>
+<p>正确的DepthTest:<br><a href="/images/others/320061215223336.png"></a><img src="/images/others/image/thumb/320061215223336.png" alt></p>
+<p>错误的DepthTest:<br><a href="/images/others/520061215223355.png"></a><img src="/images/others/image/thumb/520061215223355.png" alt></p>
+<p>最后就是添加一些好玩的元素进去，包括可爱的雾化效果：)</p>
+<p>程序的部分执行效果，可以实时拉近、拉远、设置雾的远近等：<br><a href="/images/others/520061215223513.png"></a><img src="/images/others/image/thumb/520061215223513.png" alt><br><a href="/images/others/u20061215223521.png"></a><img src="/images/others/image/thumb/u20061215223521.png" alt></p>
+<p>最后，源代码保留一个，然后看看Nvidia SDK，里面有好多好多的特效阿～～～：)</p>
+<p>[download id=”20”]</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2006-12-17-university-de-memories/" class="prev">PREV</a><a href="/post/2006-12-15-studies-find-something-opengl/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

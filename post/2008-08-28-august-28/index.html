@@ -1,0 +1,35 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 8月28 · 我是思聪</title><meta name="description" content="8月28 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">8月28</h1><div class="post-info">Aug 28, 2008</div><div class="post-content"><p>晃眼就到了8月底了，很不负责的我由于太忙了也没有时间更新日志。今天终于有一些闲暇时间来写写近况。</p>
+<p>暑假也就这样过去了，也算是出旅游了一圈，算是完成了今年年初制定的计划。和以前一样的习惯，回到家了以后就成了宅男，每天早上起来就是中午了，晚上要一两点才睡觉。一天天过去，总是觉得一天很累的样子，就像睡觉，我想可能和生活习惯有一定关系。前天回到学校的，晚上老板一个电话说是叫我第二天帮忙修个电脑。最后还是到学校好了，顺便晚上演示一下3D立体显示的效果。</p>
+<p>对于编程这方面，8月也没有过多的做什么东西。3D立体显示花了120块钱，加上以前的一个老CRT显示器就成功了。用了一天的时间就搞出来了，效果令人满意。8月更多的时间用在了试用各种软件开发包，看现在最新的一些技术，期待能够将其合成到一起做一个产品，走在别人的前面。</p>
+<p>最近也在使用Linux操作系统了，习惯了以后反而不太怎么用Windows了。由于前段时间经常内存告急，所以前天去多买了1G的内存，加起来就4G内存了。可怜的Windows XP竟然只能识别到3.25G，即便加上了PAE选项那0.75G还是没办法找回来，解决方案使用2003 Server或者VISTA很是郁闷。而Linux系统就不一样了，我用的是Ubuntu 8.04，根据<a href="http://ubuntuforums.org/showthread.php?t=855511" target="_blank" rel="noopener">这篇文章所述</a>进行内核重新编译，简单的修改一个内核选项，就可以支持4G以上内存了。之前我还试过用Ubuntu的Server版的内核，可以正确是识别到4G，但是NVIDIA的显卡驱动又不支持这个内核，只好作罢。重新编译内核用了半个多小时时间，还是比较久的，我在想编译的时候能不能像make以上加上-j的参数以后进行多线程编译呢？以后升级内核的时候再管吧。还是感觉Linux系统在这方便占据了很大的优势。</p>
+<p>近期也看过CUDA的一些东西，总的来说ＣＵＤＡ对于我的吸引力还是比较大的，写过几个小程序以后基本上知道了CUDA编程是怎么回事了。我还在想做体渲染用CUDA能不能带来速度上的进一步提高？基于Shader的图形方式的编程已经让Texture Unit不堪重负，如果从CUDA的Global Memory里面取体数据，用Stream Processor来计算又能不能释放Texture Unit的能力从而得到更好的速度呢？还是需要实验才能知道，而且算法一定还比较麻烦，要设计到如何有效的从Global Memory里面提取数据然后放到Shared Memory来进行数据缓冲～～但目前我还没有这个打算做下去，目前的显示的速度已经够用了。</p>
+<p>基于CUDA的NVIDIA的物理驱动也能够正常运行了，但流体模拟的速度还很缓慢，看来还是需要另一张显卡进行加速。NVIDA的算盘还是挺牛的，没了物理卡，多了显卡装的物理卡。我倒是在想，以后的游戏AI、物理甚至音频计算都到显卡上去了，CPU拿来干嘛么？到时候全部计算都抗到GPU上面了，CPU闲死，GPU累死，反而卡卡卡。再看啦，以后我的项目也可能要用到软物体的模拟的，期待PhysX进一步强大，多多益善～</p>
+<p>Vmware Workstation 6.5的RC版本已经发布了，说明已经离正式版很近了。其实Vmware更新一贯是很快的，这次的RC版本提供了增强3D显示的支持。据测试已经能够很好的支持Shader Model 2.0了。我虚拟机里面分配了1.5G内存给虚拟机，将其VESA驱动装好，装了3DMARK 05 1.3版本，测试成绩是2700分左右，基本上达到了6600的水平。然后兴奋的试了试战地2142，竟然能够完美的工作！！最高特效下速度能够达到真实显卡的1／3左右，当然人多的复杂场景帧数会降到15FPS一下，就没有可玩性了。在最低画质的情况下还是能够基本流畅运行，算是一个很大的进不了。</p>
+<p>当然我的说完美并不是真正的完美，而是有BUG的完美。BUG是如果没有配置好虚拟机的显示器为使用本机设置，那么到选择重生点的界面时就鼠标就是乱跑的。第二个BUG堪称完美，VESA驱动不支持FOG，也就是雾效。想雾效效果一直以来都是游戏里面最重要的元素，以来是增加了逼真度，而来是减少了显卡渲染的量，以至于2000年左右的时候，很多游戏里面的雾效都达到了夸张的效果，记忆里面那款“猎杀恐龙”你的可是距离就不超过10米～～当然，计算雾效还是需要显卡计算，以前可以固定管线进行计算，而后来则可以使用Shader进行更高级的雾效。也不清楚为什么战地2142里面雾效果没了，驱动没有做雾效还是2142使用的固定管弦的雾处理，倒是雾效在3DMARK05里面是正常的。呵呵，没有了雾效，自然战地2142的狙击手就能够看得更清出了，画面和作弊器没有区别，唯一的好处就是目前不会被反作弊系统踢出来。</p>
+<p>VMWARE的UNITY模式也好算是能够正常运行了，只是速度确实太慢了，托窗口都不能流畅拖动。原理我想可能就是在后太有一个抓屏的软件，然后传到前台窗体里面，将图贴上去就可以了。期待正式版能够进一步完善，加强速度。呵呵。</p>
+<p>好玩的东西都玩玩了。接下来的任务还是一样的繁重，只是回到了学校，又恢复了基本正常的生活规律，人也没那么恼火了。</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2008-08-30-back-home/" class="prev">PREV</a><a href="/post/2008-08-14-ubuntu-more-and-more-fun/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

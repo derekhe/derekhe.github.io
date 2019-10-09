@@ -1,0 +1,74 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 我是思聪</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2011-02-11-antivirus-new-logic/" class="post-title-link">杀软新逻辑——谁是坏人？</a></h2><div class="post-info">Feb 11, 2011</div><div class="post-content"><p>以前做的项目最近和杀毒软件耗上了，本来好好的东西被杀毒软件给杀掉了。来看看事情是怎么回事。</p>
+<p>以前项目是用C#写的，但是使用环境极其恶劣，经常会造成可执行文件损坏。一般的win32应用程序损坏还问题不大，但是C#这种托管语言的，一旦文件头破坏了，启动的时候就会报0x000005错误，导致程序无法启动。当然，杀软也是傻逼的很，检测不到病毒，只能删除程序。</p>
+<p>最后找了个解决方法，将好的程序换个名字，比如说命名为.bak之类的，然后启动的时候，将.bak复制为.exe，然后启动之。我做了个bat然后转成exe来完成这个事情。这样，即便是在启动的时候被感染了病毒，但也可以保证在用的时候没有病毒。</p>
+<p>这样用了很久，没出过啥问题。最近客户升级了杀软，也就是之前曾经沸沸扬扬的360，然后问题就出来了。启动文件直接被360作为病毒干掉了。后来程序中用到的winio做通讯的也被360判为病毒，这下，应用程序全军覆没。</p>
+<p>俺们不再深究如何解决这个问题。且看现在的杀毒软件，我们来简单的分析一下其逻辑，发现现在的“警察”其实就扮演了一个“流氓”的角色。360从流氓变为警察也不容易，现在慢慢的开始也扮起了流氓。</p>
+<p>首先，360的杀毒能力是没有什么提升了。每天都在报告又能杀XXX万个病毒了，又发现了几千个病毒了，那到底能够杀到多少呢？谁知道。现在的杀软，都是拦截系统的API，将所有有“危险”的API调用都判为“风险”，并且让用户选择。用户其实根本不懂这些东西，包括很多称之为“高手”的人，禁止吧，很多软件都用不了，确定吧，又怕遭了病毒。但是杀毒软件每次都在报，装个软件都在报，就像狼来了一样，最终用户习惯了，也没时间去钻研，还是选“确定”好了。</p>
+<p>看起来这些杀软都是为用户好，很“精确”的为你提供每一个“风险”，就像一个婆婆妈妈的人，做每件事情都要你确认一下，你烦不烦？好吧，你烦了，杀软就赢了。遭病毒了吧，傻逼了吧，当时谁叫你选的“确定”呢，杀软给你说了有风险，你还继续，那管杀软啥事呢？</p>
+<p>这个逻辑很好，就是烦死你的逻辑。就像卖保险的一样，其实你根本没有一个字一个字的去看保险条款，被推销的烦死了，他就赢了。到时候出了问题，去索赔的时候，才发现，原来保险条款里面就说：这事情俺给你说过，不保的！</p>
+<p>下一个逻辑更好玩。俺杀毒不行了吧，每天更新几万个病毒库，很累啊，时不时的还冒出来搞不懂的病毒，估计360这些“专家”也搞不懂啊。杀不了怎么办呢？用户闹啊？好吧。现在360又搞了个“360软件安全认证中心”。要你的软件不误报，你得向他提供一大啪啦的东西。</p>
+<p>好了，以后360就认为，所有的人都是坏人，只有在我这里注册了的才是“好人”。那些自己写的“野软件”，由于得不到360的认可，也变成了坏人了。谁知道，以后360会不会收费呢？会不会有更多像搜索引擎的歧视政策呢？会不会让你提供一些商业的机密呢？谁说的清楚，只有向“钱”看的时候，才会真正的认清杀软的面目。</p>
+<p>现在我电脑上的杀软又被卸载掉了，啥都没有了，裸奔了。以前都还向大家推荐360，现在不得不向大家说，为了减少不必要的骚扰，建议大家都卸载360好了。</p>
+<p>杀软的逻辑，警察与坏人，谁是好人？</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2011-01-28-fucking-bfbc2/" class="post-title-link">蛋疼的战地叛逆团队2</a></h2><div class="post-info">Jan 28, 2011</div><div class="post-content"><p>最近玩这个游戏还真是玩的蛋疼，一点也没有HI的感觉。网络也比较差，作弊器满天飞，经常被踢出去，也没有战略可言，全是直接上前冲，冲上去死了就算了，真没意思。</p>
+<p>更恼火的是显卡也经常给我搞点小毛病出来，大冬天的何必自己死掉嘛，我也没超频啊。最后还是只有把显卡超频了然后把风扇开到100%，声音大了点，某些场景下还是卡的很，本来瞄准技术就差，更不说在卡的状态下能够打着人了。</p>
+<p>怀念当年刚把显卡从6600升级到8800GTS玩战地2142的时候，那是一个爽啊，解开fps锁定后可以达到140fps，那是一个流畅，指哪打哪。</p>
+<p>看啥时候升级显卡嘛，反正网络也不行……再看咯。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2011-01-26-longer-job/" class="post-title-link">让任务执行得更久一点</a></h2><div class="post-info">Jan 26, 2011</div><div class="post-content"><p>花了那么多银子买Dreamhost，总得让这个空间用的更丰富点吧。最近有个想法把“小米分享”网站的所有图片给搞下来，脚本那是相当简单，几句话就可以搞定：(down.sh)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ID=0</span><br><span class="line"><span class="keyword">while</span> <span class="literal">true</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">        ID=`expr <span class="variable">$ID</span> + 1`</span><br><span class="line">        ID=`expr <span class="variable">$ID</span> % 999999`</span><br><span class="line">        wget -crm <span class="string">"http://fx.xiaomi.com/"</span><span class="variable">$ID</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<p>至于原理就不用说了，很简单。</p>
+<p>现在的问题就是如何让这个下载任务能够长期不断的运行下去，之前用后台线程下载，结果ssh一退出就没了。怎么解决呢？</p>
+<p>用nohup就可以解决</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">nohup ./down<span class="selector-class">.sh</span> &amp;</span><br></pre></td></tr></table></figure>
+
+<p>要看到直接过程，可以用tail查看：</p>
+<figure class="highlight ada"><table><tr><td class="code"><pre><span class="line">tail -f nohup.<span class="keyword">out</span></span><br></pre></td></tr></table></figure>
+
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2011-01-23-waiting/" class="post-title-link">平邮时代</a></h2><div class="post-info">Jan 23, 2011</div><div class="post-content"><p>星期天，和宝贝出去玩了一天，终于把蒋公子不小心团购买了两份的咖啡套餐消费完了。据网站上说，原本100多的，团购下来29块钱两人份，听起来是那么的诱人，但去了才知道，一个很小的店，以至于找个门牌都要小心翼翼，多走两步就可能已经走过了。再看看29块钱包含了啥：</p>
+<h3 id="仅售29元！原价116元《菲尼克斯主题咖啡馆》双人套餐：卡布奇诺-雪梨贡菊茶-经典黑森林蛋糕-水果沙拉-2人份-。这是你和TA的格调享受！"><a href="#仅售29元！原价116元《菲尼克斯主题咖啡馆》双人套餐：卡布奇诺-雪梨贡菊茶-经典黑森林蛋糕-水果沙拉-2人份-。这是你和TA的格调享受！" class="headerlink" title="仅售29元！原价116元《菲尼克斯主题咖啡馆》双人套餐：卡布奇诺+雪梨贡菊茶+经典黑森林蛋糕+水果沙拉(2人份)。这是你和TA的格调享受！"></a>仅售29元！原价116元《菲尼克斯主题咖啡馆》双人套餐：卡布奇诺+雪梨贡菊茶+经典黑森林蛋糕+水果沙拉(2人份)。这是你和TA的格调享受！</h3><p>听起名字确实觉得挺值得，宝贝一看，就知道这个东西其实29块钱都嫌贵。在这样的店面环境下，这些东西更不用说116了，带有明显的欺骗性质。最近网络上特别火爆的“团购”，似乎一个团购就能让你觉得便宜了多少多少，真的有那么的实惠？我倒是觉得很多都是打着团购的幌子，提起你购买的欲望。对于商家来说，团购，一次性让商家赚个够，至于你到底有没有得到什么优惠，鬼才知道。</p>
+<p>下午本来是该去修车的，BYD F3R的路码表似乎就那么的脆弱，才2000多公里，就不转了。原因很简单，传感器坏了。查了一下网上很多朋友也是遇到了这样的情况，真有点怀疑F3R的品质了，还是只能用一句话来安慰一下，哪个叫这个车才买成5万块钱呢……汗死。修车这个活让我爸妈去干了，他们本来就没事做，再加上给宝贝承诺晚上要去吃牛排，他们就更加无聊了。所以还是安排个事情做吧。结果晚上回来，他们才抱怨说太多车了，都在这个时候做保养。就换个传感器，从十二点过都到都五点过了才最终弄完，不是我妈发脾气吼一整，恐怕要等到晚上才能回来。这年头，忍耐是有限度的。</p>
+<p>他们在等修车的时候，恰好我们那时候在银行等存钱。银行真的是为大款服务的。当我们拿到号的时候，前面还有18个等待。幸好我们下午出来就是无聊，把手机拿出来给宝贝玩植物大战僵尸，混混时间就过了。存个钱，等了一个小时，前面还有两个“大客户”插队，一个存40万，搞了20多分钟，有一个窗口的“大客户”什么手续不齐，要重新整，银行工作人员不给让别人办理，搞得有人都怒吼了。只是银行工作人员表示很淡定，没有什么怕的，一个一个的来。没办法嘛，银行的都是一些“牛人”，你上班的时候它上班，你要存钱的时候它下班了。你中午去存钱，别人休息了，你周末去存钱；别人开一个窗口，等死你，气死你，反正钱嘛，都是身外之物，有本事不要来银行！</p>
+<p>想起以前办房产证的时候，也是一个恼火，周一到周五，你上班，它上班；周六你想去办个事，人家公务员嘛，自然是周六下班回家休息咯，谁叫人家压力那么大呢。后来还是改革了，终于在周六可以办公了。我是在想，这个周六算加班么？纳税人的钱又白白的浪费了。</p>
+<p>所以啊，有钱，就要去办个银行的VIP，管他有没有钱，去办业务的时候顺便可以鄙视一下那些“穷人”，让银行的工作人员对你“服服帖帖”，体验一把“有钱的”乐趣。鄙视！</p>
+<p>晚上回来，又打客服问了一下当当买的书到底搞到哪里去了。1月2号就下的订单，3号发的货，平邮应该是15天左右到货的，结果到现在都20多天了还没有一个音讯。当当的服务还算好，要是没有在承诺的时间内到达，要给礼券的，算是弥补一下这几天打电话的费用。至于说扯淡的事情，给的单号，客服能够查到，我在中国邮政的网站上就查不到。客服倒是说，这个单已经签收了，是别人签收的……我的娘，这个邮政还真是扯淡，也没给个电话，也没说个啥，就被别人签收了。或许，邮局的工作人员，没有配备手机吧……</p>
+<p>再说说在远望Eshop订的杂志，也是平邮，第一期《微型计算器》还算挺快的，第二期的《极客》就没那么幸运了，到现在还没到，网站上说的1月6号就从重庆发货了，莫非又寄到另外地方了？！倒是如果邮政的投递，基本上速度还靠谱，只是价格太离奇了，和外面买的价格一样。我之前还以为杂志没有能够打折的呢，后来发现“杂志铺”网站还能打折，每月一次免费快递，速度基本上能够保证。</p>
+<p>下周上完班，在上两三天就可以春节了，挺好。春运又要开始了，快递爆仓、移动死机、网络卡死，一切在春节这个世界上人口流动最多、最快的时候，爆发了。习惯了快递的人们，准备进入平邮时代吧，放慢你的生活，让邮件，在飞一会儿吧。</p>
+<p>PS：让子弹飞，我确实没看出来，有什么好看的。……<del>非诚勿扰2还算靠谱</del></p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2011-01-09-g7-roms/" class="post-title-link">试玩G7 ROM</a></h2><div class="post-info">Jan 9, 2011</div><div class="post-content"><p>自从10年7月份花了3700多块买了个HTC G7以后，就不断的折腾这个手机，每天不断地装软件，时不时的刷机，重装，真是不亦乐乎。</p>
+<p>其实真的想来有时候就是为了好玩罢了，看着网站上XX ROM又更新了一下，但必须要全部WIPE，不管三七二十一，格式化卡，重装系统。装上以后，又玩不到两三周，又重新装。从G7原版优化版到CM系统，又从CM系统到DESIRE HD的系统，最后受不了HD的反复重启，又从HD的系统搞到现在的MIUI系统，最终还是被MIUI折服了，良好的操作界面及漂亮的人机界面，流畅的速度都惹人喜欢。</p>
+<p>这里就说说我用过的几种ROM的优缺点吧。</p>
+<p>. 原版</p>
+<p>优点：原版，稳定<br>缺点：无新意，运行速度慢，装软件都装不了几个。</p>
+<p>. CM</p>
+<p>优点：开源、稳定，原生ANDROID<br>缺点：界面太丑了……~</p>
+<p>. HD</p>
+<p>优点：原版的优化版，界面比原版的漂亮，可以换皮肤。<br>缺点：必须要用Data2ext才行，稳定性欠佳，对卡的要求极高，随时重启。</p>
+<p>. MIUI</p>
+<p>优点：中国版的Android，界面华丽，稳定<br>缺点：暂时还没有，用着挺爽</p>
+<p>所以，最后还是用MIUI了，反正每周五都有更新，而且不用蛋疼的每次都WIPE，不用重新装系统，这是最大的优势。</p>
+</div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/19/" class="prev">PREV</a><a href="/page/21/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

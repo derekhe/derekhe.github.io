@@ -1,0 +1,32 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> Linux下调节Lenovo U150亮度 · 我是思聪</title><meta name="description" content="Linux下调节Lenovo U150亮度 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">Linux下调节Lenovo U150亮度</h1><div class="post-info">Apr 29, 2010</div><div class="post-content"><p>自从买了U150以后，集成的GMA X4500MHD的亮度就从来不能调节。最多只能在grub菜单的时候进行调节，很是头痛。在网上大力搜索了一番以后，找到了<a href="http://forums.lenovo.com/t5/Linux-Discussion/Y450-linux/td-p/130370" target="_blank" rel="noopener">Y450的童鞋们遇到的相同的问题</a>，这个帖子里面有一个总结并且写了<a href="http://elektropionir.net/" target="_blank" rel="noopener">一个脚本来关联用键盘调整的亮度和实际亮度的关系</a>，最核心的东西在于：</p>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">sudo</span> setpci -s <span class="number">00</span>:<span class="number">02</span>.<span class="number">0</span> F4.B=<span class="string">"20"</span></span><br></pre></td></tr></table></figure>
+
+<p>后面的20是亮度，值从00到FF，十六进制。可以实现255级亮度的调节，还是很理想的。相对于Windows里面的级别更是多了一些。</p>
+<p>setpci通过设置pci接口寄存器的值来进行调节，可能Windows里面强行设置pci的寄存器的值也能达到相同的效果。</p>
+<p>运行提供的脚本以后，不管怎么说，在linux也能调节了。虽然这样做起来有点别扭。</p>
+<p>最后，麦克风和摄像头似乎还是没法驱动。最新的Ubuntu 10.04也没有解决，看来Linux的道路上，驱动和兼容，成了最大的问题。</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2010-05-02-bfbc2-arms-full-solution/" class="prev">PREV</a><a href="/post/2010-04-28-ubuntu-10-04-lts-distribution-of-the-official-version-download/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

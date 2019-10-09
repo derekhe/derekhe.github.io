@@ -1,0 +1,38 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 用doxygen写程序注释 · 我是思聪</title><meta name="description" content="用doxygen写程序注释 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">用doxygen写程序注释</h1><div class="post-info">Mar 15, 2007</div><div class="post-content"><p>接触doxygen是从接触lib3ds库开始的，这个库的源代码使用doxygen作为文档的注释，很爽，直接使用工具就可以生成一个非常漂亮的文档。所以我也开始学着用doxygen作注释。</p>
+<p>很简单，一个文件的开始写文档的头</p>
+<figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">/*! <span class="built_in">file</span>: filename</span><br><span class="line">brief: This <span class="keyword">is</span> a <span class="built_in">file</span></span><br><span class="line">author: hesicong</span><br><span class="line">.....</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+
+<p>对于类</p>
+<figure class="highlight monkey"><table><tr><td class="code"><pre><span class="line">//! <span class="class"><span class="keyword">Class</span> <span class="title">Description</span></span></span><br></pre></td></tr></table></figure>
+
+<p>对于函数</p>
+<figure class="highlight ada"><table><tr><td class="code"><pre><span class="line">/*! <span class="keyword">Function</span></span><br><span class="line">parm parm1 description1</span><br><span class="line">parm parm2 description2</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+
+<p>等等，感觉很简单的东西，就可以生成很强大的文档，包括类的继承关系、函数的调用关系都很清楚～～～</p>
+<p>唉，说了半天，自己去尝试一下～～～～</p>
+<p>另外，一直用Subversion管理源代码，很爽～！</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2007-03-16-my-programming-tips/" class="prev">PREV</a><a href="/post/2007-03-15-miracle-unicom-quarters-these-days-even-a-free-internet/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 持续集成流程优化 · 我是思聪</title><meta name="description" content="持续集成流程优化 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">持续集成流程优化</h1><div class="post-info">Sep 16, 2014</div><div class="post-content"><p>持续集成有时候成了一种固定的模式后，就难以摆脱定式思维，其实我们还有很多可优化的空间。</p>
+<h3 id="习以为常的CI流程"><a href="#习以为常的CI流程" class="headerlink" title="习以为常的CI流程"></a>习以为常的CI流程</h3><p>我们通常习惯的CI模式基本上如下图所示，运行于Jenkins，开发基于Maven Spring AngularJS等。</p>
+<p><img src="/images/2014/09/Untitled-Diagram-1.png" alt>](/images/2014/09/Untitled-Diagram-1.png)</p>
+<p>各个步骤的用途如下：</p>
+<ul>
+<li>BUILD &amp; UNIT TEST：构建和单元测试，生成后续步骤所需要的artifacts。</li>
+<li>INTEGRATION TEST：集成测试外部依赖。</li>
+<li>END TO END TEST：有时候称之为Functional Test，测试整个系统的功能，通常运行于Windows+Jetty环境运行。成功后进行部署。</li>
+<li>DEV ENV：开发人员的测试环境，运行于Linux+Tomcat环境。</li>
+<li>SYS ENV：测试人员的环境，运行于Linux+Tomcat环境。</li>
+<li>UAT ENV：通常是business的人进行用户验收测试，运行于Linux+Tomcat环境。</li>
+</ul>
+<p>这样的步骤确保了在END TO END TEST之后的代码都是已经测试过，品质量好的代码。但我们还是发现了其中存在的若干问题。</p>
+<h3 id="问题一：DEV环境通常闲置"><a href="#问题一：DEV环境通常闲置" class="headerlink" title="问题一：DEV环境通常闲置"></a>问题一：DEV环境通常闲置</h3><p>在我经历的两个项目中，开发人员一般都在本地进行调试好了以后，不会在DEV环境再进行调试。DEV环境的唯一用途恐怕就是测试部署是否正常。所以一般情况下都闲置，利用率较低。</p>
+<h3 id="问题二：END-TO-END测试的环境和真实产品环境不匹配"><a href="#问题二：END-TO-END测试的环境和真实产品环境不匹配" class="headerlink" title="问题二：END TO END测试的环境和真实产品环境不匹配"></a>问题二：END TO END测试的环境和真实产品环境不匹配</h3><p>在目前我们的END TO END TEST阶段，主要是用本地的Jetty来运行测试，整个测试过程都是在CI的Windows服务器上进行，和真实环境中的Linux+Tomcat环境还是有差异。由于环境的差异，虽然测试可能通过，但还是可能遗留一些和环境相关的问题。</p>
+<h3 id="问题三：END-TO-END测试出错后，不容易找到问题来源"><a href="#问题三：END-TO-END测试出错后，不容易找到问题来源" class="headerlink" title="问题三：END TO END测试出错后，不容易找到问题来源"></a>问题三：END TO END测试出错后，不容易找到问题来源</h3><p>由于END TO END通常都是比较脆弱的环境，第三方的依赖的不稳定和测试工具的不稳定都很容易使之失败。失败后，开发人员通常会查看Jenkins上的日志，然后分析原因。然而这些原因非常难找，例如Protractor的Stack就基本上没太大用户，assert失败后就只能靠猜测。对于很多概率性的问题或者本地环境没有的问题，需要反复的checkin代码进行尝试，更难进行调试。</p>
+<p>另外END TO END处于比较后期，一旦发现问题需要修改某些代码然后在进行测试，将会变得异常的漫长。</p>
+<h3 id="解决方案：重新布置CI流程"><a href="#解决方案：重新布置CI流程" class="headerlink" title="解决方案：重新布置CI流程"></a>解决方案：重新布置CI流程</h3><p>我们仅仅需要做一点点小的修改，将DEV环境移到END TO END之前，就能解决上述的问题</p>
+<p><a href="/images/2014/09/Untitled-Diagram-2.png"><img src="/images/2014/09/Untitled-Diagram-2.png" alt="改进的CI流程"></a></p>
+<p>和之前的CI流程相比，DEV会在集成测试之后，直接进行部署。END TO END的测试脚本将会指向于DEV环境进行测试而不是之前的本地Jetty环境。</p>
+<h3 id="解决的问题"><a href="#解决的问题" class="headerlink" title="解决的问题"></a>解决的问题</h3><ul>
+<li>问题一：DEV环境通常闲置。</li>
+</ul>
+<blockquote>
+<p>DEV环境将作为END TO END环境的测试对象，利用率更高。</p>
+</blockquote>
+<ul>
+<li>问题二：END TO END测试的环境和真实产品环境不匹配</li>
+</ul>
+<blockquote>
+<p>DEV环境运行于和的Production一样的环境，END TO END测试更为真实可靠。</p>
+</blockquote>
+<ul>
+<li>问题三：END TO END测试出错后，不容易找到问题来源</li>
+</ul>
+<blockquote>
+<p>DEV环境可以直接访问，并且已经部署，出错后，可在本地将END TO END测试指向DEV环境，进行测试。如果是测试代码问题，修改后马上可以重新测试；如果是产品代码的问题，修改提交后只需要重新单元测试及集成测试即可，速度比之前会更快。</p>
+</blockquote>
+<h3 id="带来的问题"><a href="#带来的问题" class="headerlink" title="带来的问题"></a>带来的问题</h3><p>这样做当然也带来一个问题：对比之前，此时的DEV环境将不是可靠的一个环境。但DEV环境本来不是给开发人员玩的环境么？所以我个人认为这不是一个问题，我将其命名为TEST DEV ENV以便和之前的DEV ENV进行区分。</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2014-10-09-ways-to-improve-offshore-and-onshore-communication/" class="prev">PREV</a><a href="/post/2014-09-15-wordpress-docker/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

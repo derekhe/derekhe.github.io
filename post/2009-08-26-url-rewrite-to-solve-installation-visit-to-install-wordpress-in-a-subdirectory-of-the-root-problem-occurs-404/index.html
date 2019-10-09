@@ -1,0 +1,40 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> URL Rewrite解决安装访问安装在根目录的Wordpress的子目录出现404的问题 · 我是思聪</title><meta name="description" content="URL Rewrite解决安装访问安装在根目录的Wordpress的子目录出现404的问题 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">URL Rewrite解决安装访问安装在根目录的Wordpress的子目录出现404的问题</h1><div class="post-info">Aug 26, 2009</div><div class="post-content"><p>我真不知道这个题目应该怎么写了，呵呵。</p>
+<p>问题是这样的，今天装了Open Web Analytics(OWA)后，出现OWA无法用的问题。用Firebug查看网络请求发现OWA请求位于/wp-content/plugins/owa目录中，而直接访问这个目录会出现404错位，因为我的wordpress是装在/b/目录下的，由.htaccess来实现wordpress在根目录中访问。wordpress默认的url-rewrite是这样：</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="comment"># BEGIN WordPress</span></span><br><span class="line"></span><br><span class="line"><span class="attribute"><span class="nomarkup">RewriteEngine</span></span> <span class="literal">On</span></span><br><span class="line"><span class="attribute">RewriteBase</span> /</span><br><span class="line"><span class="attribute"><span class="nomarkup">RewriteCond</span></span> <span class="variable">%&#123;REQUEST_FILENAME&#125;</span> !-f</span><br><span class="line"><span class="attribute"><span class="nomarkup">RewriteCond</span></span> <span class="variable">%&#123;REQUEST_FILENAME&#125;</span> !-d</span><br><span class="line"><span class="attribute"><span class="nomarkup">RewriteRule</span></span> . /index.php<span class="meta"> [L]</span></span><br></pre></td></tr></table></figure>
+
+<p>根据Apache的文章可知，RewriteRule的意思是把所有的请求都给index.php处理。</p>
+<p>那么要解决我的问题，我应该添加一条规则</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute"><span class="nomarkup">RewriteRule</span></span> ^wp-content/(.*)$ /b/wp-content/<span class="number">$1</span><span class="meta"> [R]</span></span><br></pre></td></tr></table></figure>
+
+<p>这样完整的规则是：</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="comment"># BEGIN WordPress</span></span><br><span class="line"><span class="attribute"><span class="nomarkup">RewriteEngine</span></span> <span class="literal">On</span></span><br><span class="line"><span class="attribute">RewriteBase</span> /</span><br><span class="line"><span class="attribute"><span class="nomarkup">RewriteCond</span></span> <span class="variable">%&#123;REQUEST_FILENAME&#125;</span> !-f</span><br><span class="line"><span class="attribute"><span class="nomarkup">RewriteCond</span></span> <span class="variable">%&#123;REQUEST_FILENAME&#125;</span> !-d</span><br><span class="line"><span class="attribute"><span class="nomarkup">RewriteRule</span></span> ^wp-content/(.*)$ /b/wp-content/<span class="number">$1</span><span class="meta"> [R]</span></span><br><span class="line"><span class="attribute"><span class="nomarkup">RewriteRule</span></span> . /index.php<span class="meta"> [L]</span></span><br><span class="line"><span class="comment"># END WordPress</span></span><br></pre></td></tr></table></figure>
+
+<p>可是这样依然无法访问。原因是Apache会遍历每一个规则。查看了<a href="http://www.52web.com/52article/?view-80.html" target="_blank" rel="noopener">《Apache中 RewriteRule 规则参数介绍》</a>一文，重点是这个： ‘last|L’(结尾规则) 立即停止重写操作，并不再应用其他重写规则。它对应于Perl中的last命令或C语言中的break命令。 这个标记用于阻止当前已被重写的URL被后继规则再次重写。 例如，使用它可以重写根路径的URL(‘/‘)为实际存在的URL(比如：’/e/www/‘)。 所以，最终的.htaccess应该这样写：</p>
+<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="comment"># BEGIN WordPress</span></span><br><span class="line"><span class="attribute"><span class="nomarkup">RewriteEngine</span></span> <span class="literal">On</span></span><br><span class="line"><span class="attribute">RewriteBase</span> /</span><br><span class="line"><span class="attribute"><span class="nomarkup">RewriteCond</span></span> <span class="variable">%&#123;REQUEST_FILENAME&#125;</span> !-f</span><br><span class="line"><span class="attribute"><span class="nomarkup">RewriteCond</span></span> <span class="variable">%&#123;REQUEST_FILENAME&#125;</span> !-d</span><br><span class="line"><span class="attribute"><span class="nomarkup">RewriteRule</span></span> ^wp-content/(.*)$ /b/wp-content/<span class="number">$1</span><span class="meta"> [R,L]</span></span><br><span class="line"><span class="attribute"><span class="nomarkup">RewriteRule</span></span> . /index.php<span class="meta"> [L]</span></span><br><span class="line"><span class="comment"># END WordPress</span></span><br></pre></td></tr></table></figure>
+
+<p>以后再出现这种在wordpress安装目录下子目录无法访问的情况就类似的这样解决。</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2009-08-26-open-web-analytics-documented-to-resolve-the-problem-failed/" class="prev">PREV</a><a href="/post/2009-08-26-openjtag-eclipse-3-5-gdb-mini2440-photo-tutorial/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

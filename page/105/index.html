@@ -1,0 +1,63 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 我是思聪</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2007-02-09-oh-bad-luck/" class="post-title-link">倒霉哦</a></h2><div class="post-info">Feb 9, 2007</div><div class="post-content"><p>下午打了3个多小时战地2，哇，当指挥官把人爽死了。结果后来查分的时候发现居然没有纪录分！明明是RANK服务器嘛，咋个回事呢？莫非我进到了不是RANK的服务器！彻底晕死…………白忙了一阵~</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2007-02-08-bender-3d-demo/" class="post-title-link">弯管机3D DEMO</a></h2><div class="post-info">Feb 8, 2007</div><div class="post-content"><p>昨天经过一些努力，把弯管机的管子加到了弯管机上面。添加了一些手工的弯管步骤，做了一个DEMO。</p>
+<p>最后在其他非开发机上面运行的时候，出现了“由于应用程序配置不正确，应用程序未能启动。重新安装应用程序可能会纠正此问题。”这个问题。上网查询，查到原来如此：<br>“……原来我在编译lib和exe文件的时候，一个选择Multi-threaded，一个选择Multi-threaded DLL， 最终造成了最终这样的结果。……”(引用：<a href="http://www.panzhishi.com/classyk/article.asp?id=4" target="_blank" rel="noopener">http://www.panzhishi.com/classyk/article.asp?id=4</a>)</p>
+<p>后来我用PE Explorer分别查看Multi-threaded和Multi-threaded DLL这两个选项生成的可执行文件，发现<br>Dependency有区别：<br>Multi-threaded DLL版本比Multi-threaded版本要多两个dll：msvcp80.dll msvcr80.dll，搜索后发现在WindowsWinSxS目录下，应该是vc crt的运行库。在其他电脑上没有这两个库，所以会出现这样的问题。</p>
+<p>经过尝试解决办法有：</p>
+<ul>
+<li>重新编译应用程序，保证所有的库和编译的程序选择Multi-threaded。</li>
+<li>安装.Net Framework 2.0</li>
+</ul>
+<p>下面是我的弯管机的3D演示。［已经失效］</p>
+<p><img src="images/flash.gif" alt>Flash动画<br><a href="javascript:MediaShow('swf','temp39820','attachments/month_0702/SimulationNode.swf','400','300')" target="_blank" rel="noopener"><img src="images/mm_snd.gif" alt>在线播放</a></p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2007-02-07-yeah/" class="post-title-link">Yeah!</a></h2><div class="post-info">Feb 7, 2007</div><div class="post-content"><p>骑车来回30公里，帮女生修电脑 <img src="images/smilies/Face_03.gif" alt>。可能是氧气比较充足，晚上写程序思路清晰，问题一个一个顺利解决！现在毕业设计已经完成了50％以上了，高兴啊。有空把管子弄上机床，开始加工：)<br>. 永远记住，仿射变换是左乘，OpenGL是右乘。保持头脑清晰，做图形学最重要的是矩阵变换要正确。</p>
+<p>从父对象到子对象的转换：</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">childMatrix＝parentMatrix*transformMatrix  ====&gt;</span><br><span class="line">transformMatrix=Inverse(parentMatrix)*childMatrix</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>树的数据结构很重要，需要更加熟练，经常在树的遍历上出点小问题。</li>
+<li>用多种手段进行调试。调试的方法的选择直接关系到找到和解决问题的速度。</li>
+<li>经常锻炼，心急的时候出去走走比较好。大脑是需要氧气的。</li>
+</ul>
+<p>最终用自己写的程序的渲染效果，各个部件能够运动的，还有碰撞检测。<br><img src="http://www.hesicong.net/blog/upload/month_0702/Simulation.jpg" alt></p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2007-02-05-huanglongxi/" class="post-title-link">黄龙溪</a></h2><div class="post-info">Feb 5, 2007</div><div class="post-content"><p>本昨天说去爬“长城”的，考虑到奶奶身体不好不能去，所以改航线到黄龙溪了。<br>黄龙溪给我的印象仅仅停留在小时候，依稀记得茶馆里面的热闹，吃着黑芝麻膏的我，坐渡船的激动，还有老黄葛树。十几年没有再去过那里，去年十月国情的时候从那儿路过，只是天色已晚，就匆匆回家了。今天再来重游黄龙溪，再来拾起一些小时候的记忆。<br>如今的黄龙溪已经是改造成旅游景点了，很多古建筑已经翻新，昔日的渡船码头已经变成了供观光游玩的码头了，不再像以前用于汽车过河用。两河分叉处那颗古树周围已经重新修建，完全没有了旧有的记忆。<br>老街已经不复存在，全被改造过了。感觉是人造的“复古”。说起现在的“古镇”，到处都是一个样，建筑物也是差不多，卖的特色东西也不多，感觉是为了“复古”而“复古”，越来越抹杀了古镇原本的特色。看来想真正的看到古镇，还得多跑跑腿，到远处的农村去看看。<br>图：行到水穷处，坐看云起时。刚进门不久的一个长廊上，每个柱子上面都有这样的雕刻。<br><a href="/images/2007-2-4/IMG_0388.JPG"></a><img src="/images/2007-2-4/image/thumb/IMG_0388.JPG" alt></p>
+<p>图：导游图。每到一个地方，我就喜欢把导游图拍下来。一来免得走丢了，二来可以知道哪些地方可以去。<br><a href="/images/2007-2-4/IMG_0392.JPG"></a><img src="/images/2007-2-4/image/thumb/IMG_0392.JPG" alt></p>
+<p>图：茶庄。我爸说以前在这里喝过茶的，我倒是没有什么映像了，只是隐约记得有这样一个茶庄。<br><a href="/images/2007-2-4/IMG_0393.JPG"></a><img src="/images/2007-2-4/image/thumb/IMG_0393.JPG" alt></p>
+<p>图：东寨门。这个是后来修的。<br><a href="/images/2007-2-4/IMG_0394.JPG"></a><img src="/images/2007-2-4/image/thumb/IMG_0394.JPG" alt></p>
+<p>图：停泊的船只。左上那颗树已经有很长的年龄了，算是黄龙溪的标志，现在围起来了，反而觉得不爽。<br><a href="/images/2007-2-4/IMG_0405.JPG"></a><img src="/images/2007-2-4/image/thumb/IMG_0405.JPG" alt></p>
+<p>图：街道。有些雾气。<br><a href="/images/2007-2-4/IMG_0408.JPG"></a><img src="/images/2007-2-4/image/thumb/IMG_0408.JPG" alt></p>
+<p>图：好不容易找到一处“老古董”<br><a href="/images/2007-2-4/IMG_0410.JPG"></a><img src="/images/2007-2-4/image/thumb/IMG_0410.JPG" alt></p>
+<p>图：以前在我家附近这样的墙很常见，倍感亲切<br><a href="/images/2007-2-4/IMG_0411.JPG"></a><img src="/images/2007-2-4/image/thumb/IMG_0411.JPG" alt></p>
+<p>图：黄葛树。黄龙溪这样的大树很多，也算是一个标志<br><a href="/images/2007-2-4/IMG_0412.JPG"></a><img src="/images/2007-2-4/image/thumb/IMG_0412.JPG" alt></p>
+<p>图：全景。注意江面。比较搞笑的是从左边流过来的水是黄的，而中间河道流过来的水就是黑的。黑的水是成都上游流下来的：)<br><a href="/images/2007-2-4/1.jpg"></a><img src="/images/2007-2-4/image/thumb/1.jpg" alt></p>
+<p>图：返程路上，手工编制草帽。听老奶奶说编织2米，才1角钱。还是比较辛苦的喔。其实感觉老年人这样活动活动还是对身心健康有益，只是还是要劳逸结合，不要坐久了。<br><a href="/images/2007-2-4/IMG_0414.JPG"></a><img src="/images/2007-2-4/image/thumb/IMG_0414.JPG" alt><br>看完了我的随拍，有兴趣在多了解一些么？见这里的链接：<br><a href="http://www.inkcn.com/v8/ReadNews.asp?NewsID=636" target="_blank" rel="noopener">http://www.inkcn.com/v8/ReadNews.asp?NewsID=636</a><br>晚上找了很久，原来机动车的渡船已经找不到图片了，现在留下的只是河水静静的淌，少了人流车流，变得冷清多了。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2007-02-04-collision-detection-u0026amp-machine-tool-model/" class="post-title-link">碰撞检测&机床模型</a></h2><div class="post-info">Feb 4, 2007</div><div class="post-content"><p>下午优化了程序流程，缓冲了一些东西，使碰撞检测的速度大大提高。现在4个57600面的运动茶壶相互进行碰撞检测(一帧6次检测)，线框模式下可以维持在20FPS左右(注：线框模式在非专业显卡上速度较慢)。成绩已经比较满意了，至少足够应用了，工控机P4 2.8+512内存已经足够了。但是麻烦的是不知道集成显卡的性能好不好。以后要测试在虚拟机下面的成绩，还有其他低配置电脑上的运行效率。</p>
+<p>图：4个57600面的茶壶的碰撞检测。红色的地方是检测到的碰撞中的第一个三角形，太小了已经很难分辨了。<br><a href="/images/others/collision.jpg"><img src="/images/others/thumbs/thumbs_collision.jpg" alt="collision.jpg"></a></p>
+<p>优化完碰撞检测以后，就出去散步了。和老爸走了几公里的路，晒晒太阳，多温馨的：)</p>
+<p>晚上回来就没有怎么弄编程了。就开始制作机床的模型，毕竟实用当中是以实际机床模型作为碰撞检测的基础的。照着一个参考机床用3DSMAX做了一个，慢慢熟悉3DSMAX的操作，还不错，做出来还像个样子。</p>
+<p>图：我做的弯管机机床<br><a href="/images/others/machine.jpg"><img src="/images/others/thumbs/thumbs_machine.jpg" alt="machine.jpg"></a></p>
+<p>明天还要出去耍喔，到洛带，爬“长城”！</p>
+</div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/104/" class="prev">PREV</a><a href="/page/106/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

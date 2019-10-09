@@ -1,0 +1,34 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> .Net CF访问Pocket Outlook法三则 · 我是思聪</title><meta name="description" content=".Net CF访问Pocket Outlook法三则 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">.Net CF访问Pocket Outlook法三则</h1><div class="post-info">Aug 9, 2005</div><div class="post-content"><p>近日做的软件需要与Outlook进行交互，很不幸的是.Net CF没有提供直接的方法。上网Google了一下，总结出两个方法：</p>
+<ul>
+<li>最简单的方式——使用商用InTheHand Outlook组件，代价是很明显的……$49。微软的MSDN里面提供的也是适用InTheHand的东西，显然对于我们来说此法作废。……</li>
+<li>最复杂的方法——自己开发.Net下POOM(Pocket Outlook Object Model)。后来想想这需要涉及到太多的东西，不划算。</li>
+<li>再找找，绝对有免费的——功夫不负有心人——外国朋友EGILH的Blog上贴出来一篇文章——<a href="http://www.egilh.com/blog/archive/2004/09/27/210.aspx" target="_blank" rel="noopener">Using the POOM from .NET CF 1.0</a>。</li>
+</ul>
+<p>文章中写道了用POOM C++ warapper来访问的方法。他提到了<a href="http://www.microsoft.com/downloads/details.aspx?FamilyId=80D3D611-CC81-4190-AAB4-B1EA57637BAC&displaylang=en" target="_blank" rel="noopener">.NET Compact Framework Sample: POOM wrapper</a>，是封装了的POOM代码，其中DEMO代码提供了一个.Net CF client，提供了一些基本的功能。正好，我需要的读取联系薄的功能就在里面：)</p>
+<p>第一次运行代码之前记得要找到sample的安装目录并把里面的Cab包安装到PPC上，内包含了POOM C++ wrapper的dll，要不然.Net CF Client运行时会出现MissingMethod错误。<br>……赫赫，终于找到免费的了，用起来还不错……~</p>
+<p>关于如何扩展.Net CF client，EGILH的文章也说得很清楚了，大家自己钻研了：)</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2005-08-13-recently-wrote-an-open-source-software-pocketsms/" class="prev">PREV</a><a href="/post/2005-08-08-listview-feel-bad-design/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

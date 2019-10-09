@@ -1,0 +1,230 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 我是思聪</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2017-11-28-how-to-buy-airfare/" class="post-title-link">机票大数据分析，揭示购票的秘密</a></h2><div class="post-info">Nov 28, 2017</div><div class="post-content"><p>对于旅游或者探亲来说，买机票的一个最基本的问题是什么时候买能买到最便宜的机票？提前一个月还是一周？知乎上各种旅游攻略上各种“业内人士”也说提前一个月买可能买到最便宜的机票，有些又说提前2个星期买能买到最便宜的机票，事实真的如此么？为了解密机票的定价策略，本文作者做了一个长达一年多的数据收集，通过分析350亿机票价格数据，告诉你机票的各种秘密。</p>
+<h1 id="到底要提前多久能买到最便宜的机票？"><a href="#到底要提前多久能买到最便宜的机票？" class="headerlink" title="到底要提前多久能买到最便宜的机票？"></a>到底要提前多久能买到最便宜的机票？</h1><p>要回答这个问题非常困难 ，因为机票的定价是一个非常复杂的动态的博弈的过程，而且定价由各种因素组合而成。我们买机票也不是一个高频的事件，所以当你需要买机票的时候，很可能观察一两天然后就购买。由于信息不对称，我们根本不知道当前是否最佳购买购票时机，买了以后说不定就惋惜又降价两三百。对于家庭出游来讲，赤裸裸的就少了好几百块钱。但在大数据面前，一切的秘密也不是秘密，将机票价格可视化出来你就会发现一些购票的秘密。</p>
+<h1 id="研究的数据"><a href="#研究的数据" class="headerlink" title="研究的数据"></a>研究的数据</h1><p>北京到广州的航班：</p>
+<ul>
+<li>国航：最早起飞的CA1321，中午起飞的CA1315，晚上最后一班的CA1319</li>
+<li>南航：最早起飞的CZ3166，中午起飞的CZ3112，晚上最后起飞的CZ3000</li>
+</ul>
+<p>价格：观察起飞前45天的价格，并且每天都记录一次<br>时间区间：2016年8月15日 - 2017年11月1日</p>
+<p>下图是CA1321一年的机票价格变化。每一行代表特定出发日期的价格变化，例如第一行代表2016年8月15日起飞的航班的机票价格的变化。一行里，左边离出发日期越近，右边离出发日期越远。第一个方块代表距离出发日期0天（当天）的机票价格，第二格代表距离出发日期1天的机票价格，以此类推，最后一个表示44天前的价格。颜色越深代表价格越高，颜色越浅价格。</p>
+<p>此图很长……请耐心，看不清请看原图……<br><img src="/images/2017/11-28/4372317-27f35fecfe568e70.png" alt="CA1321.png"></p>
+<p>再来看第二张图，这张图是从上一张图做差分得到，目的是显示出涨价、降价的区块。红色的代表涨价，颜色越深涨价越多；灰色表示无价格变动；蓝色代表降价，颜色越深降价越多。</p>
+<p><img src="/images/2017/11-28/4372317-cc4e36a614a8bad0.png" alt="CA1321.png"></p>
+<p>好了，从这两张图能看出点什么呢？请注意，以下分析仅仅针对该航班。</p>
+<h3 id="距离起飞前第9天开始，几乎所有的日期都开始涨价"><a href="#距离起飞前第9天开始，几乎所有的日期都开始涨价" class="headerlink" title="距离起飞前第9天开始，几乎所有的日期都开始涨价"></a>距离起飞前第9天开始，几乎所有的日期都开始涨价</h3><p>最明显的是，距离起飞前第9天开始，几乎所有的日期都开始涨价。请注意图二的坐标为8的那一列。然后到距离起飞前第3天才是，又要涨价一次。所以，如果距离起飞已经只有10多天了，请赶紧购买，涨价是大概率的事情。</p>
+<h3 id="同一个月内的价格调整在同一天完成"><a href="#同一个月内的价格调整在同一天完成" class="headerlink" title="同一个月内的价格调整在同一天完成"></a>同一个月内的价格调整在同一天完成</h3><p>让我们把图缩小一点看看。在图上，我手工画了一些斜线，你可以看到价格再那里发生了变化。但每个斜线都是45度，意味着这是在同一天发生的价格调整。举个例子，4月份的价格调整，可以通过斜线看出。所以4月2号的机票，提前25天到10天左右买是可以买到较为便宜的，而4月3号的提前26天到10天左右，以此类推，4月16号的以前差不多一个月到10天都可以。</p>
+<p><img src="/images/2017/11-28/4372317-c720ad4354f881a4.jpg" alt="CA1321.jpg"></p>
+<p><img src="/images/2017/11-28/4372317-2b466646359cd60d.jpg" alt="CA1321_4月"></p>
+<p>而六月份的就不太一样，需要叠加节假日的因素，6月5、6、7日为周日、周一、周二，价格相对较高，所以调价的是涨价。购买这几天的机票就要提前更早买比较合适。而随后的8,9,10为周三、周四、周五，价格相对较低，所以是降价。航空公司估计是这样来平衡收益。<br><img src="/images/2017/11-28/4372317-f2d19c82eb260577.jpg" alt="CA1321_6月"></p>
+<h3 id="起飞时间是周几对价格影响"><a href="#起飞时间是周几对价格影响" class="headerlink" title="起飞时间是周几对价格影响"></a>起飞时间是周几对价格影响</h3><p>在上一节已经涉及到了周几起飞的价格影响。我再来画几条线，一看你就明白。价格的涨跌一目了然。对这个航班而言，周日到周二是票价相对较高的区间，周三到周六是较低的区间。</p>
+<p><img src="/images/2017/11-28/4372317-6801777df831ff58.jpg" alt="CA1321"></p>
+<h3 id="早班中班晚班的对比"><a href="#早班中班晚班的对比" class="headerlink" title="早班中班晚班的对比"></a>早班中班晚班的对比</h3><p>对早中晚几个航班，可以明显的看出：</p>
+<ul>
+<li>在价格方面：早班的航班价格较贵（整体颜色深），中班适当，晚班的较便宜（整体颜色浅）。</li>
+<li>调价：参考之前的斜线，不同时段航班的调价也几乎都是同一时间发生。</li>
+</ul>
+<p><img src="/images/2017/11-28/4372317-3fc4e265b2a04472.jpg" alt="国航.jpg"></p>
+<h3 id="发现淡季和旺季"><a href="#发现淡季和旺季" class="headerlink" title="发现淡季和旺季"></a>发现淡季和旺季</h3><p>根据颜色的深浅及颜色的变化即可判断出淡季旺季，基本规律大致相同，大假附近几乎会上涨，寒假、暑假、过年期间价格也较高。</p>
+<p><img src="/images/2017/11-28/4372317-165f974113a38e89.jpg" alt="CA1321_季节.jpg"></p>
+<h3 id="南航航班和国航对比"><a href="#南航航班和国航对比" class="headerlink" title="南航航班和国航对比"></a>南航航班和国航对比</h3><p>不同航空公司的定价不相同，但类似的调价措施似乎有一定的参考。南航的缩小图见下，可以看出一些斜线的区域，显然是遵循了一样的调价规律。</p>
+<p><img src="/images/2017/11-28/4372317-44e5b08c5aff4d7e.jpg" alt="南航.jpg"></p>
+<h1 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h1><p>决定什么时候出发，相关的工具必不可少。各大OTA网站：携程、去哪儿、飞猪、同程，各大官网，这些就不用多说吧。</p>
+<p>决定什么时候买，通常我们会查看票价历史来做决定。目前还没有工具能够查询到历史的票价。针对这个问题我们开发了一个小程序帮忙查询到历史票价，微信小程序搜索“爱飞狗旅行”即可使用。</p>
+<p>查看价格波动情况和购票建议。近期的价格波动情况可以很清楚的看到，当票价已经上涨了并且临近起飞日期了，请赶紧购票。<br><img src="/images/2017/11-28/4372317-0090bc826b2f20eb.jpeg" alt="爱飞狗旅行"></p>
+<p>价格预测及最低价格，此航班提示明年春节购票最好提前7到9周。公历和农历对齐可以很方便的对齐去年的节假日。<br><img src="/images/2017/11-28/4372317-9596ea89a1c78390.jpeg" alt="爱飞狗旅行"></p>
+<p>最后可以在上述OTA网站订阅一个低价预约，出现预约后就可以购票了。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>其实航空公司的票价策略还是有规律可寻，当有一定数据量并且可视化出来以后就更容易发现规律。利用适当的工具能够帮我们选择。春节即将到来，请尽早决定并持续关注价格历史，祝您买到一张便宜的回家的机票。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2017-11-27-stop-pairing/" class="post-title-link">请停止结对编程！</a></h2><div class="post-info">Nov 27, 2017</div><div class="post-content"><p>（根据真实事件改编，情节有所夸张，请勿对号入座。）</p>
+<p>这是一个风和日丽的星期五下午，Ben和Martin本应该在Costa咖啡馆喝一杯下午茶，一起聊聊周末的计划，然而PM的一个微信通知打乱了这一切。原来产品出现了一个bug需要紧急修复，下班之前必须要搞定。两人收到消息疾步走回到岗位，也没了心情去喝刚泡好的咖啡，连忙打开邮箱查看问题报告。</p>
+<p><a href="/images/2017/11-27/1.jpeg"><img src="/images/2017/11-27/1.jpeg" alt></a></p>
+<h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3><blockquote>
+<p><strong>Ben：</strong>看来这不是一个很大的问题，就是处理一个来自于远端服务的异常。现在的情况是BFF(backend for frontends)在内部的远端服务有异常，会将异常直接返回到客户端，这样只要一个保单出了问题，前端所有的保单也都没法用了。</p>
+<p><strong>Martin：</strong>那怎么解决？</p>
+<p><strong>Ben：</strong>感觉可以在异常的地方加一个异常处理。这个涉及到RxJava和Java8的stream特性，我不是太熟悉，要不我们一起Pair吧</p>
+<p><strong>Martin：</strong>好。</p>
+</blockquote>
+<p>两人喝了一口炙热的咖啡，摆好键盘鼠标，打开了IntelliJ工程。几分钟后，这个故障重现了。</p>
+<blockquote>
+<p><strong>Martin：</strong>可以重现的故障通常比较好解决。我们在这里先弄个try…catch试试。 两人似乎很有信心，然而重启项目后，故障并没有按照预期停下来。</p>
+<p><strong>Ben：</strong>hmm，这里为什么停不下来呢？</p>
+<p><strong>Martin：</strong>可能是RxJava的延迟处理，没有正确的捕捉到。这样，你在这里再写一个逻辑，然后在这里设个断点……</p>
+</blockquote>
+<h3 id="焦急"><a href="#焦急" class="headerlink" title="焦急"></a>焦急</h3><p>在这个过程中，Martin只是对着屏幕指指点点，时不时看看手机、在微信上聊聊天。Ben对RxJava并不是很熟悉，他想紧紧跟随Martin的思路，然而增加多个逻辑以后，依然都不能解决问题。15分钟已经过去，Ben这时候心生怀疑，是不是哪些地方没弄对？</p>
+<blockquote>
+<p><strong>Ben：</strong>我们理一下思路看看？</p>
+<p><strong>Martin：</strong>恩，来吧，一起看一下代码。</p>
+</blockquote>
+<p>Martin领着Ben一起看了一下代码，并且一直在旁边指点Ben进行单步调试。由于RxJava的延迟特性，使得断点很难设置。而抛出异常的调用栈会出现在某些莫名其妙的地方，这让他们根本不知道把try…catch放在哪里才能奏效。</p>
+<blockquote>
+<p><strong>Ben：</strong>可能是要这样，在这里加一个OnError看能不能解决。</p>
+</blockquote>
+<p>看似问题能够解决，其实是又一次的失败。在两人的激烈讨论中，时间过得很快，一晃眼已经是1个小时以后，咖啡早已经凉了，然而两个人完全没有心情，甚至都忘了咖啡的存在。</p>
+<p>Ben对Martin的解决方案越来越没有信心，两人开始重新讨论起解决方案。然而方案是越讨论越复杂，看起来想在下班前解决这个问题是不可能了，通宵是必然了。</p>
+<h3 id><a href="#" class="headerlink" title></a><a href="/images/2017/11-27/2.jpeg"><img src="/images/2017/11-27/2.jpeg" alt></a></h3><h3 id="简化"><a href="#简化" class="headerlink" title="简化"></a>简化</h3><p>Zen是组里的Tech Lead，今天在忙另外一个事情。这个周五真是不得安宁，恨不得想到美国去过过昨天。</p>
+<p>Zen听到两个人的讨论，虽然并不了解这个问题的细节，但直觉上认为是跑偏了。马上提醒Ben和Martin：</p>
+<blockquote>
+<p>这不是一个很难的问题，我感觉你们想复杂了？是不是走偏了？能给我说一下你们怎么想的么？</p>
+</blockquote>
+<p>被Zen打断的Martin说了一下之前的解决方案，也说试过了其他的方案了，都不行。由于Zen对这个事情也不是很了解，所以只是提了一个醒：</p>
+<blockquote>
+<p>“Keep it simple，别把事情整复杂了。”</p>
+</blockquote>
+<p>两个人的讨论依然在继续，Ben有点无法跟上Martin的思路，艰难地写着代码，但每次都不对。Pair的气氛犹如冬日里冰冷的咖啡一样凝结，不知道孰是孰非。Ben已经有些不高兴，Martin则依然在一旁指指点点但并不动手。</p>
+<p>Zen一看表已经3点钟了，又插了一句嘴：</p>
+<blockquote>
+<p>Martin，既然你对这个更熟悉，你来操刀吧。你来写代码吧。</p>
+</blockquote>
+<p>可能由于之前的讨论过于激烈，Martin反驳Zen：</p>
+<blockquote>
+<p>我们在Pair啊，他对RxJava不熟悉，我应该指导他。我看着他写就可以了。</p>
+</blockquote>
+<p>Zen说，</p>
+<blockquote>
+<p>你们的解决方案是什么，给我看看。</p>
+</blockquote>
+<p>解释了一通以后，Zen也没有更多的想法，就让他们继续吧。但Zen建议道：</p>
+<blockquote>
+<p>在这个紧要的关头，我们应该改变一下Pair的方式。现在不是教授知识，而是要高效的解决问题。在这种压力的情境下，你可以直接实现自己的思路，带着别人飞就好了。</p>
+</blockquote>
+<h3 id="-1"><a href="#-1" class="headerlink" title></a><a href="/images/2017/11-27/3.jpg"><img src="/images/2017/11-27/3-1024x683.jpg" alt></a></h3><h3 id="分歧"><a href="#分歧" class="headerlink" title="分歧"></a>分歧</h3><p>Martin稍微冷静了下，拿过键盘，继续开始修复问题。Ben这时候在一旁观察，也适当的休息一下，之前手忙脚乱的按F8、F9的神经也得以缓和。</p>
+<blockquote>
+<p>Ben：看来还是不行。我们再理一下代码吧。</p>
+<p>Martin：你说的这些我之前都试过，都不行，要这样才行。</p>
+<p>Ben：我说的是这样做的，既然我们还没讨论清楚，我们再来看一下代码吧。</p>
+</blockquote>
+<p>两人拿出了纸和笔，对着屏幕一边画一边讨论，然而Ben并不认可Martin的方案，说要采用另外个方案。Martin则坚持认为这是一个可行的方案，得试试。Ben拿过键盘，准备按照Martin的方案写代码，但心里面颇为不爽，一直在想说服Martin采用他的方案试试。</p>
+<h3 id="怒气"><a href="#怒气" class="headerlink" title="怒气"></a>怒气</h3><p>到此时，时间都已经不知不觉过去两个小时了，然而问题似乎离真相总是忽远忽近。两个人已经疲劳不堪，再加上解决方案的不一致，两人的言语中开始显露出一些怒气。</p>
+<p>Zen在运行测试的空档，打断了两人的对话，建议道：</p>
+<blockquote>
+<p>既然大家已经产生了分歧，要不然两个人分开，各自实现一个，看谁能够先实现，然后再来讨论。</p>
+</blockquote>
+<p>Martin对于Zen并不认同，认为Zen指责他和Ben没有Pair好。</p>
+<p>Zen解释道：</p>
+<blockquote>
+<p>其实我听出了两人意见的不统一，言语中已经有一些怒火，这样下去Pair的效率很低。首先，大家带着不爽来干活，互相质疑。更关键的是，解决问题已经用去了两个多小时，大家都比较疲惫，可以适当休息。我让你们分开的目的是让大家冷静一下，在不受打扰的情况下工作一段时间，可能会不一样。</p>
+</blockquote>
+<h3 id="冷静"><a href="#冷静" class="headerlink" title="冷静"></a>冷静</h3><p>Martin回到了电脑面前，按照他的思路一步一步做下去。Ben去上了个厕所，倒掉了那杯冷冰冰的咖啡，泡了杯热茶。回到电脑前专注的重新按照他的思路一步一步走下去。</p>
+<p>其实两个人已经接近了真相，只是这之间不停的对话把注意力消耗殆尽。两人企图达到一个统一，然而口头的对话并不能解决问题，反而暂缓了这个过程。</p>
+<p>10分钟后，Ben兴高采烈的说已经搞出来了一套可以运行的方案，叫Martin一同过来看看。Ben的临时解决方案比较简单好理解，但并不完美。熟悉RxJava的Martin指出了一些可以改进的地方。</p>
+<p>然后两人又开始了新一轮的Pair，重新将这个方案完善。有了这个基础的解决方案，两人都很高兴，是朝着一个正确的方向大步向前。</p>
+<h3 id="尾声"><a href="#尾声" class="headerlink" title="尾声"></a>尾声</h3><p>下午6点半，虽然比正常下班晚了半个多小时，但还好整个解决方案都正常了，交付的任务也顺利完成。</p>
+<p>Ben和Martin都总结道，我们应该停止结对，当：</p>
+<ul>
+<li>两人的思路不统一但无法说服对方时：我们可以考虑分开一阵，安静一下，各自用可运行的代码来证明思路的可行。这里只需要相对粗糙的代码即可。</li>
+<li>时间已经超过番茄时间而感到疲惫时：人的专注力是有限的，在Pair时非常累，特别是在能力方面存在较大差距的时候。在这时候我们可以试试番茄工作法，让大脑得到休息。</li>
+<li>注意力不集中或者有其他事务要处理时：在Pair的时候，彼此要尊重对方，不要玩手机、看其他无关的网页，除非事先取得别人的同意，否则就要等到停止结对、处理完事务后再继续。</li>
+</ul>
+<hr>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2017-07-15-share-bike-crawler/" class="post-title-link">共享单车数据爬虫</a></h2><div class="post-info">Jul 15, 2017</div><div class="post-content"><p>在线实时查看共享单车的位置，并提供了API供调用，方便进行研究，<a href="http://www.dancheditu.com/" target="_blank" rel="noopener">请查看体验</a></p>
+<p>完整体验请在电脑上打开，手机可能显示不完整。由于时间所限，IE浏览器不兼容，请用chrome类似的浏览器。</p>
+<p>服务器在海外，加载速度可能不理想，请耐心等待。</p>
+<p><img src="/images/2017/07-15/4372317-44b99c22b2d84d43.png" alt="单车地图"></p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2017-05-24-freelancer-analysis/" class="post-title-link">2017自由职业大数据分析</a></h2><div class="post-info">May 24, 2017</div><div class="post-content"><h1 id="阅读须知"><a href="#阅读须知" class="headerlink" title="阅读须知"></a>阅读须知</h1><blockquote>
+<p>本文以Freelancer.com的公开项目及用户数据，对自由职业进行大数据分析。由于Freelancer.com代表线上的自由职业，并不代表所有的自由职业划分，请勿以本文结论以偏概全。</p>
+</blockquote>
+<blockquote>
+<p>本文仅作为自我学习、研究用途，并不对数据的完整性、正确性负责，也不对使用、引用本文造成的法律问题负责。</p>
+</blockquote>
+<blockquote>
+<p>本文未经同意不允许任何平台转载。非法转载将追究其责任。</p>
+</blockquote>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Freelancer.com成立于2009年，后收购了数家自由职业者公司。成为世界上自由职业者相关网站的领头羊，分析该网站的数据能够窥见自由职业的现状和发展趋势。</p>
+<blockquote>
+<p>【重点推荐】以下分析均在<a href="http://www.april1985.com/freelancer">在线互动版本</a>中包含，请在电脑上点击查看，图片更清晰，可互动。</p>
+</blockquote>
+<h1 id="数据来源"><a href="#数据来源" class="headerlink" title="数据来源"></a>数据来源</h1><p>该报告数据来源于<a href="https://www.freelancer.com/api/docs/docs.html" target="_blank" rel="noopener">Freelancer.com的公开API</a>。采集了从2000年1月到2017年3月的上千万的数据包含项目、用户、投标、用户评价数据。存储为易于处理的json格式，整体打包大小约为40G。总计花费大约20天左右。</p>
+<h1 id="采集数据和网站数据对比"><a href="#采集数据和网站数据对比" class="headerlink" title="采集数据和网站数据对比"></a>采集数据和网站数据对比</h1><p>从采集到的数据来看，则项目数量在740万左右，用户数量在1700万，两者相差大约56%和35%左右。项目数和用户数总体上都存在一些差异，差异可能来自于不同的统计方式或者网站删除了部分违规的项目。</p>
+<p><img src="/images/2017/06-24/4372317-f92d5df1c084417d.png" alt></p>
+<h1 id="项目和用户增长情况"><a href="#项目和用户增长情况" class="headerlink" title="项目和用户增长情况"></a>项目和用户增长情况</h1><p>Freelaner的用户规模和项目规模在加速增长中，预计在2018年初突破2000万用户和800万项目。</p>
+<p><img src="/images/2017/06-24/4372317-8c93322b3396608b.png" alt></p>
+<h1 id="会员分布"><a href="#会员分布" class="headerlink" title="会员分布"></a>会员分布</h1><p>在Freelancer的会员体系中，免费的会员有1727万名，占据了99.66%（图中无标示）。付费会员总共有5.8万，免费和付费会员比为295:1。</p>
+<blockquote>
+<p>注：其中有一些会员类型可能是Freelancer之前的老会员类型。</p>
+</blockquote>
+<p><img src="/images/2017/06-24/4372317-d55ed51821d03b63.png" alt></p>
+<h1 id="自由职业者全球分布"><a href="#自由职业者全球分布" class="headerlink" title="自由职业者全球分布"></a>自由职业者全球分布</h1><p>全球分布中，以美国和印度为第一梯队，菲律宾、印度尼西亚、巴基斯坦紧为第二梯队，英国、澳大利亚、孟加拉国紧跟其后，巴西等国家也有较大的比重。</p>
+<p><img src="/images/2017/06-24/4372317-e6fdaf11e7f0c5af.png" alt></p>
+<h1 id="项目所有者全球分布"><a href="#项目所有者全球分布" class="headerlink" title="项目所有者全球分布"></a>项目所有者全球分布</h1><p>和自由职业者分布类似，美国和印度的项目占领了很大的份额，英国、澳大利亚、加拿大等发达国家保持着稳定的市场，菲律宾、巴基斯坦跟随其后，这些项目很有可能是二次外包的项目。</p>
+<p><img src="/images/2017/06-24/4372317-69067935dedf4d03.png" alt></p>
+<h1 id="业务种类分布"><a href="#业务种类分布" class="headerlink" title="业务种类分布"></a>业务种类分布</h1><p>网站35%的项目都是网站建设和软件相关业务，有23%的项目是设计类的项目，10%的是写作和内容类项目。这三类项目占据了7成以上的份额。</p>
+<p><img src="/images/2017/06-24/4372317-9ddce0804fe2515e.png" alt></p>
+<h1 id="具体业务分布"><a href="#具体业务分布" class="headerlink" title="具体业务分布"></a>具体业务分布</h1><p>在具体的业务分布中，前60%的市场都和网站建设和设计有关。其中PHP占据了20%的市场，这和WordPress等基于PHP的CMS网站建设有很大关系。Graphic Design占据12%的市场，紧接着又是网站建设。其他的类型则市场相对较小。</p>
+<p><img src="/images/2017/06-24/4372317-3a53cd2b963af1ba.png" alt></p>
+<h1 id="价值迁移图"><a href="#价值迁移图" class="headerlink" title="价值迁移图"></a>价值迁移图</h1><p>此图展示了项目价值的流动方向，可以看欧美、澳洲有项目和资金的大量流出。印度、巴基斯坦作为外包大国，有非常多的项目和资金流入。全球外包的中心图中可见一斑。</p>
+<p><img src="/images/2017/06-24/4372317-33f9c434557e84ee.png" alt></p>
+<h1 id="全球接单数TOP20"><a href="#全球接单数TOP20" class="headerlink" title="全球接单数TOP20"></a>全球接单数TOP20</h1><p>不出所料，全球接单数最多的20名自由职业中，来自于印度、巴基斯坦、菲律宾等欠发达国家的最多。 但接单数多并不意味着赚取的钱最多，接单数最多的平均每单才1美元不到，而最高的也才25美元， 说明在这些国家接的单都是价格低廉的单，总体赚钱不多。</p>
+<p><img src="/images/2017/06-24/4372317-9c68f9997144a6ba.png" alt></p>
+<h1 id="TOP-20接单种类分析"><a href="#TOP-20接单种类分析" class="headerlink" title="TOP 20接单种类分析"></a>TOP 20接单种类分析</h1><p>图标、媒体设计类是最多的单，其中Graphic Design和Logo Design占据了最多的份额。其次是网站建设，在网站建设中PHP依然是很火的，和WordPress等PHP架构的网站息息相关。</p>
+<p><img src="/images/2017/06-24/4372317-1674736ffb2d258f.png" alt></p>
+<h1 id="中国接单数TOP20"><a href="#中国接单数TOP20" class="headerlink" title="中国接单数TOP20"></a>中国接单数TOP20</h1><p>虽然在全世界范围内中国的自由职业者不算太多，但对比全球接单最多的国家（印度、巴基斯坦等）<br>中国的自由职业者平均每单的价格均超过了15美元，这应该和中国的实际消费水平相关。</p>
+<p>与全球类似，第一名SunrisePHP为了和其他国家的低价竞争，只能以低价取胜，虽然数量很多但整体收入欠佳。<br>形成鲜明对比的zhengnami13，平均每单价格高的700美元，与选择的高质量的工程的性质有关。</p>
+<p><img src="/images/2017/06-24/4372317-7b18e6d17d78327a.png" alt></p>
+<h1 id="用户ZHENGNAMI13分析"><a href="#用户ZHENGNAMI13分析" class="headerlink" title="用户ZHENGNAMI13分析"></a>用户ZHENGNAMI13分析</h1><h2 id="收入分析"><a href="#收入分析" class="headerlink" title="收入分析"></a>收入分析</h2><p>从<a href="https://www.freelancer.com/u/zhengnami13.html" target="_blank" rel="noopener">自我介绍</a>上可以看到，该用户来自于中国的沈阳。 从2013年4月加入，Rate为50$每小时，擅长移动开发。 该用户最低每单都在860$以上，每月最低都有2000$以上的收入，几乎每月都有3个以上的单，接单质量相对较高。</p>
+<p><img src="/images/2017/06-24/4372317-169762a06300d584.png" alt></p>
+<h2 id="接单类型和客户分析"><a href="#接单类型和客户分析" class="headerlink" title="接单类型和客户分析"></a>接单类型和客户分析</h2><p>该用户主攻方向和描述一致，主要是涉及到移动领域的开发。具体来讲iOS的比Android开发更多，纯HTML5的开发也占有少量的比例。 该用户的客户主要是欧美和澳洲的客户，这些客户质量要求高、资金雄厚，做好这些客户也可以给自己打下良好的口碑的基础。</p>
+<p><img src="/images/2017/06-24/4372317-8258316bd90c13f2.png" alt></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>Freelancer.com的数据很有意思，具有15年以上的历史数据并且数据大部分可见。在分析这些数据的过程中可以发现很多有意思的点，由于篇幅所限在这个报告中不能一一呈现。如果您对这个报告以及分析感兴趣，希望从数据中发现更多有意义的洞见，请联系我。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2017-03-04-mobike-source-code/" class="post-title-link">摩拜单车爬虫源码及解析</a></h2><div class="post-info">Mar 4, 2017</div><div class="post-content"><p>前两篇文章分析了我为什么抓取摩拜单车的接口以及数据分析的结果，这篇文章中讲直接提供可运行的源代码供学习。</p>
+<blockquote>
+<p>声明：<br>此爬虫仅用于学习、研究用途，请不要用于非法用途。任何由此引发的法律纠纷自行负责。</p>
+</blockquote>
+<p>没耐心看文章的请后直接：</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/derekhe/mobike-crawler</span><br><span class="line"><span class="keyword">python3</span> crawler.<span class="keyword">py</span></span><br></pre></td></tr></table></figure>
+
+<p>爽了以后请别忘了给个star和打赏！</p>
+<h1 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h1><ul>
+<li>\analysis - jupyter做数据分析</li>
+<li>\influx-importer - 导入到influxdb，但之前没怎么弄好</li>
+<li>\modules - 代理模块</li>
+<li>\web - 实时图形化显示模块，当时只是为了学一下react而已，效果请见<a href="www.april1985.com/mobike">这里</a></li>
+<li>crawler.py - 爬虫核心代码</li>
+<li>importToDb.py - 导入到postgres数据库中进行分析</li>
+<li>sql.sql - 创建表的sql</li>
+<li>start.sh -　持续运行的脚本</li>
+</ul>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>核心代码放在crawler.py中，数据首先存储在sqlite3数据库中，然后去重复后导出到csv文件中以节约空间。</p>
+<p>摩拜单车的API返回的是一个正方形区域中的单车，我只要按照一块一块的区域移动就能抓取到整个大区域的数据。</p>
+<p>left,top,right,bottom定义了抓取的范围，目前是成都市绕城高速之内以及南至南湖的正方形区域。offset定义了抓取的间隔，现在以0.002为基准，在DigitalOcean 5$的服务器上能够15分钟内抓取一次。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">start</span><span class="params">(self)</span>:</span></span><br><span class="line">    left = <span class="number">30.7828453209</span></span><br><span class="line">    top = <span class="number">103.9213455517</span></span><br><span class="line">    right = <span class="number">30.4781772402</span></span><br><span class="line">    bottom = <span class="number">104.2178123382</span></span><br><span class="line"></span><br><span class="line">    offset = <span class="number">0.002</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> os.path.isfile(self.db_name):</span><br><span class="line">        os.remove(self.db_name)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">with</span> sqlite3.connect(self.db_name) <span class="keyword">as</span> c:</span><br><span class="line">            c.execute(<span class="string">'''CREATE TABLE mobike</span></span><br><span class="line"><span class="string">                (Time DATETIME, bikeIds VARCHAR(12), bikeType TINYINT,distId INTEGER,distNum TINYINT, type TINYINT, x DOUBLE, y DOUBLE)'''</span>)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> ex:</span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<p>然后就启动了250个线程，至于你要问我为什么没有用协程，哼哼～～我当时没学～～～其实是可以的，说不定效率更高。</p>
+<p>由于抓取后需要对数据进行去重，以便消除小正方形区域之间重复的部分，最后的group_data正是做这个事情。</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">executor = ThreadPoolExecutor(max_workers=<span class="number">250</span>)</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(<span class="string">"Start"</span>)</span></span></span><br><span class="line">self<span class="selector-class">.total</span> = <span class="number">0</span></span><br><span class="line">lat_range = np.arange(<span class="attribute">left</span>, right, -offset)</span><br><span class="line"><span class="keyword">for</span> lat <span class="keyword">in</span> lat_range:</span><br><span class="line">    lon_range = np.arange(<span class="attribute">top</span>, bottom, offset)</span><br><span class="line">    <span class="keyword">for</span> lon <span class="keyword">in</span> lon_range:</span><br><span class="line">        self<span class="selector-class">.total</span> += <span class="number">1</span></span><br><span class="line">        executor.submit(self<span class="selector-class">.get_nearby_bikes</span>, (lat, lon))</span><br><span class="line"></span><br><span class="line">executor.shutdown()</span><br><span class="line">self.group_data()</span><br></pre></td></tr></table></figure>
+
+<p>最核心的API代码在这里。小程序的API接口，搞几个变量就可以了，十分简单。</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">def get_nearby_bikes(self, <span class="keyword">args</span>):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        url = <span class="string">"https://mwx.mobike.com/mobike-api/rent/nearbyBikesInfo.do"</span></span><br><span class="line"></span><br><span class="line">        payload = <span class="string">"latitude=%s&amp;longitude=%s&amp;errMsg=getMapCenterLocation"</span> % (<span class="keyword">args</span>[<span class="number">0</span>], <span class="keyword">args</span>[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">        headers = &#123;</span><br><span class="line">            <span class="string">'charset'</span>: <span class="string">"utf-8"</span>,</span><br><span class="line">            <span class="string">'platform'</span>: <span class="string">"4"</span>,</span><br><span class="line">            <span class="string">"referer"</span>:<span class="string">"https://servicewechat.com/wx40f112341ae33edb/1/"</span>,</span><br><span class="line">            <span class="string">'content-type'</span>: <span class="string">"application/x-www-form-urlencoded"</span>,</span><br><span class="line">            <span class="string">'user-agent'</span>: <span class="string">"MicroMessenger/6.5.4.1000 NetType/WIFI Language/zh_CN"</span>,</span><br><span class="line">            <span class="string">'host'</span>: <span class="string">"mwx.mobike.com"</span>,</span><br><span class="line">            <span class="string">'connection'</span>: <span class="string">"Keep-Alive"</span>,</span><br><span class="line">            <span class="string">'accept-encoding'</span>: <span class="string">"gzip"</span>,</span><br><span class="line">            <span class="string">'cache-control'</span>: <span class="string">"no-cache"</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        self.request(headers, payload, <span class="keyword">args</span>, url)</span><br><span class="line">    except Exception <span class="keyword">as</span> <span class="keyword">ex</span>:</span><br><span class="line">        <span class="keyword">print</span>(<span class="keyword">ex</span>)</span><br></pre></td></tr></table></figure>
+
+<p>最后你可能要问频繁的抓取IP没有被封么？其实摩拜单车是有IP的访问速度限制的，只不过破解之道非常简单，就是用大量的代理。</p>
+<p>我是有一个代理池，每天基本上有8000以上的代理。在ProxyProvider中直接获取到这个代理池然后提供一个pick函数用于随机选取得分前50的代理。请注意，我的代理池是每小时更新的，但是代码中提供的jsonblob的代理列表仅仅是一个样例，过段时间后应该大部分都作废了。</p>
+<p>在这里用到一个代理得分的机制。我并不是直接随机选择代理，而是将代理按照得分高低进行排序。每一次成功的请求将加分，而出错的请求将减分。这样一会儿就能选出速度、质量最佳的代理。如果有需要还可以存下来下次继续用。</p>
+<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProxyProvider</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>, min_proxies=<span class="number">200</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">self</span>._bad_proxies = &#123;&#125;</span><br><span class="line">        <span class="keyword">self</span>._minProxies = min_proxies</span><br><span class="line">        <span class="keyword">self</span>.lock = threading.RLock()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">self</span>.get_list()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_list</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        logger.debug(<span class="string">"Getting proxy list"</span>)</span><br><span class="line">        r = requests.get(<span class="string">"https://jsonblob.com/31bf2dc8-00e6-11e7-a0ba-e39b7fdbe78b"</span>, timeout=<span class="number">10</span>)</span><br><span class="line">        proxies = ujson.decode(r.text)</span><br><span class="line">        logger.debug(<span class="string">"Got %s proxies"</span>, len(proxies))</span><br><span class="line">        <span class="keyword">self</span>._proxies = list(map(lambda <span class="symbol">p:</span> Proxy(p), proxies))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pick</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        with <span class="keyword">self</span>.<span class="symbol">lock:</span></span><br><span class="line">            <span class="keyword">self</span>._proxies.sort(key = lambda <span class="symbol">p:</span> p.score, reverse=True)</span><br><span class="line">            proxy_len = len(<span class="keyword">self</span>._proxies)</span><br><span class="line">            max_range = <span class="number">50</span> <span class="keyword">if</span> proxy_len &gt; <span class="number">50</span> <span class="keyword">else</span> proxy_len</span><br><span class="line">            proxy = <span class="keyword">self</span>._proxies[random.randrange(<span class="number">1</span>, max_range)]</span><br><span class="line">            proxy.used()</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> proxy</span><br></pre></td></tr></table></figure>
+
+<p>在实际使用中，通过proxyProvider.pick()选择代理，然后使用。如果代理出现任何问题，则直接用proxy.fatal_error()降低评分，这样后续就不会选择到这个代理了。</p>
+<figure class="highlight zephir"><table><tr><td class="code"><pre><span class="line">def request(<span class="keyword">self</span>, headers, payload, args, url):</span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">        proxy = <span class="keyword">self</span>.proxyProvider.pick()</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            response = requests.request(</span><br><span class="line">                <span class="string">"POST"</span>, url, data=payload, headers=headers,</span><br><span class="line">                proxies=&#123;<span class="string">"https"</span>: proxy.url&#125;,</span><br><span class="line">                timeout=<span class="number">5</span>,verify=<span class="keyword">False</span></span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line">            with <span class="keyword">self</span>.lock:</span><br><span class="line">                with sqlite3.connect(<span class="keyword">self</span>.db_name) <span class="keyword">as</span> c:</span><br><span class="line">                    <span class="keyword">try</span>:</span><br><span class="line">                        <span class="keyword">print</span>(response.text)</span><br><span class="line">                        decoded = ujson.decode(response.text)[<span class="string">'object'</span>]</span><br><span class="line">                        <span class="keyword">self</span>.done += <span class="number">1</span></span><br><span class="line">                        <span class="keyword">for</span> x in decoded:</span><br><span class="line">                            c.execute(<span class="string">"INSERT INTO mobike VALUES (%d,'%s',%d,%d,%s,%s,%f,%f)"</span> % (</span><br><span class="line">                                <span class="keyword">int</span>(time.time()) * <span class="number">1000</span>, x[<span class="string">'bikeIds'</span>], <span class="keyword">int</span>(x[<span class="string">'biketype'</span>]), <span class="keyword">int</span>(x[<span class="string">'distId'</span>]),</span><br><span class="line">                                x[<span class="string">'distNum'</span>], x[<span class="string">'type'</span>], x[<span class="string">'distX'</span>],</span><br><span class="line">                                x[<span class="string">'distY'</span>]))</span><br><span class="line"></span><br><span class="line">                        timespend = datetime.datetime.now() - <span class="keyword">self</span>.start_time</span><br><span class="line">                        percent = <span class="keyword">self</span>.done / <span class="keyword">self</span>.total</span><br><span class="line">                        total = timespend / percent</span><br><span class="line">                        <span class="keyword">print</span>(args, <span class="keyword">self</span>.done, percent * <span class="number">100</span>, <span class="keyword">self</span>.done / timespend.total_seconds() * <span class="number">60</span>, total,</span><br><span class="line">                              total - timespend)</span><br><span class="line">                    except <span class="keyword">Exception</span> <span class="keyword">as</span> ex:</span><br><span class="line">                        <span class="keyword">print</span>(ex)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        except <span class="keyword">Exception</span> <span class="keyword">as</span> ex:</span><br><span class="line">            proxy.fatal_error()</span><br></pre></td></tr></table></figure>
+
+<p>好了，基本上就到此了～～～其他的代码自己研究吧～～～</p>
+</div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/2/" class="prev">PREV</a><a href="/page/4/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

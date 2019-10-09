@@ -1,0 +1,39 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> Speed up Cordova app development using http server · 我是思聪</title><meta name="description" content="Speed up Cordova app development using http server - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">Speed up Cordova app development using http server</h1><div class="post-info">Apr 21, 2015</div><div class="post-content"><p>Cordova helps us make apps easily. The ability to run the apps inside browser greatly speeds up the development cycle. But I feel that it is hard to debug and rerun in a real device, especially I need to debug some plugin which needs real devices support. Normally I need to compile and redeploy the app. It takes at least 1 minutes to get all things ready even running inside Samsung<br>S5.</p>
+<a id="more"></a>
+
+<p>The cordova apps are running inside a WebKit, Chrome helps to connect the apps and you can inspect element or use any javascript debugging tool. Imaging the app is loaded from a self-hosted server, in the chrome developer tool, I can refresh the browser to load modified content. This is cool because you don’t need to compile and restart the app, it saves a lot of when need to go through a lot of steps to reach that page. Question: How to do it?</p>
+<p>The basic idea is to serve /www folder in http server. You could use nodejs “http-server” as a quick start. But compare to the /platforms/android/assets/www folder, there are some files missing including cordova.js, cordova_plugins.js and plugins folder. We need to copy these files into /www folder so apps can get the cordova initialized.</p>
+<p>We need to modify the entry page (index.html) for apps to load from the server, otherwise it will load local content inside apps. It is a simple redirect. Then we need to create a new app.html which is same as original index.html.</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"refresh"</span> <span class="attr">content</span>=<span class="string">"0; url=http://SERVER:IP/app.html"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>When app is loaded, the index.html will redirect to the app.html which is hosted in server. If you want to modify the app, just modify the apps and then refresh the page.</p>
+<p>Demo:</p>
+<p>Clone the app: <a href="https://github.com/derekhe/speed-up-cordova/" target="_blank" rel="noopener">https://github.com/derekhe/speed-up-cordova/</a><br>Serve the server</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">npm <span class="keyword">install</span> -g <span class="keyword">http</span>-<span class="keyword">server</span></span><br><span class="line">cd www</span><br><span class="line"><span class="keyword">http</span>-<span class="keyword">server</span></span><br></pre></td></tr></table></figure>
+
+<p>Run the app</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cordova <span class="built_in">emulate</span> android</span><br></pre></td></tr></table></figure></div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2015-06-02-3d-printing-in-thoughtworks-chengdu-office/" class="prev">PREV</a><a href="/post/2015-03-25-3d-printing/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

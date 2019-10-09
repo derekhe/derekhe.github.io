@@ -1,0 +1,107 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 我是思聪</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2008-08-08-gpu-texture-fill-rate-test/" class="post-title-link">测试GPU的材质填充率</a></h2><div class="post-info">Aug 8, 2008</div><div class="post-content"><p>体渲染最重要的一个优化就是减少GPU的采样工作。测试GPU的材质填充率能够指导我们的工作。要知道为什么GPU在800*600的环境中只能达到12FPS么？这就要看GPU每秒钟采样的次数啦。</p>
+<p>我写了一个简单的ＯＳＧ程序，用来测试采样次数：[download id=”3”]</p>
+<p>程序原理很简单，分几步：创建窗口-&gt;生成和设置纹理-&gt;载入SHADER-&gt;渲染。具体如何做要看程序里面啦，这里就不再贴出来了。</p>
+<p>直接说最后的测试的结果了。我的8800GTS(G80)官方资料说材质填充率能够达到24Billion/Sec，官方资料给的核心频率500Mhz，着色器频率1200Mhz，显存800Mhz。我将我的显卡也按照这个数据进行了降频。</p>
+<p>测试环境：窗口800<em>600，3D贴图256</em>256*256，数据是LUMINACE_ALPHA，每个像素2BYTE。每个像素的Shader采样3D贴图512次。</p>
+<p>最后得到测试FPS为11.98帧。算算：800<em>600</em>512*11.98=2,944,204,800，因为是3D纹理所以每个采样实际要有8次采样工作，所以最终的材质填充率：23,553,638,400，和24Billion/Sec很接近了。</p>
+<p>换用2D贴图可以得到相似的结果，只是FPS会快一倍。原因是三线性采样的工作量是二线性采样的两倍，很显然FPS会提升一倍。</p>
+<p>那么怎么去优化呢？下面做一些测试：</p>
+<ol>
+<li>减小3D贴图的大小，以便尽可能的装到CACHE里面。直接设置为1<em>1</em>1，结果发现性能一样。</li>
+<li>更换3D贴图的internal format为RGBA，发现性能一样。</li>
+<li>超频：超核心，性能提升百分比和超频百分比几乎一样。超Shader，几乎没变化。超显存，几乎没变化。</li>
+<li>降频：降核心，性能降低百分比和降频百分比几乎一样。降Shader，几乎没办法。降显存，一直降到400Mhz也没有变化。</li>
+<li>降低每像素采样率：降低为256后，性能提升一倍，和预期一样。<br>最终的结果很明显。3D贴图的采样已经成了整个系统的瓶颈，已经让显卡的贴图单元达到了极限。Shader处理器由于计算量很小，所以还很空闲。由于采样过滤的繁忙，贴图单元也不需要很大的显存带宽，所以显存的影响几乎没有。</li>
+</ol>
+<p>优化的措施：只能尽可能的减少采样次数，或者找更快的卡。目前看来只有G92的9800GTX或者8800GTS的采样率能够达到43.2Billion/Sec以上，GTX280官方资料也只能达到48.2Billion/Sec，GTX260 36.9Billion/Sec。9800GX2能够达到76.8Billion/Sec，就是不知道实际SLI的性能能不能满足需要了。看来如何选择适合体渲染的卡已经有一个理论和实际的指导了。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2008-08-01-wake-up/" class="post-title-link">一觉醒来</a></h2><div class="post-info">Aug 1, 2008</div><div class="post-content"><p>这边的早晨总是亮得早，早早的就醒了，醒来后又在思考应该怎么做，又在回忆。中午就得离开苏州了，先计划到上海城隍庙逛逛玩，晚上还要等同学下班了才能有住的地方。</p>
+<p>起来后心情也不舒畅，想带的带不走，想留的留不下。每当走到这种无法回头的地方时，心里就万般冰凉，握不住的手从掌心滑过，数不清的雨滴打在脸上，想流泪，又想坚强，公交车玻璃反射的面容，碎了。</p>
+<p>总得离开的，给我一个理由；总不想离开，因为回忆。</p>
+<p>下午，一个人的旅游，能自己快乐起来么？但愿吧，但愿！</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2008-08-01-reluctant/" class="post-title-link">舍不得</a></h2><div class="post-info">Aug 1, 2008</div><div class="post-content"><p>偶然的相遇，同样漫无目的在城市里的一个角落，一个桌子，两张凳子，拙政园的介绍，生命之间多了一个交点。</p>
+<p>三天的游玩，仿佛置身于幻境，博物馆、狮子园，周庄，水上世界，一切都在没有安排的安排之中，两个相机，彼此记录精彩的瞬间。</p>
+<p>狮子园石狮子，钻假山；周庄双桥，魔屋；水上世界下水，冲浪。</p>
+<p>时间不等人，天色渐暗，为什么没有一种魔法能够让这快乐延续，为什么很像，为什么感觉似曾相识，为什么无法挽留，为什么那么的喜欢，为什么那么舍不得？</p>
+<p>离开时候的背影，内心突然的伤痛，从哪儿来？</p>
+<p>“傻瓜？总是要分开的……偶尔能想起我就好啦”</p>
+<p>傻，为什么那么痴情，为什么心底的痛楚会一次一次的涌上心头。</p>
+<p>一路上听着张韶涵的《不想懂得》。</p>
+<p>手机里唯一的几首歌，听了几遍，这时候，最适合听这样的歌曲。</p>
+<p>天黑了，雨滴打在玻璃上，窗外的景色依旧，而明天可能就要离开这个城市了，何去何从？</p>
+<p>回到宾馆，依然心痛，依然回忆，依然放不下，依然恋恋不忘。</p>
+<p>还有再次的相遇么？还能够相见么？</p>
+<p>舍不得</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2008-07-17-emei-travel-the-next-day/" class="post-title-link">峨眉游记－第二天</a></h2><div class="post-info">Jul 17, 2008</div><div class="post-content"><p>更多视频请见：<a href="/images/2008-7-12/IMG_0039.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0039.JPG" alt></p>
+<p>图：接引殿</p>
+<p><a href="/images/2008-7-12/IMG_0040.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0040.JPG" alt><br>我在想哟，如果不做缆车，上去８公里，下来８公里，残废了，呵呵。</p>
+<p>做了缆车上去就离金顶不远了。导游在给我们讲述金顶的故事。<br>等介绍完就上去看卧云禅院，以前被毁过，后来重新修建了，还是不错的哟，从远处看雪白的，特别是从金殿后面看上去，金色和雪色融为一体，很是壮观。<br>图：卧云禅院</p>
+<p><a href="/images/2008-7-12/IMG_0044.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0044.JPG" alt></p>
+<p>图：一片雾茫茫</p>
+<p><a href="/images/2008-7-12/IMG_0048.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0048.JPG" alt></p>
+<p>因为上面雾气太大了，普贤的像也看不清楚。听导游说这个佛像６６６吨，铜的，加上手上２００斤纯金的法器，太值钱了……<br>图：铜像下方</p>
+<p><a href="/images/2008-7-12/IMG_0050.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0050.JPG" alt></p>
+<p>铜殿和金殿在阳光下也颇为壮观，只是今天无缘了，雾那么大。还好没有住在上面，住在上面既看不见日出，也遭了好几百的住宿费。其实这里和瓦屋山的一样的气候，当时去瓦屋山的时候人家就说日出不容易看见。铜殿里面确实大部分是铜的，我的天啊，要多少钱哟～～～</p>
+<p>图：雾中看普贤</p>
+<p><a href="/images/2008-7-12/IMG_0053.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0053.JPG" alt><br>图：金顶</p>
+<p><a href="/images/2008-7-12/IMG_0055.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0055.JPG" alt><br>图：金碧辉煌哟</p>
+<p><a href="/images/2008-7-12/IMG_0056.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0056.JPG" alt><br>图：一角</p>
+<p><a href="/images/2008-7-12/IMG_0058.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0058.JPG" alt><br>图：都在等雾消散，有点崭露头角了</p>
+<p><a href="/images/2008-7-12/IMG_0082.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0082.JPG" alt><br>图：一瞬间，雾全部散开了，</p>
+<p><a href="/images/2008-7-12/IMG_0085.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0085.JPG" alt><br>图：金刚嘴</p>
+<p><a href="/images/2008-7-12/IMG_0094.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0094.JPG" alt><br>图：金顶，我顶</p>
+<p><a href="/images/2008-7-12/IMG_0098.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0098.JPG" alt><br>图：金顶3079</p>
+<p><a href="/images/2008-7-12/IMG_0102.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0102.JPG" alt><br>图：下山之前</p>
+<p><a href="/images/2008-7-12/IMG_0104.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0104.JPG" alt><br>在上边参观合影留念以后就准备下山了。下山的缆车还好，刚好站在了控制人员的旁边，可以把运行状态录下来了。看数据显示缆车应该有１０００多米，然后最高速度在１０m/s，很快。</p>
+<p>下山了又坐车到半山腰，到万年车场吃中午饭。我们没有订中午饭(省了２０块钱)，所以就直接上山，去万年寺了。下来很热了，和山上的气候简直是两个样。中途到一个厕所换裤子，进去之前把裤包里面的钱包、手机都拿了出来，放到书包里了，害怕走厕所里面万一掉到坑里面就亏大了。出来的时候因为牛仔裤塞不进去，就把包里面的东西拿了出来整理了又塞了回去，然后就匆匆上路了，追前面的导游。走着走着我想吃点零食，就把书包甩到了前面，一看，遭了，书包咋个打开了呢？哟，我的手机呢？！！！好像是在老蒋那儿哇，我以为他手上一直捏着我的手机，郁闷，翻了翻，不见了。我用他的手机打了一下，遭了，通了，没听到我的手机的铃声，肯定掉道路上了。后来竟然有人接了，我说我手机掉了，马上下来。我一路狂奔，结果到了厕所再联系的时候，已经关机了。哎，看来不是个好心人——不要以为捡了我手机就很牛逼，你是穷人的话你还会穷三辈子，是富人你出门遭车碾死！就这样我的Ｅ５０就被耍掉了，可惜哦，这次开销加上１５００，刚刚买了一年的手机啊。我觉得诺基亚和我有仇，两个诺基亚的手机都丢了，反而两个西门子的手机好好的，直到用坏了都没有掉。</p>
+<p>手机掉了当然郁闷，一路上又热，哎，走路也没有心情，一路都是下坡，脚都走痛了。</p>
+<p>坚持到了清音阁，总算可以休息一会儿了。<br>路过清音阁就向生态猴区进发了，一路上可以看见几个石刻<br>一路上左边的小溪的水很清澈，看了看流速很快，很清凉，就装了一瓶来喝，相当的舒服。一般来说上游的流速快的水都是可以喝的，上次在回龙沟上游喝的冰水还是挺爽的。大多数景区都有“一线天”这个景点，这不，这儿也有一个。<br>图：一线天</p>
+<p><a href="/images/2008-7-12/IMG_0114.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0114.JPG" alt><br>到峨眉山看猴子，这儿猴子比人凶，管理员也属于纵容的，你不给水给猴子，管理员帮忙抢过来给猴子，呵呵，想想嘛，你还得买<br>，卖水的生意就好了。除了可以比较近的看猴子以外，也没有啥稀奇的啦，上次到回龙沟看野生猴也不错。<br>猴子我不太喜欢，呵呵。</p>
+<p>下山太累了，一路上走，下面有一个湖，水面还真是水平如镜啊！</p>
+<p><a href="/images/2008-7-12/IMG_0119.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0119.JPG" alt><br>下山已经很累了，脚也不大走得动了，上车，回家。还好，回来的车比较快。六点过出发的，八点半就到成都市区了。两天的游玩结束～～</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2008-07-17-emei-travels-the-first-day/" class="post-title-link">峨眉游记－第一天</a></h2><div class="post-info">Jul 17, 2008</div><div class="post-content"><p>峨眉旅游视频请见：<a href="/images/2008-7-12/IMG_0006.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0006.JPG" alt></p>
+<p>图：震旦第一山。PS：这个字咋看起来就像是在“震”呢？</p>
+<p><a href="/images/2008-7-12/IMG_0009.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0009.JPG" alt></p>
+<p>图：峨眉山</p>
+<p><a href="/images/2008-7-12/IMG_0011.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0011.JPG" alt><br>听老板说博物馆有得一看，还有空调，多凉快的，走吧，就到博物馆看看，收费不哟？呵呵，竟然不收费。其实要是知道这个博物馆里面的东西的话，花个几块钱块钱进去看看也是相当不错的，增长见识了哟。看看下面的一些照片吧：<br>图：1957年的标本</p>
+<p><a href="/images/2008-7-12/IMG_0012.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0012.JPG" alt><br>图：峨眉山蝴蝶，实在是很多</p>
+<p><a href="/images/2008-7-12/IMG_0014.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0014.JPG" alt><br><a href="/images/2008-7-12/IMG_0015.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0015.JPG" alt></p>
+<p>图：蝴蝶翅膀的光泽</p>
+<p><a href="/images/2008-7-12/IMG_0016.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0016.JPG" alt></p>
+<p>图：竹节虫和枯叶蝶，以前没见过，嘿嘿</p>
+<p><a href="/images/2008-7-12/IMG_0019.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0019.JPG" alt><br>图：大把大把的蝴蝶</p>
+<p><a href="/images/2008-7-12/IMG_0020.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0020.JPG" alt><br>图：蛇和蛇皮</p>
+<p><a href="/images/2008-7-12/IMG_0021.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0021.JPG" alt><br><a href="/images/2008-7-12/IMG_0022.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0022.JPG" alt></p>
+<p>图：两栖动物</p>
+<p><a href="/images/2008-7-12/IMG_0023.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0023.JPG" alt><br>图：菊花石，够像</p>
+<p><a href="/images/2008-7-12/IMG_0025.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0025.JPG" alt><br>图：龙骨</p>
+<p><a href="/images/2008-7-12/IMG_0026.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0026.JPG" alt></p>
+<p><a href="/images/2008-7-12/IMG_0027.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0027.JPG" alt><br>后来我们去了报国寺和伏虎寺，要钱才能进去，算了，我们这些又不烧香拜佛，门口照一张ＯＫ！</p>
+<p><a href="/images/2008-7-12/IMG_0028.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0028.JPG" alt><br>走了一下午，脚也有些累了，回去休息了一阵商量了一下剩下的时间怎么用。我看了一下地图，如果走路的话实在是太远了，最长的路上去５２公里，来回１００公里，而且听老板说中途还有猴区比较麻烦。走那么远的路简直太没意思了，本来脚就有些不舒服，我估计是没办法走下去的。所以就订了一个团，每个人９５块钱，还算便宜。</p>
+<p>吃了晚饭到西南交大峨眉校区逛了一圈，学校好大哟，又天黑了，最后走迷路了只好原路返回。<br>图：交大峨眉校区</p>
+<p><a href="/images/2008-7-12/IMG_0031.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0031.JPG" alt></p>
+<p><a href="/images/2008-7-12/IMG_0033.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0033.JPG" alt><br>路上买了一个西瓜，结果后来只吃了一点，哎，浪费了。晚上一夜没有睡好，蚊子啊蚊子，你咋个就偏偏咬我呢……</p>
+</div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/61/" class="prev">PREV</a><a href="/page/63/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

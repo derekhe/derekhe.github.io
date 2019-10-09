@@ -1,0 +1,38 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> .NET 2.0数据绑定纯粹是垃圾 · 我是思聪</title><meta name="description" content=".NET 2.0数据绑定纯粹是垃圾 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">.NET 2.0数据绑定纯粹是垃圾</h1><div class="post-info">Mar 18, 2009</div><div class="post-content"><p>我在开发WinForm应用程序的时候很少使用数据绑定，以前也没有怎么用过。今天在做一个参数设置面板的时候用到了他。然而很令我失望，它不仅没有解决问题，而且还带来了严重的问题，让我找了好半天，最后确认是BUG。当然也不是我一个人遇到了，看看<a href="http://weblogs.asp.net/psteele/archive/2006/10/10/Data-Binding-fails-me-again_2E002E002E00_.aspx" target="_blank" rel="noopener">这篇文章</a>，他们也遇到了相同问题。</p>
+<p>问题描述起来是这样的：</p>
+<p>我有一个这么样一个Class：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">BindTest</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> number = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> anotherNumber = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> Number</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">get</span> &#123; <span class="keyword">return</span> number; &#125;</span><br><span class="line"><span class="keyword">set</span> &#123; number = <span class="keyword">value</span>; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> AnotherNumber</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">get</span> &#123; <span class="keyword">return</span> anotherNumber; &#125;</span><br><span class="line"><span class="keyword">set</span> &#123; anotherNumber = <span class="keyword">value</span>; &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>窗体上有两个控件，一个是textBox1，绑定Number属性，另一个是textBox2，绑定AnotherNumber属性。由于我需要“确认”和“取消”按钮，所以我在高级绑定里面将两个控件的绑定行为改为Never，也就是不更新它的值。</p>
+<p>按照MSDN里面阐述的，使用Binding的WriteValue()方法就可以将数据更新。在我的程序里面可以这样写：textBox1.DataBinding[0].WriteValue();</p>
+<p>textBox2类似的做法。</p>
+<p>后来一运行，问题就出来了，仅仅能够将textBox1的值更新，而textBox2的值还原了！！！</p>
+<p>一番搜索以后又回到了刚开始的那篇讨论中，有人这么说道：</p>
+<p>As to the problem above this comment, it is a common malfunction of databinding. Simply, if you attempt to control the writing/reading behavior of Binding class, it will –REVERT– changes of all other non-bound fields/properties. Therefore, only first bound control gets updated due to the fact it is the only one which has access to CHANGED data, after its done with the update, it reverts the changes back thus canceling them, so other bindings are useless.</p>
+<p>大意是“这是数据绑定的一个故障。简而言之，试图操作绑定类的写入和读取行为，它回将所有的未绑定的字段和属性还原。因此，仅仅只有第一个被绑定的对象能够得到修改了的数据，在它完成刷新操作之后，它将所有的修改还原因此就取消了其他控件的修改，因此绑定是无用的”</p>
+<p>理解了以后，就明白了，我得重新手动写了，哎，数据绑定真是讨厌啊。</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2009-03-18-vampires/" class="prev">PREV</a><a href="/post/2009-03-17-little-hard-to-understand/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> OpenJTAG+Eclipse 3.5+GDB+Mini2440图文教程 · 我是思聪</title><meta name="description" content="OpenJTAG+Eclipse 3.5+GDB+Mini2440图文教程 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">OpenJTAG+Eclipse 3.5+GDB+Mini2440图文教程</h1><div class="post-info">Aug 26, 2009</div><div class="post-content"><p>最近学看了些书，对嵌入式有进一步了解了。开发昨天花了180大洋买了个OpenJTAG调试器，以便跟踪调试程序，查看寄存器的变化，进一步了解ARM9的运作原理。 OpenJTAG买回来了折腾了好久终于可以用了。</p>
+<p>首先是操作系统的问题。我认为理想的开发环境是Linux+Eclipse来开发。在Windows里面只能用虚拟机安装。我再 VirtualBox 3.0.4里面装好了Ubuntu和VboxAdditionTools，但是始终无法将Host的USB JTAG设备分配过去，显示previous request is busy。晕，直接用不了。尝试用Vmware 6.5，装的Ubuntu 8.10竟然不能用Vmware Tools，原因是和内核不兼容。好嘛，那我只有装Native Ubuntu了。为了便于管理，直接用Wubi装了个9.04，升级到最新的软件后，开始了OpenJTAG之旅。</p>
+<p>将OpenJTAG插入后，会多出来一个USB设备，在/dev/ttyUSB0。说明连接正常。</p>
+<p>我的开发板拨到NAND档的，里面有一个2440test程序，会在一开机就启动，会设置MMU、Cache等。这点对于后来的JTAG调试造成了一些麻烦，要比说明书多一些步骤才能正确运行调试。</p>
+<hr>
+<p><strong>首先我们来看看怎么用手动方式调试：</strong></p>
+<p>将光盘附带的friendly-arm/leds复制到工作目录/home/derekhe/workspace/leds，然后再命令行中输入 make编译程序，得到leds_elf文件和leds.bin文件。连接好OpenJTAG和开发板，打开电源，然后插上OpenJTAG。在终端中运行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">derekhe@ubuntu:~/workspace$ openocd -f ~/workspace/openocd.cfg</span><br></pre></td></tr></table></figure>
+
+<p>注意将-f 后面修改为你openocd.cfg所在真实路径。如果此文件在当前目录下(如本例)，可以直接运行openocd。</p>
+<p>我的openocd.cfg如下：</p>
+<figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line">telnet_port <span class="number">4444</span></span><br><span class="line">gdb_port <span class="number">3333</span></span><br><span class="line">interface ft2232</span><br><span class="line">jtag_speed <span class="number">0</span></span><br><span class="line">ft2232_vid_pid <span class="number">0x1457</span> <span class="number">0x5118</span></span><br><span class="line">ft2232_layout <span class="string">"jtagkey_prototype_v1"</span></span><br><span class="line">reset_config trst_and_srst</span><br><span class="line">jtag_device <span class="number">4</span> <span class="number">0x1</span> <span class="number">0xf</span> <span class="number">0xe</span></span><br><span class="line">daemon_startup <span class="section">attach</span></span><br><span class="line">target arm920t little reset_run <span class="number">0</span> arm920t</span><br><span class="line">arm7_9 fast_memory_access enable</span><br><span class="line">working_area <span class="number">0</span> <span class="number">0x200000</span> <span class="number">0x4000</span> backup</span><br><span class="line">#flash bank cfi <span class="number">0</span> <span class="number">0x100000</span> <span class="number">2</span> <span class="number">2</span> <span class="number">0</span></span><br><span class="line">#debug_level <span class="number">3</span></span><br><span class="line">nand device s3c2440 <span class="number">0</span></span><br><span class="line">run_and_halt_time <span class="number">0</span> <span class="number">5000</span></span><br><span class="line">ft2232_device_desc <span class="string">"USB&lt;=&gt;JTAG&amp;RS232"</span></span><br></pre></td></tr></table></figure>
+
+<p>此时会显示：</p>
+<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="attribute">Info</span>:    options.<span class="attribute">c</span>:<span class="number">50</span> configuration_output_handler(): <span class="attribute">jtag_speed</span>: <span class="number">0</span>, <span class="number">0</span></span><br><span class="line"><span class="attribute">Info</span>:    options.<span class="attribute">c</span>:<span class="number">50</span> configuration_output_handler(): Open On-Chip Debugger <span class="number">1.0</span> (<span class="number">2008</span><span class="attribute">-10-04-09</span>:<span class="number">26</span>) <span class="attribute">svn</span>:<span class="number">717</span></span><br><span class="line"><span class="attribute">Info</span>:    options.<span class="attribute">c</span>:<span class="number">50</span> configuration_output_handler(): fast memory access is enabled</span><br><span class="line"><span class="attribute">Info</span>:    jtag.<span class="attribute">c</span>:<span class="number">1389</span> jtag_examine_chain(): JTAG device <span class="attribute">found</span>: <span class="number">0</span>x0032409d (<span class="attribute">Manufacturer</span>: <span class="number">0</span>x04e, <span class="attribute">Part</span>: <span class="number">0</span>x0324, <span class="attribute">Version</span>: <span class="number">0</span>x0)</span><br></pre></td></tr></table></figure>
+
+<p>说明jtag已经找到了，可以开始调试了。 下一步开启另外一个终端，开始运行telnet程序，链接OpenJTAG服务器</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">derekhe<span class="variable">@ubuntu</span><span class="symbol">:~/workspace</span><span class="variable">$ </span>telnet localhost <span class="number">4444</span></span><br></pre></td></tr></table></figure>
+
+<p>终端输出：</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">derekhe<span class="variable">@ubuntu</span><span class="symbol">:~</span><span class="variable">$ </span>telnet localhost <span class="number">4444</span></span><br><span class="line">Trying ::<span class="number">1</span>...</span><br><span class="line">Trying <span class="number">127.0</span>.<span class="number">0</span>.<span class="number">1</span>...</span><br><span class="line">Connected to localhost.</span><br><span class="line">Escape character is <span class="string">'^]'</span>.</span><br><span class="line">Open On-Chip Debugger</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+
+<p>由于上电以后NAND的程序会自动运行，所以必须先使用halt命令暂停：</p>
+<figure class="highlight pf"><table><tr><td class="code"><pre><span class="line">&gt; halt</span><br><span class="line">target <span class="keyword">state</span>: halted</span><br><span class="line">target halted <span class="keyword">in</span> ARM <span class="keyword">state</span> due <span class="keyword">to</span> <span class="keyword">debug</span> request, current mode: Supervisor</span><br><span class="line">cpsr: <span class="number">0</span>x60000013 pc: <span class="number">0</span>x30001150</span><br><span class="line">MMU: enabled, D-Cache: enabled, I-Cache: enabled</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+
+<p>此时可以看到，MMU和Cache处于enable状态。在下载程序之前要清除这两个状态才行。运行arm920t cp15 2 0和step指令，可以将MMU和Cache清除：</p>
+<figure class="highlight pf"><table><tr><td class="code"><pre><span class="line">&gt; arm920t cp15 <span class="number">2</span> <span class="number">0</span></span><br><span class="line"><span class="number">2</span>: <span class="number">00000000</span></span><br><span class="line">&gt; step</span><br><span class="line">target <span class="keyword">state</span>: halted</span><br><span class="line">target halted <span class="keyword">in</span> ARM <span class="keyword">state</span> due <span class="keyword">to</span> single step, current mode: Supervisor</span><br><span class="line">cpsr: <span class="number">0</span>x60000013 pc: <span class="number">0</span>x30001154</span><br><span class="line">MMU: disabled, D-Cache: disabled, I-Cache: disabled</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后载入image(似乎只有用绝对路径才行)：</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">&gt; load_image /home/derekhe/workspace/leds/leds_elf</span><br><span class="line">172 byte written at<span class="built_in"> address </span>0x00000000</span><br><span class="line">downloaded 172 byte <span class="keyword">in</span> 0.007424s</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后开始运行：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="quote">&gt; resume 0x0</span></span><br></pre></td></tr></table></figure>
+
+<p>程序就开始运行，可见开发板上灯不停闪烁。</p>
+<hr>
+<p><strong>好，了解整个过程后，我们再来看看OpenJTAG怎么和GDB一起使用：</strong></p>
+<p>OpenOCD的GDB服务端在3333端口，可以在openocd.cfg里面配置。</p>
+<p>重启开发板。在OpenOCD服务端运行的情况下，打开另外一个终端。在shell中输入：</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">derekhe<span class="variable">@ubuntu</span><span class="symbol">:~</span><span class="variable">$ </span>arm-linux-gdb</span><br></pre></td></tr></table></figure>
+
+<p>我使用的arm-linux-gdb是友善提供的交叉编译器里面的，版本比较新：</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">GNU gdb (Sourcery G++ Lite 2008q3-72) 6.8.50.20080821-cvs</span><br><span class="line">Copyright (C) 2008 Free Software Foundation, Inc.</span><br><span class="line">License GPLv3+: GNU GPL version 3 <span class="keyword">or</span> later</span><br><span class="line">This is free software: you are free <span class="keyword">to</span> change <span class="keyword">and</span> redistribute it.</span><br><span class="line">There is <span class="literal">NO</span> WARRANTY, <span class="keyword">to</span> the extent permitted by law. <span class="built_in"> Type </span><span class="string">"show copying"</span></span><br><span class="line"><span class="keyword">and</span> <span class="string">"show warranty"</span> <span class="keyword">for</span> details.</span><br><span class="line">This GDB was configured as <span class="string">"--host=i686-pc-linux-gnu --target=arm-none-linux-gnueabi"</span>.</span><br><span class="line"><span class="keyword">For</span> bug reporting instructions, please see:</span><br><span class="line">.</span><br><span class="line">(gdb)</span><br></pre></td></tr></table></figure>
+
+<p>首先链接OpenOCD，输入：target remote localhost:3333</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">(gdb) target remote localhos<span class="variable">t:3333</span></span><br><span class="line">Remote debugging using localhos<span class="variable">t:3333</span></span><br><span class="line">warnin<span class="variable">g:</span> <span class="keyword">while</span> parsing target memory <span class="keyword">map</span> (at <span class="built_in">line</span> <span class="number">2</span>): Required element  <span class="keyword">is</span> missing</span><br><span class="line"><span class="number">0</span>x00000000 in ?? ()</span><br><span class="line">(gdb)</span><br></pre></td></tr></table></figure>
+
+<p>此时已经连接上远程调试服务器。我们来看看目前的状态，使用monitor poll来运行OpenOCD状态显示命令。</p>
+<figure class="highlight pf"><table><tr><td class="code"><pre><span class="line">(gdb) monitor poll</span><br><span class="line">target <span class="keyword">state</span>: halted</span><br><span class="line">target halted <span class="keyword">in</span> ARM <span class="keyword">state</span> due <span class="keyword">to</span> <span class="keyword">debug</span> request, current mode: Supervisor</span><br><span class="line">cpsr: <span class="number">0</span>x60000013 pc: <span class="number">0</span>x30001150</span><br><span class="line">MMU: enabled, D-Cache: enabled, I-Cache: enabled</span><br><span class="line">(gdb)</span><br></pre></td></tr></table></figure>
+
+<p>此时可以看出MMU和Cache已经开启。下载程序前先停止程序并关闭MMU和Cache：</p>
+<figure class="highlight smali"><table><tr><td class="code"><pre><span class="line">(gdb)<span class="built_in"> monitor </span>halt</span><br><span class="line">(gdb)<span class="built_in"> monitor </span>arm920t cp15 2 0</span><br><span class="line">2: 00000000</span><br><span class="line">(gdb)<span class="built_in"> monitor </span>step</span><br><span class="line">(gdb)<span class="built_in"> monitor </span>poll</span><br><span class="line">target state: halted</span><br><span class="line">target halted in ARM state due to single step, current mode: Supervisor</span><br><span class="line">cpsr: 0x60000013 pc: 0x30001154</span><br><span class="line">MMU: disabled, D-Cache: disabled, I-Cache: disabled</span><br></pre></td></tr></table></figure>
+
+<p>此时MMU和Cache已经关闭。下面我们载入文件leds_elf文件：</p>
+<figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">(gdb) <span class="built_in">file</span> ~/workspace/leds/leds_elf</span><br><span class="line">A program <span class="keyword">is</span> being debugged already.</span><br><span class="line">Are you sure you want <span class="keyword">to</span> change <span class="keyword">the</span> <span class="built_in">file</span>? (y <span class="keyword">or</span> n) y</span><br><span class="line">Reading symbols <span class="keyword">from</span> /home/derekhe/workspace/leds/leds_elf...done.</span><br><span class="line">(gdb)</span><br></pre></td></tr></table></figure>
+
+<p>打开软件中断：</p>
+<figure class="highlight smali"><table><tr><td class="code"><pre><span class="line">(gdb)<span class="built_in"> monitor </span>arm7_9 sw_bkpts enable</span><br><span class="line">software breakpoints enabled</span><br><span class="line">(gdb)</span><br></pre></td></tr></table></figure>
+
+<p>将文件载入内存：</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">(gdb) load</span><br><span class="line">Loading section .text, size 0xac lma 0x0</span><br><span class="line">Start<span class="built_in"> address </span>0x0, load size 172</span><br><span class="line">Transfer rate: 20 KB/sec, 172 bytes/write.</span><br></pre></td></tr></table></figure>
+
+<p>重新从0x0开始运行：</p>
+<figure class="highlight smali"><table><tr><td class="code"><pre><span class="line">(gdb)<span class="built_in"> monitor </span>resume 0x0</span><br></pre></td></tr></table></figure>
+
+<p>此时会看到灯在闪烁了。</p>
+<hr>
+<p><strong>下面来看看如何在eclipse 3.5里面进行配置并调试</strong></p>
+<p>首先在工作目录~/workspace内创建一个gdbinit文件(名字可以随便取，这里为了以后好对应):</p>
+<figure class="highlight smali"><table><tr><td class="code"><pre><span class="line">target remote localhost:3333</span><br><span class="line">monitor halt</span><br><span class="line">monitor arm920t cp15 2 0</span><br><span class="line">monitor step</span><br><span class="line">monitor arm7_9 sw_bkpts enable</span><br><span class="line">load</span><br><span class="line">monitor soft_reset_halt</span><br></pre></td></tr></table></figure>
+
+<p>打开eclipse，File-&gt;New-&gt;C Project，将工程取名为leds</p>
+<p><a href="/images/eclipse-arm-linux/screenshot-c-project.png"></a><img src="/images/eclipse-arm-linux/image/thumb/screenshot-c-project.png" alt></p>
+<p>此时eclipse workspace没有任何文件：</p>
+<p><a href="/images/eclipse-arm-linux/screenshot-c-c-eclipse.png"></a><img src="/images/eclipse-arm-linux/image/thumb/screenshot-c-c-eclipse.png" alt></p>
+<p>将OpenJTAG附送的光盘里面的Ubuntu/examples/friendly-arm/leds内的所有文件拷贝到工作目录</p>
+<p><a href="/images/eclipse-arm-linux/screenshot-c-c-eclipse-1.png"></a><img src="/images/eclipse-arm-linux/image/thumb/screenshot-c-c-eclipse-1.png" alt></p>
+<p>此时按ctrl+B即可生成文件。</p>
+<p>下面配置Debug相关参数：Run-&gt;Debug Configuration</p>
+<p><a href="/images/eclipse-arm-linux/screenshot-debug-configurations.png"></a><img src="/images/eclipse-arm-linux/image/thumb/screenshot-debug-configurations.png" alt></p>
+<p>双击C/C++ Application，会生成默认的leds default配置：</p>
+<p><a href="/images/eclipse-arm-linux/screenshot-debug-configurations-1.png"></a><img src="/images/eclipse-arm-linux/image/thumb/screenshot-debug-configurations-1.png" alt></p>
+<p>再C/C++ Application中填入生成的可执行文件：/home/derekhe/workspace/leds/leds_elf</p>
+<p><a href="/images/eclipse-arm-linux/screenshot-debug-configurations-5.png"></a><img src="/images/eclipse-arm-linux/image/thumb/screenshot-debug-configurations-5.png" alt></p>
+<p>选择Debugger，在新页中选择Debugger：gdbserver Debugger</p>
+<p>调整gdb调整为arm-linux-gdb，GDB command file为~/workspace/gdbinit</p>
+<p><a href="/images/eclipse-arm-linux/screenshot-debug-configurations-3.png"></a><img src="/images/eclipse-arm-linux/image/thumb/screenshot-debug-configurations-3.png" alt></p>
+<p>选择connection，将type选择为TCP, host name or IP Address为localhost，port number为3333</p>
+<p><a href="/images/eclipse-arm-linux/screenshot-debug-configurations-4.png"></a><img src="/images/eclipse-arm-linux/image/thumb/screenshot-debug-configurations-4.png" alt></p>
+<p>在按debug按钮之前，请现在终端执行openocd进入等待模式。然后就可以按debug，此时会进入调试状态了。</p>
+<p><a href="/images/eclipse-arm-linux/screenshot-debug-leds-leds-c-eclipse_0.png"></a><img src="/images/eclipse-arm-linux/image/thumb/screenshot-debug-leds-leds-c-eclipse_0.png" alt></p>
+<p>剩下的功能就和eclipse的基本使用一致了，这里不再阐述。</p>
+<p>另外我发现一些问题，restart按钮不能用，提示：</p>
+<blockquote>
+<p>Exception(s) occurred attempting to restart.<br>Target request failed: The “remote” target does not support “run”.  Try “help target” or “continue”.<br>The “remote” target does not support “run”.  Try “help target” or “continue”.</p>
+</blockquote>
+<p>还不知道怎么配置eclipse使用另外的命令。</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2009-08-26-url-rewrite-to-solve-installation-visit-to-install-wordpress-in-a-subdirectory-of-the-root-problem-occurs-404/" class="prev">PREV</a><a href="/post/2009-08-21-gnome-iso-mount-and-uninstall-script/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 我是思聪</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2015-01-10-domain-driven-design-thought/" class="post-title-link">领域驱动设计阅读思考</a></h2><div class="post-info">Jan 10, 2015</div><div class="post-content"><p>2011年3月份还在华为夜以继日的时候，买过一本《领域驱动设计：软件核心复杂性应对之道》，虽然努力的看过一次，没看懂，觉得都距离我很遥远。2014年4月，在ThoughtWorks还不到一年，买了一本腾老板的《实现领域驱动设计》，看了一遍，似乎理解了一些，但还是有些摸不着头脑。</p>
+<p><img src="http://img3.douban.com/lpic/s27608362.jpg" alt><br><img src="http://img5.douban.com/lpic/s27236377.jpg" alt></p>
+<p>做IT的一方面白天要鼓足干劲干好那8小时，回家每天抽时间陪小孩玩耍一两个小时，另一方面又要在9点半之后尽快的吸取最新的营养，实乃不容易。回想起老婆回娘家的那段时间已经自己出差的一个月，真是非常难得，可以抓紧时间读书、试验新的技术。ThougtWorks的读书文化我很欣赏，别个同事每年读个50本书，我却用Training Budget买了很多书回来，就放在那里了。这并不是说我费钱，主要是中国的出版业很奇葩，你不买可能过段时间就成绝版了，想买也买不到了。我每过一段时间就要清理了一下，感叹一下书非借不能读也，真想静下心来重新读书。</p>
+<p>读书，别开电脑，离开你的手机，摒弃一切的，拿上一支记号笔，开始吧。</p>
+<p>重新读《领域驱动设计：软件核心复杂性应对之道》正是由于做到了项目的后期，觉得整个项目已经开始凌乱。大家对业务知识不了解，也没问，只求赶紧将东西搞出来；对技术只见树木不见森林，虽然有很精巧的重构，但无法反映出真实的业务场景；有多个的Micro Service但有些职责显得混乱不堪。团队在一个混沌的情况下越来越晕，我真是想找个时间重新审视一下这个系统，如何在新的一年有更好的发展？</p>
+<h2 id="第一章-消化知识"><a href="#第一章-消化知识" class="headerlink" title="第一章 消化知识"></a>第一章 消化知识</h2><p>对于一个良好的系统而言，还是需要一个靠谱的模型。然而团队并没有给出这个模型，最早的时候都是按照View Model来建模，映射Field，然后对其进行处理。再引入了Micro Service后，情况有所转变，因为Share的原因必须要让开发者思考Domain Model，然后对页面进行去耦合。这是一个好事情，但尚处于一个模糊的阶段。</p>
+<blockquote>
+<p>领域模型也迫使开发人员学习重要的业务原理，而不是机械的进行功能的开发。</p>
+</blockquote>
+<p>这正是我们目前开发人员很缺的一块儿。作为一个常见敏捷开发团队，一般配置BA(业务分析人员)、DEV(开发人员)、QA(测试人员)。BA和业务人员谈论需求，并且分解为Story卡，DEV可能会参与其中的技术讨论，但对业务知识也只是一知半解，甚至都没有对业务知识的追求。短时间内，这个也没有太大的问题，BA充当了业务人员和开发人员之间的一个翻译，但往往业务人员和开发人员之间存在了语言的障碍。</p>
+<p>在之前的项目中，我也仅仅只作为DEV来实现一些需求。对于背后的业务逻辑，BA告诉我即可，别多想了。长此以往，DEV最后就真正的变成了Coding Monkey，而现实的情况是Coding Monkey越来越便宜。所以开发人员必须要逐渐的懂业务，从业务上思考问题，才能跳出Coding的圈子。</p>
+<p><img src="http://andrewgarrison.com/wp-content/uploads/2012/10/CodeMonkey-68762_960x360.jpg" alt="Coding Monkey"></p>
+<p>好在我们项目，由于BA的能力欠佳，我们不得不跳出常见的开发团队，让多个经验丰富的开发人员尝试更多的时间跳过BA直接和业务人员打交道。一来是意思传达的更准确，二来是增进了开发人员和业务人员的交流。虽然这样通常会让开发人员多出20%-30%的时间用于更多的沟通，对于开发的效率有所影响，但总体而言物有所值。甚至Iteration Manager <a href="http://fabiopereira.me/blog/" target="_blank" rel="noopener">Fabio</a>(我只能说和这样的牛人一起工作实乃幸运)也鼓励开发人员这么做。我想如果今年团队能够突破英语的障碍，直接和业务人员沟通，BA这个职位都可以淡淡的弱化了，人人当BA。当然还得感谢ThoughtWorks能够有比较小的敏捷的团队。否则类似于华为、中兴这样的大企业，开发人员几乎没有和业务人员沟通的机会，造成做了半天都不知道具体的业务场景是啥，写出来的代码难免会错误百出。</p>
+<h2 id="第二章-语言的交流和使用"><a href="#第二章-语言的交流和使用" class="headerlink" title="第二章 语言的交流和使用"></a>第二章 语言的交流和使用</h2><h3 id="混乱的语言"><a href="#混乱的语言" class="headerlink" title="混乱的语言"></a>混乱的语言</h3><blockquote>
+<p>Ubiquitous Language，通用语言。</p>
+</blockquote>
+<p>这种语言可以用于团队的沟通，也可以用于描述软件本身。于领域专家谈话的时候也需要使用这种语言，能够消除彼此之间的隔阂，让开发人员更容易的理解业务。而开发人员也应该使用这种语言来阐述需求，消除模糊的语言。</p>
+<p>然而我们没有，甚至各种名词彼此混淆冲突。举一个现实的例子是ANZSIC和Occupation。ANZSIC是指_<a href="http://www.abs.gov.au/ausstats/abs@.nsf/mf/1292.0" target="_blank" rel="noopener">The Australian and New Zealand Standard Industrial Classification</a>_，而Occupation是指在某业务部分对ANZSIC的细分用于更精确的定价及投保。</p>
+<p>我刚到项目组的时候，就发现代码中混淆着ANZSIC和Occupation这样的类、字段和变量，问了两三个人也没解释清楚，大家的理解这两个东西好像是一回事。后续和业务人员沟通的时候，我们也会将ANZSIC说成Occupation，造成很多的混乱。甚至在做设计的时候，也会混用这两个词。我快要晕了。</p>
+<p>我决定停止这样的混乱，找业务人员问清楚。原来ANZSIC和Occupation比较类似，ANZSIC是4位编码(例如<a href="http://www.abs.gov.au/ausstats/abs@.nsf/Latestproducts/8B6EFD55A6AE5167CA257B9500133D08?opendocument" target="_blank" rel="noopener">3232</a>)。而Occupation是对应的ANZSIC的扩展，例如3232对应的ANZSIC还不足以区分投保，所以Occupation再3232的基础上再加2到4位，变成323201或者32320101。这样就解决了ANZSIC细分粒度的问题。</p>
+<p>搞清楚这个事情以后，写到了一个Terms的文档中，并且在整个团队及相关的团队中都共享这个知识，每次有人错误提及的时候我都会纠正一遍。这样好歹基本上大家都搞清楚了。但这个混乱的成本也很大。代码中的混乱，已很难改变。很多JSON对象中也是乱套的用，多个Micro Service的API也不好改，甚至有些本该是ANZSIC的写成了Occupation，对类的重命名会造成类定义的混乱。这是个鲜活的例子，开发人员应该搞清楚每个名词的真正含义并不断修正之。</p>
+<h3 id="文档在哪里"><a href="#文档在哪里" class="headerlink" title="文档在哪里"></a>文档在哪里</h3><p>新加入团队的成员很是不理解为什么代码里面几乎没有什么注释。作为一个自解释的代码，保持代码短小，命名清晰，可以保证大部分时候不需要什么注释。但千万别走极端，代码无法解释的内容，例如一些比较难理解的设计用途，或者一些不通常的实现方法，都需要有一些注释作解释。</p>
+<p>那么设计文档呢？可能有时候开发人员过于自信自己的水平，认为可执行的测试就表明了一切，就不需要文档。但他们可能没有遵循TDD，造成测试遗漏；或者没有能力管理好成千上万的测试；或者测试命名、意图描述的不准确。这些因素都可能造成一些歧义。让一个新来的人员直接看这些测试，直接就会晕死在各种细节中。</p>
+<blockquote>
+<p>仅仅使用代码这一种文档形式与过度地使用UML图具有同样的基本问题。文档不应该重复表示代码已经明确表达出的内容。</p>
+</blockquote>
+<p>我们项目每个开发人员会负责一个特性，在每个迭代的分析阶段会有一些文档性的东西支撑。但我基本不会将代码中实现的东西在文档中又说一遍，例如类图这种东西，一旦我重命名就完全不一致了。甚至API的设计，我只会说基本原则，并参考API测试，那里有你所需要的。最后，我会讲解整个特性的基本实现原理及一些约束，这种代码之外的补充文档才是充分有用的。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2015-01-01-easy-to-understand-anjularjs-articles/" class="post-title-link">浅显易懂的AnjularJS文章</a></h2><div class="post-info">Jan 1, 2015</div><div class="post-content"><p>AngularJS的官方文档看起来总是比较晦涩，理解起来也觉得AngularJS并不是那么容易理解。这里推荐几篇小的文章，可以试着重新阅读以下，轻松愉快的写作风格能够让你很容易的理解它。</p>
+<p>AngularJS的基本组件及工作原理：<a href="http://angular-tips.com/blog/2013/08/why-does-angular-dot-js-rock/" target="_blank" rel="noopener">Why does AngularJS rocks</a>？</p>
+<p>在实际工作中，写AngularJS的程序并不是太难，难就难在如何用TDD驱动出来。甚至一些比较复杂的directive，你会发现写测试是那么的困难。TDD其实要求熟悉如何测试被测对象，下面几篇小文能够帮你从最简单的单元测试开始，详细讲解如何一步一步的写各种测试。</p>
+<p><a href="http://angular-tips.com/blog/2014/02/introduction-to-unit-test-toc/" target="_blank" rel="noopener">总目录</a>* <a href="http://angular-tips.com/blog/2014/02/introduction-to-unit-test-introduction" target="_blank" rel="noopener">Introduction</a>：简介，介绍了Jasmine如何工作的</p>
+<ul>
+<li><a href="http://angular-tips.com/blog/2014/03/introduction-to-unit-test-spies" target="_blank" rel="noopener">Spies</a>：介绍Spy是如何工作的，为后续mock更复杂的对象打下基础</li>
+<li><a href="http://angular-tips.com/blog/2014/04/introduction-to-unit-test-filters" target="_blank" rel="noopener">Filters</a>：测试最简单的AngularJS模块</li>
+<li><a href="http://angular-tips.com/blog/2014/06/introduction-to-unit-test-services" target="_blank" rel="noopener">Services</a>：测试复杂一点的Service，依赖的处理</li>
+<li><a href="http://angular-tips.com/blog/2014/06/introduction-to-unit-test-controllers" target="_blank" rel="noopener">Controllers</a>：测试Controller，依赖的处理</li>
+<li><a href="http://angular-tips.com/blog/2014/06/introduction-to-unit-test-directives" target="_blank" rel="noopener">Directives</a>：最为复杂的Directives</li>
+<li><a href="http://angular-tips.com/blog/2014/06/introduction-to-unit-test-conclusions" target="_blank" rel="noopener">Conclusions</a>：总结</li>
+</ul>
+<p><a href="http://angular-tips.com/" target="_blank" rel="noopener">Angular Tips网站</a>还有其他的一些AngularJS的文章做参考，大家可以看看。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2014-12-31-shadowsocks-is-better-on-digitalocean/" class="post-title-link">shadowsocks更适合搭建在DigitalOcean上</a></h2><div class="post-info">Dec 31, 2014</div><div class="post-content"><p>科学上网这个活，得要靠点技术。从最GoAgent、独立VPN，到SSH翻墙，现在用上好用好快的shadowsocks。但公用的shadowsocks服务器可能涉及到安全问题，谁知道后面有没有人持续的抓包呢？所以还是自己搭建一个靠谱。</p>
+<p>我用的是成都的电信的光网，所以下面的经历可能和其他的网络有差别。之前选择用了<a href="https://www.linode.com/?r=48aca8b9e959c5e0064ed57512724ca84586ca6e" target="_blank" rel="noopener">Linode</a>，优点是内存比较大，速度也比较快，有日本的线路，应该比较适合翻墙。但用过一段时间以后你会发现，其实无论哪里的Linode，搭建shadowsocks翻墙的速度还是可以的，http浏览完全不成问题，网页载入也很快。但持续下载的时候，你会发现刚开始几秒钟，可能有上百k的速度，但是过一段时间就掉了下来，到大概10kb左右。甚至后面就干脆停掉了。这样的速度，即便是用迅雷这种多线程的工具也只能跑上几十kb。我猜测，要么是Linode自身做了QOS，要么是伟大的墙做了手脚。</p>
+<p>一般来说shadowsocks隐藏了一些特征，我一个人用基本上墙也不care我。改端口一般会解决墙的问题，随后试过808. 44. 2. 22等端口，一样的情况。好吧，莫非是机房的原因？换到Linode的美国节点，速度一样的慢。无语了。</p>
+<p>好吧，那看看<a href="https://m.do.co/c/4bc532e3ef94" target="_blank" rel="noopener">DigitalOcean</a>。</p>
+<p>其实一年多前我就在用DigitalOcean，原因是5美元的价格非常的便宜，但是512的内存就比较慢了，优化起来也比较吃力。开了1G的swap，幸亏是SSD，还能撑一段时间。我就重新在DigitalOcean上，申请了SFO的机房，用docker的shadowsocks的images，分分钟装完shadowsocks，一试，吓我一大跳。</p>
+<p>虽然SFO的ping比日本的ping要高一些，但整个翻墙速度没有明显的区别，youtube的1080P的也能流畅的播放。看流量能够知道shadowsocks能够持续的以400多k的速度下载，甚至有些时候能够跑满10M的带宽。我又试了用sockets代理来下载战地4的最新更新，速度也非常满意，几乎80%的速度都是1.2M/s的下载，说明shadowsocks并不是被墙了，而是Linode做了限制。</p>
+<p>所以，对于我的电信线路，DigitalOcean的SFO能够提供非常好的质量，非常推荐大家也试用一下。更好的话，请大家用我的一个<a href="https://m.do.co/c/4bc532e3ef94" target="_blank" rel="noopener">referal链接</a>，这样大家都能得到一些额外的优惠。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2014-10-23-sydney-city-impression/" class="post-title-link">悉尼——都市初印象</a></h2><div class="post-info">Oct 23, 2014</div><div class="post-content"><p>我住的公寓在靠近中国城的Hyde Park旁边，生活很方便。走路两三分钟可以到World Square Shopping Centre，底下有coles超市，还有一家华人的超市可以购买到很多的中国食品。去Darling Harbour也10分钟路程，</p>
+<p>第一天到，早上睡了一大觉把时差倒回来了，中午和新认识的7楼的女孩一起在World Square出去吃饭，一顿简单的中式快餐面，15澳元，折合人民币80多块钱了。说到这里广大男人就只有羡慕的份了，刚到我就能认识一个新的异性朋友。至于如何认识的，给大家一个想象空间吧。</p>
+<p>下午出去逛了一圈，顺便熟悉了一下环境。第一天由于没有拿到4G卡，不敢到处乱走，就在公寓下好了Google离线地图，然后出去瞎逛。悉尼CBD虽然属于比较现代感的地方，但到处还是可以看到很多古老的建筑，</p>
+<p>街景<br><a href="/images/2014/10/20140831-20140831_172421.jpg"><img src="/images/2014/10/20140831-20140831_172421.jpg" alt="20140831-20140831_172421"></a></p>
+<p>纪念碑<br><a href="/images/2014/10/20140831-20140831_172427.jpg"><img src="/images/2014/10/20140831-20140831_172427.jpg" alt="20140831-20140831_172427"></a></p>
+<p>购物街<br><a href="/images/2014/10/20140831-20140831_173537.jpg"><img src="/images/2014/10/20140831-20140831_173537.jpg" alt="20140831-20140831_173537"></a></p>
+<p><a href="/images/2014/10/20140901-20140901_184623.jpg"><img src="/images/2014/10/20140901-20140901_184623.jpg" alt="20140901-20140901_184623"></a></p>
+<p><a href="/images/2014/10/20140901-20140901_184658.jpg"><img src="/images/2014/10/20140901-20140901_184658.jpg" alt="20140901-20140901_184658"></a></p>
+<p>可能是由于空气质量很好，到处干干净净，但街道上也能看到一些纸屑烟头啥的。天非常地蓝，阳光刺眼。庆幸的是我运气比较好，在我来之前的两周，悉尼一直在下雨，搞得同事James都没法出去。气温也很冷，我一到，就把成都的夏天带到了悉尼，只是没有了成都的可怕的雾霾。</p>
+<p>悉尼CBD区域街道不大，双向四车道，但没有国内的那么宽，机动车和非机动车都混行。汽车开得很快，甚至一看到绿灯轰的一下就出去了。红绿灯井然有序。过街的红路灯灯杆上还有一个按钮，过街的时候需要按一下，特别是在晚上，否则即便车停下来等红灯，但人行道的灯不会变绿。</p>
+<p>图为网上找的，就这个样。<br><a href="/images/2014/10/549300-53310f00-29a8-11e4-8aa3-c8bd07392c82.jpg"><img src="/images/2014/10/549300-53310f00-29a8-11e4-8aa3-c8bd07392c82.jpg" alt="549300-53310f00-29a8-11e4-8aa3-c8bd07392c82"></a></p>
+<p>这个按钮还会发出“呱呱呱呱”的声音，当绿灯一亮的时候，就会发出“噌”的一声，然后人就冲出去了。别说我夸张，早上上班的时候，有些路口红绿灯时间很短，很多人还真是“冲”出去的。等“噌”以后，这个玩意儿就变成了，“啪啪啪啪啪”的声音，很好玩。</p>
+<p>骑车在这里我想有点折腾。我之前本想过来租个自行车的，网上查了一下价格在50澳元左右，太贵了，国内都可以买个车了。在这里骑车还需要装配齐全——头盔、电筒、闪光灯啥的必须齐备，并且在在机动车道上骑车不能闹着玩，得跑得很快才行，否则后面的车骂死你。</p>
+<p>还有一点，这里的街道上上下下的，有时候有比较陡的坡道，在客户公司居然Lobby到7楼，就一层楼。汽车都要费很大的劲才能上去，骑车的自然就很折腾了。</p>
+<p>悉尼的商业街集中在Westfield。那里有Sydney Tower可以看到悉尼全景，但要收费的所以我没上去过。</p>
+<p>Sydney Tower<br><a href="/images/2014/10/20140902-20140902_174758.jpg"><img src="/images/2014/10/20140902-20140902_174758.jpg" alt="20140902-20140902_174758"></a></p>
+<p>步行街不大，两分钟走完，比起成都的春熙路那简直是是不能比啊。</p>
+<p><a href="/images/2014/10/20140902-20140902_174611.jpg"><img src="/images/2014/10/20140902-20140902_174611.jpg" alt="20140902-20140902_174611"></a></p>
+<p><a href="/images/2014/10/20140902-20140902_174726.jpg"><img src="/images/2014/10/20140902-20140902_174726.jpg" alt="20140902-20140902_174726"></a></p>
+<p>晚上出去逛了一趟超市，James教我怎么用超市的自助结账机。超市下班的时候比较热闹，人比较多，排队等结账的现象还是有的。人工服务不用自己操心，速度也比较快，但如果仅仅买了一两样东西的，还是自助结账机比较迅速，扫扫条码分分钟搞定。</p>
+<p><a href="/images/2014/10/20140901-20140901_182706.jpg"><img src="/images/2014/10/20140901-20140901_182706.jpg" alt="20140901-20140901_182706"></a></p>
+<p>当买了水果之内的需要称重的东西，那就没办法扫描了。在台子中间有一个板，其实是一个称，放上水果之后屏幕上会显示重量，然后选择对应的水果就好了。当然这里的选项比较多，好多时候不知道水果叫什么名字，就只有寻求help了。</p>
+<p>等所有的东西都放到塑料袋中，然后就塞钱走人，也没人查你。</p>
+<p>注意，第一天我用的招行的信用卡刷卡的。刷卡当然一次性搞定，也不用输入密码，但后来我查账的时候才发现，居然收我的6.1的汇率，当时的汇率其实才5.7。后来才知道，原来在不支持银联的机器上刷卡，会另外收取什么费用。还好我就刷过一两次，损失不大。</p>
+<p>成都银行的金卡(其实很惭愧上面就几千块钱)在异地刷卡取现是免手续费的，非常给力。就在我楼下的nab银行ATM取现，确实不收手续费，非常方便实惠。所以后续我在悉尼一直用的是现金了，从不刷卡了。</p>
+<p>但有些银行可能会提示收费，例如汇丰银行，有一次取现20澳元，居然提示说要收2澳元手续费。另外得鄙视一下汇丰的反人类的ATM机，居然卡只能插入一半多一些，然后就插不进去了。正确的流程是插进去一半，等一下，然后再取出来，然后再交易，幸好和做会计的小妹一起出去的，否则我还真搞不懂。</p>
+<p>除了纸币，确切的说应该是塑料的钱，这里用硬币的机会很多。令人头痛的是最大最重的硬币居然是50分的，然后2澳元的居然比1澳元的还小。感兴趣的可以看看<a href="http://baike.baidu.com/view/272494.htm" target="_blank" rel="noopener">这里</a>。有时候满满一钱包都是硬币，很不方便。</p>
+<p>晚上回家，跑楼下的健身房游了个泳，免费的，但比较小，水质只能说将就。第二天，舒舒服服的去上班了。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2014-10-13-sydney-first-time/" class="post-title-link">悉尼——出发</a></h2><div class="post-info">Oct 13, 2014</div><div class="post-content"><p>年中一直谈论出国的事情，但由于在节骨眼上临时抽调去支持一个项目，所以给搞黄了。运气比较好的是，第二个项目也才刚开始，8月份需要出差过去参加Initialize Workshop。公司7月份就开始申请的VISA的事情拖到8月底才尘埃落定，虽然已经错过了Initialize Workshop，但还好处在项目的初期过去，也能起到很大的作用。</p>
+<p>机票定在8月30号，在广州中转。我把老婆儿子的机票也买了，一起回婆婆家。儿子推着自己的箱子，兴奋地不得了。这次坐的是787梦想飞机。新的大飞机果然不错，每个座位都有多媒体，给丁仔放熊出没看他就安静了，只是仰着个头不是太舒服，还不如用iPad放。</p>
+<p><a href="/images/2014/10/20140830-20140830_131203.jpg"><img src="/images/2014/10/20140830-20140830_131203.jpg" alt="20140830-20140830_131203"></a></p>
+<p><a href="/images/2014/10/20140830-20140830_155643.jpg"><img src="/images/2014/10/20140830-20140830_155643.jpg" alt="20140830-20140830_155643"></a></p>
+<p><a href="/images/2014/10/20140830-20140830_185239.jpg"><img src="/images/2014/10/20140830-20140830_185239.jpg" alt="20140830-20140830_185239"></a></p>
+<p>两个小时的行程到达广州。我们一家人在中转口分开，妈妈和丁仔拿行李，爸爸走二楼中转。由于我两个航班都是南航的，所以可以在成都申请直接到悉尼提取，这样方便快捷省得去排队了。</p>
+<p><a href="/images/2014/10/20140830-20140830_191117.jpg"><img src="/images/2014/10/20140830-20140830_191117.jpg" alt="20140830-20140830_191117"></a></p>
+<p>但这次行李等了太久，大概等了有40分钟的样子，似乎故意不怎么想让我们分开。我在楼上没走，陪着他们直到拿到行李。拿到行李后，丁仔和爸爸很高兴的说再见，一点都不留恋，和妈妈一起出去坐车了。</p>
+<p><a href="/images/2014/10/20140830-20140830_194248.jpg"><img src="/images/2014/10/20140830-20140830_194248.jpg" alt="20140830-20140830_194248"></a></p>
+<p>之前我以为不用过安检了，所以预留的时间不多。结果发现坐了车到了国际中转还是要安检。结果在安检的时候，出人意料的事情发生了。还在安检站呢，等小妹扫描完没问题去拿东西的时候，我发现护照、手机、钱包不见了！这什么世道！我立刻问安检的工作人员，她说是前面那个人拿走了，然后那人把钱包、护照退给我了，说是拿错了。我清理好包包，装好电脑再检查，手机呢？安检人员说还是在他那里，靠，那人还在和他的同伴说着啥，我说我的手机你拿了哇？他慌张的从裤包里面拿出来，给我说拿错了，说是半天没打通。我黑了他一眼，彻底怀疑你这是不是在偷东西！所以以后安检的时候，要特别的小心自己的东西，别被人偷了。</p>
+<p>过了安检过边检，盖着章表示可以出国了。整个过程还是比较快的。对于晚到的旅客还有一个特殊通道可以用，不用排队，还算人性化。</p>
+<p><a href="/images/2014/10/20140830-20140830_202049.jpg"><img src="/images/2014/10/20140830-20140830_202049.jpg" alt="20140830-20140830_202049"></a></p>
+<p>半小时后，上飞机了。空客A320，当初我还担心飞机上没有玩的，下载了好几部电影。结果每个座位上都有多媒体的播放器，我下的电影都有，算是白下了。</p>
+<p><a href="/images/2014/10/20140830-20140830_202447.jpg"><img src="/images/2014/10/20140830-20140830_202447.jpg" alt="20140830-20140830_202447"></a></p>
+<p><a href="/images/2014/10/20140830-20140830_202456.jpg"><img src="/images/2014/10/20140830-20140830_202456.jpg" alt="20140830-20140830_202456"></a></p>
+<p>飞机晚上9点起飞，到悉尼是早上8点，总共9个小时的飞行。坐上飞机的时候已经有点累了，看了一部极品飞车，11点过准备睡会儿了。这时候才觉得长途飞机上睡觉有多么的折腾。</p>
+<p>我旁边的那哥们儿，一上飞机就睡了两三个小时，这下等我要睡觉了，好了，他开始看电影了，而且一看就看到第二天天亮，精神也太好了吧。他看电影倒好，昏暗的机舱里，他的显示屏一晃一晃的，弄得我很难睡着。怎么办呢？上机的时候拿了一份报纸这时候管用了，拿了两三张一头压在后脑勺，一头盖在脸上，好了很多。</p>
+<p>飞机的噪音是第二个问题，把入耳式耳塞塞到耳朵里面，解决。</p>
+<p>第三个问题是空调，实在是太冷了。头上吹下来的冷气搞得头顶发凉，而且还没有调节的地方。身上裹了毛毯还算稍微暖和，但脚下穿的冬天的皮的运动鞋都不管用，像是泡在冰水里面一样。最终我只解决了头顶空调的问题，只需要把报纸搭在头上就好了。</p>
+<p>就这样折腾折腾一晚上，坐着的姿势搞得腰酸背痛，根本无法睡着。就这样半清醒的状态直到第二天早上6点(悉尼时间)，其实只睡了4个小时，然后空姐开灯发早餐了。外面阳光明媚啊，赶紧调了手表，纪念我失去的两个小时。吃了早饭后，这下睡不着了，到处的舷窗都打开了，阳光格外刺眼。虽然很困，坚持着看会儿电影，终于到了悉尼。</p>
+<p>悉尼机场还有很多中文标示，一般来讲走不错。</p>
+<p><a href="/images/2014/10/20140831-20140831_084413.jpg"><img src="/images/2014/10/20140831-20140831_084413.jpg" alt="20140831-20140831_084413"></a></p>
+<p><a href="/images/2014/10/20140831-20140831_084652.jpg"><img src="/images/2014/10/20140831-20140831_084652.jpg" alt="20140831-20140831_084652"></a></p>
+<p><a href="/images/2014/10/20140831-20140831_084743.jpg"><img src="/images/2014/10/20140831-20140831_084743.jpg" alt="20140831-20140831_084743"></a></p>
+<p>出了机场，麻烦的事情又来了，司机呢？之前邮件里面说好的提前一点在机场等我的，怎么一个影子都没有呢？打个电话问问吧。</p>
+<p>我以为我很聪明，当初在国内的时候，给skype冲了1欧元，想着过去可以用网络电话。连上机场的Free Sydney，结果弄死打不开网页，Skype也连不上，有这么差劲么？</p>
+<p>折腾了10分钟，不想搞了。在出机场的门口，有一个Help Desk，有一个新加坡籍的老人家帮我打了电话。结果是司机说没有收到通知，不知道要过来，立马安排过来接。这样就在机场孤孤零零的等了半个多小时，终于来了。</p>
+<p><a href="/images/2014/10/20140831-20140831_094754.jpg"><img src="/images/2014/10/20140831-20140831_094754.jpg" alt="20140831-20140831_094754"></a></p>
+<p><a href="/images/2014/10/20140831-20140831_095303.jpg"><img src="/images/2014/10/20140831-20140831_095303.jpg" alt="20140831-20140831_095303"></a></p>
+<p>半个小时后 ，到达公寓。公寓在Hyde公园旁边，离中国城很近，附近也有很多韩日的餐馆，很方便。我住在12楼，公司的租的房间还很大，两居室的，生活用具齐全，非常不错。我以为接下来的几周可能会share房间，后来证明是想多了。略微收拾一下，赶紧躺床上睡一觉，累死了。</p>
+<p><a href="/images/2014/10/20140831-20140831_101805.jpg"><img src="/images/2014/10/20140831-20140831_101805.jpg" alt="20140831-20140831_101805"></a></p>
+<p><a href="/images/2014/10/20140831-20140831_101817.jpg"><img src="/images/2014/10/20140831-20140831_101817.jpg" alt="20140831-20140831_101817"></a></p>
+<p><a href="/images/2014/10/20140831-20140831_101827.jpg"><img src="/images/2014/10/20140831-20140831_101827.jpg" alt="20140831-20140831_101827"></a></p>
+<p><a href="/images/2014/10/20140831-20140831_101831.jpg"><img src="/images/2014/10/20140831-20140831_101831.jpg" alt="20140831-20140831_101831"></a></p>
+<p><a href="/images/2014/10/20140831-20140831_101812.jpg"><img src="/images/2014/10/20140831-20140831_101812.jpg" alt="20140831-20140831_101812"></a></p>
+</div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/7/" class="prev">PREV</a><a href="/page/9/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

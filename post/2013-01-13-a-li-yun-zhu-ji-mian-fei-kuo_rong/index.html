@@ -1,0 +1,52 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 阿里云主机免费扩容 · 我是思聪</title><meta name="description" content="阿里云主机免费扩容 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">阿里云主机免费扩容</h1><div class="post-info">Jan 13, 2013</div><div class="post-content"><p>我购买的阿里云的系统盘有20G，数据盘也有20G。为了让有限的空间发挥更多的作用，要想点办法才行。</p>
+<p>最简单的莫过于透明压缩。Linux下支持透明压缩的文件系统不多，Ubuntu 12.04中，能支持的有btrfs和zfs。之前试了一下btrfs，压缩率虽然还行，但有一次更改了压缩选项后，就起不动了，最后只能所有文件丢失。ZFS在Linux下也有，试了一下，相当好用。在12.04中，无任何问题。</p>
+<p>安装PPA，得自己研究一下哟！</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">https:<span class="regexp">//</span>launchpad.net<span class="regexp">/~zfs-native/</span>+archive<span class="regexp">/stable</span></span><br></pre></td></tr></table></figure>
+
+<p>然后安装ubuntu-zfs</p>
+<p>完成后重启一下</p>
+<p>我是想让home目录压缩，home挂载到数据盘，所以先将home目录的数据拷贝到另外的地方。</p>
+<p>然后，创建一个home目录</p>
+<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line">zpool create <span class="built_in">home</span> /dev/xvdb</span><br></pre></td></tr></table></figure>
+
+<p>然后zfs set compression=gzip home，使用gzip要比默认的压缩率更高。之前的使用默认的压缩，压缩率只能到2.5x，用gzip可以到5.x，相当不错。</p>
+<p>通过zfs get compressratio home可以看到压缩率</p>
+<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">root@cloud:/home<span class="comment"># zfs get compressratio home</span></span><br><span class="line">NAME  <span class="keyword">PROPERTY</span><span class="title">       </span>VALUE  SOURCE</span><br><span class="line">home  compressratio  <span class="number">5.10</span>x  -</span><br></pre></td></tr></table></figure>
+
+<p>如果是20G的盘，则相当于扩大到了100G的容量。</p>
+<p>那么系统盘的空间也不能浪费了，我们先创建一个img文件，然后将创建一个pool，这样就可以使用连续的空间了。创建一个10G的文件</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">dd <span class="attribute">if</span>=/dev/zero <span class="attribute">of</span>=/disk.img <span class="attribute">bs</span>=100M <span class="attribute">count</span>=100</span><br></pre></td></tr></table></figure>
+
+<p>挂载到/dev/loop0</p>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">loset <span class="string">/disk.img</span> <span class="string">/dev/loop0</span></span><br></pre></td></tr></table></figure>
+
+<p>然后</p>
+<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line">zpool create <span class="built_in">home</span>/sysdisk /dev/loop0</span><br></pre></td></tr></table></figure>
+
+<p>当然，你也可以将/dev/loop0加入到现在的home下面，使得home的容量进一步扩大。但小心的是，一旦系统盘出现了问题，或者没办法需要回滚数据，则数据可能会丢失。</p>
+<p>好吧，就到这里，大家试一下吧，很爽的哟~！</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2013-01-19-bai-du-yun-rom-adb-shen-qi-de-wen_ti/" class="prev">PREV</a><a href="/post/2012-12-29-wu-yong-de-zhu_shi/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

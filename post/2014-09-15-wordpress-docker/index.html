@@ -1,0 +1,34 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> Wordpress on docker · 我是思聪</title><meta name="description" content="Wordpress on docker - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">Wordpress on docker</h1><div class="post-info">Sep 15, 2014</div><div class="post-content"><p>I was thinking for a long time to move my blog back to Wordpress. I tried ghost blog but found it was at beginning stage and not mature to use, although the markdown feature seems very attractive. Now Wordpress can write blog using markdown too.</p>
+<p>It took me a day to move it back. One reason is I couldn’t import markdown to Wordpress easily. It was lucky that I had a full backup of the database at Feb, 2014. Another reason is that I’d like to try some new technology, yes, docker.</p>
+<p>I have being using linux server for several years as playground. One major problem I faced before was after a long time running, the server was installed a lot of softwares that were not needed. “apt-get remove” could not remove all the files totally. I tried vagrant but it is at machine level and too heavy. Then I found docker. It is a tool to address this problem. Docker images could be removed or installed easily. You can even have a base image then install and remove any software without damage host.</p>
+<p>Installation of docker is supported by most major linux operation, you can find them at docker’s main site.<br>To install a wordpress on docker, it is quite easy.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir -p /docker/data/wordpress/db</span><br><span class="line">mkdir -p /docker/data/wordpress/site</span><br><span class="line">docker run --name wordpress-mysql -e MYSQL_ROOT_PASSWORD=mypassword -v /docker/data/wordpress/db:/var/lib/mysql -d mysql</span><br><span class="line">docker run --name wordpress --link wordpress-mysql:mysql -p 80:80 -v /docker/data/wordpress/site:/var/www/html -d wordpress</span><br></pre></td></tr></table></figure>
+
+<p>After several minutes, it is done. You can visit localhost to setup the site.</p>
+<p>NOTICE: you must mount the volume to your host’s directory to keep data, otherwise all the data will lost after you delete container.</p>
+<p>Enjoy.</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2014-09-16-continuous-integration-process-optimization/" class="prev">PREV</a><a href="/post/2014-03-15-how-to-install-gitlab/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

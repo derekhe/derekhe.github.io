@@ -1,0 +1,59 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 淘宝旅行API分析 · 我是思聪</title><meta name="description" content="淘宝旅行API分析 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">淘宝旅行API分析</h1><div class="post-info">Mar 11, 2015</div><div class="post-content"><p>这一篇博客中我分析一下如何分析得到淘宝旅行的API，如何得到实时的机票信息。</p>
+<p>我们先看看阿里旅行的<a href="http://trip.taobao.com/jipiao/" target="_blank" rel="noopener">机票页面</a>。打开Chrome Developer Tools发现要得到其中的信息感觉颇为复杂，很难去下手，一般我不会从主站下手。主站的各种防御做得比较好，往往页面结构复杂。其实如果我们换个思路，直接访问手机的站点，会简单很多。这是因为为手机做的站点其性能比较重要，往往做得比较简单，而且容易暴露一些API接口。</p>
+<p>点击Chrome Developer</p>
+<p><img src="/images/2015/03/Screen%20Shot%202015-03-11%20at%2016.30.17.jpg" alt="Screen Shot 2015 03 11 At 16.30.17"></p>
+<p>试着查一下深圳到成都的机票，看看会返回些什么。忽略掉图片等，发现h5apiUpdate.do这个call有意思</p>
+<p><img src="/images/2015/03/Screen%20Shot%202015-03-11%20at%2016.33.53.jpg" alt="我注意到一个jsonp的call"></p>
+<p>将这个URL放到浏览器上面试一下，果断返回了所有的信息。<br><img src="/images/2015/03/Screen%20Shot%202015-03-11%20at%2016.35.13.jpg" alt="Screen Shot 2015 03 11 At 16.35.13"></p>
+<p>剩下的事情就简单很多了，一个GET请求就可以得到所有的信息。让我们来分析一下URL里面具体是怎么请求的。</p>
+<p>URL请求，不要直接点击，点击后是请求失败的。</p>
+<p><a href="http://api.m.taobao.com/rest/h5ApiUpdate.do?callback=mtopjsonp1&amp;type=originaljsonp&amp;api=mtop.trip.flight.flightSuperSearch&amp;v=1.0&amp;data=%7B%22searchType%22%3A%221%22%2C%22depCityCode%22%3A%22SZX%22%2C%22arrCityCode%22%3A%22CTU%22%2C%22leaveDate%22%3A%222015-03-12%22%2C%22backDate%22%3A%222015-03-12%22%2C%22itineraryFilter%22%3A%220%22%2C%22sellerIds%22%3A%22%22%2C%22leaveFlightNo%22%3A%22%22%2C%22leaveCabinClass%22%3A%220%22%2C%22backCabinClass%22%3A%220%22%2C%22utdid%22%3A%22%22%2C%22depDate%22%3A%222015-03-12%22%7D&amp;useNative=true&amp;ttid=201300@travel_h5_3.1.0&amp;appKey=12574478&amp;t=1426062775998&amp;sign=3feb52aed67967a2c47aa7a2b9f2a417" target="_blank" rel="noopener">http://api.m.taobao.com/rest/h5ApiUpdate.do?callback=mtopjsonp1&amp;type=originaljsonp&amp;api=mtop.trip.flight.flightSuperSearch&amp;v=1.0&amp;data=%7B%22searchType%22%3A%221%22%2C%22depCityCode%22%3A%22SZX%22%2C%22arrCityCode%22%3A%22CTU%22%2C%22leaveDate%22%3A%222015-03-12%22%2C%22backDate%22%3A%222015-03-12%22%2C%22itineraryFilter%22%3A%220%22%2C%22sellerIds%22%3A%22%22%2C%22leaveFlightNo%22%3A%22%22%2C%22leaveCabinClass%22%3A%220%22%2C%22backCabinClass%22%3A%220%22%2C%22utdid%22%3A%22%22%2C%22depDate%22%3A%222015-03-12%22%7D&amp;useNative=true&amp;ttid=201300@travel_h5_3.1.0&amp;appKey=12574478&amp;t=1426062775998&amp;sign=3feb52aed67967a2c47aa7a2b9f2a417</a></p>
+<p>首先我们精简一下这个请求，更少的参数更能让我们专注，我最终去掉了callback和type，请求成功。但注意这个请求和之前的请求有一些区别，这个请求不是jsonp的，如果不是从浏览器直接访问，没有跨域请求的时候是可以不用jsonp的。</p>
+<p><img src="/images/2015/03/Screen%20Shot%202015-03-11%20at%2016.40.01.jpg" alt="Screen Shot 2015 03 11 At 16.40.01"></p>
+<p>剩下事情就有点复杂了。</p>
+<ul>
+<li><p>api=mtop.trip.flight.flightSuperSearch&amp;v=1.0&amp;<br>这一串是版本号及API调用的接口，一般不用改变</p>
+</li>
+<li><p>data=%7B%22searchType%22%3A%221%22%2C%22depCityCode%22%3A%22SZX%22%2C%22arrCityCode%22%3A%22CTU%22%2C%22leaveDate%22%3A%222015-03-12%22%2C%22backDate%22%3A%222015-03-12%22%2C%22itineraryFilter%22%3A%220%22%2C%22sellerIds%22%3A%22%22%2C%22leaveFlightNo%22%3A%22%22%2C%22leaveCabinClass%22%3A%220%22%2C%22backCabinClass%22%3A%220%22%2C%22utdid%22%3A%22%22%2C%22depDate%22%3A%222015-03-12%22%7D<br>包含了一些数据，但已经被quote过，基本上是一个json类一样，里面包含一些请求的数据。decode之后长这样：<br><img src="/images/2015/03/Screen%20Shot%202015-03-11%20at%2016.43.51.jpg" alt="Screen Shot 2015 03 11 At 16.43.51"></p>
+</li>
+<li><p>useNative=true&amp;ttid=201300@travel_h5_3.1.0&amp;appKey=12574478<br>这些固定字符串，暂时不管了</p>
+</li>
+<li><p>t=1426062775998&amp;sign=3feb52aed67967a2c47aa7a2b9f2a417<br>这两个参数，在不断请求的过程中是变化的，这个值一旦不对应，则API请求是失败的。这对我们的造成了很大的困扰。如果不清楚这里的算法，你不能算出sign，API请求完全无力。遇到这种情况，只有从javascript下手了。</p>
+</li>
+</ul>
+<p>是什么地方调用了这个API呢？我采用搜索url的方式。找h5ApiUpdate这个关键字，看有没有什么线索。最后在这个文件中发现了这个关键字。</p>
+<p><img src="/images/2015/03/Screen%20Shot%202015-03-11%20at%2016.48.59.jpg" alt="Screen Shot 2015 03 11 At 16.48.59"></p>
+<p>糟糕的是这个代码已经被压缩过，你可能知道一些<a href="http://tool.lu/js/" target="_blank" rel="noopener">站点</a>，能够将javascript反混淆吧。但你不能直接利用这个代码做事情。我之前考虑是否做个proxy的站点，类似fiddler这种工具将这个压缩过的js给劫持了，然后返回我解压过的。想想整个过程都很复杂。</p>
+<p>然后我去找了一下chrome的插件和stackoverflow。庆幸的是，chrome已经内置了一个非常牛逼的工具，且看这里。这一个简简单单的{}符号简直帮了大忙。</p>
+<p><img src="/images/2015/03/Screen%20Shot%202015-03-11%20at%2016.52.13.jpg" alt="Screen Shot 2015 03 11 At 16.52.13"></p>
+<p>你看，pretty print后的代码，简直就是开卷考试了一样。<br><img src="/images/2015/03/Screen%20Shot%202015-03-11%20at%2016.52.59.jpg" alt="Screen Shot 2015 03 11 At 16.52.59"></p>
+<p>更为强大的是，用这个代码我居然可以打断点！<br>好吧，那我看看sign是怎么得到的。简单的搜索一下就可以找到了：<br><img src="/images/2015/03/Screen%20Shot%202015-03-11%20at%2016.55.17.jpg" alt="Screen Shot 2015 03 11 At 16.55.17"></p>
+<p>看到了没有，所有的秘密都在这里。<br><img src="/images/2015/03/Screen%20Shot%202015-03-11%20at%2016.57.20.jpg" alt="Screen Shot 2015 03 11 At 16.57.20"></p>
+<p>这些值和cookie相关，做一次请求，打几个断点，所有的秘密都清楚了。<br><img src="/images/2015/03/Screen%20Shot%202015-03-11%20at%2016.59.22.jpg" alt="Screen Shot 2015 03 11 At 16.59.22"></p>
+<p>好吧，我们来写一个简单的程序来模拟吧，请参考：<a href="https://github.com/derekhe/alitripAPI" target="_blank" rel="noopener">https://github.com/derekhe/alitripAPI</a></p>
+<p>nodejs可以非常好的完成任务，而且阿里不会阻止你采集（这点很大方啊）。我后来想把它写到手机上，用cordova做个app的，但可惜cordova不支持cookie这事情，让整个事情搁浅了。后续试试原生的http request，应该可以解决问题。</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2015-03-25-3d-printing/" class="prev">PREV</a><a href="/post/2015-03-07-3d-printing/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

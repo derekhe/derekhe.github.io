@@ -1,0 +1,32 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 两行代码实现“一键关屏” · 我是思聪</title><meta name="description" content="两行代码实现“一键关屏” - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">两行代码实现“一键关屏”</h1><div class="post-info">Jun 27, 2006</div><div class="post-content"><p>有时候暂时离开一下电脑，不关显示器呢觉得又浪费电了，不手动关呢又要等一段时候屏保才启动，还是要浪费少许电。还是自己动手写一个算了。查阅了相关的资料，发现两行代码足以。</p>
+<p>在vs2005里面建立一个vc++工程，创建一个main.cpp，然后拷贝一下代码进去。<br>1<img src="http://www.cnblogs.com/Images/OutliningIndicators/None.gif" alt>#include &lt;windows.h&gt;<br>2<img src="http://www.cnblogs.com/Images/OutliningIndicators/None.gif" alt>int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)<br>3<img src="http://www.cnblogs.com/Images/OutliningIndicators/ExpandedBlockStart.gif" alt><img src="http://www.cnblogs.com/Images/OutliningIndicators/ContractedBlock.gif" alt><img src="http://www.cnblogs.com/Images/dot.gif" alt>{
+4<img src="http://www.cnblogs.com/Images/OutliningIndicators/InBlock.gif" alt> // Eliminate user’s interaction for 500 ms<br>5<img src="http://www.cnblogs.com/Images/OutliningIndicators/InBlock.gif" alt> Sleep(500);<br>6<img src="http://www.cnblogs.com/Images/OutliningIndicators/InBlock.gif" alt><br>7<img src="http://www.cnblogs.com/Images/OutliningIndicators/InBlock.gif" alt> // Turn off monitor<br>8<img src="http://www.cnblogs.com/Images/OutliningIndicators/InBlock.gif" alt> SendMessage(HWND_BROADCAST, WM_SYSCOMMAND, SC_MONITORPOWER, (LPARAM) 2);<br>9<img src="http://www.cnblogs.com/Images/OutliningIndicators/InBlock.gif" alt><br>10<img src="http://www.cnblogs.com/Images/OutliningIndicators/InBlock.gif" alt> return 0;<br>11<img src="http://www.cnblogs.com/Images/OutliningIndicators/ExpandedBlockEnd.gif" alt>}
+12<img src="http://www.cnblogs.com/Images/OutliningIndicators/None.gif" alt><br>13<img src="http://www.cnblogs.com/Images/OutliningIndicators/None.gif" alt></p>
+<p>编译以后生成一个文件，然后在桌面上创建一个它的快捷方式。</p>
+<p>编辑快捷方式的属性，找到“快捷键”这一栏，设置为你需要的快捷键。我这里设置为Ctrl+Shift+Alt+F12，保存，这样需要关屏的时候只需要按以上快捷键就可以了。<br><img src="http://images.cnblogs.com/cnblogs_com/hesicong/untitled.JPG" alt></p>
+<p>如果你还嫌麻烦(真懒……)，那么下载这个文件就行了：<br><a href="http://hesicong.cnblogs.com/Files/hesicong/OneClickDisplayTurnoff.rar" target="_blank" rel="noopener"></a>[download id=”30”]</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2006-06-29-wish-you-are-healthy/" class="prev">PREV</a><a href="/post/2006-06-20-write-something-of-my-own/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

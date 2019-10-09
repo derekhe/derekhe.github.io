@@ -1,0 +1,78 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 阿里云调整系统分区大小 · 我是思聪</title><meta name="description" content="阿里云调整系统分区大小 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">阿里云调整系统分区大小</h1><div class="post-info">Nov 10, 2012</div><div class="post-content"><p>阿里云的云服务器，40G的硬盘，20G分给了系统，20G分给了数据。那么，如果不加调整，只能用上20G的空间，其余系统占用的20G就不怎么好用了。</p>
+<p>那么，有没有办法能够将系统的20G分区分出来呢？有。resize2fs不支持挂在的分区的调整，我们需要将整个root转移到data盘，然后调整fstab和grub，让/挂在到/dev/xvdb1分区中，然后再对/dev/xvda进行调整，然后再将数据恢复回去。</p>
+<p>. 备份数据</p>
+<p>给data盘</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">fdisk <span class="regexp">/dev/</span>xvdb</span><br></pre></td></tr></table></figure>
+
+<p>格式化</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">mkfs<span class="selector-class">.ext4</span> /dev/xvdb1</span><br></pre></td></tr></table></figure>
+
+<p>挂载data盘到/mnt</p>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">mount <span class="string">/dev/xvdb1</span> <span class="string">/mnt</span></span><br></pre></td></tr></table></figure>
+
+<p>搬移整个root</p>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">rsync -aAXv /* <span class="string">/mnt</span> <span class="params">--exclude=</span>&#123;<span class="string">/dev/</span>*,<span class="string">/proc/</span>*,<span class="string">/sys/</span>*,<span class="string">/tmp/</span>*,<span class="string">/run/</span>*,<span class="string">/mnt/</span>*,<span class="string">/media/</span>*,<span class="string">/lost</span>+found,<span class="string">/home/</span>*<span class="string">/.gvfs</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>. 修改fstab和grub.cfg</p>
+<p>首先查看GUID编号：</p>
+<figure class="highlight subunit"><table><tr><td class="code"><pre><span class="line">ls -l /dev/disk/by-uuid/</span><br><span class="line">total 0</span><br><span class="line">lrwxrwxrwx 1 root root 11 Nov 10 11:41 56a7fe0d<span class="string">-1</span>d1c<span class="string">-4</span>aa5<span class="string">-82</span>ad<span class="string">-59</span>dedb0177b3 -&gt; ../../xvda1</span><br><span class="line">lrwxrwxrwx 1 root root 11 Nov 10 11:42 cd6331ee<span class="string">-47</span>db<span class="string">-4338</span><span class="string">-9288</span><span class="string">-82</span>d66e7e1572 -&gt; ../../xvdb1</span><br></pre></td></tr></table></figure>
+
+<p>看到xvda1的号和xvdb1的号，将在fstab中的56a7fe0d-1d1c-4aa5-82ad-59dedb0177b3替换成cd6331ee-47db-4338-9288-82d66e7e1572即可(每个空间的号不一样哈，不要乱替换)</p>
+<p>替换好后，</p>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">reboot</span></span><br></pre></td></tr></table></figure>
+
+<p>如果一切顺利，1分钟之内则可以重新连上。否则只有重置阿里云了……</p>
+<p>登录上去，则可以看到：</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="comment"># mount</span></span><br><span class="line">/dev/xvdb1 on /<span class="built_in"> type </span>ext4 (rw,<span class="attribute">errors</span>=remount-ro)</span><br><span class="line">proc on /proc<span class="built_in"> type </span>proc (rw,noexec,nosuid,nodev)</span><br><span class="line">sysfs on /sys<span class="built_in"> type </span>sysfs (rw,noexec,nosuid,nodev)</span><br><span class="line">none on /sys/fs/fuse/connections<span class="built_in"> type </span>fusectl (rw)</span><br><span class="line">none on /sys/kernel/<span class="builtin-name">debug</span><span class="built_in"> type </span>debugfs (rw)</span><br><span class="line">none on /sys/kernel/security<span class="built_in"> type </span>securityfs (rw)</span><br><span class="line">udev on /dev<span class="built_in"> type </span>devtmpfs (rw,<span class="attribute">mode</span>=0755)</span><br><span class="line">devpts on /dev/pts<span class="built_in"> type </span>devpts (rw,noexec,nosuid,<span class="attribute">gid</span>=5,mode=0620)</span><br><span class="line">tmpfs on /<span class="builtin-name">run</span><span class="built_in"> type </span>tmpfs (rw,noexec,nosuid,<span class="attribute">size</span>=10%,mode=0755)</span><br><span class="line">none on /run/lock<span class="built_in"> type </span>tmpfs (rw,noexec,nosuid,nodev,<span class="attribute">size</span>=5242880)</span><br><span class="line">none on /run/shm<span class="built_in"> type </span>tmpfs (rw,nosuid,nodev)</span><br></pre></td></tr></table></figure>
+
+<p>xvdb1分区被挂载了。</p>
+<p>好了。这下可以分区了。</p>
+<p>. 重新分区</p>
+<p>重新分区要把以前的xvda1分区删除了。如果想无损分区，似乎可以用resize2fs来做。但我采用的方法是将以前的分区删除了，然后重新将现有的系统拷贝过去。</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">fdisk <span class="regexp">/dev/</span>xvda</span><br></pre></td></tr></table></figure>
+
+<p>删除第一个分区，然后新建一个分区，分区大小自己定。</p>
+<p>记得按a添加一个boot flag，否则启动不了。然后p以下，应该可以看到有一个*</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Device Boot      Start         End      Blocks   Id  System</span><br><span class="line">/dev/xvda1   *        2048    10487807     5242880   83  Linux</span><br></pre></td></tr></table></figure>
+
+<p>然后</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">mkfs<span class="selector-class">.ext4</span> /dev/xvda1</span><br></pre></td></tr></table></figure>
+
+<p>格式化</p>
+<p>完成后，</p>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">mount <span class="string">/dev/xvda1</span> <span class="string">/mnt</span></span><br></pre></td></tr></table></figure>
+
+<p>然后，我们又要将现有系统同步过去：</p>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">rsync -aAXv /* <span class="string">/mnt</span> <span class="params">--exclude=</span>&#123;<span class="string">/dev/</span>*,<span class="string">/proc/</span>*,<span class="string">/sys/</span>*,<span class="string">/tmp/</span>*,<span class="string">/run/</span>*,<span class="string">/mnt/</span>*,<span class="string">/media/</span>*,<span class="string">/lost</span>+found,<span class="string">/home/</span>*<span class="string">/.gvfs</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>. 修改分区挂载。</p>
+<p>由于重新启动后的分区将是/mnt下面的分区，那么，我们需要修改/mnt/etc/fstab和/mnt/boot/grub/grub.cfg内的挂在点。</p>
+<p>修改方法和之前的一样，先</p>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ls</span> <span class="string">/dev/disk/by-uuid</span>看一下GUID，然后再修改即可。</span><br></pre></td></tr></table></figure>
+
+<p>. 重启后，看一下分区信息，搞定。</p>
+<figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line">df -h</span><br><span class="line"></span><br><span class="line">Filesystem      Size  Used Avail Use% Mounted on</span><br><span class="line">/dev/xvda1      <span class="number">5.0</span>G  <span class="number">1.2</span>G  <span class="number">3.7</span>G  <span class="number">24</span>% /</span><br><span class="line">udev            <span class="number">237</span>M  <span class="number">4.0</span>K  <span class="number">237</span>M   <span class="number">1</span>% /dev</span><br><span class="line">tmpfs            <span class="number">99</span>M  <span class="number">264</span>K   <span class="number">98</span>M   <span class="number">1</span>% /run</span><br><span class="line">none            <span class="number">5.0</span>M     <span class="number">0</span>  <span class="number">5.0</span>M   <span class="number">0</span>% /run/lock</span><br><span class="line">none            <span class="number">246</span>M     <span class="number">0</span>  <span class="number">246</span>M   <span class="number">0</span>% /run/shm</span><br></pre></td></tr></table></figure></div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2012-12-24-jin-tian-bu-shang_ban/" class="prev">PREV</a><a href="/post/2012-11-10-hp1018-ubuntu-10-04-an-zhuang-zhi_dao/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

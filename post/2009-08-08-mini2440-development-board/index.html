@@ -1,0 +1,33 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> Mini2440开发板 · 我是思聪</title><meta name="description" content="Mini2440开发板 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">Mini2440开发板</h1><div class="post-info">Aug 8, 2009</div><div class="post-content"><p>前段时间买了个Mini2440开发板(见<a href="http://www.arm9.net)，买的是MINI2440+7寸屏幕，在成都直接提货的，64M" target="_blank" rel="noopener">www.arm9.net)，买的是MINI2440+7寸屏幕，在成都直接提货的，64M</a> Flash的780块钱。</p>
+<p>当时买这个玩意儿是因为有个哥哥说还是有必要了解一些这方面的知识，可以去搞一个平时玩玩。网上找了一圈还是觉得这个便宜实惠。最令我觉得感动的是说明书都写了500多页，网上也有持续的更新。所以我觉得厂商是很负责的态度来做这个事情的。当时看的时候在浙江，回来就买了一个。</p>
+<p>拿回来第一件事就是连接LCD和开发板，很简单的。然后就是找了个USB转串口的转接线。可怜我的P35 NEO2 FR，看起来很华丽的主板，没有COM口，这让人很郁闷。用了转接线插上一看，哟，没反应。捣鼓了好一阵觉得转接线是不是有问题，最后以外之间把USB插了另外一个插口里面，再用PUTTY一连，霍霍，连上了开发板的BootLoader。</p>
+<p>后几天就是看着说明书熟悉一下各种功能。最新版的说明书里面讲的东西需要最新的BootLoader支持，而我的那个板子里面的是今年4月份或者更老的BootLoader。我尝试把supervivi-64M的BootLoader写入到NAND中，但一写入就出现说vivi的size只有123k不够245k，无法写入。我后来尝试在删除了MTD分区的vivi分区和eboot分区，然后建立了一个大一点的vivi分区，就可以写入了。然后把开关变成NAND启动，开机按着开发板的任意一个键，电脑上就可以进入BootLoader操作了。</p>
+<p>后来觉得怎么着这个也不方便，每次都要按着键，不爽。还是看怎么能够把NOR的BootLoader更新了。</p>
+<p>刚开始我还走了弯路，以为H-JTAG还要买一个什么转接的东西。看了附录的SJF2440，按照步骤一操作，傻了，SFJ2440程序不支持我的SST的NOR Flash。刚开始我还以为怎么就那么倒霉呢，后来按照说明书的做法，把H-JTAG装上了。开发板提供的H-JTAG是一个LPT接口的一个小板子，幸亏我的笔记本有这个接口，要不然就郁闷死了，买一个能用的USB转LPT的不知道要多贵。</p>
+<p>按照步骤一步一步的做下去，更新好了，很顺利。开机启动的时候也显示新的BootLoader界面了。</p>
+<p>剩下玩的步骤也就是按照说明书的做点另外的东东啦。最终想看看QT 4.5能不能在上面跑起来。自带的Qtopia确实有点老了，Konquoer浏览器确实还是有点慢了。或者试试WINCE，看看上网效果如何，呵呵。</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2009-08-09-msi-p35-neo2-fr-a-serial-port-but-did-not-pick-up/" class="prev">PREV</a><a href="/post/2009-08-08-weekend-rain/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

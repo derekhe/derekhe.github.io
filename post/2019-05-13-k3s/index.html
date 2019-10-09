@@ -1,0 +1,75 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 使用k3s减少k8s成本 · 我是思聪</title><meta name="description" content="使用k3s减少k8s成本 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">使用k3s减少k8s成本</h1><div class="post-info">May 13, 2019</div><div class="post-content"><p>爱飞狗后台的数据爬虫以及数据服务器资源都部署在k8s上，使用rancher搭建。在不影响太多性能的情况下尽量选择最低配置的机器。对于内存不足的情况适当的使用交换文件代替（swap）。整个集群大致结构如下：</p>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>机器类型</th>
+<th>价格</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>爬虫1</td>
+<td>1G 1CPU</td>
+<td>5美元</td>
+</tr>
+<tr>
+<td>爬虫2</td>
+<td>1G 1CPU</td>
+<td>5美元</td>
+</tr>
+<tr>
+<td>爬虫3</td>
+<td>1G 1CPU</td>
+<td>5美元</td>
+</tr>
+<tr>
+<td>监控</td>
+<td>1G 1CPU</td>
+<td>5美元</td>
+</tr>
+<tr>
+<td>etcd</td>
+<td>2G 1CPU</td>
+<td>10美元</td>
+</tr>
+<tr>
+<td>rancher主机</td>
+<td>2G 1CPU</td>
+<td>10美元</td>
+</tr>
+<tr>
+<td>aiflygo服务器</td>
+<td>4G 2CPU</td>
+<td>20美元</td>
+</tr>
+</tbody></table>
+<p>一个月的开销大概在60美元左右。分析上面的集群可以发现，rancher和etcd两个节点是浪费了钱，每个月有20美元的开销。DigitalOcean提供了k8s的托管集群，可以将这部分开销节省。但托管集群的droplet无法定制化，无法使用交换分区和bbr，造成性能瓶颈。另外托管的droplet的最低要求也是2G的内存，造成不必要的开支。</p>
+<p>k8s有一个非常不好的地方就是最低的机器要求比较高，1G内存的worker node已经完全低于推荐配置，如果在上面部署worker node直接的内存占用就要300M左右，剩余的内存空间并不多，必须要使用交换分区。etcd节点之前也用过1G的内存，但经常会由于大量使用交换分区导致性能问题，最后集群崩溃，所以无论如何也需要使用2G的内存才行。</p>
+<p>最近rancher公司推出了k3s，其主打就是简易的部署和极地的机器消耗。这点对于节约成本来讲非常的重要。我试了下k3s的server大概只占用200M左右的内存，agent只占用几十兆内存，非常的节约。k3s也可以完全使用kubectl来进行管理，配置文件和k8s保持一致，非常方便。</p>
+<p>我将etcd节点和rancher主机删除，替换成了1G 1CPU的机器(5美元)，节约了15美元，然后将aiflygo的服务器进行降配置到2G 2CPU (15美元)，总共节约20美元。得益于更多的可用内存，目前爬虫的性能比以前更好，整体集群的性能也非常的高。</p>
+<p>至于HA，既然都穷到了用k3s来减少开销，对于我这样的小型的集群和不是关键系统来讲都不是需要考虑的了。</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2019-05-27-proxy/" class="prev">PREV</a><a href="/post/2019-04-17-book/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

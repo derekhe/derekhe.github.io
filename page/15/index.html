@@ -1,0 +1,125 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 我是思聪</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2012-11-10-a-li-yun-diao-zheng-xi-tong-fen-qu-da_xiao/" class="post-title-link">阿里云调整系统分区大小</a></h2><div class="post-info">Nov 10, 2012</div><div class="post-content"><p>阿里云的云服务器，40G的硬盘，20G分给了系统，20G分给了数据。那么，如果不加调整，只能用上20G的空间，其余系统占用的20G就不怎么好用了。</p>
+<p>那么，有没有办法能够将系统的20G分区分出来呢？有。resize2fs不支持挂在的分区的调整，我们需要将整个root转移到data盘，然后调整fstab和grub，让/挂在到/dev/xvdb1分区中，然后再对/dev/xvda进行调整，然后再将数据恢复回去。</p>
+<p>. 备份数据</p>
+<p>给data盘</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">fdisk <span class="regexp">/dev/</span>xvdb</span><br></pre></td></tr></table></figure>
+
+<p>格式化</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">mkfs<span class="selector-class">.ext4</span> /dev/xvdb1</span><br></pre></td></tr></table></figure>
+
+<p>挂载data盘到/mnt</p>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">mount <span class="string">/dev/xvdb1</span> <span class="string">/mnt</span></span><br></pre></td></tr></table></figure>
+
+<p>搬移整个root</p>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">rsync -aAXv /* <span class="string">/mnt</span> <span class="params">--exclude=</span>&#123;<span class="string">/dev/</span>*,<span class="string">/proc/</span>*,<span class="string">/sys/</span>*,<span class="string">/tmp/</span>*,<span class="string">/run/</span>*,<span class="string">/mnt/</span>*,<span class="string">/media/</span>*,<span class="string">/lost</span>+found,<span class="string">/home/</span>*<span class="string">/.gvfs</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>. 修改fstab和grub.cfg</p>
+<p>首先查看GUID编号：</p>
+<figure class="highlight subunit"><table><tr><td class="code"><pre><span class="line">ls -l /dev/disk/by-uuid/</span><br><span class="line">total 0</span><br><span class="line">lrwxrwxrwx 1 root root 11 Nov 10 11:41 56a7fe0d<span class="string">-1</span>d1c<span class="string">-4</span>aa5<span class="string">-82</span>ad<span class="string">-59</span>dedb0177b3 -&gt; ../../xvda1</span><br><span class="line">lrwxrwxrwx 1 root root 11 Nov 10 11:42 cd6331ee<span class="string">-47</span>db<span class="string">-4338</span><span class="string">-9288</span><span class="string">-82</span>d66e7e1572 -&gt; ../../xvdb1</span><br></pre></td></tr></table></figure>
+
+<p>看到xvda1的号和xvdb1的号，将在fstab中的56a7fe0d-1d1c-4aa5-82ad-59dedb0177b3替换成cd6331ee-47db-4338-9288-82d66e7e1572即可(每个空间的号不一样哈，不要乱替换)</p>
+<p>替换好后，</p>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">reboot</span></span><br></pre></td></tr></table></figure>
+
+<p>如果一切顺利，1分钟之内则可以重新连上。否则只有重置阿里云了……</p>
+<p>登录上去，则可以看到：</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="comment"># mount</span></span><br><span class="line">/dev/xvdb1 on /<span class="built_in"> type </span>ext4 (rw,<span class="attribute">errors</span>=remount-ro)</span><br><span class="line">proc on /proc<span class="built_in"> type </span>proc (rw,noexec,nosuid,nodev)</span><br><span class="line">sysfs on /sys<span class="built_in"> type </span>sysfs (rw,noexec,nosuid,nodev)</span><br><span class="line">none on /sys/fs/fuse/connections<span class="built_in"> type </span>fusectl (rw)</span><br><span class="line">none on /sys/kernel/<span class="builtin-name">debug</span><span class="built_in"> type </span>debugfs (rw)</span><br><span class="line">none on /sys/kernel/security<span class="built_in"> type </span>securityfs (rw)</span><br><span class="line">udev on /dev<span class="built_in"> type </span>devtmpfs (rw,<span class="attribute">mode</span>=0755)</span><br><span class="line">devpts on /dev/pts<span class="built_in"> type </span>devpts (rw,noexec,nosuid,<span class="attribute">gid</span>=5,mode=0620)</span><br><span class="line">tmpfs on /<span class="builtin-name">run</span><span class="built_in"> type </span>tmpfs (rw,noexec,nosuid,<span class="attribute">size</span>=10%,mode=0755)</span><br><span class="line">none on /run/lock<span class="built_in"> type </span>tmpfs (rw,noexec,nosuid,nodev,<span class="attribute">size</span>=5242880)</span><br><span class="line">none on /run/shm<span class="built_in"> type </span>tmpfs (rw,nosuid,nodev)</span><br></pre></td></tr></table></figure>
+
+<p>xvdb1分区被挂载了。</p>
+<p>好了。这下可以分区了。</p>
+<p>. 重新分区</p>
+<p>重新分区要把以前的xvda1分区删除了。如果想无损分区，似乎可以用resize2fs来做。但我采用的方法是将以前的分区删除了，然后重新将现有的系统拷贝过去。</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">fdisk <span class="regexp">/dev/</span>xvda</span><br></pre></td></tr></table></figure>
+
+<p>删除第一个分区，然后新建一个分区，分区大小自己定。</p>
+<p>记得按a添加一个boot flag，否则启动不了。然后p以下，应该可以看到有一个*</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Device Boot      Start         End      Blocks   Id  System</span><br><span class="line">/dev/xvda1   *        2048    10487807     5242880   83  Linux</span><br></pre></td></tr></table></figure>
+
+<p>然后</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">mkfs<span class="selector-class">.ext4</span> /dev/xvda1</span><br></pre></td></tr></table></figure>
+
+<p>格式化</p>
+<p>完成后，</p>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">mount <span class="string">/dev/xvda1</span> <span class="string">/mnt</span></span><br></pre></td></tr></table></figure>
+
+<p>然后，我们又要将现有系统同步过去：</p>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">rsync -aAXv /* <span class="string">/mnt</span> <span class="params">--exclude=</span>&#123;<span class="string">/dev/</span>*,<span class="string">/proc/</span>*,<span class="string">/sys/</span>*,<span class="string">/tmp/</span>*,<span class="string">/run/</span>*,<span class="string">/mnt/</span>*,<span class="string">/media/</span>*,<span class="string">/lost</span>+found,<span class="string">/home/</span>*<span class="string">/.gvfs</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>. 修改分区挂载。</p>
+<p>由于重新启动后的分区将是/mnt下面的分区，那么，我们需要修改/mnt/etc/fstab和/mnt/boot/grub/grub.cfg内的挂在点。</p>
+<p>修改方法和之前的一样，先</p>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ls</span> <span class="string">/dev/disk/by-uuid</span>看一下GUID，然后再修改即可。</span><br></pre></td></tr></table></figure>
+
+<p>. 重启后，看一下分区信息，搞定。</p>
+<figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line">df -h</span><br><span class="line"></span><br><span class="line">Filesystem      Size  Used Avail Use% Mounted on</span><br><span class="line">/dev/xvda1      <span class="number">5.0</span>G  <span class="number">1.2</span>G  <span class="number">3.7</span>G  <span class="number">24</span>% /</span><br><span class="line">udev            <span class="number">237</span>M  <span class="number">4.0</span>K  <span class="number">237</span>M   <span class="number">1</span>% /dev</span><br><span class="line">tmpfs            <span class="number">99</span>M  <span class="number">264</span>K   <span class="number">98</span>M   <span class="number">1</span>% /run</span><br><span class="line">none            <span class="number">5.0</span>M     <span class="number">0</span>  <span class="number">5.0</span>M   <span class="number">0</span>% /run/lock</span><br><span class="line">none            <span class="number">246</span>M     <span class="number">0</span>  <span class="number">246</span>M   <span class="number">0</span>% /run/shm</span><br></pre></td></tr></table></figure></div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2012-11-10-hp1018-ubuntu-10-04-an-zhuang-zhi_dao/" class="post-title-link">HP1018 Ubuntu 10.04 安装指导</a></h2><div class="post-info">Nov 10, 2012</div><div class="post-content"><p>惠普打印机在Ubuntu下 需要安装opensource的驱动，郁闷的是hplip.sf.net在伟大的CN是访问不了的，所以驱动下载fireware的时候就死掉了。所以只好翻墙过去看看怎么回事。</p>
+<p>通过hp-plugin -g可以发现驱动是到hplip.sf.net/plugin.conf里面取东东，那么翻墙过去看看这里有什么：</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="section">[3.12.10]</span></span><br><span class="line"><span class="attr">url</span> = http://www.openprinting.org/download/printdriver/auxfiles/HP/plugins/hplip-<span class="number">3.12</span>.<span class="number">10</span>-plugin.run</span><br><span class="line"><span class="attr">size</span> = <span class="number">1808025</span></span><br><span class="line"><span class="attr">timestamp</span> = <span class="number">1349329318.15</span></span><br><span class="line"><span class="attr">datetime</span> = Thu, <span class="number">04</span> Oct <span class="number">2012</span> <span class="number">05</span>:<span class="number">41</span>:<span class="number">58</span> +<span class="number">0000</span></span><br><span class="line"><span class="attr">checksum</span> = ecac4ce4613db41a995df81b2efcbd3e502433ae</span><br><span class="line"><span class="attr">num_files</span> = <span class="number">52</span></span><br><span class="line"><span class="attr">revision</span> = <span class="number">17299</span></span><br><span class="line"></span><br><span class="line"><span class="section">[3.12.11]</span></span><br><span class="line"><span class="attr">url</span> = http://www.openprinting.org/download/printdriver/auxfiles/HP/plugins/hplip-<span class="number">3.12</span>.<span class="number">11</span>-plugin.run</span><br><span class="line"><span class="attr">size</span> = <span class="number">1808048</span></span><br><span class="line"><span class="attr">timestamp</span> = <span class="number">1352274536.66</span></span><br><span class="line"><span class="attr">datetime</span> = Wed, <span class="number">07</span> Nov <span class="number">2012</span> <span class="number">07</span>:<span class="number">48</span>:<span class="number">56</span> +<span class="number">0000</span></span><br><span class="line"><span class="attr">checksum</span> = <span class="number">3376764</span>cf781792662200aa61feaae1cc44f30b1</span><br><span class="line"><span class="attr">num_files</span> = <span class="number">52</span></span><br><span class="line"><span class="attr">revision</span> = <span class="number">17490</span></span><br></pre></td></tr></table></figure>
+
+<p>看吧，那么多地址。</p>
+<p>那么，我们自己去访问看看：</p>
+<p><a href="http://www.openprinting.org/download/printdriver/auxfiles/HP/plugins/" target="_blank" rel="noopener">http://www.openprinting.org/download/printdriver/auxfiles/HP/plugins/</a></p>
+<p>里面有很多驱动，找最新版本的plugin就可以了</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2012-10-20-g330d-ics-yuan-ma-bian-yi-qi-dong-cheng_gong/" class="post-title-link">G330D ICS源码编译启动成功</a></h2><div class="post-info">Oct 20, 2012</div><div class="post-content"><p>G330D离CM. CM10不远了，今天搞定了4.0.4在G330D的启动，已经顺利的进入源码编译的系统。<br>来，说一下怎么搞吧：<br><a href="https://www.codeaurora.org/xwiki/bin/QAEP/release" target="_blank" rel="noopener">https://www.codeaurora.org/xwiki/bin/QAEP/release</a><br>这个是ICS的：</p>
+<blockquote>
+<p>October 17, 2012<br>M8625SSNSKMLYA1310<br>msm8625<br>M8625SSNSKMLYA1310.xml</p>
+</blockquote>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">$ repo init -u [<span class="string">git://codeaurora.org/platform/manifest.git</span>](<span class="link">git://codeaurora.org/platform/manifest.git</span>) -b release -m [<span class="string">manifest</span>] --repo-url=[<span class="string">git://codeaurora.org/tools/repo.git</span>](<span class="link">git://codeaurora.org/tools/repo.git</span>)</span><br><span class="line">$ repo sync -j32</span><br></pre></td></tr></table></figure>
+
+<p><code>[manifest]</code>填写上面那个xml文件</p>
+<p>然后就是漫长的等待……其中<code>source.android</code>好像会出错，没关系用</p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">repo <span class="keyword">sync</span> -flj32</span><br></pre></td></tr></table></figure>
+
+<p>从本地重新<code>sync</code>一个，忽略错误。</p>
+<p>等东西下载完了，准备开工。</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">source build/envsetup.sh</span><br><span class="line">choosecombo</span><br></pre></td></tr></table></figure>
+
+<p>选<code>2.debug</code></p>
+<p>然后选13，<code>msm7627a</code></p>
+<p>然后就可以开始<code>make -j4</code>了</p>
+<p>完成后，系统就做了好，可以在<code>/out/debug/target/product/msm7627a/</code>下面看到<code>system.img</code>等文件即可。</p>
+<p>下面开始编译kernel</p>
+<p>下载地址：<a href="https://github.com/derekhe/huawei-g330d-u8825d-kernel" target="_blank" rel="noopener">https://github.com/derekhe/huawei-g330d-u8825d-kernel</a></p>
+<p>请看一下：<a href="https://github.com/derekhe/huawei-g330d-u8825d-kernel/blob/master/HOW-TO-BUILD" target="_blank" rel="noopener">https://github.com/derekhe/huawei-g330d-u8825d-kernel/blob/master/HOW-TO-BUILD</a></p>
+<p>编译完成后，开始制作<code>boot.img</code></p>
+<p>从现有的ROM中，解压<code>boot.img</code></p>
+<p>解压工具见：</p>
+<p><a href="https://github.com/derekhe/u8825d-bootimg-scripts" target="_blank" rel="noopener">https://github.com/derekhe/u8825d-bootimg-scripts</a></p>
+<p>然后将kernel打包进去，双wipe，</p>
+<p>用<code>adb</code>刷<code>system.img</code>时，记得要用<code>system.img.ext4</code>这个~</p>
+<p>然后，就等待吧。</p>
+<p>之前我卡在启动画面那个地方，后来修改内核打开了logcat，竟然就进系统了。</p>
+<p>那，有什么可以用呢？</p>
+<p>相机？<del>NO</del>电话<del>NO，等待你的开发</del>！</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2012-10-09-g330d-ke-bian-yi-nei_he/" class="post-title-link">G330D可编译内核</a></h2><div class="post-info">Oct 9, 2012</div><div class="post-content"><p>开发人员的福音，我已经做好了，其他的不想多说：<br><a href="https://github.com/derekhe/huawei-g330d-u8825d-kernel" target="_blank" rel="noopener">https://github.com/derekhe/huawei-g330d-u8825d-kernel</a><br>打包的问题也已经解决了：<br><a href="https://github.com/derekhe/u8825d-bootimg-scripts" target="_blank" rel="noopener">https://github.com/derekhe/u8825d-bootimg-scripts</a><br>请记得看HOW-TO-BUILD，省得你问我为什么编译不起。<br>第一次发帖，少说话~
+有想法的可以关注我的微博：<br><a href="http://weibo.com/h198504" target="_blank" rel="noopener">http://weibo.com/h198504</a></p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2012-08-11-he-xie/" class="post-title-link">和谐</a></h2><div class="post-info">Aug 11, 2012</div><div class="post-content"><p>宝宝已经出来20几天了，今天婆婆和公公回广州了，在这边实在是待得有点郁闷。两边老人的观念不一样，性格也不一样，一个特别强势一个但求和谐。语言不通也是一种小的障碍，常常在言谈之间多了一些误会。</p>
+<p>我不能说谁对谁错，广州和成都的有些观点也可能是冲突的。就拿个上火、凉这两个东西来说吧，都说不清楚。有些时候老人家不想吃或者不吃的，就给你说这样吃不得那样吃不得。其实最终都没有什么依据，有些是纯属道听途说的，有些是纯粹自己想的。</p>
+<p>带孩子这个事情上，年轻人的观点又和老的不一样。老年人可能以为他们带过小孩，这样那样的经验丰富，但有些经验已经过时或者完全是错误的，有些观念还得改进。那么面对这样的冲击的时候，不同人表现出来的态度就很让人恼火。强势的人就想把观点强加到别人身上，一旦你找到理由说不对，她就表现出一副很不削、很不爽的样子，然后给你说管你的哟，我才不管这些呢，你们自己带嘛。我都看不惯这样的，真的很烦。</p>
+<p>你说改一下吧，人的性格几十年形成，社会上不同人的性格有不同的好、坏。没有最好的性格，但做事不要总是走极端。对待家人和对待外人的态度不能搞得一样，否则外人和家人有什么区别呢。</p>
+<p>老婆总是说怎么以前没有说这样那样的问题呢？习惯可能是一方面，另一方面我也不完全按照别人的说法来搞。有了宝宝之后，强势的人更显得控制欲望强烈，往往就伤人无数，然后还不思悔改。</p>
+<p>和谐，可能宝宝大点好带了搬出去住就好多了。就和姐说的一样，和父母还是要保持一定的距离，不太远也不太近，否则就总是无法和谐。</p>
+</div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/14/" class="prev">PREV</a><a href="/page/16/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

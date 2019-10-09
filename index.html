@@ -1,0 +1,253 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 我是思聪</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p class="selected">现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2019-10-08-aiflygo-failed/" class="post-title-link">产品运营从开始到失败</a></h2><div class="post-info">Oct 8, 2019</div><div class="post-content"><p>经过无数次的纠结后，我还是决定关了吧，一直亏损下去也是个无底洞。</p>
+<p>17年10月左右开始《爱飞狗》的开发设计，到今年10月1日，差不多两年整的时间，一款有新意的产品，最终还是落了个关闭的下场。究其原因，我不会运营，没有精力去运营；没有雄心壮胆和经济实力进行产品的推广；尤其是产品的商业模式也是个很难突破的点，使得自己都无法说服自己进行投资，更别说找人投资。技术上倒是学到了很多，尤其在爬虫方面积累了非常多的经验，写出了《爬虫实战：从数据到产品》一书，也算是对这个产品的开发模式的一个总结。在这里，最后写一些琐碎的琐碎的文字，也算是对这段历史的总结。</p>
+<h1 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h1><p>从16年6月开始到现在，我收集了三年多的国内直飞航线的机票数据，覆盖了80%以上的线路。直到现在也在源源不断的采集数据，每天几百万条记录。虽然产品不做了，但背后的数据还是会以继续收集。过去的数据就不会再回来，数据加上了时间的维度，积累的越久便越有价值。这些数据的的存储、处理我也是想了很多方法，以最低成本的方式进行处理，使得能够持续不断的进行收集。</p>
+<p>在运营中我发现，越来越多的用户想要查询国际的航班，然而抓取国际航线非常消耗资源，投入非常大所以一直没有做。我将有限的资源用到刀刃上，解决国内航空的问题就可以了。</p>
+<h1 id="推广"><a href="#推广" class="headerlink" title="推广"></a>推广</h1><p>到目前为止，爱飞狗总共积累了6.4万用户，日活在100左右，高峰时期可以到200左右。新增用户在50到100左右，主要来源还是靠搜索等自然增长。18年过年前爱范儿和知晓程序写了两篇文章帮我获取了大量的用户，而后就逐步放缓。</p>
+<p>这样的日活确实有点低，我尝试过在今日头条进行推广、知乎上进行推广，也花了一些钱，但转换率相对较低，也没有太多时间去写软文。这样导致用户积累的速度也就比较慢。另一个硬伤是个低频的应用，一般而言每年只有在大家来临前才有几次使用，一个用户每年使用的时候也是在旅行前，平均下来也就那么一两次，想让一个新用户完全记住这个产品，还是比较困难的。</p>
+<p>关于用户的群体，我通过背后采集到的数据和大家的问题了解到，基本上也符合我的假设——都是对价格敏感的群体。最好玩的事，有多个异地恋的学生朋友找过我问过一些问题，从他们得知爱飞狗提供的数据还是非常有用，确实能够节约一些钱。</p>
+<h1 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h1><p>18年过年前一个多月那段时间，爱范儿推送了两篇产品的文章，使得产品突然面对洪水般的新用户，访问量一度达到2万每分钟。然而小程序还是经历住了考验，虽然慢一点，但还是进行了持续的响应。整个这个项目的最主要的是需要低成本的运营，每月的服务器开销要控制在500元以下，所以服务器等资源不是很强大。</p>
+<p>这是当时在DigitalOcean上面一个20美元每月的2核4G的一个服务器上取得的成果，主要的功劳其实还是来自于各级缓存的应用。如果有更多的投入，支持更高数量的并发是没有问题的。然而毕竟这种突发情况也不是常态，所以并没有进行自动扩容等复杂的操作，架构简单即是美。</p>
+<p>在架构上，数据采集在云端24小时运行，然后每日同步到本地，利用已有的台式机在夜间进行数据处理，然后将处理完的结果返回给云端。本地使用廉价的硬盘进行存储，部分数据同步到云盘进行备份。这样实现了固定资产的再次利用，降低了海量数据放到云端的成本。这些点都在我的书中有介绍。</p>
+<h1 id="支付"><a href="#支付" class="headerlink" title="支付"></a>支付</h1><p>维持产品的持续增长和运营，还是靠钱。我没有注册公司以避免注册公司后的种种的坑，所以只能以个人账号进行支付。最初，PayJS刚好帮我实现了这个功能，月收入基本上能够抵消服务器的开销。我认为这就够了。但仅持续了一两个月，苹果将ios的小程序支付功能给禁用了，使得所有的苹果用户无法支付，收入减到一半以下，直到现在这个问题还没有有效的方案。</p>
+<p>后来微信开通了广告的业务，遂在页面中加入了各种广告和利用广告来赚积分的方案来赚取少量的收入。但实在是太少了，而且极大的影响了用户体验。</p>
+<h1 id="未来"><a href="#未来" class="headerlink" title="未来"></a>未来</h1><p>都决定关了，还谈什么未来？</p>
+<p>我曾考虑过做成网页版，通过扫描支付等手段得到一定的收入，但在目前移动的趋势下，我认为也是死路一条；我最近还在看有没有支付的方案，还是没有找到；有哥们儿帮我提供了一个非常便宜的服务器，无奈在国外网络性能不好，在国内访问起来问题不断……现在程序或者数据出现了一些问题，历史数据也刷新不出来了，算了吧，没有时间精力去搞了。公众号上面，看到了有朋友依然需要这个App，但确实是没有精力了，关了吧……</p>
+<p>或许，某一天，突然又有想法了，或者你有想法支持一把？请与我联系，或许这个App会因为你而重生。</p>
+<p>再见！</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2019-05-27-proxy/" class="post-title-link">你要的免费Proxy资源全在这里了</a></h2><div class="post-info">May 27, 2019</div><div class="post-content"><p>地址：<a href="https://github.com/derekhe/ProxyPool" target="_blank" rel="noopener">https://github.com/derekhe/ProxyPool</a></p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>在<a href="https://item.jd.com/12575102.html" target="_blank" rel="noopener">《爬虫实战：从数据到产品》</a>一书中，我讲到了一个基于ProxyBroker的代理池。经过我的长时间的实践，这个代理池用起来非常的方便和稳定。</p>
+<p>基于<a href="https://github.com/constverum/ProxyBroker" target="_blank" rel="noopener">ProxyBroker</a>，增加了中国区域的代理资源。并引入了docker-compose，能够快速的方便的开始代理的抓取。</p>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a><a href="https://github.com/derekhe/ProxyPool#%E7%94%A8%E6%B3%95" target="_blank" rel="noopener"></a>用法</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker-compose up</span><br></pre></td></tr></table></figure>
+
+<p>然后浏览器打开<a href="http://localhost:8080/proxy.json" target="_blank" rel="noopener">http://localhost:8080/proxy.json</a> 即可得代理列表。每个代理都经过类型的验证，代理资源会随着时间增长。每个代理的有效期为一天时间。大概一天有1万左右的有效代理。</p>
+<p>由于很多代理资源在中国无法访问的网站，部署在国内的服务器上会影响资源的获取，所以推荐将服务器部署到国外的服务器。服务器推荐使用<a href="https://m.do.co/c/4bc532e3ef94" target="_blank" rel="noopener">DigitalOcean</a>，我的多个服务器都在SFO2区域，非常的稳定。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2019-05-13-k3s/" class="post-title-link">使用k3s减少k8s成本</a></h2><div class="post-info">May 13, 2019</div><div class="post-content"><p>爱飞狗后台的数据爬虫以及数据服务器资源都部署在k8s上，使用rancher搭建。在不影响太多性能的情况下尽量选择最低配置的机器。对于内存不足的情况适当的使用交换文件代替（swap）。整个集群大致结构如下：</p>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>机器类型</th>
+<th>价格</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>爬虫1</td>
+<td>1G 1CPU</td>
+<td>5美元</td>
+</tr>
+<tr>
+<td>爬虫2</td>
+<td>1G 1CPU</td>
+<td>5美元</td>
+</tr>
+<tr>
+<td>爬虫3</td>
+<td>1G 1CPU</td>
+<td>5美元</td>
+</tr>
+<tr>
+<td>监控</td>
+<td>1G 1CPU</td>
+<td>5美元</td>
+</tr>
+<tr>
+<td>etcd</td>
+<td>2G 1CPU</td>
+<td>10美元</td>
+</tr>
+<tr>
+<td>rancher主机</td>
+<td>2G 1CPU</td>
+<td>10美元</td>
+</tr>
+<tr>
+<td>aiflygo服务器</td>
+<td>4G 2CPU</td>
+<td>20美元</td>
+</tr>
+</tbody></table>
+<p>一个月的开销大概在60美元左右。分析上面的集群可以发现，rancher和etcd两个节点是浪费了钱，每个月有20美元的开销。DigitalOcean提供了k8s的托管集群，可以将这部分开销节省。但托管集群的droplet无法定制化，无法使用交换分区和bbr，造成性能瓶颈。另外托管的droplet的最低要求也是2G的内存，造成不必要的开支。</p>
+<p>k8s有一个非常不好的地方就是最低的机器要求比较高，1G内存的worker node已经完全低于推荐配置，如果在上面部署worker node直接的内存占用就要300M左右，剩余的内存空间并不多，必须要使用交换分区。etcd节点之前也用过1G的内存，但经常会由于大量使用交换分区导致性能问题，最后集群崩溃，所以无论如何也需要使用2G的内存才行。</p>
+<p>最近rancher公司推出了k3s，其主打就是简易的部署和极地的机器消耗。这点对于节约成本来讲非常的重要。我试了下k3s的server大概只占用200M左右的内存，agent只占用几十兆内存，非常的节约。k3s也可以完全使用kubectl来进行管理，配置文件和k8s保持一致，非常方便。</p>
+<p>我将etcd节点和rancher主机删除，替换成了1G 1CPU的机器(5美元)，节约了15美元，然后将aiflygo的服务器进行降配置到2G 2CPU (15美元)，总共节约20美元。得益于更多的可用内存，目前爬虫的性能比以前更好，整体集群的性能也非常的高。</p>
+<p>至于HA，既然都穷到了用k3s来减少开销，对于我这样的小型的集群和不是关键系统来讲都不是需要考虑的了。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2019-04-17-book/" class="post-title-link">心路历程：爬虫实战——从数据到产品</a></h2><div class="post-info">Apr 17, 2019</div><div class="post-content"><p><img src="/images/2019/04-17/4372317-a5ecf0cdb82bfb23.png" alt></p>
+<p>京东链接：<a href="https://item.jd.com/12575102.html" target="_blank" rel="noopener">https://item.jd.com/12575102.html</a></p>
+<p>经过近一年的辛苦创作、编辑、等待，本书终于出版了。这种感觉有点像是十月怀胎，但没有生育时候的痛苦，只有最后得到的欣喜。现在回忆起去年接到写书的邀请，然后到纠结，再到刚开始痛苦的写作，以及最后成稿后的释然，一切都觉得是一场人生的经历。我倒是认为写书的目的不是为了赚钱，写一本书给自己，总结自己的过往，将经验传播给他人，就可以了。</p>
+<h1 id="故事——还得从2017年说起"><a href="#故事——还得从2017年说起" class="headerlink" title="故事——还得从2017年说起"></a>故事——还得从2017年说起</h1><p>2017年1月左右，摩拜单车终于进入到成都。不像重庆那样的上山下坡，成都平原地势较平，成都原本就有非常多骑自行车的人，街头巷尾都有自行车的踪影。作为短途的必要交通工具，摩拜单车的进入算是给出行带来了非常大的方便。</p>
+<p>有一天在查看摩拜单车的APP的时候，突发奇想是否可以将这些车的位置数据拿到，然后尝试分析一下运营状况，看看成都到底有多少车。打开电脑，轻车熟路的进行API分析，搞明白了API的接口，然后就写了一个简单的爬虫，获取了一个月左右的数据并进行了分析。然后在简书上发了几篇文章，并将源代码放在了<a href="https://github.com/derekhe/mobike-crawler" target="_blank" rel="noopener">https://github.com/derekhe/mobike-crawler</a>这个repo中。</p>
+<p><img src="/images/2019/04-17/4372317-c00a3a025050c133.png" alt="image.png"></p>
+<p>出乎意料的是，这些分析居然得到了非常大的流量，两三天时间就到了1万多的阅读量，甚至这个数据分析还“成功”的引起了对方的注意：被问到你怎么得到数据？</p>
+<h1 id="2018年"><a href="#2018年" class="headerlink" title="2018年"></a>2018年</h1><p>2018年，顺着这个思路，后来我又继续分析并爬取了共享汽车、自由职业者网站，并继续坚持将2016年6月开始做的机票的数据爬虫做得更快更稳定。</p>
+<p><img src="/images/2019/04-17/4372317-3cc428bc1c37c6b6.png" alt="image.png"></p>
+<p>2017年末，爱飞狗旅行小程序上线，将我收集到的机票的数据公开，并集成了一个预测系统。知晓小程序对此特意写了一篇文章进行报道。随后，在2018年下半年ThougtWorks对外的YottaBytes分享中，我将爱飞狗的整个产品的规划、开发以及背后的技术实践都分享出来，并写成文章。</p>
+<h1 id="写书？"><a href="#写书？" class="headerlink" title="写书？"></a>写书？</h1><p>2018年3月底，电子工业出版社的安娜编辑联系我，看我能不能约一本书稿。当时我还没放在心上，想想写个书算是一个大工程吧，费时费力的，当时就想想要不还是算了？后来和编辑的更多沟通中发现，爬虫方面的书最近还比较热，也能热一段时间，我做的这些工作也恰好和爬虫非常有关。</p>
+<p>我随后看了一些目前的爬虫相关的书籍， 发现很多爬虫的书籍都写得很初级，讲讲Python的语法、讲讲几个库的用法，弄两个例子就完了，甚至有些书居然用了76页讲各种东西的安装！！初级的爬虫往往很简单，爬几个网站即可，但更复杂的如何去拿到app的数据，如何破解一些sign的思路，却全然没有。或许是太复杂了吧。即便有些数据拿到手了，怎么分析，怎么可视化，也很少有讲解。</p>
+<p><img src="/images/2019/04-17/4372317-8bf24d9e42860a6e.png" alt></p>
+<p>如果我要写的话，我一定不会写这样的书，我不会写初级的书。我要写的话，一定是从一个想法开始，到如何实现这个想法，到如何解决各种困难。案例的话，一定是end to end的，将数据达到实用的阶段。</p>
+<p>还好之前做过的各种数据分析案例，都是有一定的业务背景的，有一些数据提供给了一些爱好者进行了更深入的分析，有一些数据甚至帮助一些公司进行一些新业务的拓展尝试。我和编辑沟通了这些想法，那就开始动手吧！（其实内心是有点纠结的，因为想到要写很长的时间，非常的难受）</p>
+<p><img src="/images/2019/04-17/4372317-d5ef021e64217c0c.png" alt></p>
+<h1 id="那就开始吧"><a href="#那就开始吧" class="headerlink" title="那就开始吧"></a>那就开始吧</h1><p>这是最原始的选题单，可以看到其实当时想写的例子其实比现在书中呈现的更多。但后来由于目标网站改动太大，以及有些网站的例子不太合适，所以进行了删减。</p>
+<p><img src="/images/2019/04-17/4372317-3dddb7f3e254949c.png" alt></p>
+<p>最后，只有半年的时间啊……</p>
+<p><img src="/images/2019/04-17/4372317-a2c6b2d22ddae00e.png" alt></p>
+<p>万事开头难，先写个提纲吧：</p>
+<p><img src="/images/2019/04-17/4372317-8473927c57cb4b9a.png" alt></p>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>工欲善其事必先利其器，2009年写过研究生的论文，倒是对Word玩的很溜。但如今都2018年了哟，好歹用点Markdown对吧！</p>
+<p>好吧，就用Markdown。但是用Markdown的话，我需要把每个章节分开么？后来尝试了一下发现，单一Markdown文件就非常利于管理，不用有洁癖一样把东西拆来拆去：</p>
+<ul>
+<li>方便预览整书情况</li>
+<li>方便章节之间相互引用</li>
+<li>避免调整章节时候的麻烦事 </li>
+</ul>
+<p>然后，在Visual Studio中安装了Markdown Preview Enhanced插件，这个工具很好：</p>
+<ul>
+<li>自动预览</li>
+<li>自动生成目录</li>
+<li>自动内嵌图片、内嵌代码</li>
+<li>能够导出成多种格式（Word格式、PDF格式等）</li>
+</ul>
+<p><img src="/images/2019/04-17/4372317-43052d93a0fabc33.png" alt></p>
+<p>最后，整个项目当然会用git进行管理，这是最基本的啦。</p>
+<p>其中我觉得需要拿出来讲的是，Markdown中可以直接引用代码。这意味着我一边写书一边写的代码，可以无缝的集成到文章中，这样我更改了代码以后，书中的代码也更新了，避免了不同步的问题。</p>
+<p><img src="/images/2019/04-17/4372317-ae07852f73432856.png" alt></p>
+<h1 id="一年"><a href="#一年" class="headerlink" title="一年"></a>一年</h1><p>现在回顾一下整个出书的历程。</p>
+<p>我这个人是喜欢一鼓作气做完一件事情。为了保证及时交付，每天都分配了至少两个小时的时间，再加上之前已经有一些素材的积累，所以整个书的书写都相对比较快。基本上在4个月时间内集中写完了书籍。初稿完成后，我的事情就比较少了，主要是一些校对的工作。</p>
+<ul>
+<li>4月底：建立Repo</li>
+<li>5月初：书写第一章</li>
+<li>6月初：完成单车部分书写</li>
+<li>6月底：完成共享汽车部分书写</li>
+<li>7月底：完成Freelancer部分书写</li>
+<li>8月初：增加爱飞狗产品</li>
+<li>9月底：完成所有书写，并转换成docx供编辑修改</li>
+<li>10月初——12月底 一排</li>
+<li>12月底到1月初： 二排，拿到书号</li>
+<li>2月底：终审</li>
+<li>3月中：封面、查重、定价</li>
+<li>3月底：样书到</li>
+</ul>
+<h1 id="经验"><a href="#经验" class="headerlink" title="经验"></a>经验</h1><ul>
+<li>持续和编辑联系，写完一章就给编辑大致看看得到反馈<br>这一点避免了很多走弯路。第一次写书，对写书需要做的事情了解的比较少，加之平时在敏捷项目中都强调快速反馈，在写书过程中也是，能够及时避免一些坑。</li>
+<li>一鼓作气，坚持每天花些时间写，避免拖拉</li>
+<li>长期写博客，积累素材</li>
+</ul>
+<h1 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h1><p>在写书的过程中也有一些不可避免的“坑”。一来是写书不像是写博客那么随意，对于语言以及内容的提供都要有一个监管在里面。运气不好的是初稿交了以后，编辑告诉我2018年国家对地图相关的图片管理很严。我了解到相关的书籍都必须要进行审核，虽然说是免费，但是为了避免审核的时间消耗和一些潜在的风险，我们对书中的一些地图相关的图片、内容进行了一些修改和删减。</p>
+<p>爬虫这种技术有一定的法律风险，再三考虑之下对书中也有提到一些特定APP名字的地方，我们将名字进行了打码，并强调了这些思路以及代码都仅供参考。</p>
+<p>初稿的反馈说书写的很直白，全是干货，审核后说是要语言柔和一些。由于这个书的架构和其他类似书籍先将一大堆基础知识不一样，出版社的领导提议说将书的结构进行调整，变成介绍工具在前，案例在后。但这就是我想尽力避免的，不想让读者的钱花到了原本网上可以很快查到的地方，所以拒绝了。</p>
+<p>由于互联网时代变化很快，网站和APP都在改版，所以爬虫相关的代码，目前有些已经无法使用了。这是预料之中的事情，但书中所传递的方法，是通用的。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>不管如何，第一本书也算是出来了，放在书架上也是对我的极大地鼓舞。写书不容易，一旦开始就要一鼓作气。平时的积累非常重要，所以多多写博客吧。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2018-07-26-aiflygo/" class="post-title-link">从数据到产品——爱飞狗背后的故事</a></h2><div class="post-info">Jul 25, 2018</div><div class="post-content"><p>这篇文章基于最近整理的一份演讲的Slide，由于报名太晚错过了截止日期，所以只好写成文章，一起来看看爱飞狗背后的一些故事。</p>
+<p><img src="/images/2018/07-26/4372317-845e9f8c73863592.jpeg" alt></p>
+<p>几年前我和家人会经常往返于成都和广州两个城市，从平时的观察中可以看到机票价格从400人民币到全价接近1500人民币，机票产生的波动有时候会高达100元以上，如果没有看好时间，一家人出行就会增加几百元的成本。</p>
+<p><img src="/images/2018/07-26/4372317-09d583c39cba3b63.jpeg" alt></p>
+<p>买机票的时候，我应该和大家差不多，会在买机票前进行一番观察。主要是观察未来几天起飞的机票价格，用来选择哪天出行。然后手工记录一下近期的价格变化，看看是不是在涨价还是跌价中。当然这个纯属体力活也容易错过最佳购票时期。我当时在想，如果我能知道去年的机票的价格和变化趋势，或许可以用来预测今年的价格的波动和判断是否需要购买机票。</p>
+<p><img src="/images/2018/07-26/4372317-6c33989450778817.jpeg" alt></p>
+<p>我提出了两个问题，近期的价格的趋势是什么？决定好起飞时间后，我应该提前多少天购票？</p>
+<p><img src="/images/2018/07-26/4372317-c8d8f8d74d0551bf.jpeg" alt></p>
+<p>我查了一下目前我们有的一些服务和APP，看是不是有人已经做过了类似的事情。</p>
+<ul>
+<li>Farecast是最早做机票预测服务的一家公司，后来被微软收购后并入了Bing，此后Google收购了Farecast所依赖的数据源后，Bing的这项业务也停止了，所以现在Farecast已经关闭，无法使用。</li>
+<li>Kaya这家网站提供了机票的近期价格曲线以及购票建议，十分切合我的需要，但遗憾的是中国的数据源非常少，几乎没有可参考性。</li>
+<li>Hopper也是最近两三年比较好的一款App，提供了出行的建议以及是否购票的提示。但Hopper不会提供去年的曲线图，也没有近期的票价情况，一切看你是否相信它的AI预测了。和Kaya类似，这个App也没有中国区域足够的数据，没有什么参考价值。</li>
+</ul>
+<p><img src="/images/2018/07-26/4372317-0ebfd0403e9f3169.jpeg" alt></p>
+<p>面对这样的情况，作为一个程序员，我觉得是时候出手了。</p>
+<p><img src="/images/2018/07-26/4372317-3883b9a01aa5868f.jpeg" alt></p>
+<p>由于我没有运营机票代理业务，所以无法获得机票信息的一手资源。对于我来讲唯一能够获取到数据的方式就是采用爬虫，通过模拟人工的搜索来获得票价信息，存储到数据库中。</p>
+<p><img src="/images/2018/07-26/4372317-bb86124bb4e2b527.jpeg" alt></p>
+<p>为了分析一整年的数据，我在给自己定了一些目标：</p>
+<ul>
+<li>至少要连续采集1年的数据</li>
+<li>更新频率大概在1小时左右</li>
+<li>低成本</li>
+<li>容忍爬虫或者数据源的失败</li>
+</ul>
+<p><img src="/images/2018/07-26/4372317-6efa8a1e343fbca9.jpeg" alt></p>
+<p>根据这些目标结合当时的情况，我将这个任务分解成了以下几个部分：</p>
+<ul>
+<li>机票采集的范围：中国范围内2800个航线的直飞的价格数据</li>
+<li>采集的数据：每条航线起飞前45天的票价信息</li>
+<li>数据源：4个数据源做互补，一来是为了检查数据的准确性，二来是为了防止数据源失效</li>
+<li>全年无休连续爬取</li>
+</ul>
+<p><img src="/images/2018/07-26/4372317-cdc01bb1f2bc4720.jpeg" alt></p>
+<p>在数据爬虫的架构上，我需要一个低成本的方案，毕竟要干上一年以上的时间（其实到现在已经2年多了）。我并没有使用各种爬虫的框架，而是自己写了一个轻量级的爬虫来处理代理的筛选逻辑和爬取数据的验证。这些爬虫将会运行在DigitalOcean或者Linode的$5的服务器上，这些服务器上只有1个CPU和1G的内存。自定义的爬虫能够尽可能的根据性能进行针对性的调优，从而增加性能。每个爬虫之间互相独立，部署在单独的机器上，也是为了减少爬虫之间的相互干扰。</p>
+<p>在存储上我是用了tar.xz的文件将所有的爬取到的原始文件按照每一轮爬取进行打包压缩，然后在本地里面的一台PC机负责将所有的数据拉回来，放到一个4T的硬盘上。同时这些数据也会存储到百度云上面进行备份。目前这些压缩包已经达到2T左右了，解压下来大约有20T的数据量，大约有380亿条数据。</p>
+<p>在数据处理上，首先是实时数据流的处理。使用了kafka来进行队列管理，一个Parser来进行实时的处理原始数据，将处理好的结果放到redis缓存中，供小程序的后端使用。</p>
+<p>在数据的分析上，我使用Java手写了一个高性能的ETL，直接读取压缩包然后进行数据解析。在这里也是使用了轻量的原则，没有使用更多框架，从而达到非常高的性能。</p>
+<p>在PC机上也使用了Postgres中进行数据存储，每一天的数据存储到一个表中。</p>
+<p><img src="/images/2018/07-26/4372317-38e021ce2918f5ab.jpeg" alt></p>
+<p>在近两年的时间中我积累了以下一些经验：</p>
+<ul>
+<li>在长时间的爬取中证明了简单的爬虫的可变性非常好，在针对特殊场景调优的时候非常有针对性。</li>
+<li>存储原始文本也为了应对数据结构的变化，当数据结构变化后，本地的Parser失败以后，可以重复的调用之前的数据，从而保证数据不丢失。</li>
+<li>多个数据源进行备份的设计非常好。目前依然有两个数据源在持续爬取。针对两个数据源我也可以进行数据的对比，发现数据对比后数据较为相似，说明没有爬取到脏数据。</li>
+</ul>
+<p><img src="/images/2018/07-26/4372317-c3723d433a95f688.jpeg" alt></p>
+<p>拿到这些数据后，就要开始数据分析了。</p>
+<p><img src="/images/2018/07-26/4372317-919ca4f2a5132147.jpeg" alt></p>
+<p>分析的结论在我的简书的前几篇文章中都有提到。这里不再赘述，请参看：<br><a href="https://www.jianshu.com/p/3b22fb101189" target="_blank" rel="noopener">https://www.jianshu.com/p/3b22fb101189</a><br><a href="https://www.jianshu.com/p/366e839af3ea" target="_blank" rel="noopener">https://www.jianshu.com/p/366e839af3ea</a></p>
+<p><img src="/images/2018/07-26/4372317-fbf60a7e84dfd7a8.jpeg" alt></p>
+<p><img src="/images/2018/07-26/4372317-6effc58faf6e16e0.jpeg" alt></p>
+<p><img src="/images/2018/07-26/4372317-e5cb6b59626330f3.jpeg" alt></p>
+<p><img src="/images/2018/07-26/4372317-66b3641b3d4c1e27.jpeg" alt></p>
+<p><img src="/images/2018/07-26/4372317-79ab3aa65bf96b24.jpeg" alt></p>
+<p><img src="/images/2018/07-26/4372317-19e11a47f31fd3e0.jpeg" alt></p>
+<p><img src="/images/2018/07-26/4372317-935fbad9889c8acd.jpeg" alt></p>
+<p>在分析完这些数据后，我们再回头看一下最初问题的定义：针对某一条航线，给定历史价格和近期的价格，现在看到当前的价格是P和距离起飞还有N天，我们应该是买还是等待？</p>
+<p><img src="/images/2018/07-26/4372317-e6b798b79cd6fb73.jpeg" alt></p>
+<p>我使用了以下一些算法来分析，包括决策树、支持向量机、Q-learning和神经网络。</p>
+<p><img src="/images/2018/07-26/4372317-95fc880ae8eafb40.jpeg" alt></p>
+<p>在准备数据时，提取了以下一些基本特征，当然针对不同的算法还是用不同的特征。</p>
+<p><img src="/images/2018/07-26/4372317-96d4609713a24521.jpeg" alt></p>
+<p>在数据的分割上，考虑到这个是时间序列相关的数据，将数据集分为1年的训练数据，2个月的测试数据和2个月的验证数据集。当然实际数据比这个多，可以尝试更多的组合。</p>
+<p><img src="/images/2018/07-26/4372317-28601a2ea2179098.jpeg" alt></p>
+<p>但这些算法算出来的结果还并不令人特别满意，达到的准确率也只能超过人工根据一些简单的规则推导出来的准确率，可能和我所用的数据训练方式有关。所以在线上计算的时候，我目前还是采用专家系统的做法，将数据分析的结果整理成规则，根据这些规则还是能够得到较高的预测准确率，其他的指标例如Recall等可能会比较差。</p>
+<p><img src="/images/2018/07-26/4372317-71607194c985ffa1.jpeg" alt></p>
+<p>那么为什么专家系统能够行得通呢？我从一些内部人士了解到，原因在于这些机票都是来源于中航信，而这个系统比较老旧，针对价格的调整也不够灵活，大多数都是给予一些人工的规则来进行。收益管理员基本上都是从这里学到一些规则然后进行调价，所以学到的规则其实比较相近，所以会产生大家都有差不多一样的规则。</p>
+<p><img src="/images/2018/07-26/4372317-a369324117452e1d.jpeg" alt></p>
+<p>有了数据之后，想到可以来造福大众，便产生了做一个小产品的想法。</p>
+<p><img src="/images/2018/07-26/4372317-7dfb7d987bc7eb50.jpeg" alt></p>
+<p>这时候正直小程序比较火的年代，小程序比较简单，而且受益于微信的用户群可以很方便的进行推广。所以设计了几个简单的功能，能够选择出发、到达和起飞日期，然后会显示出实时的价格和历史最低的价格，点进去后可以看到预测、近期的价格波动和去年的价格波动。这能够更好的指导大家进行机票的选择。</p>
+<p><img src="/images/2018/07-26/4372317-c081eee454b67914.jpeg" alt></p>
+<p>下面来看看产品背后的架构：</p>
+<ul>
+<li>前端当然是用微信提供的一套进行开发，这个和其他的小程序没有什么两样。</li>
+<li>后端使用Flask进行开发，简单快捷。</li>
+<li>数据提供方面有之前提到的实时数据的显示，来自Redis缓存，当然还有离线历史数据数据。这些数据每天从离线的PC机上同步到云端，然后由API进行展示。</li>
+<li>还有用户行为数据的存储及分析。这些数据都存在ElasticSearch服务器中以便进行快速的搜索，借助Kibana可以对用户行为进行在线的分析，非常的方便。当然还有一些和用户相关的需要实时更新的数据（例如session值和飞币的信息）也放在EleasticSearch中，主要是利用了NoSQL数据库没有Schema的特点，增加数据使用的灵活性。</li>
+<li>基础设施方面小程序相关的部分全部在阿里云的服务器上。所有的服务都使用Kubernetes进行管理，Rancher进行可视化管理，爬虫等服务放在DigitalOcean一遍节约成本。</li>
+</ul>
+<p><img src="/images/2018/07-26/4372317-67f8a98ca4a846e2.jpeg" alt></p>
+<p>小程序也发布了9个多月了，目前积累了大约4.3万的用户，数量还相对较少，这个小程序的未来如何考虑呢？</p>
+<p><img src="/images/2018/07-26/4372317-063e5114afe70da9.jpeg" alt></p>
+<p>首先是继续将机器学习应用到价格的预测，毕竟积累了2年的多的数据是一笔不小的财富。<br>然后是提供更好用的界面提升用户的使用满意度。<br>最后就是找到一套可行的商业模式进行变现。目前小程序还只能依靠广告有一点收益，完全是入不敷出的情况。</p>
+<p><img src="/images/2018/07-26/4372317-c219d1d44d455f0d.jpeg" alt></p>
+<p>如果您对这个小程序感兴趣，请试试微信搜索“爱飞狗旅行”和关注微信公众号“爱飞狗”，或者扫一扫下面的二维码。您的支持将是我进步的最大的动力。</p>
+<p><img src="/images/2018/07-26/4372317-f1ff858612c3b36d.jpg" alt></p>
+</div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/2/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 我是思聪</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2005-02-20-net-platform-for-mobile-phone-management-software-11-part-of-the-vb-net-code-sms-pdu/" class="post-title-link">.net平台手机管理软件开发(11)—— 短信部分 VB.NET编码PDU</a></h2><div class="post-info">Feb 20, 2005</div><div class="post-content"><p><strong>(十一) **</strong>短信部分——VB.NET<strong>**编码PDU</strong><br>PDU的编码器的工作原理是解码器的逆过程。根据需要编码器只需要编码发送的PDU代码，工作相对简单。本文讲解编码思路，具体代码请参考Blog中PDUEncoder部分</p>
+<p>我把PDU的编码分为两部分，SMS和EMS。EMS部分我只提供了ConcatenatedShortMessage的编码器。这是超长短信的编码，用得最多。<br><strong>SMS**</strong>编码**</p>
+<p>编码一个SMS一般需要如下的信息：<br>TP_Data_Coding_Scheme TP_UD编码方式<br>TP_Destination_Address 对方号码<br>TP_Message_Reference 参考号码<br>TP_Status_Report_Request 状态报告<br>TP_User_Data 用户信息<br>TP_Validity_Priod 有效期<br>ServiceCenterNumber 短信中心号码</p>
+<p>所以在编码器中存在以上的属性，并在Set中加入了处理代码，将可读信息转换成对应的十六进制信息。</p>
+<p>特别注意的是TP_User_Data属性，它可以根据用户数据编码自动设置TP_UDL。对于纯英文编码，TP_UDL为所有的字符数；对于Unicode编码，由于一个字符由两个字节表示，TP_UDL为所有的字符数<em>2。注意检查TP_User_Data的长度，对于SMS来说编码后的TP_UD长度不能超过140字节。也就是说英文160个字符(140/7</em>8)，中文70个字符。</p>
+<p>对于TP_UD的编码在解码器中也有说明，在此不再赘述。</p>
+<p>我还设计了几个枚举变量：<br>ENUM_TP_DCS 编码方式<br>ENUM_TP_SRI 状态报告<br>ENUM_TP_VALID_PERIOD 有效期<br>ENUM_TP_VPF 有效期格式</p>
+<p>这些枚举变量可以简化输入，也利于日后扩充。</p>
+<p>当以上内容设置好以后，基本上一个短信的架子就出来了。此时调用GetSMSPDUCode进行组合，简单的把十六进制拼接起来就形成了一个完整的PDU代码。<br><strong>EMS**</strong>——ConcatenatedShortMessage<strong>**部分</strong></p>
+<p>编码EMS较SMS复杂，但每条EMS的基础还是SMS，所以我直接继承了SMS类。区别主要是要处理好TP_UD和IE。对于ConcatenatedShortMessage，由于其IE和TP_UDHL占据了TP_UD的部分空间，所以每条短信英文只能容纳133字符，中文66字符。我们可以通过此信息得到短信条数。</p>
+<p>如果TP_DCS为Unicode编码，则短信条目为：<br>TotalMessages = (TP_UD.Length / 4)  66 + ((TP_UD.Length / 4 Mod 66) = 0)+1</p>
+<p>如果为7bit，则为：<br>TotalMessages = (tp_ud.Length  266) - ((tp_ud.Length Mod 266) = 0)+1</p>
+<p>注意在程序中我为了简化以后的数组操作，就没有加一。</p>
+<p>确定了短信条数以后通过一个循环就可以提取出每条短信的TP_UD。<br>Select Case tp_dcs<br>Case ENUM_TP_DCS.UCS2<br>tmpTP_UD = Mid(TP_UD, i * 66 * 4 + 1, 66 * 4)’When TP_UDL is odd, the max length of an Unicode string in PDU code is 66 Charactor.See [3GPP TS 23.040 V6.5.0 (2004-09] 9.2.3.24.1<br>Case ENUM_TP_DCS.DefaultAlphabet<br>tmpTP_UD = Mid(tp_ud, i * 133 * 2 + 1, 133 * 2)<br>End Select</p>
+<p>此后还需要编码IE部分，关键代码是确定TP_UDL的值。对于TP_DCS为7bit来说确定此值显得比较复杂，弄不好容易出现多一个少一个的错误。<br>If tp_dcs = ENUM_TP_DCS.UCS2 Then<br>TP_UDL = tmpTP_UD.Length / 2 + 6 + 1 ‘6: length of IE<br>End If<br>If tp_dcs = ENUM_TP_DCS.DefaultAlphabet Then<br>TP_UDL = Fix((tmpTP_UD.Length + 7 * 2) * 4 / 7) ‘6:length of IE<br>End If</p>
+<p>然后根据3GPP里关于EMS的结构的说明就可以编写出EMS PDU的处理程序。详见原代码。</p>
+<p>如果需要扩展EMS以适应更多种类的EMS，可以参考3GPP写出更为强大的编码程序。但最关键的还是需要处理好IE以及TP_UDL。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2005-02-19-net-platform-for-mobile-phone-management-software-10-decode-pdu-sms-part-of-the-vb-net/" class="post-title-link">.net平台手机管理软件开发(10)—— 短信部分 VB.NET解码PDU</a></h2><div class="post-info">Feb 19, 2005</div><div class="post-content"><p><strong>(十) **</strong>短信部分——VB.NET<strong>**解码PDU</strong></p>
+<p>早在2004年1月份我就开始初步的研究PDU的编码解码原理，对于PDU也有比较深刻的认识。随后按照3GPP协议写了一个PDU Decoder，后来写成PDU Decoder文章发表在CodeProject上面，有几个好心的外国网友给我指出了一些BUG，现在成了一个比较完善的Decoder。本文讲解编码器的构成以及我所使用的解码方法及技巧。<br><strong>解码器的构成</strong><br>NameSpace <strong>SMS</strong><br>** Decoder**
+MustInheritClass** SMSBase**
+Class ** EMS_RECEIVED**
+Class <strong>EMS_SUBMIT</strong><br>Class <strong>SMS_RECEIVED</strong><br>Class <strong>SMS_STATUS_REPORT</strong><br>Class <strong>SMS_SUBMIT</strong><br>Class <strong>PDUDecoder</strong><br><strong>SMSBase**</strong>部分**
+SMSBase类是必须继承类，它包含了PDU的基本结构以及一些相关辅助函数，是最基本的类，其他的类都是从SMSBase继承的。通过SMSBase的Shared函数GetSMSType可以得到PDU的类型，从而确定使用的Class。<br>SMSBase包含了所有短信类型所共有的基本信息部分以及一个指示短信类型的枚举SMSType，继承的类扩展其特有的基本信息部分。<br>Public SCAddressLength As Byte ‘Service Center Address length<br>Public SCAddressType As Byte ‘Service Center Type[See GSM 03.40]<br>Public SCAddressValue As String ‘Service Center nuber<br>Public FirstOctet As Byte ‘See GSM 03.40</p>
+<p>Public TP_PID As Byte<br>Public TP_DCS As Byte<br>Public TP_UDL As Byte<br>Public TP_UD As String<br>Public Text As String<br>Public Type As SMSType<br>Public UserData As String</p>
+<p>Public Enum SMSType<br>SMS_RECEIVED = 0<br>SMS_STATUS_REPORT = 2<br>SMS_SUBMIT = 1<br>EMS_RECEIVED = 64 ‘It is “Reserved” on my phone??<br>EMS_SUBMIT = 65<br>End Enum</p>
+<p>SMSBase中定义了一个必须重写的过程GetOrignalData，其参数为PDUCode，目的是为了得到PDU的基本信息。不同的短信类型具有不同的解码过程，所以作为一个必须重写的函数。<br>Public MustOverride Sub GetOrignalData(ByVal PDUCode As String)</p>
+<p>SMSBase中还有一系列的辅助函数，具体实现方法见源代码：</p>
+<p>处理PDU代码的：</p>
+<p>处理PDU代码我运用了自称为“按需裁减”的技巧，就是把需要的数据提取出来解码，然后从原PDUCode中删除这一部分，在传递给下一个函数处理。这样就不用考略具体的偏移量，简化了操作，增强了适应性。为了能够减少返回处理过的PDUCode麻烦，我使用了ByRef，执行过程以后PDUCode就自动被裁减了。<br>‘Get a byte from PDU string<br>Shared Function GetByte(ByRef PDUCode As String) As Byte<br>‘Get a string of certain length<br>Shared Function GetString(ByRef PDUCode As String, ByVal Length As Integer) As String<br>‘Get date from SCTS format<br>Shared Function GetDate(ByRef SCTS As String) As Date<br>‘Swap two bit<br>Shared Function Swap(ByRef TwoBitStr As String) As String<br>‘Get phone address<br>Shared Function GetAddress(ByRef Address As String) As String<br>Shared Function GetSMSType(ByVal PDUCode As String) As SMSBase.SMSType<br>TP-UD解码部分：<br>TP-UD的解码的任务主要集中在Unicode的解码和7BitCode的解码。其中Unicode的解码很方便，只需要将两个字节的PDUCode通过Val函数转换成为数字，在通过ChrW函数即可得到。</p>
+<p>而7BitCode就显得比较难，下面以Test四个字符简单介绍其基本原理，具体的编码方式请参考相关资料。<br>Byte1 11010100 0xD4<br>Byte2 11110010 0xF2<br>Byte3 10011100 0x9C<br>Byte4 00001110 0x0E</p>
+<p>注：各字符二进制代码：<br>T：1010100 e：1100101 s：1110011 t：1110100</p>
+<p>从这个例子可以看出一个Byte包含了一个字符的ASCII码的二进制部分及后续字符的二进制部分的低位。这样8个字符可以压缩成为7个Byte，SMS中140Byte的TP-UD长度就可以容纳160个英文字母。</p>
+<p>通过观察可以看出，只要我们从后到前把所有的二进制代码拼接到一块，就能够方便的处理，上面例子通过拼接后得到：<br>00001110100111001111001011010100</p>
+<p>我们可以直接通过从后往前的按7个一组的原则进行截取在处理就可以得到解码后的代码。为了编程的方便，我设计了一个简单易懂的解码过程，比起通过做乘除法来进行运算的简单，但最终效率不及它。但我想在普通场合应用也绰绰有余了。<br>.  Decode7Bit得到一个PDU的TP-UD部分<br>.  InvertHexString反转十六进制代码：例如123456=〉563412<br>.  Binary字符串得到反转后的十六进制代码的二进制表示。注意这里依然使用字符串来表示二进制，为了便于“拼接”和“切割”<br>.  根据charCount所提供的字符数(来自TP_UDL)按7个一组从字符串位往前截取，并用Chr函数转换成ASCII码。</p>
+<p>以下是一些函数的声明部分，具体函数请参见Blog内的PDUDecoder<br>‘Deoce a unicode string<br>Shared Function DecodeUnicode(ByVal strUnicode As String) As String<br>‘Decode 7bit to English<br>Shared Function InvertHexString(ByVal HexString As String) As String<br>Shared Function ByteToBinary(ByVal Dec As Byte) As String<br>Shared Function BinaryToInt(ByVal Binary As String) As Integer<br>Shared Function Decode7Bit(ByVal str7BitCode As String, ByVal charCount As Integer) As String</p>
+<p><strong>SMS_SUBMIT**</strong>、SMS_RECEIVED<strong>**、SMS_STATUS_REPORT</strong></p>
+<p>由于SMS_RECEIVED、SMS_STATUS_REPORT与SMS_SUBMIT比较相似，所以我重点讲讲SMS_SUBMIT。</p>
+<p>当用SMSBase的GetSMSType确定一个PDUCode为SMS_SUBMIT时，就可以声明一个SMS_SUBMIT类的实例，通过传递此PDUCode作为构造函数的参数。构造函数立即调用GetOrignalData函数解码。</p>
+<p>参考协议知道SMS_SUBMIT比SMSBase多出以下部分：<br>Public TP_MR As Byte<br>Public DesAddressLength As Byte<br>Public DesAddressType As Byte<br>Public DesAddressValue As String<br>Public TP_VP As Byte</p>
+<p>参考协议我们可以很方便的得到GetOrignalData函数的实现：<br>Public Overrides Sub GetOrignalData(ByVal PDUCode As String)<br>SCAddressLength = GetByte(PDUCode)<br>SCAddressType = GetByte(PDUCode)<br>SCAddressValue = GetAddress((GetString(PDUCode, (SCAddressLength - 1) * 2)))<br>FirstOctet = GetByte(PDUCode)</p>
+<p>TP_MR = GetByte(PDUCode)</p>
+<p>DesAddressLength = GetByte(PDUCode)<br>DesAddressType = GetByte(PDUCode)<br>DesAddressLength += DesAddressLength Mod 2<br>DesAddressValue = GetAddress((GetString(PDUCode, DesAddressLength)))</p>
+<p>TP_PID = GetByte(PDUCode)<br>TP_DCS = GetByte(PDUCode)<br>TP_VP = GetByte(PDUCode)<br>TP_UDL = GetByte(PDUCode)<br>TP_UD = GetString(PDUCode, TP_UDL * 2)<br>End Sub</p>
+<p>这就完成了整个解码过程，通过SMSBase的巧妙设计，此解码过程显得简单方便。</p>
+<p><strong>EMS_SUBMIT**</strong>、EMS_RECEIVED**</p>
+<p>对于EMS(增强型短信)，其基本结构和SMS类似，主要的区别就是Information Element(IE)。所以EMS_SUBMIT继承了SMS_SUBMIT，EMS_RECEIVED继承了SMS_RECEIVED</p>
+<p>参考3GPP协议EMS部分我们可以做出以下的结构和定义<br>Public Structure InfoElem ‘See document “How to create EMS”<br>Public Identifier As Byte<br>Public Length As Byte<br>Public Data As String<br>End Structure<br>Public TP_UDHL As Byte</p>
+<p>为了得到IE我写了一个函数：<br>Shared Function GetIE(ByVal IECode As String) As InfoElem()<br>Dim tmp As String = IECode, t As Integer = 0<br>Dim result() As InfoElem<br>Do Until IECode = “”<br>ReDim Preserve result(t)<br>With result(t)<br>.Identifier = GetByte(IECode)<br>.Length = GetByte(IECode)<br>.Data = GetString(IECode, .Length * 2)<br>End With<br>t += 1<br>Loop<br>Return result<br>End Function</p>
+<p>然后参考协议可以写出GetOrignalData函数。具体就不再赘述。</p>
+<p><strong>PDUDecoder</strong></p>
+<p>这个类的由一个结构，一个重要的解码函数，组成。</p>
+<p>结构定义了需要取得的基本信息，可以视需要修改。我这里提供一个范例<br>Public Structure BaseInfo<br>Public SourceNumber As String<br>Public DestinationNumber As String<br>Public ReceivedDate As Date<br>Public Text As String<br>Public Type As SMS.Decoder.SMSBase.SMSType<br>Public EMSTotolPiece As Integer<br>Public EMSCurrentPiece As Integer<br>Public StatusFromReport As SMS_STATUS_REPORT.EnumStatus<br>Public DestinationReceivedDate<br>End Structure</p>
+<p>解码函数的声明如下：<br>Public Shared Function Decode(ByVal PDUCode As String) As BaseInfo</p>
+<p>内部主要处理步骤如下(源代码请参考PDUDecoder)</p>
+<ol>
+<li>根据SMSBase的GetSMSType函数得到短信类型SMSType</li>
+<li>根据SMSType生成对应的类的实例</li>
+<li>解码PDU，得到基本结构</li>
+<li>通过基本结构得到BaseInfo结构里面需要的数据</li>
+<li>通过decode7bit或者decodeUnicode函数得到TP_UD数据</li>
+</ol>
+<p>到此为止，这就是整个PDU Decoder的详细介绍，具体使用可以参见Siemens Support Tool里面相关部分，在此不再赘述。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2005-02-18-net-platform-for-mobile-phone-management-software-9-introduction-and-sms-pdu-format-parts/" class="post-title-link">.net平台手机管理软件开发(9)—— 短信部分之PDU简介及其格式</a></h2><div class="post-info">Feb 18, 2005</div><div class="post-content"><p><strong>(九) **</strong>短信部分——PDU<strong>**简介及其格式</strong><br>PDU是大多数手机短信通讯的核心，仅有少数手机只支持Text模式(例如笔者的MOTO C330)。PDU模式比起Text模式可以提供能为强大的功能，但其编码较Text模式困难。无论哪种模式，我们都可以通过AT指令控制终端实现短信的发送、接收、删除等管理。下面主要介绍PDU的构成及编码解码。<br><strong>PDU**</strong>的构成**
+PDU是由一串由“0-9”及“A-F”组成。表面上看起来就是一组16进制的数所组成的。</p>
+<p>下面举一个发送和接收的例子。<br>.  手机发送的一个PDU串：<br>0891683108200805F011190D91683188902848F40008FF108FD9662F4E0067616D4B8BD577ED4FE</p>
+<p>对比3GPP协议得到：(二进制代码从左到右依次为高位-&gt;低位)<br><strong>短信中心地址字段</strong><br><strong>08</strong> 地址长度：8个字节，包括其后的91</p>
+<p><strong>91</strong> 地址类型：10010001<br>Bit7：1。始终为1<br>Bits 6,5,4：Type-of-Number(号码类型)：001，代表Internation Number。也即是号码前加“+”。<strong>注意</strong>：对某些比较特殊的号码，例如手机与小灵通的互通时，这里不能设置为001，而要设置成000，代表号码前没有“+”，否则无法接收。<br>Bits 3,2,1：Numbering-plan-identification：一般默认为0001，表示电话号码类型的。<br><strong>683108200805F**</strong>0** 短信中心号码：一个字节内反转，8613800280500，如果长度为奇数则需要加“F”补齐<br>** FirstOctet<strong>**字段</strong><br>*<em>11 *</em>包含TP-MTI(2bit)，TP-RD(1bit)，TP-VPF(2bit)，TP-RP(1bit)，TP-UDHI(1bit)，TP-SRR(1bit)</p>
+<p>二进制表示形式：0 0 0 10 0 01<br><strong>TP-MTI**</strong>：01**
+TP-Message-Type-Indicator(消息类型指示符)</p>
+<p>Bit1,0：01 指示为SMS-SUBMIT类型<br><strong>TP-RD**</strong>：0**
+TP-Reject-Duplicates(是否拒绝相同重复消息)<br>Bit2：0 指示短消息中心接受未转发的具有相同TP-MR的消息。<br><strong>TP-VPF**</strong>：10**
+TP-Validity-Period-Format(有效期格式)<br>Bit4,3：10 指示使用相对格式。<br><strong>TP-SRR**</strong>：0**
+** **TP-Status-Report-Request<br>Bit5：0 指示不使用状态报告。</p>
+<p><strong>TP-UDHI**</strong>：0<br>** TP-User-Data-Header-Indicator(用户数据头标示)<br>Bit6：0 指示这是一个SMS消息，没有用户数据头。EMS消息需要设置。</p>
+<p><strong>TP-RP**</strong>：0<br>** TP-Reply-Path(回复路径)<br>Bit7：0 指示没有设置回复路径。<br><strong>消息参考值TP-MR</strong><br>19 TP-Message-Reference<br>** <strong>**对方号码字段</strong><br>** **0D91683188902848F4</p>
+<p>其结构与短信中心号码字段部分类似，不再赘述。<br><strong>协议**</strong>标识<strong>**TP-PID</strong></p>
+<p>** <strong>00 TP-Protocol-Identifier(上层协议指示)，一般设置为00，表示普通GSM，点对点<br>** **</strong>编码方法TP-DCS**
+08 TP-Data-Coding-Scheme(数据编码设置)，指示TP-UD的编码方式。08代表Unicode方式。00为7Bit编码<br>** <strong>**有效期TP-VP</strong><br>FF TP-Validity-Period(有效期)。FF表示最大。<br><strong>用户数据长度TP-UDL</strong><br>10 TP-User-Data-Length(用户数据长度)****
+0x10长度。注意不同编码下用户长度定义不同。</p>
+<p>用户数据TP-UD****</p>
+<p>8FD9662F4E0067616D4B8BD577ED4FE TP-User-Data</p>
+<p>中文“这是一条测试短信”的Unicode编码</p>
+<p>.  手机接收的PDU串<br>0891683108200805F0040D91683188902848F4000850208151754500108FD9662F4E0067616D4B8BD577ED4FE1<br><strong>短信中心地址字段</strong><br>** <strong>0891683108200805F0：+861380280500<br>**FirstOctet</strong><br>**** 04</p>
+<p>其二进制代码：00000100<br>TP-MTI：00<br>TP-MMS(TP-More-Message-to-Send)：1 短信中心没有更多的消息发送<br>TP-SRI：0<br>TP-UDHI：0<br>TP-RP：0<br><strong>发送方号码</strong><br>0D91683188902848F4：+8613880982844</p>
+<p><strong>协议标识<br>** 00 TP-DCS 点对点<br>**编码方式</strong><br>08 TP-DCS Unicode编码</p>
+<p>短信中心时间戳<br>50208151754500 TP-SCTS 字节反转05/02/18 15：57：45 最后的00代表时区，这里为0</p>
+<p>用户数据长度<br>10 TP-DHL</p>
+<p>用户数据<br>8FD9662F4E0067616D4B8BD577ED4FE1 TP-UD</p>
+<p>中文“这是一条测试短信”的Unicode编码</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2005-02-18-mobile-phone-text-messaging-each-other-pdu-encoding-phs-note/" class="post-title-link">手机——小灵通互发短信PDU编码注意事项</a></h2><div class="post-info">Feb 18, 2005</div><div class="post-content"><p>昨天花了一些时间解决了网友GSM Modem与小灵通发送短信的问题，发现是由于在小灵通号码之前默认加了“+”的缘故。</p>
+<p>在 PDU编码中有一个Address Field，其中有一个Address Type段，其值在很多文章里面说固定为0x91。其实这是不对的。按照3GPP 23040-650对于这个字段的说明，0x91是国际通用的，也就是在号码之前加一个“+”号。但对于现在小灵通的 106+区号+号码 这样的格式，将Address Type固定为0x91就变成了 +106+区号+号码 格式，短信中心可能会认为是国际短信，可能发送到其他国家，也有可能发送失败。</p>
+<p>所以，对于这种情况，将0x91改成0x81，即可解决。</p>
+<p>对于程序的流程，希望能够增加“+”号的判断。如果号码前面有“+”，AddressType值为0x91，否则值为0x81。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2005-02-17-net-platform-for-mobile-phone-management-software-8-vcard-vnote-vcalender-format-description/" class="post-title-link">.net平台手机管理软件开发(8)—— vCard、vNote、vCalender格式简介</a></h2><div class="post-info">Feb 17, 2005</div><div class="post-content"><p>(八)  vCard、vNote、vCalender格式简介<br>vCard称为电子商务卡片，主要用于记录通讯薄的联系人信息等，方面不同设备之间的数据交换。自笔者的M55手机中，可以发送一条短信到对方，其中包含了vCard格式的联系人信息，西门子其他型号的手机可以接收解码存储。另外通过手机红外线传输到电脑上的联系人也是用的vCard格式。如果安装了Outlook，则可以直接打开vCard并看到其包含的信息。下面主要简要介绍一下vCard格式，其他vNote、vCalender格式和vCard相近，就不再赘述。更详细的资料请参考vCard Specification，在笔者主页有相关下载。</p>
+<p>关于vCard、vNote、vCalender的.Net简单编码解码器请参阅SIEMENS SUPPORT TOOL源代码中的IrMC部分。<br>vCard Object(vCard对象)</p>
+<p>一个vCard数据流可以包含一个或者多个vCard Object。在数据流中一个vCard Object定义为以“BEGIN:VCARD”开始并以“END:VCARD”结束的数据。如果只有到达了数据流尾都没有出现“END:VCARD”，则整个vCard Object包含从“BEGIN:VCARD”开始到数据流结束的地方。<br>vCard Property(vCard属性)<br>vCard是一个或多个Property的集合。一个Property是唯一命名的值。一系列的Property可以在vCard中成为一组。<br>vCard Property的格式如下：<br>PropertyName[‘;’ PropertyParameters]’:’PropertyValue</p>
+<p>注：<br>.   PropertyName及PropertyParameters不区分大小写。<br>.   PropertyParameters可选，可以为零个或多个，与ProperyName以分号相隔，与PropertyValue以冒号相隔。<br>.   vCard可以分多行呈现。由于在这个软件里面应用得不多，所以笔者也没有钻研具体实现方法。可以参考vCard Specification。</p>
+<p>例如TEL;HOME;+86111222333其PropertyName为TEL，PropertyParameters为HOME，PropertyValue为+86111222333。<br>Encoding(编码)<br>vCard默认的编码方式是7-Bit。默认编码方式可以使用ENCODING属性参数(Property parameter)改变。其值为可以为BASE64；QUOTED-PRINTABLE；8BIT。这个参数可以用在任何的Property里。</p>
+<p>例如：<br>X-ESI-CATEGORIES;CHARSET=UTF-8;ENCODING=QUOTED-PRINTABLE:=E5=AE=B6=E4=BA=BA</p>
+<p>下面简要说明QUOTED-PRINTABLE编码方式，更为详细的资料请参考相关文档：<br>ASCII可显示字符基本保持不变。Unicode字符或者UTF8编码字符使用等号加其对应16进制代码表示。例如上述CHARSET为UTF8的字符=E5=AE=B6=E4=BA=BA对应的UTF8编码0xE5，0xAE，0xB6代表中文“家”，其他的代表“人”。另外如果其中有可显示ASCII码，保持原样输出。</p>
+<p>例如ENCODING=QUOTED-PRINTABLE:Home=E5=AE=B6People=E4=BA=BA</p>
+<p>解码后为“Home家People人”。<br>Character Set(字符集)</p>
+<p>默认的字符集是ASCII。可以通过CHARSET参数改变默认的字符集。其参数可取的值为所有IANA(Internet Assigned Numbers Authority)注册的字符集。这个参数可以用于任何Property，但某些Property并不起作用。</p>
+<p>例如：<br>X-ESI-CATEGORIES;CHARSET=UTF-8;ENCODING=QUOTED-PRINTABLE:=E5=AE=B6=E4=BA=BA<br>vCard例子：<br>BEGIN:VCARD<br>VERSION:2.1<br>X-IRMC-LUID:1017646<br>X-ESI-CATEGORIES;CHARSET=UTF-8;ENCODING=QUOTED-PRINTABLE:=E5=AE=B6=E4=BA=BA<br>N:test<br>ADR:;;Street;city;;610000;country<br>ORG:company<br>TEL;HOME:123456<br>TEL;WORK:123456<br>TEL;CELL:123456<br>TEL;FAX:123456<br>TEL;FAX;HOME:123456<br>EMAIL;INTERNET:<a href="mailto:a@a.ao" target="_blank" rel="noopener">a@a.ao</a><br>EMAIL;HOME;INTERNET:b@g<br>URL:http<br>BDAY:1985-04-23<br>END:VCARD</p>
+</div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/136/" class="prev">PREV</a><a href="/page/138/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

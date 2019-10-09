@@ -1,0 +1,36 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 华为三年纪念——(9)第一年下，忙碌的新项目 · 我是思聪</title><meta name="description" content="华为三年纪念——(9)第一年下，忙碌的新项目 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">华为三年纪念——(9)第一年下，忙碌的新项目</h1><div class="post-info">May 31, 2013</div><div class="post-content"><p>七八月份这段时间最为无聊了，没有啥事情做，属于青黄不接的样子。在这里，上面的看着大家闲着，得搞点事情做才行，晚上也不得走，美其名曰安排一些培训，这点我十分反感。当时正值老技术卖不了钱的时候，大家都来学新技术。看胶片，看文档，晚上就来讲。每天都在磨洋工，为啥不下午组织时间来学习交流，非要搞到晚上？！</p>
+<p>这段时间我经常和我的PL和PM一起走，晚上“交流”完，大概8点，大家一起走人。其实大家都想回家，只是经常走得太早，领导会看着不爽。在这种所谓的“加班”氛围中，自然做事没啥效率了。既没有真正学到东西，又浪费了时间，还少了很多自己提高的时间。</p>
+<p>9月份，部门开始集中力量搞一个所谓的新产品出来。其实也是老瓶装新酒，不明确的需求，各种不同的方案都搅和在一起。心急的项目经理想在需求都还没搞清楚之前就让我们写代码了，美其名曰“迭代0”。那段时间我们以为真的是做新产品了，但总觉得产品的卖点很少，一直折腾折腾。</p>
+<p>这期间的一个迭代周期，我硬是将那个乱糟糟的模块重写了，用状态机的设计模式来搞了一遍。写代码的时间，加起来也就只有几天，最终统计出来我的代码有好几千。困难重重的测试用例，用到了很多Google Test和Google Mock的高级用法。现在回想起来，由于禁锢于老代码，测试用例写的都不算太好。测试状态机时使用了太多的mock，以至于调试起来都比较困难。</p>
+<p>带这些代码的质量确实很好，只是大家看不懂。第二年评优秀代码的时候，将我的代码提交了上去，但评委都说看不懂。简洁的函数，他们找不到调用的地方，不知道这些函数怎么用的。没有设计模式的思想，怎么能看懂呢？周围的同事的水平都很一般，只有一个同事能够看懂这些代码，觉得写得很优雅，这就够了。用State Machine Compiler工具，还能绘制出状态机的图，非常方便问题定位及修改。</p>
+<p>当时觉得写得比较好的代码，最终还是封存在了硬盘中。连续奋战了3个月，说是要准备过TR4，结果就突然项目就没影了，停了。以至于休婚嫁回来以后，突然又做回了老版本。这意味着这个产品以失败而告终。</p>
+<p>这段最忙的时间，也是我收货爱情的时光。9月份办完了婚事，10月到丽江旅游，这段时间至今映像深刻。休婚嫁的事，还好我做了计划。在8月份那阵已经和PL说了一下，但9月份起了项目。11月份，我们怀上了小宝宝，再不修婚嫁就比较烦了。又在11月份说了一下意向。这一年的春节过得比较早，1月10多号就是春节。为了玩的比较久一点，就想把这个婚嫁和春节在一起休。最终，在12月底，得到了PL的同意，说本来把这个模块搞好了，就可以休了。按照当时的进度，在1月初完成绝对没有问题。</p>
+<p>就怕就怕领导插一脚。当时我们的LM生孩子去了，找了另外一个LM过来。在当我的模块做到接近尾声的时候，突然叫我到以前的项目去做一个需求。竟然要2人月时间。我的婚嫁怎么办？一肚子的火。我就只有10个工作日时间，如何完成？我要了一个人。好吧，给了我一个新员工，没差点气吐血。还好经过几天的奋战，需求搞定了。每天都是电话讨论，然后指导新员工写代码。这个新员工还好，有一定工作经验，写过代码，还算顺利完成任务。</p>
+<p>可恶的是，这个LM给我说，婚假嘛，到时候可以拆开休嘛，给你算内部调休嘛，随时可以调休的。领导的饼，我消化不良。我没听他的，一直坚持要求要连着休，不给一丝退路。事实证明我的坚持是对的。我刚刚休完假回来，轮到另一个同事休，他就听了这个人的说法，休了一半。后面的几天，想休，那是再也无法连着休了。我真的很想骂脏话。</p>
+<p>下半年的生活，过得算是比较辛苦。在女人怀孕的时候，要多点关照，多点温暖，早点下班，多陪陪她。切记婚假是连着休的，切勿相信领导的饼，那是有保质期的，而且特别难吃。这一年，就已经成了老员工了，人际交往中平滑而又有原则，同事相处和谐，在公司也有自己的一席地位，说话也稍微有点分量了。</p>
+<p>写到这里，在华为的生活就已经过半了。</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2013-06-01-hua-wei-san-nian-ji-nian-10-feng-kuang-de-yi_nian/" class="prev">PREV</a><a href="/post/2013-05-31-enabling-dual-wan-windows/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

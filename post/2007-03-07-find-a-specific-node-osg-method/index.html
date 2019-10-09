@@ -1,0 +1,33 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> OSG中找到特定节点的方法 · 我是思聪</title><meta name="description" content="OSG中找到特定节点的方法 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">OSG中找到特定节点的方法</h1><div class="post-info">Mar 7, 2007</div><div class="post-content"><p>为了在OSG中找到需要的节点并对节点做出相应的操作，可以从NodeVisitor类中继承一个类，NPS的教程<img src="images/download.gif" alt="下载文件"></p>
+<p>[download id=”14”]<br>阐述了这个问题。下面是我写的一个类，找到指定名字、指定类型的节点：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">findGeoNamedNode</span>:</span></span><br><span class="line"><span class="keyword">public</span> osg::NodeVisitor</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">findGeoNamedNode();</span><br><span class="line">findGeoNamedNode(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> name):</span><br><span class="line">osg::NodeVisitor(TRAVERSE_ALL_CHILDREN)  <span class="comment">//Set traverse mode</span></span><br><span class="line">&#123;</span><br><span class="line">resultNode=<span class="literal">NULL</span>;</span><br><span class="line"><span class="keyword">this</span>-&gt;name=name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">apply</span><span class="params">(osg::Node &amp;searchNode)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">if</span>(searchNode.getName()==name)</span><br><span class="line">&#123;</span><br><span class="line">osg::Geode* dynamicTry=<span class="keyword">dynamic_cast</span>(&amp;searchNode);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(dynamicTry)</span><br><span class="line">&#123;</span><br><span class="line">resultNode=dynamicTry;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">traverse(searchNode);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">osg::<span class="function">Geode* <span class="title">getNode</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">return</span> resultNode;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">osg::Geode* resultNode;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">string</span> name;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>使用这个VISITOR类只需要调用以下的一些函数</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">osg::Node* testNode=<span class="literal">NULL</span>;</span><br><span class="line">testNode=<span class="keyword">dynamic_cast</span>(osgDB::readNodeFile(<span class="string">"d:\1.3ds"</span>));</span><br><span class="line"></span><br><span class="line">findGeoNamedNode* visitor=<span class="keyword">new</span> findGeoNamedNode(<span class="string">"Box01"</span>);</span><br><span class="line">testNode-&gt;accept(*visitor);</span><br></pre></td></tr></table></figure>
+
+<p>用起来很方便，得益于visitor模式的正确应用。</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2007-03-08-recent-updates-may-be-slow/" class="prev">PREV</a><a href="/post/2007-03-06-haha-opening-the/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

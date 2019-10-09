@@ -1,0 +1,34 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> C#工控 · 我是思聪</title><meta name="description" content="C#工控 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">C#工控</h1><div class="post-info">Dec 13, 2008</div><div class="post-content"><p>晚上终于完成了数控钻床Excellon格式的钻床文件的初步解析，能够将文件中的钻孔信息提取出来。另外还做了一个GUI工具，使数据能够可视化的显示出来。这周的任务也就暂告一段落，下周要去厂里面调试，这是我写的C#版本的第一个测试。</p>
+<p>说来这个数控钻铣床项目在一开始还真是一波三折，最开始厂家说的是要的是一个支持Win98的版本，想和以前的系统取得兼容。我的天，当时就只好考虑使用MFC来完成这个。后来实践一番以后觉得开发难度确实很大，难点在于GUI方面，60％以上的代码都在GUI。首先我对MFC不熟，其次，MFC确实真的可以过时了。一个看似简单的界面，在.NET环境下仅需点点时间就完成了，在MFC里面那真是举步维艰。总是全部手工写代码不知道何年才能搞定。最后我执意要用C#来开发这个数控项目，在和厂商再次交涉以后，他们同意只要兼容2000以上就可以了，这样也就具备了用.NET开发的可能性。</p>
+<p>其实，说实话，兼容2000都没有任何必要。一个小厂的东西，软件方便完全是盗版的，从操作系统到开发工具，没有一个正版，所以，换操作系统对于厂家来说就是刻个盘，安装，就搞定。还有98，谁现在还再用……所以，考虑兼容性问题纯粹是扯淡。所以，用.NET开发一点也没错。</p>
+<p>但用.NET开发在初期增大了我的工作量。由于一些特殊的原因，厂商有早期版本的控制程序的不太完整的源代码，是10年前，用BC5写的，然后一直修改到2004年的一份代码。代码已经不能顺利编译，缺少很多必要的类库，还好只是一些GUI相关的东东。我已经将工控的大部分底层程序移植到MFC框架下面，证明了这份程序基本能够使用。如果要用MFC写下去的话，在初期看来还真的能够节省很多时间。事实证明确实是这样，截止上周，5个星期多的时间，我就能够将机床运行起来，进行钻加工。</p>
+<p>移植到C#来就不是那么简单的事情了。首先很多朋友们的疑问要解除，他们说，.NET环境运行程序很慢的，对于这种控制项目能够搞定么？我想说的是，我认为没有任何问题。.NET程序运行慢可能显示在启动的时候。确实，要想好好的启动一个大型的.NET程序确实需要一定的技巧，尽量让窗口能够快速显示出来。程序运行时候不会觉得特别的慢。另外，通过ngen程序可以生成本机代码进一步提升速度。再说，工控机的硬件配置已经很高了，厂商的工控机的配置都在赛扬2.53G，内存512，硬盘80G。除了开发当中觉得硬盘慢以外，其他方面运行VS2005没有任何问题。</p>
+<p>在运行速度和开发速度上，开发速度显得更必要。实践表明，编译C#程序比MFC程序要快很多。IDE和Reshaper提供的超级强大的功能，将开发效率提高了若干倍。如果没有良好的类库的支持，每一步都要造轮子，开发程序真是难上加难，古老的MFC正是这样……</p>
+<p>另外，可能很多朋友都觉得，工控项目要要求实时性，.NET平台的运行环境限制了他的实时性。对，实时性是要要求，所以然后很多朋友就选择了实时性高的C++，特别是研究生朋友们，很多一进教研室就开始了MFC艰苦的学习进程，很乐意的和别人讨论“VC++”，听着这个词语我就觉得别扭～～。为什么不用C#做点项目呢？回答：不会～～～学啊，没时间……天，能够把MFC学到能写出一个漂亮界面的时间学C#我想都可能到精通级别了～～</p>
+<p>对于实时性的要求，这点需要纠正，Windows平台本来的实时性很差，很多特别重要的功能都是直接做到硬件层面上的。例如基于PC机控制方面的大多数都要使用工控卡，运动控制也是控制卡包干了的，简单的调用DLL即可。而且.NET平台调用DLL是那么方便，调用的延迟完全被高频的CPU所掩。由于C#和C很接近，所以很多C的算法几乎能够直接套用过来，比用其他的基于.NET的语言都要来得直接，所以C#做控制那是很适合的。</p>
+<p>如果硬要说.NET这样那样的问题，对于没有接触过的朋友而言，总有这样那样的疑问，我也在逐步的体会.NET带来的巨大的方便。请静待我的答案吧，这是我用.NET做的第一个控制软件，做好，证明给师弟们，.NET做工控也是合适的，比用VC会做的更好，更强大，更灵活！</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2008-12-13-import-blog-worn-out/" class="prev">PREV</a><a href="/post/2008-12-12-shopping/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

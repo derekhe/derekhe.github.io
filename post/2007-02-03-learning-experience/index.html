@@ -1,0 +1,65 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 学习心得 · 我是思聪</title><meta name="description" content="学习心得 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">学习心得</h1><div class="post-info">Feb 3, 2007</div><div class="post-content"><p>感冒接近尾声了，真实感觉身体素质那么差喔，一天吃那么多东西都是浪费…………最近又重新开始弄弯管机的玩意儿了，有些学习心得和实际操作心得，留个纪录：<br>１、关于矩阵乘法<br>OpenGL规定，最后定义的变换最先应用，每一步操作，都在CMT再右乘一个矩阵。所以坐标架原点p经过放射变换到q，公式如下：</p>
+<figure class="highlight gcode"><table><tr><td class="code"><pre><span class="line">q=<span class="name">M1</span>*<span class="name">M2</span>*<span class="name">M3</span>*<span class="name">M4</span>*p</span><br></pre></td></tr></table></figure>
+
+<p>其中M1为第一次变换，M2为第二次，以此类推。</p>
+<p>特别要搞清楚到底是右乘还是左乘。取决于你是在移动坐标架还是在移动点。</p>
+<p>如果是移动点，坐标系不变，则是：</p>
+<figure class="highlight gcode"><table><tr><td class="code"><pre><span class="line">q=<span class="name">M4</span>*<span class="name">M3</span>*<span class="name">M2</span>*<span class="name">M1</span>*p</span><br></pre></td></tr></table></figure>
+
+<p>相关文章参见《交互式计算机图形学——基于OpenGL的自顶向下方法(第三版)》P136和P145。<br>２、关于RAPID碰撞检测的调试</p>
+<p>这个碰撞检测库需要你提供变换矩阵(tMatrix)和一个包含模型三角形的一个类的实例(model)。model比较好构建，只需要把模型三角形添加进去即可。tMatrix难度较大，需要做矩阵的乘法，往往这个不对会造成碰撞检测的失败。为了真实的看到碰撞检测是否正确，可以：</p>
+<figure class="highlight abnf"><table><tr><td class="code"><pre><span class="line">glPushMatrix()<span class="comment">;</span></span><br><span class="line">glLoadIdentity()<span class="comment">;</span></span><br><span class="line">glTranslate(tMatrix)<span class="comment">;</span></span><br><span class="line">model.RenderTriangles()<span class="comment">;</span></span><br><span class="line">glPopMatrix()<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+
+<p>另外可以将碰撞检测所检测到的碰撞三角形显示出来，以重点测试tMatrix变换是否正确。<br>３、关于程序的一些设计</p>
+<p>试验阶段，不必要一定遵循面向对象的一些设计思路，这样反而会弄得很麻烦。前段时间一直想用面向对象的设计思路来封装对象，结果后来一旦发现整体思路不正确，又要改很多很多，真的很麻烦。还不如面向过程，不管是书写还是调试都会有一定的速度优势。而可能更好的一面在于，万一方案不行，改动的时候会方便很多。举个例子：</p>
+<p>比如对于一个类的名字：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">GetName</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SetName</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>* name)</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"><span class="built_in">string</span> name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后需要写对应的函数。</p>
+<p>还不如直接</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="built_in">string</span> name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>虽然暴露了成员，但是给调试和写测试程序带来了很多方便。所以，凡是不要绝对化，该用什么的时候还是用什么比较好。<br>４、被骗</p>
+<p>问题来自于3ds文件的Node的名字。他的名字只有10个字符长，但是3dsmax的max中却可以有很长的名字。</p>
+<p>所以如果我需要调入GeoSphere01，其实在3ds文件中，只存在名字为GeoSphere0的Node。所以我想直接把Name调整大小成10就是了：</p>
+<figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">string</span> <span class="built_in">name</span>=<span class="string">"GeoSphere01"</span>;</span><br><span class="line"><span class="built_in">string</span> name1=<span class="string">"GeoSphere0"</span>;</span><br><span class="line"><span class="built_in">name</span>.resize(<span class="number">10</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">name</span>.compare(name1)==<span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">cout&lt;&lt;<span class="string">"Identical"</span>&lt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样正确。</p>
+<p>但是遇到这样的情况：</p>
+<figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">string</span> <span class="built_in">name</span>=<span class="string">"Hello"</span>;</span><br><span class="line"><span class="built_in">string</span> name1=<span class="string">"Hello"</span>;</span><br><span class="line"><span class="built_in">name</span>.resize(<span class="number">10</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">name</span>.compare(name1)==<span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">cout&lt;&lt;<span class="string">"Identical"</span>&lt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果不注意其实用了resize以后，name就变成了Hello\n\n\n\n\n，结果和name1比较，结果不会是相同的(VS2005编译结果)。需要注意！可能是string类的compare函数实现上不以\n作为结尾而是以实际长度作为长度判断标准(瞎猜，要看看相应的文献再说)</p>
+<p>５、简单测试内存是否泄漏</p>
+<p>简单来说内存泄漏就是new了忘记delete，占用了内存。往往这些在于一个类的实例执行某些函数的时候new了一些东西，而忘记了在析构函数里面删除。</p>
+<p>那么如何测试到底有没有泄漏呢？我的简单方法如下：</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(int <span class="attribute">i</span>=0;i&lt;10000;i++)</span><br><span class="line">&#123;</span><br><span class="line">CObj <span class="attribute">obj1</span>=new CObj();</span><br><span class="line">obj1.doSomeTask();</span><br><span class="line">delete obj1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果忘记了删除的话，你会看到任务管理器里面程序占用了大量的内存。这时候就说明obj1确实存在泄漏问题。如果要确定到底是什么原因造成的，可以在执行这段语句之前纪录下内存使用mem1，然后执行完了看看内存使用mem2。然后(mem2-mem1)/10000就是每一次new的大小，这样顺藤摸瓜总会找到一些没有delete的东西。</p>
+<p>当然，更好的办法还是用专用工具。但现在对于我来说还没有用上：)</p>
+<p>６、闲话</p>
+<p>要早点睡觉，身体那么差了，唉～～～～～～～～～睡觉！</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2007-02-04-collision-detection-u0026amp-machine-tool-model/" class="prev">PREV</a><a href="/post/2007-02-02-lib3ds-cvs-2007-1-12/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

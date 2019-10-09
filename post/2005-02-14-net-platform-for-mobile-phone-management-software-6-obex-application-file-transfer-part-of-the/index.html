@@ -1,0 +1,49 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> .net平台手机管理软件开发(6)OBEX应用——文件传输部分 · 我是思聪</title><meta name="description" content=".net平台手机管理软件开发(6)OBEX应用——文件传输部分 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">.net平台手机管理软件开发(6)OBEX应用——文件传输部分</h1><div class="post-info">Feb 14, 2005</div><div class="post-content"><p>(六) OBEX应用——文件传输部分</p>
+<p>在手机数据传输方面基本OBEX应用分为<br>l 文件传输<br>l IrMC同步</p>
+<p>文件传输又可以细分为以下基本操作<br>l 初始化连接<br>l 断开连接<br>l 设置路径<br>l 取得目录信息<br>l 创建目录<br>l 上传下载文件<br>l 删除文件或空目录</p>
+<p>在笔者的软件当中设计了OBEX这个类，里面包含了以上所有的基本操作。另外针对M55的服务端的特殊性又设计了更名、取得磁盘空间信息、移动、拷贝文件的功能。具体请参考源代码。</p>
+<p>下面具体讲述各个操作的细节。<br>l 初始化连接</p>
+<p>初始化连接包括了使手机进入OBEX状态再到发送Connect指令的一系列过程。具体流程参考下图。<br>ATÆAT^SQWE=0ÆAT^SQWE=3ÆConnectÆ连接到Folder-Listing Service</p>
+<p>其中AT^SQWE=0和AT^SQWE=3是西门子特有的隐藏的AT指令，甚至在官方的AT指令集里面都没有提到。其作用是初始化手机到OBEX模式。</p>
+<p>发送Connect指令收到手机回复以后确定Max Packet Length等参数。最后连接到Folder-Listing Service进行文件操作。如果需要IrMC同步的话，在Connect后直接连接到IrMC Sync Service即可，手机立刻进入同步模式，所有的应用程序退出。</p>
+<p>在笔者的程序中当中首先使用AT指令确定手机当前的工作，如果超时，尝试发送+++并等待1秒钟以便手机从不正常的OBEX状态中退出。然后在此发送AT，成功后即进行文件操作，否则引发一个错误。<br>l 断开连接</p>
+<p>这里的断开连接是指从OBEX模式退出到AT状态中。在AT指令中，连续发送三个0x2B然后等待一秒钟以上即可退出数据模式进入常规AT模式。<br>l 设置路径</p>
+<p>程序中使用SetPath操作设置路径。需要注意的是，可以设计两种风格的过程：一种使用绝对路径，另一种使用相对路径。</p>
+<p>对于手机而言，经笔者实践证明，使用绝对路径要比使用相对路径方便，而且更准确，但效率上稍逊，特别是在多层目录的情况下。由于手机没有能够返回当前路径的方法，所以相对路径总难以控制，只有通过程序控制，极容易出现错误。所以建议使用绝对路径。</p>
+<p>如果使用绝对路径，那么路径名将呈现path1path2这种形式。首先回到根目录，然后一级一级的到达目的。在笔者的OBEX类当中，可以看到BacktoRoot这个过程。其作用就是把当前程序路径切换到根目录以免引起混乱。<br>l 取得目录信息</p>
+<p>要取得一个目录的文件信息可以用发送Get指令。该Get指令需要一个TypeHeader，其值为x-obex/folder-listing</p>
+<p>随后服务端会返回一个xml文件，包含了整个目录的信息。例如子目录名、文件名、大小、最后修改时间。再通过xml解析后就会得到目录信息。<br>l 创建目录</p>
+<p>当SetPath的Flags的Bit1设为1并且无法找到目录时，服务端会创建这个目录并进入。</p>
+<p>请注意，再次使用SetPath并将Flags的Bit0设为1返回上层目录，否则容易引起混乱。<br>l 上传下载文件</p>
+<p>使用Put和Get命令可以实现上传和下载文件。注意所有的文件操作都在SetPath所指定的目录下进行。</p>
+<p>使用Put命令实现上传时，至少需要提供NameHeader，BodyHeader，一般还要提供LengthHeader，DateTimeHeader。大文件传输需要正确处理BodyHeader，不能超出了服务端最大所能接收的Packet的大小，否则会出现错误。</p>
+<p>需要注意的是如果当前文件存在，那么Put命令不会覆盖已有的文件而是追加，导致错误。传输文件之前需要首先删除同名文件。</p>
+<p>使用Get命令实现下载时，只需要提供NameHeader即可。具体例子参考上一节。<br>l 删除文件或空目录</p>
+<p>使用Put命令，其NameHeader指定为文件名或目录名并将BodyHeader设置为空即可。</p>
+<p>非空目录无法删除，会返回错误。</p>
+<p>西门子手机还有移动、拷贝等功能，具体实现方法请参阅OBEX源代码。</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2005-02-17-net-platform-for-mobile-phone-management-software-7-irmc-introduction/" class="prev">PREV</a><a href="/post/2005-02-14-net-platform-for-mobile-phone-management-software-5-obex-introduction/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

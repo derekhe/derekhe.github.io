@@ -1,0 +1,91 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> AT指令：AT+CPMS介绍 · 我是思聪</title><meta name="description" content="AT指令：AT+CPMS介绍 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">AT指令：AT+CPMS介绍</h1><div class="post-info">Oct 28, 2004</div><div class="post-content"><p>这是我在SIEMENS AT COMMAND SET里面摘录的一段：</p>
+<p>AT+CPMS Preferred SMS message storage</p>
+<p>Revision according to GSM 07.05 Version 4.7.0</p>
+<p>Test command</p>
+<p>AT+CPMS=?</p>
+<p>Response</p>
+<p>+CPMS: (list of supported <mem1>s),( list of supported <mem2>s) ,(list<br>+of</mem2></mem1></p>
+<p>supported <mem3>s)</mem3></p>
+<p>Parameter</p>
+<mem1>
+
+<p>Memory from which messages are read and deleted</p>
+<p>SM SIM message storage</p>
+<p>ME Mobile Equipment message storage</p>
+<p>MT combination of “ME” and “SM” storages</p>
+<p><mem2> Messages will be written and sent to this memory storage:</mem2></p>
+<p>SM SIM message storage</p>
+<p>ME Mobile Equipment message storage</p>
+<p>MT combination of “ME” and “SM” storages</p>
+<p><mem3> Memory in which received messages are preferred to be stored, if</mem3></p>
+<p>routing to TE is not set (see AT+CNMI command with parameter</p>
+<p><mt>=2)</mt></p>
+<p>SM SIM message storage</p>
+<p>ME Mobile Equipment message storage</p>
+<p>MT combination of “ME” and “SM” storages</p>
+<p>Read command</p>
+<p>AT+CPMS?</p>
+<p>Response</p>
+<p>+CPMS:</p>
+<p><mem1>,<used1>,<total1>,<mem2>,<used2>,<total2>,<mem3>,<used3>,&lt;total3</used3></mem3></total2></used2></mem2></total1></used1></mem1></p>
+<blockquote>
+</blockquote>
+<p>Parameter</p>
+<memx>
+
+<p>Memory from which messages are read and deleted</p>
+<p><usedx> Number of messages currently in <memx></memx></usedx></p>
+<p><totalx> Total number of messages that can be stored in <memx></memx></totalx></p>
+<p>Write command</p>
+<p>AT+CPMS= <mem1>[,<mem2>[,<mem3>]]</mem3></mem2></mem1></p>
+<p>Parameter</p>
+<mem1>
+
+<p>See Test command</p>
+<p><mem2> See Test command</mem2></p>
+<p><mem3> See Test command</mem3></p>
+<p>+CPMS: <used1>,<total1>,<used2>,<total2>,<used3>,<total3></total3></used3></total2></used2></total1></used1></p>
+<p>OK/ERROR/+CMS ERROR</p>
+<p>Notes 1) The Mobil Equipment storage “ME” has capacity for 25 short messages</p>
+<p>2) The storage “MT” is a combination of “ME” and “SM” storage. If “MT” is</p>
+<p>chosen indices &lt; 26 refer to ME” storage while indices 26 or higher are</p>
+<p>associated with the “SM” storage</p>
+<p>3) Incoming short messages with message class 2 (see GSM 03.38) will be</p>
+<p>stored in the “SM” storage only. Therefore, the AT^SMGO:2 indication (see</p>
+<p>AT^SMGO command) can occur without a preceding AT^SMGO:1 indication.</p>
+<p>一些概念：</p>
+<p>MEM1：读取和删除短信所在的内存空间。<br>MEM2：写入短信和发送短信所在的内存空间。<br>MEM3：接收到的短信的储存位置。</p>
+<p>具体用法：</p>
+<p>. 语句：<br>AT+CPMS=?<br>作用：</p>
+<p>测试命令。用于得到手机所支持的储存位置的列表。在我的SIEMENS M55手机上返回：<br>AT+CPMS=?<br>+CPMS: (“MT”,”SM”,”ME”),(“MT”,”SM”,”ME”),(“MT”,”SM”,”ME”)</p>
+<p>表示手机支持MT(手机终端),SM(SIM卡),ME(手机设备)</p>
+<p>. 语句：<br>AT+CPMS=”MT”,”ME”,”SIM”<br>设置MEM1为MT，MEM2为ME，MEM3为SIM</p>
+<p>. 语句：<br>AT+CPMS?</p>
+<p>作用：<br>得到当前的设置。<br>例如通过第二条语句的设置以后返回：</p>
+<p>AT+CPMS?<br>+CPMS: “MT”,7,150,”ME”,7,100,”SM”,0,50</p>
+<p>表示MT里面有7条短信，总共可以储存150条。ME里面有7条，共可以储存150条。SIM卡上可以储存50条。</p>
+</mem1></memx></mem1></div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2004-11-13-vcard-reader-class/" class="prev">PREV</a><a href="/post/2004-09-28-encode-charactors-to-7bitcode-or-ucs2-pdu-string-vb-net/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 请停止结对编程！ · 我是思聪</title><meta name="description" content="请停止结对编程！ - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">请停止结对编程！</h1><div class="post-info">Nov 27, 2017</div><div class="post-content"><p>（根据真实事件改编，情节有所夸张，请勿对号入座。）</p>
+<p>这是一个风和日丽的星期五下午，Ben和Martin本应该在Costa咖啡馆喝一杯下午茶，一起聊聊周末的计划，然而PM的一个微信通知打乱了这一切。原来产品出现了一个bug需要紧急修复，下班之前必须要搞定。两人收到消息疾步走回到岗位，也没了心情去喝刚泡好的咖啡，连忙打开邮箱查看问题报告。</p>
+<p><a href="/images/2017/11-27/1.jpeg"><img src="/images/2017/11-27/1.jpeg" alt></a></p>
+<h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3><blockquote>
+<p><strong>Ben：</strong>看来这不是一个很大的问题，就是处理一个来自于远端服务的异常。现在的情况是BFF(backend for frontends)在内部的远端服务有异常，会将异常直接返回到客户端，这样只要一个保单出了问题，前端所有的保单也都没法用了。</p>
+<p><strong>Martin：</strong>那怎么解决？</p>
+<p><strong>Ben：</strong>感觉可以在异常的地方加一个异常处理。这个涉及到RxJava和Java8的stream特性，我不是太熟悉，要不我们一起Pair吧</p>
+<p><strong>Martin：</strong>好。</p>
+</blockquote>
+<p>两人喝了一口炙热的咖啡，摆好键盘鼠标，打开了IntelliJ工程。几分钟后，这个故障重现了。</p>
+<blockquote>
+<p><strong>Martin：</strong>可以重现的故障通常比较好解决。我们在这里先弄个try…catch试试。 两人似乎很有信心，然而重启项目后，故障并没有按照预期停下来。</p>
+<p><strong>Ben：</strong>hmm，这里为什么停不下来呢？</p>
+<p><strong>Martin：</strong>可能是RxJava的延迟处理，没有正确的捕捉到。这样，你在这里再写一个逻辑，然后在这里设个断点……</p>
+</blockquote>
+<h3 id="焦急"><a href="#焦急" class="headerlink" title="焦急"></a>焦急</h3><p>在这个过程中，Martin只是对着屏幕指指点点，时不时看看手机、在微信上聊聊天。Ben对RxJava并不是很熟悉，他想紧紧跟随Martin的思路，然而增加多个逻辑以后，依然都不能解决问题。15分钟已经过去，Ben这时候心生怀疑，是不是哪些地方没弄对？</p>
+<blockquote>
+<p><strong>Ben：</strong>我们理一下思路看看？</p>
+<p><strong>Martin：</strong>恩，来吧，一起看一下代码。</p>
+</blockquote>
+<p>Martin领着Ben一起看了一下代码，并且一直在旁边指点Ben进行单步调试。由于RxJava的延迟特性，使得断点很难设置。而抛出异常的调用栈会出现在某些莫名其妙的地方，这让他们根本不知道把try…catch放在哪里才能奏效。</p>
+<blockquote>
+<p><strong>Ben：</strong>可能是要这样，在这里加一个OnError看能不能解决。</p>
+</blockquote>
+<p>看似问题能够解决，其实是又一次的失败。在两人的激烈讨论中，时间过得很快，一晃眼已经是1个小时以后，咖啡早已经凉了，然而两个人完全没有心情，甚至都忘了咖啡的存在。</p>
+<p>Ben对Martin的解决方案越来越没有信心，两人开始重新讨论起解决方案。然而方案是越讨论越复杂，看起来想在下班前解决这个问题是不可能了，通宵是必然了。</p>
+<h3 id><a href="#" class="headerlink" title></a><a href="/images/2017/11-27/2.jpeg"><img src="/images/2017/11-27/2.jpeg" alt></a></h3><h3 id="简化"><a href="#简化" class="headerlink" title="简化"></a>简化</h3><p>Zen是组里的Tech Lead，今天在忙另外一个事情。这个周五真是不得安宁，恨不得想到美国去过过昨天。</p>
+<p>Zen听到两个人的讨论，虽然并不了解这个问题的细节，但直觉上认为是跑偏了。马上提醒Ben和Martin：</p>
+<blockquote>
+<p>这不是一个很难的问题，我感觉你们想复杂了？是不是走偏了？能给我说一下你们怎么想的么？</p>
+</blockquote>
+<p>被Zen打断的Martin说了一下之前的解决方案，也说试过了其他的方案了，都不行。由于Zen对这个事情也不是很了解，所以只是提了一个醒：</p>
+<blockquote>
+<p>“Keep it simple，别把事情整复杂了。”</p>
+</blockquote>
+<p>两个人的讨论依然在继续，Ben有点无法跟上Martin的思路，艰难地写着代码，但每次都不对。Pair的气氛犹如冬日里冰冷的咖啡一样凝结，不知道孰是孰非。Ben已经有些不高兴，Martin则依然在一旁指指点点但并不动手。</p>
+<p>Zen一看表已经3点钟了，又插了一句嘴：</p>
+<blockquote>
+<p>Martin，既然你对这个更熟悉，你来操刀吧。你来写代码吧。</p>
+</blockquote>
+<p>可能由于之前的讨论过于激烈，Martin反驳Zen：</p>
+<blockquote>
+<p>我们在Pair啊，他对RxJava不熟悉，我应该指导他。我看着他写就可以了。</p>
+</blockquote>
+<p>Zen说，</p>
+<blockquote>
+<p>你们的解决方案是什么，给我看看。</p>
+</blockquote>
+<p>解释了一通以后，Zen也没有更多的想法，就让他们继续吧。但Zen建议道：</p>
+<blockquote>
+<p>在这个紧要的关头，我们应该改变一下Pair的方式。现在不是教授知识，而是要高效的解决问题。在这种压力的情境下，你可以直接实现自己的思路，带着别人飞就好了。</p>
+</blockquote>
+<h3 id="-1"><a href="#-1" class="headerlink" title></a><a href="/images/2017/11-27/3.jpg"><img src="/images/2017/11-27/3-1024x683.jpg" alt></a></h3><h3 id="分歧"><a href="#分歧" class="headerlink" title="分歧"></a>分歧</h3><p>Martin稍微冷静了下，拿过键盘，继续开始修复问题。Ben这时候在一旁观察，也适当的休息一下，之前手忙脚乱的按F8、F9的神经也得以缓和。</p>
+<blockquote>
+<p>Ben：看来还是不行。我们再理一下代码吧。</p>
+<p>Martin：你说的这些我之前都试过，都不行，要这样才行。</p>
+<p>Ben：我说的是这样做的，既然我们还没讨论清楚，我们再来看一下代码吧。</p>
+</blockquote>
+<p>两人拿出了纸和笔，对着屏幕一边画一边讨论，然而Ben并不认可Martin的方案，说要采用另外个方案。Martin则坚持认为这是一个可行的方案，得试试。Ben拿过键盘，准备按照Martin的方案写代码，但心里面颇为不爽，一直在想说服Martin采用他的方案试试。</p>
+<h3 id="怒气"><a href="#怒气" class="headerlink" title="怒气"></a>怒气</h3><p>到此时，时间都已经不知不觉过去两个小时了，然而问题似乎离真相总是忽远忽近。两个人已经疲劳不堪，再加上解决方案的不一致，两人的言语中开始显露出一些怒气。</p>
+<p>Zen在运行测试的空档，打断了两人的对话，建议道：</p>
+<blockquote>
+<p>既然大家已经产生了分歧，要不然两个人分开，各自实现一个，看谁能够先实现，然后再来讨论。</p>
+</blockquote>
+<p>Martin对于Zen并不认同，认为Zen指责他和Ben没有Pair好。</p>
+<p>Zen解释道：</p>
+<blockquote>
+<p>其实我听出了两人意见的不统一，言语中已经有一些怒火，这样下去Pair的效率很低。首先，大家带着不爽来干活，互相质疑。更关键的是，解决问题已经用去了两个多小时，大家都比较疲惫，可以适当休息。我让你们分开的目的是让大家冷静一下，在不受打扰的情况下工作一段时间，可能会不一样。</p>
+</blockquote>
+<h3 id="冷静"><a href="#冷静" class="headerlink" title="冷静"></a>冷静</h3><p>Martin回到了电脑面前，按照他的思路一步一步做下去。Ben去上了个厕所，倒掉了那杯冷冰冰的咖啡，泡了杯热茶。回到电脑前专注的重新按照他的思路一步一步走下去。</p>
+<p>其实两个人已经接近了真相，只是这之间不停的对话把注意力消耗殆尽。两人企图达到一个统一，然而口头的对话并不能解决问题，反而暂缓了这个过程。</p>
+<p>10分钟后，Ben兴高采烈的说已经搞出来了一套可以运行的方案，叫Martin一同过来看看。Ben的临时解决方案比较简单好理解，但并不完美。熟悉RxJava的Martin指出了一些可以改进的地方。</p>
+<p>然后两人又开始了新一轮的Pair，重新将这个方案完善。有了这个基础的解决方案，两人都很高兴，是朝着一个正确的方向大步向前。</p>
+<h3 id="尾声"><a href="#尾声" class="headerlink" title="尾声"></a>尾声</h3><p>下午6点半，虽然比正常下班晚了半个多小时，但还好整个解决方案都正常了，交付的任务也顺利完成。</p>
+<p>Ben和Martin都总结道，我们应该停止结对，当：</p>
+<ul>
+<li>两人的思路不统一但无法说服对方时：我们可以考虑分开一阵，安静一下，各自用可运行的代码来证明思路的可行。这里只需要相对粗糙的代码即可。</li>
+<li>时间已经超过番茄时间而感到疲惫时：人的专注力是有限的，在Pair时非常累，特别是在能力方面存在较大差距的时候。在这时候我们可以试试番茄工作法，让大脑得到休息。</li>
+<li>注意力不集中或者有其他事务要处理时：在Pair的时候，彼此要尊重对方，不要玩手机、看其他无关的网页，除非事先取得别人的同意，否则就要等到停止结对、处理完事务后再继续。</li>
+</ul>
+<hr>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2017-11-28-how-to-buy-airfare/" class="prev">PREV</a><a href="/post/2017-07-15-share-bike-crawler/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 思考 · 我是思聪</title><meta name="description" content="思考 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">思考</h1><div class="post-info">Nov 1, 2007</div><div class="post-content"><p>我知道迟早我要来弄弯管机的控制和仿真程序的，结果这一天早早的来到了。接手了这个项目的3D显示部分的任务，也着实看到了实验室的强人的代码。</p>
+<p>弯管机的控制程序运行在工控机上面，而工控机本质是用PC机作为载体，装的XP作为操作系统。整个控制通过专业的控制卡进行。硬件方面不说，我也不是做硬件的，就从软件的角度看看代码就让我彻底晕死了。</p>
+<p>整个项目用的是VC6进行设计开发，数据库用SQL SERVER 2000。麻烦的就在这个VC6上面，彻底的古老的玩意儿了，不完全支持STL，有些莫名奇妙的vector的BUG就出现在里面。就我来看整个界面是比较简单的，没有太多动态的部分，但是整个工程的代码让我看了就彻底郁闷了——几乎所有的窗体、按钮都是慢慢用MFC凑出来的，也就是说，界面纯粹用代码写出来的。结果，这个界面变得奇丑无比，想改一下相关的东西都很麻烦，想想全是API在那儿弄过去弄过来，一会儿一个SendMessage，烦不烦！我拿到这个代码以后想添加一个东西完全无从下手，在未编译运行之前根本不知道这个窗体是什么样子的，好歹那些纯静态的窗体你给我用画出来嘛。结果由于是他们要做多国语言，不得不硬编码。至于运行起来有动态的地方(其实也就是一些类似tabControl的东东)更是摸不着头脑，只有大概猜一下，然后设置一个断点，再运行一下，看看是不是那个地方，感觉比盲人摸象还牛，毕竟盲人知道那个是象，有四条腿，总不会摸出第五条腿嘛！</p>
+<p>界面的超级抽象不说了，另一方面更强的问题在于怎么去修改这个界面。每次做个修改都要实际运行一下看看结果，不对再改，天啊，这太折磨人了。</p>
+<p>去年刚刚接触这个项目的时候，我就对当时写了一半的代码提出质疑，为什么现在开发项目还在用VC6，为什么不用.NET平台？.NET已经是很先进的一个平台了，虽然直接操作API上面有一些屏障。大家一致回答，不懂.NET，也不知道怎么用.NET来控制工控卡，还是用熟悉的VC6来做吧。其实我后悔当初为什么加进来，还不如另给我一个题目，让我从0开始！</p>
+<p>再来看看我周围的研究生，他们来的时候都或多或少学了一些C/C++，老一届的师兄因为历史的原因都说用VC6吧，所以天天抱着一本厚厚的MFC读啊读，做项目也只有用这个了，因为学了C/C++，他们认为用VC6这个投资才没有浪费。没有人告诉他们，还有C#可以满足你的要求，学学C++/CLI，生活便会开心许多。但我想，对于大多数“懒”人来说，我的这句话依然只是一句废话。</p>
+<p>其实在我接触C++/CLI之前我也有一些疑问，.NET如何去控制工控卡。VS2003时代有Managed C++ Extenstion，但其怪异的语法让人望而却步。幸亏微软没有忘记这个强力雾气，在VS2005时推出了C++/CLI。这个革命性的语言让托管和非托管语言隔阂缩小了很多。可以说目前.NET平台上，C++/CLI是最为强大的语言，他将历史和未来进行了完美的结合，让以前旧有的代码得以充分利用，也让现有的工作可以基于.NET平台，从而享受.NET带来的优势和愉悦。目前，我利用C++/CLI，已经实现把纯C++的OpenSceneGraph图形库和C#结合起来一起工作，C#专门做界面，OpenSceneGraph负责OpenGL图形显示，各司其职，将做复杂界面的挑战减小到了最小，而又不失灵活。</p>
+<p>那么工控机运行.NET程序是否那么快？据我了解现在所配置的工控机的CPU配置都达到了P4的水平，内存也多在512以上，除了第一次运行可能比较慢以外，这个配置运行.NET程序不存在任何问题。但对于开发机来说，VS2005先进的功能让很多旧电脑不堪重负，强人们的机器实在是太老了，512内存跑VS2005那是很痛苦的。为什么老板就不能升级一下我们的电脑呢？呵呵，为什么“不”这就不容多说了吧。我怕哪天学生科的老师又叫一个学生敲敲寝室的门，然后对我说，XX老师叫你好好学习。</p>
+<p>废话不多说，以我的观点来看，如此简单的工控机的界面用不着动用VC6这个老元老了，除非是需要继续进行2000年左右项目的开发，而迁移成本很高的情况下。2005年以后的工程都可以用VS2005来开发了，在嫦娥都能奔月的今天，开发工具不在进行革新，就好比原始人用石头和现代人的原子弹比拼。要知道我做PDA上面的地震数据采集的界面都比这个复杂太多，工控机优越的硬件环境足以支撑.NET平台。</p>
+<p>用C++来构造界面往往需要花费很大的精力才能调整好整个，有过MFC开发经验的人就知道这些痛苦了。要实现一个多国语言都显得很麻烦。其次，C++的内存管理始终是一个问题，即便很小心，也可能忘记new了一个数组以后(int* p=new int[count])需要用delete[] p进行删除。编译器不会给你说这个地方需要怎么做，最多给你一个Warning，但恐怕业余程序员也不屑于来更正这些Warning。错误的操作导致的内存泄露很麻烦，也不容易查找出来，而.NET的托管平台就没有这个隐患，除非你自己使用了非托管资源而未作处理。</p>
+<p>.NET的优势不仅在于以上所说的创建界面方面，整个.NET平台简化了太多的操作。XML结合序列化反序列化的使用使得存储一个结构变得轻而易举，XML以明文存储的结构数据更能很容易的进行查看，找到问题所在。而在现在的项目中，由于VC6的局限，最方便的方法莫过于直接将一个结构写二进制文件。但这样造成了严重的后果，如果以后版本升级，之前的数据文件将不再兼容，虽然有些即便看上去可以用，但值却不是一一对应，可能隐藏一些很复杂的问题。想想为什么现在Office 2007都要用XML来存储，我想，这肯定是经过了太多的兼容性的折磨的。其次微软的跨平台的野心也促使其使用工业标准。正是由于这些原因，这才带来了OpenOffice和Microsoft Office的高度兼容。</p>
+<p>再说说数据库里面存放的玩意儿。对数据库我不是太在行，对于表结构那些我没有太多的看法。当然我知道用C++调用ADO访问SQL Server在现在.NET平台下看来简直是没事找事做。强人们用了好几百行代码来写这个数据库部分，有必要么？现在系统数据库里面存储的工艺文件和管形文件是用二进制来存储的，如果要调试，就要用专门的类来进行读取，才知道里面到底有什么。我知道，C++里面操作XML不是一个简单的事情，C++缺少META信息也给序列化带来了不便。这不怪强人们，如果他们出生在我的年代，用上了.NET平台，用上了序列化和反序列化，我想他们肯定很乐意几行代码将需要的结构保存下来，而不是费尽心思去写Load和Save的代码。</p>
+<p>回过头来，当身处强人们的位置时，当机器无法快速运行VS2005时，当老板的项目逼得很急时，没有更强的专业开发人员时，作为业余的程序员，也只有选择走一些弯路。越调越多的BUG，越变越复杂的需求，无不深深的折磨着他们身心。而现在项目就要移交给我，我真想将整个项目重新规划，用.NET重写整个逻辑，用C++/CLI来操作工控卡，但，老板愿意承担其中的风险么？他愿意花时间么？一年多积累下来的代码重新以后是不是改动太大了？如果再不做一些改动，恐怕这些代码以后的路很难走。</p>
+<p>当然，项目组一起做上来的业余程序员也只能走一步算一步，越走越黑暗，越走越伤心，最终毕业了就真正解脱了——为什么程序开发这么难</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2007-11-02-nighte38091-e38090campus/" class="prev">PREV</a><a href="/post/2007-10-30-log-back/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

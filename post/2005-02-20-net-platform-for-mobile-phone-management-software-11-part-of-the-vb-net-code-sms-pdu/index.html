@@ -1,0 +1,42 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> .net平台手机管理软件开发(11)—— 短信部分 VB.NET编码PDU · 我是思聪</title><meta name="description" content=".net平台手机管理软件开发(11)—— 短信部分 VB.NET编码PDU - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">.net平台手机管理软件开发(11)—— 短信部分 VB.NET编码PDU</h1><div class="post-info">Feb 20, 2005</div><div class="post-content"><p><strong>(十一) **</strong>短信部分——VB.NET<strong>**编码PDU</strong><br>PDU的编码器的工作原理是解码器的逆过程。根据需要编码器只需要编码发送的PDU代码，工作相对简单。本文讲解编码思路，具体代码请参考Blog中PDUEncoder部分</p>
+<p>我把PDU的编码分为两部分，SMS和EMS。EMS部分我只提供了ConcatenatedShortMessage的编码器。这是超长短信的编码，用得最多。<br><strong>SMS**</strong>编码**</p>
+<p>编码一个SMS一般需要如下的信息：<br>TP_Data_Coding_Scheme TP_UD编码方式<br>TP_Destination_Address 对方号码<br>TP_Message_Reference 参考号码<br>TP_Status_Report_Request 状态报告<br>TP_User_Data 用户信息<br>TP_Validity_Priod 有效期<br>ServiceCenterNumber 短信中心号码</p>
+<p>所以在编码器中存在以上的属性，并在Set中加入了处理代码，将可读信息转换成对应的十六进制信息。</p>
+<p>特别注意的是TP_User_Data属性，它可以根据用户数据编码自动设置TP_UDL。对于纯英文编码，TP_UDL为所有的字符数；对于Unicode编码，由于一个字符由两个字节表示，TP_UDL为所有的字符数<em>2。注意检查TP_User_Data的长度，对于SMS来说编码后的TP_UD长度不能超过140字节。也就是说英文160个字符(140/7</em>8)，中文70个字符。</p>
+<p>对于TP_UD的编码在解码器中也有说明，在此不再赘述。</p>
+<p>我还设计了几个枚举变量：<br>ENUM_TP_DCS 编码方式<br>ENUM_TP_SRI 状态报告<br>ENUM_TP_VALID_PERIOD 有效期<br>ENUM_TP_VPF 有效期格式</p>
+<p>这些枚举变量可以简化输入，也利于日后扩充。</p>
+<p>当以上内容设置好以后，基本上一个短信的架子就出来了。此时调用GetSMSPDUCode进行组合，简单的把十六进制拼接起来就形成了一个完整的PDU代码。<br><strong>EMS**</strong>——ConcatenatedShortMessage<strong>**部分</strong></p>
+<p>编码EMS较SMS复杂，但每条EMS的基础还是SMS，所以我直接继承了SMS类。区别主要是要处理好TP_UD和IE。对于ConcatenatedShortMessage，由于其IE和TP_UDHL占据了TP_UD的部分空间，所以每条短信英文只能容纳133字符，中文66字符。我们可以通过此信息得到短信条数。</p>
+<p>如果TP_DCS为Unicode编码，则短信条目为：<br>TotalMessages = (TP_UD.Length / 4)  66 + ((TP_UD.Length / 4 Mod 66) = 0)+1</p>
+<p>如果为7bit，则为：<br>TotalMessages = (tp_ud.Length  266) - ((tp_ud.Length Mod 266) = 0)+1</p>
+<p>注意在程序中我为了简化以后的数组操作，就没有加一。</p>
+<p>确定了短信条数以后通过一个循环就可以提取出每条短信的TP_UD。<br>Select Case tp_dcs<br>Case ENUM_TP_DCS.UCS2<br>tmpTP_UD = Mid(TP_UD, i * 66 * 4 + 1, 66 * 4)’When TP_UDL is odd, the max length of an Unicode string in PDU code is 66 Charactor.See [3GPP TS 23.040 V6.5.0 (2004-09] 9.2.3.24.1<br>Case ENUM_TP_DCS.DefaultAlphabet<br>tmpTP_UD = Mid(tp_ud, i * 133 * 2 + 1, 133 * 2)<br>End Select</p>
+<p>此后还需要编码IE部分，关键代码是确定TP_UDL的值。对于TP_DCS为7bit来说确定此值显得比较复杂，弄不好容易出现多一个少一个的错误。<br>If tp_dcs = ENUM_TP_DCS.UCS2 Then<br>TP_UDL = tmpTP_UD.Length / 2 + 6 + 1 ‘6: length of IE<br>End If<br>If tp_dcs = ENUM_TP_DCS.DefaultAlphabet Then<br>TP_UDL = Fix((tmpTP_UD.Length + 7 * 2) * 4 / 7) ‘6:length of IE<br>End If</p>
+<p>然后根据3GPP里关于EMS的结构的说明就可以编写出EMS PDU的处理程序。详见原代码。</p>
+<p>如果需要扩展EMS以适应更多种类的EMS，可以参考3GPP写出更为强大的编码程序。但最关键的还是需要处理好IE以及TP_UDL。</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2005-02-21-net-platform-for-mobile-phone-management-software-12-some-messages-send-and-receive-sms-via-rs232/" class="prev">PREV</a><a href="/post/2005-02-19-net-platform-for-mobile-phone-management-software-10-decode-pdu-sms-part-of-the-vb-net/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

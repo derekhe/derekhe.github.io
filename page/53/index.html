@@ -1,0 +1,67 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 我是思聪</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2008-12-29-vmware-6-5-vs-sun-virtualbox/" class="post-title-link">VMWare 6.5 vs Sun VirtualBox</a></h2><div class="post-info">Dec 29, 2008</div><div class="post-content"><p>昨天我还以为找到了福音，结果今天工作了半天才发现，最新的VirtualBox 2.1的性能还是有问题。昨天看到，XP启动的时候VirtualBox的性能确实好与VMWare 6.5，在实际使用中也发现VirtualBox的磁盘性能也比VMware6.5好。莫非是我虚拟机里面选磁盘接口的时候VirtualBox选的SATA，VMWare选的IDE造成的？</p>
+<p>最大的性能差异在于应用程序的执行速度。平时我要开一个VS2005+Resharper插件，VMWare6.5分配了两个CPU给他用，很好用，速度很快。但VirtualBox就恼火了，只能开一个CPU不说，而且核心占用率经常是和实际CPU占用率一样，天啊。Resharper平时本来就要不停地解析，CPU占用又经常是100%，连打字都是飞着打的。郁闷。坚持了两个小时以后，终于放弃VirtualBox了。</p>
+<p>总结起来，VirtualBox确实还需要进步阿！期待小巧实用的VirtualBox进一步发展，打败庞大的VMWare。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2008-12-29-no-hardware-to-install-ubuntu-8-10-partition-problem-solving/" class="post-title-link">Ubuntu 8.10硬件安装无分区问题解决</a></h2><div class="post-info">Dec 29, 2008</div><div class="post-content"><p>可能是安装的时候占用了硬盘资源，导致无法找到硬盘分区，结果安装就没法正常的分区，安装不能正常进行。最后，参考了<a href="http://www.javaeye.com/topic/293639" target="_blank" rel="noopener">这个帖子</a>，只需要在isodevice umount掉就可以了。直接打开“Application”-&gt;”Accessories”-&gt;”Terminal”，然后</p>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cd</span> /</span><br><span class="line">sudo umount -l isodevice&lt;<span class="string">/blockquote</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<p>问题解决。笔记本升级为8.10，HAPPY。</p>
+<p>PS：Virtual Box 2.1的性能确实要比臃肿的Vmware 6.5快很多，而且也没有Vmware 6.5的键位映射问题。爽～！</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2008-12-28-linux-using-wine-successfully-simulate-the-following-tm2008-beta/" class="post-title-link">Linux下面成功使用Wine模拟TM2008 Beta</a></h2><div class="post-info">Dec 28, 2008</div><div class="post-content"><p>零点今天给我说他模拟成功了TM2008，哇，真的啊？他给了我这个网址：<a href="http://linuxtoy.org/archives/running-tm2008-beta-with-wine.html" target="_blank" rel="noopener">Linux 下使用 Wine 安装运行 TM2008 Beta 及乱码、与 Windows 共享聊天记录等相关问题的解决</a></p>
+<p>按照网上给的方法稍作修改以后，安装成功了。</p>
+<p>首先是把以前的wine卸载了。安装了<a href="http://forum.ubuntu.org.cn/viewtopic.php?f=121&t=103958" target="_blank" rel="noopener">打了中文补丁的wine 1.13</a>，就访问<a href="http://ftp.ubuntu.org.cn/home/windowssux/Wine_CN/下载并安装最新的wine1.13就可以解决中文问题了。" target="_blank" rel="noopener">http://ftp.ubuntu.org.cn/home/windowssux/Wine_CN/下载并安装最新的wine1.13就可以解决中文问题了。</a></p>
+<p>然后拷贝<a href="http://www.rainux.org/stuff/rpcrt4.dll.gz" target="_blank" rel="noopener">rpcrt4.dll</a>到wine的system32目录，然后</p>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line"><span class="keyword">sh </span>winetricks msxml3 gdiplus riched20 riched30 ie6 vcrun6 vcrun2005sp1</span><br></pre></td></tr></table></figure>
+
+<p>安装一怕啦东西。</p>
+<p>最后就是执行TM的安装程序就可以啦。</p>
+<p>零点装的是TM Preview 4，貌似字体比较小。我这里装的是TM Beta，但是无法上线，按了上线几秒钟就离开了，郁闷的很。</p>
+<p>但无论杂说，还是基本可用了，比用QQ几分钟挂一次好多了，比用QQ FOR LINUX好太太太多了～～感谢wine</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2008-12-27-exquisite-beauty/" class="post-title-link">国色天香</a></h2><div class="post-info">Dec 27, 2008</div><div class="post-content"><p>国色天香，去过好几回了，以前没有轮椅的时候奶奶走到好远，就没法去，这下有了轮椅行动范围就大多了。那天是个星期六吧，艳阳高照的，很舒服的阳光晒在身上，我们一家人就去了这里。但后来相片一直放在我的电脑里面，其实已经上传了，但忘了发出来了，今天特意补上～</p>
+<p>图：指路牌。做的挺精致的，不会迷失方向。我平时到哪儿去玩都会拍上一个指路牌，怕走丢了。</p>
+<p><a href="/images/gallery/2008-11-30/IMG_0365.JPG"></a><img src="/images/gallery/image/thumb/2008-11-30/IMG_0365.JPG" alt></p>
+<p>图：中央湖面的水上乐园。国色天香的水上乐园比以前大了很多了，游乐设施也越来越多了。</p>
+<p><a href="/images/gallery/2008-11-30/IMG_0382.JPG"></a><img src="/images/gallery/image/thumb/2008-11-30/IMG_0382.JPG" alt></p>
+<p>图：彩虹～！嘿嘿，这天太阳的照射很强烈，喷出来的水雾敲好形成了一道彩虹！只有这个角度才能看得清楚，对这太阳看就看不见了。<br><a href="/images/gallery/2008-11-30/IMG_0386.JPG"></a><img src="/images/gallery/image/thumb/2008-11-30/IMG_0386.JPG" alt></p>
+<p>图：城堡。下面是一个3D剧场。<br><a href="/images/gallery/2008-11-30/IMG_0387.JPG"></a><img src="/images/gallery/image/thumb/2008-11-30/IMG_0387.JPG" alt></p>
+<p>图：自暴我的三脚架。哈哈，百诺的，云台还很好用的。<br><a href="/images/gallery/2008-11-30/IMG_0390.JPG"></a><img src="/images/gallery/image/thumb/2008-11-30/IMG_0390.JPG" alt></p>
+<p>图：老爸拍的雕塑<br><a href="/images/gallery/2008-11-30/IMG_0396.JPG"></a><img src="/images/gallery/image/thumb/2008-11-30/IMG_0396.JPG" alt></p>
+<p>图：来一张和彩虹合影。围着湖转了一圈，和彩虹来个合影。<br><a href="/images/gallery/2008-11-30/IMG_0400.JPG"></a><img src="/images/gallery/image/thumb/2008-11-30/IMG_0400.JPG" alt></p>
+<p>图：坐上三轮车，享幸福人生。哈哈，还有我拉爸爸妈妈的PP呢～<br><a href="/images/gallery/2008-11-30/IMG_0412.JPG"></a><img src="/images/gallery/image/thumb/2008-11-30/IMG_0412.JPG" alt></p>
+<p>图：一个小细节，嘿嘿。国色天香这种细节还有的，慢慢观察既能发现。<br><a href="/images/gallery/2008-11-30/IMG_0414.JPG"></a><img src="/images/gallery/image/thumb/2008-11-30/IMG_0414.JPG" alt></p>
+<p>图：湖全景。<br><a href="/images/gallery/2008-11-30/IMG_0420.JPG"></a><img src="/images/gallery/image/thumb/2008-11-30/IMG_0420.JPG" alt></p>
+<p>下午晒足了太阳就返航啦～～</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2008-12-27-it-is-again-deceiving-your-eyes/" class="post-title-link">它，又一次欺骗了你的眼睛～</a></h2><div class="post-info">Dec 27, 2008</div><div class="post-content"><p>相信你眼睛看到的一切么？</p>
+<p>看看下面一张图：(最好点击查看大图比较好)</p>
+<p>看什么呢？看A和B字母所在处颜色是不一样的？</p>
+<p><a href="/images/others/interesting.jpg"></a><img src="/images/others/image/thumb/interesting.jpg" alt></p>
+<p>不一样的吧，其实是一样的……</p>
+<p>不信？？？(还是点击看大图比较好)～</p>
+<p><a href="/images/others/checkershadow_double_med.jpg"></a><img src="/images/others/image/thumb/checkershadow_double_med.jpg" alt></p>
+<p>还不信？自己用工具把旁边的图块擦除了看看，或者直接用Photoshop查看图片的颜色值，或者有打印机打印下来比较比较。自动动手哦。</p>
+<p>这下不相信自己的眼睛了吧～～～</p>
+<p>更多的解释和其他的神奇图片，请见<a href="http://web.mit.edu/persci/people/adelson/index.html" target="_blank" rel="noopener">Edward H. Adelson的主页</a></p>
+</div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/52/" class="prev">PREV</a><a href="/page/54/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

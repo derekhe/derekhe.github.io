@@ -1,0 +1,61 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 机票大数据分析，揭示购票的秘密 · 我是思聪</title><meta name="description" content="机票大数据分析，揭示购票的秘密 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">机票大数据分析，揭示购票的秘密</h1><div class="post-info">Nov 28, 2017</div><div class="post-content"><p>对于旅游或者探亲来说，买机票的一个最基本的问题是什么时候买能买到最便宜的机票？提前一个月还是一周？知乎上各种旅游攻略上各种“业内人士”也说提前一个月买可能买到最便宜的机票，有些又说提前2个星期买能买到最便宜的机票，事实真的如此么？为了解密机票的定价策略，本文作者做了一个长达一年多的数据收集，通过分析350亿机票价格数据，告诉你机票的各种秘密。</p>
+<h1 id="到底要提前多久能买到最便宜的机票？"><a href="#到底要提前多久能买到最便宜的机票？" class="headerlink" title="到底要提前多久能买到最便宜的机票？"></a>到底要提前多久能买到最便宜的机票？</h1><p>要回答这个问题非常困难 ，因为机票的定价是一个非常复杂的动态的博弈的过程，而且定价由各种因素组合而成。我们买机票也不是一个高频的事件，所以当你需要买机票的时候，很可能观察一两天然后就购买。由于信息不对称，我们根本不知道当前是否最佳购买购票时机，买了以后说不定就惋惜又降价两三百。对于家庭出游来讲，赤裸裸的就少了好几百块钱。但在大数据面前，一切的秘密也不是秘密，将机票价格可视化出来你就会发现一些购票的秘密。</p>
+<h1 id="研究的数据"><a href="#研究的数据" class="headerlink" title="研究的数据"></a>研究的数据</h1><p>北京到广州的航班：</p>
+<ul>
+<li>国航：最早起飞的CA1321，中午起飞的CA1315，晚上最后一班的CA1319</li>
+<li>南航：最早起飞的CZ3166，中午起飞的CZ3112，晚上最后起飞的CZ3000</li>
+</ul>
+<p>价格：观察起飞前45天的价格，并且每天都记录一次<br>时间区间：2016年8月15日 - 2017年11月1日</p>
+<p>下图是CA1321一年的机票价格变化。每一行代表特定出发日期的价格变化，例如第一行代表2016年8月15日起飞的航班的机票价格的变化。一行里，左边离出发日期越近，右边离出发日期越远。第一个方块代表距离出发日期0天（当天）的机票价格，第二格代表距离出发日期1天的机票价格，以此类推，最后一个表示44天前的价格。颜色越深代表价格越高，颜色越浅价格。</p>
+<p>此图很长……请耐心，看不清请看原图……<br><img src="/images/2017/11-28/4372317-27f35fecfe568e70.png" alt="CA1321.png"></p>
+<p>再来看第二张图，这张图是从上一张图做差分得到，目的是显示出涨价、降价的区块。红色的代表涨价，颜色越深涨价越多；灰色表示无价格变动；蓝色代表降价，颜色越深降价越多。</p>
+<p><img src="/images/2017/11-28/4372317-cc4e36a614a8bad0.png" alt="CA1321.png"></p>
+<p>好了，从这两张图能看出点什么呢？请注意，以下分析仅仅针对该航班。</p>
+<h3 id="距离起飞前第9天开始，几乎所有的日期都开始涨价"><a href="#距离起飞前第9天开始，几乎所有的日期都开始涨价" class="headerlink" title="距离起飞前第9天开始，几乎所有的日期都开始涨价"></a>距离起飞前第9天开始，几乎所有的日期都开始涨价</h3><p>最明显的是，距离起飞前第9天开始，几乎所有的日期都开始涨价。请注意图二的坐标为8的那一列。然后到距离起飞前第3天才是，又要涨价一次。所以，如果距离起飞已经只有10多天了，请赶紧购买，涨价是大概率的事情。</p>
+<h3 id="同一个月内的价格调整在同一天完成"><a href="#同一个月内的价格调整在同一天完成" class="headerlink" title="同一个月内的价格调整在同一天完成"></a>同一个月内的价格调整在同一天完成</h3><p>让我们把图缩小一点看看。在图上，我手工画了一些斜线，你可以看到价格再那里发生了变化。但每个斜线都是45度，意味着这是在同一天发生的价格调整。举个例子，4月份的价格调整，可以通过斜线看出。所以4月2号的机票，提前25天到10天左右买是可以买到较为便宜的，而4月3号的提前26天到10天左右，以此类推，4月16号的以前差不多一个月到10天都可以。</p>
+<p><img src="/images/2017/11-28/4372317-c720ad4354f881a4.jpg" alt="CA1321.jpg"></p>
+<p><img src="/images/2017/11-28/4372317-2b466646359cd60d.jpg" alt="CA1321_4月"></p>
+<p>而六月份的就不太一样，需要叠加节假日的因素，6月5、6、7日为周日、周一、周二，价格相对较高，所以调价的是涨价。购买这几天的机票就要提前更早买比较合适。而随后的8,9,10为周三、周四、周五，价格相对较低，所以是降价。航空公司估计是这样来平衡收益。<br><img src="/images/2017/11-28/4372317-f2d19c82eb260577.jpg" alt="CA1321_6月"></p>
+<h3 id="起飞时间是周几对价格影响"><a href="#起飞时间是周几对价格影响" class="headerlink" title="起飞时间是周几对价格影响"></a>起飞时间是周几对价格影响</h3><p>在上一节已经涉及到了周几起飞的价格影响。我再来画几条线，一看你就明白。价格的涨跌一目了然。对这个航班而言，周日到周二是票价相对较高的区间，周三到周六是较低的区间。</p>
+<p><img src="/images/2017/11-28/4372317-6801777df831ff58.jpg" alt="CA1321"></p>
+<h3 id="早班中班晚班的对比"><a href="#早班中班晚班的对比" class="headerlink" title="早班中班晚班的对比"></a>早班中班晚班的对比</h3><p>对早中晚几个航班，可以明显的看出：</p>
+<ul>
+<li>在价格方面：早班的航班价格较贵（整体颜色深），中班适当，晚班的较便宜（整体颜色浅）。</li>
+<li>调价：参考之前的斜线，不同时段航班的调价也几乎都是同一时间发生。</li>
+</ul>
+<p><img src="/images/2017/11-28/4372317-3fc4e265b2a04472.jpg" alt="国航.jpg"></p>
+<h3 id="发现淡季和旺季"><a href="#发现淡季和旺季" class="headerlink" title="发现淡季和旺季"></a>发现淡季和旺季</h3><p>根据颜色的深浅及颜色的变化即可判断出淡季旺季，基本规律大致相同，大假附近几乎会上涨，寒假、暑假、过年期间价格也较高。</p>
+<p><img src="/images/2017/11-28/4372317-165f974113a38e89.jpg" alt="CA1321_季节.jpg"></p>
+<h3 id="南航航班和国航对比"><a href="#南航航班和国航对比" class="headerlink" title="南航航班和国航对比"></a>南航航班和国航对比</h3><p>不同航空公司的定价不相同，但类似的调价措施似乎有一定的参考。南航的缩小图见下，可以看出一些斜线的区域，显然是遵循了一样的调价规律。</p>
+<p><img src="/images/2017/11-28/4372317-44e5b08c5aff4d7e.jpg" alt="南航.jpg"></p>
+<h1 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h1><p>决定什么时候出发，相关的工具必不可少。各大OTA网站：携程、去哪儿、飞猪、同程，各大官网，这些就不用多说吧。</p>
+<p>决定什么时候买，通常我们会查看票价历史来做决定。目前还没有工具能够查询到历史的票价。针对这个问题我们开发了一个小程序帮忙查询到历史票价，微信小程序搜索“爱飞狗旅行”即可使用。</p>
+<p>查看价格波动情况和购票建议。近期的价格波动情况可以很清楚的看到，当票价已经上涨了并且临近起飞日期了，请赶紧购票。<br><img src="/images/2017/11-28/4372317-0090bc826b2f20eb.jpeg" alt="爱飞狗旅行"></p>
+<p>价格预测及最低价格，此航班提示明年春节购票最好提前7到9周。公历和农历对齐可以很方便的对齐去年的节假日。<br><img src="/images/2017/11-28/4372317-9596ea89a1c78390.jpeg" alt="爱飞狗旅行"></p>
+<p>最后可以在上述OTA网站订阅一个低价预约，出现预约后就可以购票了。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>其实航空公司的票价策略还是有规律可寻，当有一定数据量并且可视化出来以后就更容易发现规律。利用适当的工具能够帮我们选择。春节即将到来，请尽早决定并持续关注价格历史，祝您买到一张便宜的回家的机票。</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2017-12-06-buy-spring-airfare/" class="prev">PREV</a><a href="/post/2017-11-27-stop-pairing/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

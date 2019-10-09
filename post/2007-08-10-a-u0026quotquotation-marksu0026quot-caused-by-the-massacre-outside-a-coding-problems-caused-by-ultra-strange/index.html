@@ -1,0 +1,45 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 一个“引号”引起的血案！外一则编码引起的超诡异问题 · 我是思聪</title><meta name="description" content="一个“引号”引起的血案！外一则编码引起的超诡异问题 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">一个“引号”引起的血案！外一则编码引起的超诡异问题</h1><div class="post-info">Aug 10, 2007</div><div class="post-content"><p>网页变成遇到JavaScript的问题算是够头痛的，特别是对我这种网页开发新手来说，更是雪上加霜。不仅仅是对他的不熟悉，更是调试工具使用的不熟悉，再加上本来就不好调试，一切加起来，困难重重。</p>
+<p>今天就遇到了一个超级诡异的问题，在一个JavaScript函数中找不到另一个函数，大体就是这样的</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">function A()</span><br><span class="line">&#123;</span><br><span class="line"><span class="function"><span class="title">B</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br><span class="line">bFun.js这样定义</span><br><span class="line">.....(some functions)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">b</span><span class="params">()</span></span></span><br><span class="line">&#123;</span><br><span class="line">....</span><br><span class="line">&#125;</span><br><span class="line">...(some functions)</span><br></pre></td></tr></table></figure>
+
+<p>然而执行到B()的时候提示“没有对象”。郁闷啊，B()明明就是定义了的！还有那些地方有错误呢？</p>
+<p>后来高手过来帮忙调试，发现在这个之前还有页面的错误，我忽略了，是一处提示没有括号的错误。</p>
+<p>第一眼还是没有看出来怎么回事，反复查看以后，发现，原来是掉了一个引号……正如下面的样式</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="built_in">..</span>.</span><br><span class="line">string <span class="attribute">b</span>=a+"some text<span class="string">"+ p + OtherText"</span>;</span><br></pre></td></tr></table></figure>
+
+<p>就是OtherText前面少了一个引号，造成了解析器误以为OtherText以后的部分都是字符串类型，当然b()在OtherText之后，当然就找不到问题了……~
+真是诡异。</p>
+<p>问题解决之后，才发现，原来，解释性语言那么麻烦……还是静态编译的好一些。想想，如果JavaScript有某种语法检测工具那该多好啊……或许我还没有发现吧。</p>
+<p>另外一个诡异的问题来自于同事，程序当中有时候要对字符串进行比较，类似于以下的：</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="title">if</span><span class="params">(step==<span class="string">"步骤"</span>)</span></span>....</span><br></pre></td></tr></table></figure>
+
+<p>当他调试到step的时候，纵使step的值是“步骤”，if都不跳转到应该执行的代码！！</p>
+<p>怎么回事呢？</p>
+<p>原来这个代码的源代码的编码在vss里面出了问题，checkout之后的编码也不是正常的编码，造成了”步骤”编译以后的二进制值和由其他地方传过来的step的二进制值不相同，而机器比较的时候不是比较字面的，而是直接比较内存中的值，这就造成了异常诡异的BUG。</p>
+<p>将源代码重新编辑保存就对了。</p>
+<p>看来，第一，在写代码的时候，一些大量常用的字符串，能够放在一个固定的文件里面，所有需要用到的时候都从那儿提取，就会大大减少类似的错误。第二，程序中的字符串如非必要，还是以英文为好。</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2007-08-14-dog-has-run-away/" class="prev">PREV</a><a href="/post/2007-08-08-gpu-gems-3-release-u0026amp-driven-home-my-picture/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

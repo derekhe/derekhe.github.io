@@ -1,0 +1,52 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> OpenEmbedded console-image 编译成功 · 我是思聪</title><meta name="description" content="OpenEmbedded console-image 编译成功 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">OpenEmbedded console-image 编译成功</h1><div class="post-info">Oct 3, 2009</div><div class="post-content"><p>我是才接触OpenEmbedded不久，也算是个菜鸟。看到这么方便的东西以为bitbake xxxx就可以了，结果哪知道这个才是唐僧刚刚上马，遇到的妖魔鬼怪还多着呢。这里总结一下我最近bitbake console-image所历经的磨难。</p>
+<p><a href="/images/mini2440/IMG_0117.JPG"></a><img src="/images/mini2440/image/thumb/IMG_0117.JPG" alt></p>
+<p><a href="/images/mini2440/IMG_0118.JPG"></a><img src="/images/mini2440/image/thumb/IMG_0118.JPG" alt></p>
+<p><a href="/images/mini2440/IMG_0119.JPG"></a><img src="/images/mini2440/image/thumb/IMG_0119.JPG" alt></p>
+<p>. 准备</p>
+<ul>
+<li>一个超级好的网络是必不可少的，否则当你什么都下载不了的时候你就知道什么是痛苦了。</li>
+<li>一个4核的CPU是很有必要的，当然如果有钱可以买个core i7更好</li>
+<li>如果想在编译的时候能够打发一下时光，建议安装vmware。特别建议用7.0的技术预览版(网上找找看有没有，我是vmware邀请测试的)，因为可以支持大于2个CPU。</li>
+<li>留至少80G连续的硬盘空间。</li>
+<li>选一个比较吉祥的日子，准备好耐心<br>. 下载和建立好local.conf</li>
+</ul>
+<p>从OE的官方git源clone一个副本，这个步骤我就省略了，但是记得经常<code>git pull</code>。我的local.conf的MACHINE定义为mini2440，DISTRO定义为openmoko。想编译一个openmoko出来玩。</p>
+<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line">bitbake console-<span class="built_in">image</span></span><br></pre></td></tr></table></figure>
+
+<p>然后bitbake就会工作了，期间肯定会遇上小的妖魔鬼怪，什么preferred version not found之类的，只需要改变一下conf/distro/conf文件里面的preferredxxxxx.inc文件就可以了。具体是什么文件可以用<code>grep xxxx -r .</code>来搜索，当然这你得有一些基本的linux尝试。</p>
+<p>其他的问题比较多的是：</p>
+<ul>
+<li>编译出错。我想这不是我的错，如果在recipes的相应组件中找到了更新的版本，可以使用另外的版本来替换。替换的方法是修改PREFERRED_VERSION_xxxxx的值即可。一般使用高点的版本就会OK。</li>
+<li>没有本地的工具支持。有些编译项目需要本地支持。上次编译mtd-utils就遇到了本地有一个工具没有安装。如果看到了有些错误位于i686目录(有这个字样的)，就可以怀疑是本地有些工具或者库没有安装，从而不能正常编译。懂点脑子把东西装上应该就会对。</li>
+<li>版本不兼容。有时候包与包之间有可能不兼容，方法是把出错的包在网上搜一下，例如这个编译mtd-native的错误就是由包之间不兼容引起的：<a href="http://projects.linuxtogo.org/pipermail/openembedded-devel/2009-January/007571.html" target="_blank" rel="noopener">http://projects.linuxtogo.org/pipermail/openembedded-devel/2009-January/007571.html</a></li>
+<li>其它问题。有时候编译中途出了问题(例如电脑死机、意外重启、停电等)会造成一些莫名其妙的文傳統，把tmp文件夹删除了再编译，看会不会OK。当然删除tmp文件夹要有点耐心，文件太多了。</li>
+</ul>
+<p>如果想在晚上通宵运行，那么加一个<code>-k</code>参数就好，这样第二天早上再来处理那些莫名其妙的问题。</p>
+<p>写这篇文章的时候我只记得这么几个问题了，还有一些另外的小问题，但也都是很容易解决的。多多搜索，或者利用邮件列表来解决。</p>
+<p>现在开始另一站了，编译<code>bitbake x11-office-image</code>。</p>
+<p>外面下雨了，这个国庆真是恼火~</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2009-10-07-09-day-xingwen-bamboo-sea-the-first-day-on-the-road/" class="prev">PREV</a><a href="/post/2009-10-02-month-to-buy-two-mini-computer-no-money-to-buy-a-navigation-software/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> .net平台手机管理软件开发(8)—— vCard、vNote、vCalender格式简介 · 我是思聪</title><meta name="description" content=".net平台手机管理软件开发(8)—— vCard、vNote、vCalender格式简介 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">.net平台手机管理软件开发(8)—— vCard、vNote、vCalender格式简介</h1><div class="post-info">Feb 17, 2005</div><div class="post-content"><p>(八)  vCard、vNote、vCalender格式简介<br>vCard称为电子商务卡片，主要用于记录通讯薄的联系人信息等，方面不同设备之间的数据交换。自笔者的M55手机中，可以发送一条短信到对方，其中包含了vCard格式的联系人信息，西门子其他型号的手机可以接收解码存储。另外通过手机红外线传输到电脑上的联系人也是用的vCard格式。如果安装了Outlook，则可以直接打开vCard并看到其包含的信息。下面主要简要介绍一下vCard格式，其他vNote、vCalender格式和vCard相近，就不再赘述。更详细的资料请参考vCard Specification，在笔者主页有相关下载。</p>
+<p>关于vCard、vNote、vCalender的.Net简单编码解码器请参阅SIEMENS SUPPORT TOOL源代码中的IrMC部分。<br>vCard Object(vCard对象)</p>
+<p>一个vCard数据流可以包含一个或者多个vCard Object。在数据流中一个vCard Object定义为以“BEGIN:VCARD”开始并以“END:VCARD”结束的数据。如果只有到达了数据流尾都没有出现“END:VCARD”，则整个vCard Object包含从“BEGIN:VCARD”开始到数据流结束的地方。<br>vCard Property(vCard属性)<br>vCard是一个或多个Property的集合。一个Property是唯一命名的值。一系列的Property可以在vCard中成为一组。<br>vCard Property的格式如下：<br>PropertyName[‘;’ PropertyParameters]’:’PropertyValue</p>
+<p>注：<br>.   PropertyName及PropertyParameters不区分大小写。<br>.   PropertyParameters可选，可以为零个或多个，与ProperyName以分号相隔，与PropertyValue以冒号相隔。<br>.   vCard可以分多行呈现。由于在这个软件里面应用得不多，所以笔者也没有钻研具体实现方法。可以参考vCard Specification。</p>
+<p>例如TEL;HOME;+86111222333其PropertyName为TEL，PropertyParameters为HOME，PropertyValue为+86111222333。<br>Encoding(编码)<br>vCard默认的编码方式是7-Bit。默认编码方式可以使用ENCODING属性参数(Property parameter)改变。其值为可以为BASE64；QUOTED-PRINTABLE；8BIT。这个参数可以用在任何的Property里。</p>
+<p>例如：<br>X-ESI-CATEGORIES;CHARSET=UTF-8;ENCODING=QUOTED-PRINTABLE:=E5=AE=B6=E4=BA=BA</p>
+<p>下面简要说明QUOTED-PRINTABLE编码方式，更为详细的资料请参考相关文档：<br>ASCII可显示字符基本保持不变。Unicode字符或者UTF8编码字符使用等号加其对应16进制代码表示。例如上述CHARSET为UTF8的字符=E5=AE=B6=E4=BA=BA对应的UTF8编码0xE5，0xAE，0xB6代表中文“家”，其他的代表“人”。另外如果其中有可显示ASCII码，保持原样输出。</p>
+<p>例如ENCODING=QUOTED-PRINTABLE:Home=E5=AE=B6People=E4=BA=BA</p>
+<p>解码后为“Home家People人”。<br>Character Set(字符集)</p>
+<p>默认的字符集是ASCII。可以通过CHARSET参数改变默认的字符集。其参数可取的值为所有IANA(Internet Assigned Numbers Authority)注册的字符集。这个参数可以用于任何Property，但某些Property并不起作用。</p>
+<p>例如：<br>X-ESI-CATEGORIES;CHARSET=UTF-8;ENCODING=QUOTED-PRINTABLE:=E5=AE=B6=E4=BA=BA<br>vCard例子：<br>BEGIN:VCARD<br>VERSION:2.1<br>X-IRMC-LUID:1017646<br>X-ESI-CATEGORIES;CHARSET=UTF-8;ENCODING=QUOTED-PRINTABLE:=E5=AE=B6=E4=BA=BA<br>N:test<br>ADR:;;Street;city;;610000;country<br>ORG:company<br>TEL;HOME:123456<br>TEL;WORK:123456<br>TEL;CELL:123456<br>TEL;FAX:123456<br>TEL;FAX;HOME:123456<br>EMAIL;INTERNET:<a href="mailto:a@a.ao" target="_blank" rel="noopener">a@a.ao</a><br>EMAIL;HOME;INTERNET:b@g<br>URL:http<br>BDAY:1985-04-23<br>END:VCARD</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2005-02-18-mobile-phone-text-messaging-each-other-pdu-encoding-phs-note/" class="prev">PREV</a><a href="/post/2005-02-17-net-platform-for-mobile-phone-management-software-7-irmc-introduction/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

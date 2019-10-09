@@ -1,0 +1,45 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 装个WIN7惹了一大帕拉麻烦事情 · 我是思聪</title><meta name="description" content="装个WIN7惹了一大帕拉麻烦事情 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">装个WIN7惹了一大帕拉麻烦事情</h1><div class="post-info">Aug 29, 2009</div><div class="post-content"><p>最近C盘空间已经只有最后10%了，我的习惯是50G的C盘空间只要用得还有5G了，就可以重装了。好吧，也是时候了，前几天下载了WIN7还正愁没有时间装呢。</p>
+<p>刻盘，浪费一张DVD；刷BIOS，刷成DELL OEM的，破解正版；重启；进入安装界面。</p>
+<p>噩梦来了。</p>
+<p>在磁盘分区的时候，由于WIN7需要一个额外的分区，而现在的盘没有更多的空间了，所以简单的可以把C盘删除了再新建就好。我以前用XP的时候就知道微软的分区那是一个造孽，一旦以你的分区稍微有点不标准就会把磁盘搞得一塌糊涂。比如我以前装linux的时候，将一个分区搞成了主分区，成了这样：主分区，扩展分区，主分区，扩展分区。然后在XP里面删除一个盘，这下，所有的扩展分区都没了。分区表全部坏了。微软的分区工具就是这么破，要多个心眼。</p>
+<p>好了，删除了分区，这下鼠标就一直是圈圈转啊转，转啊转，硬盘灯常亮。没反应了。</p>
+<p>重启，使用了Acronis Disk Suite也无法进入到分区，停到了Analyse Partition C这一个阶段。以前的工具对SATA支持不好，就像“经典”的Partition Magic，都不太好使。反正这样那样的工具都不行，好吧，那就用Partition Magic试试。嘿，还好，找到硬盘了，给我说有一个分区错误，提示说要重启看结果。我心想这下好了，修正吧。重启，傻眼了。</p>
+<p>Win7系统安装进不了；光盘启动的XPE系统进入不了，硬盘灯常亮；Linux系统无法mount磁盘分区；几种DOS系统均无法看到Starting DOS，直接死到。好吧，这下没系统可以用了，PQ也进不了，几乎所有的工具都被无敌了。拆下来放到老爸的机器上看看行不行。</p>
+<p>在XP里面直接挂上硬盘(SATA可以热拨插的)，提示驱动程序无法正确加载。我郁闷了。好吧，重启，照样不能启动。试了很多次，也是如此。放弃了。</p>
+<p>我都想哭了，装了WIN7就这么恼火？把以前的老工具都找出来用用，最后找到了个Ultimate Boot CD中的DOS工具集竟然能启动，启动后看到个paraman.exe竟然能够识别出分区信息。</p>
+<p>根据以往的经验，应该是MBR坏了，造成磁盘无法读取。将MBR全部写零并将C盘的头几百个KB写零。这样造成的结果就是所有的分区都丢失了，不要着急，并不是意味着数据也丢失了。</p>
+<p>插入Win7光盘，终于见到了分区界面。显示是一个新硬盘。正常的，因为MBR已经全部损坏了。我的C盘是50G，所以暂时分45G，以免破坏以后分区的数据，装完了再还无损调整分区就可以了。安装完Win7后，第一件事情就是下载亲爱的Acronis Disk Suite。忘了你的什么PQ和GHOST吧，这两个软件已经廉颇老矣，用Acronis出品的Disk Suite和True Image才是王道。</p>
+<p>下载的时候可别网上一搜就下载，多半是DEMO版本的，告诉你，到这里来下载：<a href="http://58.251.57.206/down?cid=7DA00927EDE61CBDADC9C3DDFFCC304D61E88642&amp;t=2&amp;fmt=&amp;usrinput=acronis%20disk%20director%20suite&amp;dt=2006000&amp;ps=0_0&amp;rt=0kbs&amp;plt=0" target="_blank" rel="noopener">http://58.251.57.206/down?cid=7DA00927EDE61CBDADC9C3DDFFCC304D61E88642&amp;t=2&amp;fmt=&amp;usrinput=acronis%20disk%20director%20suite&amp;dt=2006000&amp;ps=0_0&amp;rt=0kbs&amp;plt=0</a></p>
+<p>可以直接在“迅雷搜索”里面输入“acronis disk director suite”，下载“支持vista的分区工具Acronis Disk Director Suite 独家提供无错汉化版下载Acronis.Disk.Director.Suite.v10.0.2160.by.ANimal!”就可以了。</p>
+<p>按照默认的安装。完毕后重启。</p>
+<p>使用Acronis Recovery Expert对剩余的空间进行恢复。一般选择Manual和Fast就可以了，因为所有的其他分区都还在，并且NTFS的MFT还是存在的，所以很容易就搜索到了。FAT32格式的我没有试过，估计也可以，只是NTFS在Windows系统中，算是最安全的文件系统了。</p>
+<p>不久就会问你找到的分区是不是，看看卷标、大小和剩余空间就可以了。整个过程用不了几分钟就完成。这样数据就完璧归赵了。</p>
+<p><strong>总结一下：</strong></p>
+<p>. 硬盘硬件能够识别但软件不能识别或硬盘灯常亮，经常是MBR出了问题，解决方法是试图修复或者清除MBR。随后用Acronis Recovery Expert来恢复就可以。不推荐Easy Recovery，只能恢复文件而且多半用不了，并且要占用另外的空间。</p>
+<p>. 放弃使用PQ和GHOST之类的老软件。用Acronis一套吧，听说paragon partition manager也很不错，不知道我运行的paraman.exe是不是这个dos工具。</p>
+<p>. 多准备点工具，以备不时之需。(刚才那个工具似乎是：<a href="http://www.ultimatebootcd.com/download.html" target="_blank" rel="noopener">http://www.ultimatebootcd.com/download.html</a> 里面的)</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2009-08-30-metaweblog-synchronization-problems-blog/" class="prev">PREV</a><a href="/post/2009-08-26-open-web-analytics-documented-to-resolve-the-problem-failed/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

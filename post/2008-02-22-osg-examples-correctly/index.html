@@ -1,0 +1,34 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 正确运行OSG的例子 · 我是思聪</title><meta name="description" content="正确运行OSG的例子 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">正确运行OSG的例子</h1><div class="post-info">Feb 22, 2008</div><div class="post-content"><p>OSG为我们提供了很多有用的例子，那么如何正确运行这些例子呢？我将我的一些经验写出来，希望对大家有所帮助。</p>
+<h3 id="命令行参数如何找？"><a href="#命令行参数如何找？" class="headerlink" title="命令行参数如何找？"></a>命令行参数如何找？</h3><p>main函数作为一个程序的入口很多命令行的参数的在这里处理。OSG的例子里很多都是需要提供参数的，否则就需要调用默认的文件。注意如果你直接运行OSG的例子有可能只是一闪而过，正常的，不要惊慌，只需要分析一下到底需要什么命令行参数就可以正确的运行起来。<br>以osgviewer这个程序来讲，我们看看相关的处理函数：</p>
+<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">arguments</span><span class="selector-class">.getApplicationUsage</span>()<span class="selector-tag">-</span>&gt;<span class="selector-tag">setApplicationName</span>(arguments.getApplicationName());  <span class="comment">//设置程序的名称</span></span><br><span class="line"><span class="selector-tag">arguments</span><span class="selector-class">.getApplicationUsage</span>()<span class="selector-tag">-</span>&gt;<span class="selector-tag">setDescription</span>(arguments.getApplicationName()+<span class="string">" is the standard OpenSceneGraph example which loads and visualises 3d models."</span>); <span class="comment">//简单的描述</span></span><br><span class="line"><span class="selector-tag">arguments</span><span class="selector-class">.getApplicationUsage</span>()<span class="selector-tag">-</span>&gt;<span class="selector-tag">setCommandLineUsage</span>(arguments.getApplicationName()+<span class="string">" [options] filename ..."</span>);  <span class="comment">//例子的使用方法</span></span><br><span class="line"><span class="selector-tag">arguments</span><span class="selector-class">.getApplicationUsage</span>()<span class="selector-tag">-</span>&gt;<span class="selector-tag">addCommandLineOption</span>(<span class="string">"--image &lt;filename&gt;"</span>,<span class="string">"Load an image and render it on a quad"</span>);   <span class="comment">//参数</span></span><br><span class="line">....(省略一些)</span><br></pre></td></tr></table></figure>
+
+<p>这里就可以看书这个程序是干什么的，具体的使用方法是什么，以及一些参数的用法。</p>
+<p>确定了该传什么参数以后，一来可以在“命令行”里面直接输入指令(如果你比较熟悉的话)另一个方法就是在工程的“属性页“中，选择“调试”，“命令参数”中添加需要的指令。这样就可以让大多数例子运行起来了。</p>
+<h3 id="确定你的环境变量是正确的"><a href="#确定你的环境变量是正确的" class="headerlink" title="确定你的环境变量是正确的"></a>确定你的环境变量是正确的</h3><p>有些时候即便你设置了命令行参数，但是还是出现找不到一些文件的情况。注意OSG的例子需要一些文件来执行，你可以在<a href="http://www.openscenegraph.org/projects/osg/wiki/Downloads/SampleDatasets" target="_blank" rel="noopener">这里</a>找到这些例子需要的文件。</p>
+<p>下载好后解压好放置好，例如我这里我放在E:osgOpenSceneGraph-Data，那么我还需要设置环境变量(如何设置请BAIDU)。添加一个名为OSG_FILE_PATH，值为E:osgOpenSceneGraph-Data的环境变量，这样大多数例子不需要你提供额外的文件就可以工作。<br>另外如果还是报告一些warning，则可能是相应的插件没有找到，请在PATH环境变量中正确设置你的OSG插件的位置。</p>
+<h3 id="如果还是不工作？"><a href="#如果还是不工作？" class="headerlink" title="如果还是不工作？"></a>如果还是不工作？</h3><p>如果上述都正确了，还是不工作，怎么办呢？确认你的显卡能够正确的支持例子，有些高级的例子需要更新的显卡的支持。例如Examples osggeometryshaders就需要DX10系列的显卡才能正确工作。一般来说如果出错控制台都会输出相应的信息的。有些显卡可能不支持一定的扩展，也是可以根据控制台输出知道的。<br>确认以上三点以后大部分例子还是能够运行成功的，当然如果你运气实在不好，请跟踪一下源代码，找到病因，那么你会对OSG更加了解的。</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2008-02-23-2008-2-22-such-a-unlucky-day/" class="prev">PREV</a><a href="/post/2008-02-21-windows-server-2008-heroic-sacrifice/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> Android SDK Offline Download · 我是思聪</title><meta name="description" content="Android SDK Offline Download - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">Android SDK Offline Download</h1><div class="post-info">Jul 20, 2015</div><div class="post-content"><p><a href="https://github.com/derekhe/android-sdk-offline" target="_blank" rel="noopener">Github Repo</a></p>
+<p>Updated:</p>
+<blockquote>
+<p>做出这个工具后，我司达人告诉我，只需要把SDK Manager代理服务器设置为<a href="http://www.google.cn或者其国内IP即可，速度可以达到满格。在电信网络中测试，果然很霸道，请大家尝试。" target="_blank" rel="noopener">www.google.cn或者其国内IP即可，速度可以达到满格。在电信网络中测试，果然很霸道，请大家尝试。</a></p>
+</blockquote>
+<p>由于Google被GFW的问题Android SDK下载速度总是非常的慢，甚至用了<a href="http://www.androiddevtools.cn/" target="_blank" rel="noopener">代理服务器</a>速度也很慢，因为是单线程的。我写了这个工具，可以在线生成需要的SDK的下载链接，这样就可以方便的用你喜欢的工具下载了（迅雷和QQ旋风速度都很不错）。<br>如果还不能下载，则可以在下载工具中设置代理服务器，让其进行多线程下载，速度也非常理想。</p>
+<a id="more"></a>
+
+<p>This tool help to you generate latest offline down links for Android SDK. This is helpful when you don’t have internet access or speed is low.</p>
+<p>You can use your favorite download tool to download them. Then put these downloaded files into sdk/temp folder and open Android SDK Manager. Click the items in Android SDK Manager, it will read from your downloaded cache.</p>
+<p>If your can’t get the Android SDK Manager items or if they are not update, or the download speed is slow, please try to use the <a href="http://www.androiddevtools.cn/" target="_blank" rel="noopener">proxy listed here</a></p>
+<h1 id="Online-site-在线网址"><a href="#Online-site-在线网址" class="headerlink" title="Online site 在线网址"></a>Online site 在线网址</h1><p><a href="http://www.april1985.com/android-sdk-offline/">http://www.april1985.com/android-sdk-offline/</a></p>
+<h1 id="Clone-and-run-locally"><a href="#Clone-and-run-locally" class="headerlink" title="Clone and run locally"></a>Clone and run locally</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/derekhe/android-sdk-offline.git</span><br><span class="line">npm <span class="keyword">install</span></span><br><span class="line">cd web</span><br><span class="line">bower <span class="keyword">install</span></span><br><span class="line">cd ..</span><br><span class="line">npm <span class="keyword">install</span> -g <span class="keyword">http</span>-<span class="keyword">server</span></span><br><span class="line">//You may need <span class="keyword">to</span> <span class="keyword">set</span> proxy <span class="keyword">if</span> your network <span class="keyword">is</span> blocked</span><br><span class="line">npm run generate</span><br><span class="line">npm run serve</span><br></pre></td></tr></table></figure>
+
+<p>open your browser and navigate to localhost:8080</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2015-12-21-emei-mountain-1/" class="prev">PREV</a><a href="/post/2015-06-28-hack-waveshare-touchscreen/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

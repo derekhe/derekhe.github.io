@@ -1,0 +1,30 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> GTS连续布尔运算失败~ · 我是思聪</title><meta name="description" content="GTS连续布尔运算失败~ - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">GTS连续布尔运算失败~</h1><div class="post-info">Oct 9, 2007</div><div class="post-content"><p>一直在关注和解决的问题是关于实体的布尔运算的问题，这是几何造型上面的一个大问题，也是切削加工仿真等等的核心。虽然有一些技巧性的方法能够模拟“布尔运算”，但是其效果都不好，最直接的还是进行真正的布尔运算，然而这并不是一件很容易的事情。</p>
+<p>前段时间也不断的在网络上搜索开源的3D布尔运算库，当时觉得比较满意的是<a href="/images/others/a2007108165118.jpg"></a><img src="/images/others/image/thumb/a2007108165118.jpg" alt></p>
+<p>下一步工作就是让这些布尔操作能够连续进行，以便可以仿真道具在模型上面进行切削的过程。然而，GTS库终于在这时候“崩溃”了。布尔运算会产生大量的细小的三角形，然而当刀具移动一个小距离的时候，GTS无法处理很多细小三角形之间的布尔运算问题，导致了GTS内的断言失败！后来在GTS的邮件列表里面查看，然而查询到的依然是N多人在问这种连续布尔运算的问题，没有一个好的解决方案。我想要解决的话，至少要对布尔运算以后的网格进行简化。当然，这是后话了，简化一个网页也不是那么容易，最近，GTS也无法再进行应用。</p>
+<p>另外一些库，CGAL也支持3D布尔运算，但是其格式感觉比较古怪，还没有搞明白怎么回事，其代码的许可证也要要求开发人员公开代码。当然，作为学生这个可以暂时不考虑，自己用用问题不大。OpenCASCADE集大成者，什么功能都有，就是，太太太复杂了……还有最近找到的ACIS，我申请了大学推广计划的许可证，还不知道什么时候能够审批下来，我想这个估计可以满足。另外还有很好用的sgCore，免费版本不支持任意网格的布尔运算，比较讨厌，如果实在不行的话就只有用这个库了，还得测试能不能进行多次布尔运算~</p>
+<p>加油，任重道远……</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2007-10-09-day-time-1/" class="prev">PREV</a><a href="/post/2007-10-04-economic-story-the-story-of-sub-porridge/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

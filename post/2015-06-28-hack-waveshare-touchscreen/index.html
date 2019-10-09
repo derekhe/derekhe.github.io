@@ -1,0 +1,65 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> WaveShare 7-inch user space driver 微雪7寸触摸驱动 · 我是思聪</title><meta name="description" content="WaveShare 7-inch user space driver 微雪7寸触摸驱动 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">WaveShare 7-inch user space driver 微雪7寸触摸驱动</h1><div class="post-info">Jun 28, 2015</div><div class="post-content"><p><a href="https://github.com/derekhe/waveshre-7inch-touchscreen-driver/" target="_blank" rel="noopener">Github Repo</a></p>
+<p>I brought a <a href="http://www.waveshare.net/shop/7inch-HDMI-LCD-B.htm" target="_blank" rel="noopener">WaveShare 7-inch HDMI LCD</a> and it provides a USB touchscreen.<br>But the company only provide binary driver and images, which is quite bad. Installing binary driver will break self compiled kernel, and you can’t get updated kernels.<br>I asked the company to provide the source code but they refused. They said they won’t provide any source code because other companies can copy very fast so that their products can’t sell out at good price.</p>
+<p>OK. If they company won’t want to provide anything, that’s fine. I finally find out we can still drive the touchscreen by writing a user space driver.</p>
+<p>Tested using official image: 2015-05-05-raspbian-wheezy.img</p>
+<a id="more"></a>
+
+<h1 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h1><p>ssh into your raspiberry</p>
+<p>clone this repo into any dir,then</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">chmod +x install.sh</span><br><span class="line">./install.sh</span><br><span class="line"></span><br><span class="line">sudo restart</span><br></pre></td></tr></table></figure>
+
+<h1 id="How-do-I-hack-it"><a href="#How-do-I-hack-it" class="headerlink" title="How do I hack it"></a>How do I hack it</h1><p>By looking at the dmesg information, we can see it is installed as a hid-generic driver, the vendor is 0x0eef(eGalaxy) and product is 0x0005.<br>0x0005 can’t be found anywhere, I think the company wrote their own driver to support this.</p>
+<h2 id="dmesg-infomation"><a href="#dmesg-infomation" class="headerlink" title="dmesg infomation"></a>dmesg infomation</h2><figure class="highlight cs"><table><tr><td class="code"><pre><span class="line">[<span class="meta">    3.518144</span>] usb <span class="number">1</span><span class="number">-1.5</span>: <span class="keyword">new</span> full-speed USB device number <span class="number">4</span> <span class="keyword">using</span> dwc_otg</span><br><span class="line">[<span class="meta">    3.606036</span>] udevd[<span class="number">174</span>]: starting version <span class="number">175</span></span><br><span class="line">[<span class="meta">    3.631476</span>] usb <span class="number">1</span><span class="number">-1.5</span>: New USB device found, idVendor=<span class="number">0</span>eef, idProduct=<span class="number">0005</span></span><br><span class="line">[<span class="meta">    3.641195</span>] usb <span class="number">1</span><span class="number">-1.5</span>: New USB device strings: Mfr=<span class="number">1</span>, Product=<span class="number">2</span>, SerialNumber=<span class="number">3</span></span><br><span class="line">[<span class="meta">    3.653540</span>] usb <span class="number">1</span><span class="number">-1.5</span>: Product: By ZH851</span><br><span class="line">[<span class="meta">    3.659956</span>] usb <span class="number">1</span><span class="number">-1.5</span>: Manufacturer: RPI_TOUCH</span><br><span class="line">[<span class="meta">    3.659967</span>] usb <span class="number">1</span><span class="number">-1.5</span>: SerialNumber: \xffffffc2\xffffff84\xffffff84\xffffffc2\xffffffa0\xffffffa0B54711U335</span><br><span class="line">[<span class="meta">    3.678577</span>] hid-generic <span class="number">0003</span>:<span class="number">0</span>EEF:<span class="number">0005.0001</span>: hiddev0,hidraw0: USB HID v1<span class="number">.10</span> Device [RPI_TOUCH By ZH851] <span class="keyword">on</span> usb-bcm2708_usb<span class="number">-1.5</span>/input0</span><br></pre></td></tr></table></figure>
+
+<p>kernel config provide us more clue:</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">CONFIG_USB_EGALAX_YZH</span>=y</span><br></pre></td></tr></table></figure>
+
+<p>It is really a eGalaxy based device. Google this config but found nothing. I don’t have a eGalxy to compare, maybe waveshare’s touchscreen is only modifed the product id.</p>
+<p>Then I look at the response of hidraw driver:</p>
+<h2 id="hidraw-driver-analysis"><a href="#hidraw-driver-analysis" class="headerlink" title="hidraw driver analysis"></a>hidraw driver analysis</h2><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">pi@raspberrypi ~/python $ sudo xxd -c 25 /dev/hidraw0</span><br><span class="line">0000000: aa00 0000 0000 bb00 0000 0000 0000 0000 0000 0000 0000 0000 00  <span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span>.</span><br><span class="line">0000019: aa01 00c5 0134 bb01 0000 0000 0000 0000 0000 0000 0000 0000 cc  <span class="built_in">..</span><span class="built_in">..</span>.4<span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span>.</span><br></pre></td></tr></table></figure>
+
+<p>You can try by your self, by moving the figure on the screen you will notice the value changes.<br>Take one for example:</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">0000271: aa01 00e4 0139 bb01 01e0 0320 01e0 0320 01e0 0320 01e0 0320 cc  <span class="built_in">..</span><span class="built_in">..</span>.9<span class="built_in">..</span><span class="built_in">..</span>. <span class="built_in">..</span>. <span class="built_in">..</span>. <span class="built_in">..</span>. .</span><br></pre></td></tr></table></figure>
+
+<p>“aa” is start of the command, “01” means clicked while “00” means unclicked. “00e4” and “0139” is the X,Y position (HEX).<br>“bb” is start of multi-touch, and the following bytes are the position of each point.</p>
+<h2 id="Write-the-driver"><a href="#Write-the-driver" class="headerlink" title="Write the driver"></a>Write the driver</h2><p>I use python to read from hidraw driver and then use uinput to emulate the mouse. It is quite easy to do. Please look at the source code.</p>
+<h2 id="Other-systems"><a href="#Other-systems" class="headerlink" title="Other systems"></a>Other systems</h2><p>I think this driver can work in any linux system with hidraw and uinput driver support.</p>
+<h2 id="Calibration-and-Multitouch"><a href="#Calibration-and-Multitouch" class="headerlink" title="Calibration and Multitouch"></a>Calibration and Multitouch</h2><p>Please try this driver and if you need to support multitouch and calibration, please <a href="derekhe@april1985.com">contact me</a> to get the pro version.</p>
+<h2 id="Other-displays"><a href="#Other-displays" class="headerlink" title="Other displays"></a>Other displays</h2><p>I received an email from Adam, this driver may work with another type of screen:</p>
+<blockquote>
+<p>Hi there. Wanted to say thank you for writing and sharing the user space driver for 7” USB touchscreen, you have saved me!</p>
+</blockquote>
+<blockquote>
+<p>Mine is branded Eleduino (see here for details: <a href="http://www.eleduino.com/5-Inch-HDMI-Input-Touch-Screen-for-Raspberry-PI-2-B-B-and-Banana-pro-pi-p10440.html" target="_blank" rel="noopener">http://www.eleduino.com/5-Inch-HDMI-Input-Touch-Screen-for-Raspberry-PI-2-B-B-and-Banana-pro-pi-p10440.html</a>) and I had exactly the same issue - closed source binary driver which simply replaced kernel modules.</p>
+</blockquote>
+<blockquote>
+<p>Your solution worked out of the box, and didn’t even need calibration.</p>
+</blockquote>
+<blockquote>
+<p>You’re a hero!</p>
+</blockquote>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2015-07-20-android-offline-download/" class="prev">PREV</a><a href="/post/2015-06-13-3d-printing-problems/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

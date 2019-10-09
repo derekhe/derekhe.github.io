@@ -1,0 +1,91 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 我是思聪</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2014-02-16-chrome-remote-debugging-blank-webview-inspect-window/" class="post-title-link">Chrome远程WebView inspect显示空白</a></h2><div class="post-info">Feb 16, 2014</div><div class="post-content"><p>前一篇文章提到了Chrome提供了远程inspect WebView的功能，给Cordova的程序开发提供了很多的便利。</p>
+<p>可是用了没多久就遇到了一现象，点了inspect以后弹出一个空窗口，无法调试。试过重启手机、电脑、重装Chrome，似乎都不管用，偶尔能够用一会儿。</p>
+<p>后来用了GoAgent发现了一个秘密，工具会访问chrome-devtools-frontend.appspot.com:443这个地址，但由于伟大的长城的存在，这个地址有时候会无法访问，所以会弹出一个空窗口了。</p>
+<p>解决方法就是用代理访问，就可以了。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2014-02-13-get-text-value-from-ngscenario-element/" class="post-title-link">如何获得ngScenario中的element的text的值</a></h2><div class="post-info">Feb 13, 2014</div><div class="post-content"><p>在AngularJS的ngScenario测试中， 我们有时需要对返回的值做一些特殊的处理，然后再进行比较。</p>
+<p>例如我们验证select的值为abcd</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">expect(element(<span class="string">"select"</span>).text()).toBe(<span class="string">"abcd"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>但用jquery发现这个select的值为</p>
+<figure class="highlight livescript"><table><tr><td class="code"><pre><span class="line"><span class="string">\n</span>   abc   <span class="string">\n</span></span><br></pre></td></tr></table></figure>
+
+<p>前后会多出一些空白字符。我们要做的是先对其进行trim操作，然后与abcd对比即可。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">expect(_.str.trim(element(<span class="string">"select"</span>).text())).toBe(<span class="string">"abcd"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>注意_.str.trim是Underscore.String提供的。</p>
+<p>但这样是行不通的，_.str.trim函数接收到的是一个promise对象，所以里面没有text的值。</p>
+<p>要正确的获得值，需要做一些改进。在<a href="http://stackoverflow.com/questions/20691139/why-is-the-text-function-returning-object-object-in-ngscenario-for-angularj" target="_blank" rel="noopener">这里</a>有一些讨论，可以参考：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> textPromise = element(<span class="string">'select'</span>).query(<span class="function"><span class="keyword">function</span> (<span class="params">nameElement, done</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> text = _.str.trim(nameElement.text()); <span class="comment">// Can finally access this guy!</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// The first param null indicates a nominal execution, the second param is a return of sorts</span></span><br><span class="line">    done(<span class="literal">null</span>, text);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Passes</span></span><br><span class="line">  expect(textPromise).toBe(<span class="string">'abcd'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这样，通过query这个函数，即可获得真正的text的值了。</p>
+<p><a href="http://stackoverflow.com/questions/20691139/why-is-the-text-function-returning-object-object-in-ngscenario-for-angularj" target="_blank" rel="noopener">这里</a>还有一些别的例子，请参考原文。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2013-12-24-steps-to-angularjs/" class="post-title-link">爱上AngularJS的几个阶段</a></h2><div class="post-info">Dec 24, 2013</div><div class="post-content"><p>上个月去休假前，在研究用Cordova写一个手机的软件。在研究UI表现方面，花了一些时间和精力试用了一下AngularJS。这个玩意儿在<strong>Thought</strong>Works技术雷达上出现过好多次了，公司CTO也强烈推荐这玩意儿，所以就用了。花了一小会儿时间看了AngularJS，然后就慢慢地用上了。</p>
+<p><strong>第一阶段：爽</strong></p>
+<p>AngularJS入门总是很快，几钟就可以搞定一个简单的页面。官网首页的Demo已经很强大，像我这种jQuery都不怎么搞的会的，绝对会立刻放弃jQuery投入AngularJS的怀抱，因为你只需要搞定一个model和controller，其他的DOM上的事情就不关心了。</p>
+<p>这阶段，主要的就是不断的体验这种directive，爽的一塌糊涂。官网的Tutorials一步一步的做下去，很快就能体验到AngularJS提供的大部分功能和e2e功能。当我开始半灌水的时候(其实当时只有一点点水)，新的项目开始了。经过一个星期的反复折腾、沟通和忽悠，终于在最后阶段用一个Showcase说服了客户，决定在新的项目中使用AngularJS。</p>
+<p><strong>第二阶段：痛苦</strong></p>
+<p>新的需求的到来，让一个完全无AngularJS经验的团队显得很无助。各种奇葩的问题，让我们只有不断的google寻求答案。答案当然也有一些，当面对directive、link等名词时，才发现原来AngularJS的坑那么深。还好办公室<a href="http://www.cnblogs.com/whitewolf/" target="_blank" rel="noopener">扎爷</a>有很深厚的AngularJS使用功底，为项目初期的疑难问题做了很多的工作。以下三篇文章都是我们项目中的问题的解决。* <a href="http://www.cnblogs.com/whitewolf/p/3464053.html" target="_blank" rel="noopener">angularjs ng-option ie issue解决方案</a></p>
+<ul>
+<li><a href="http://www.cnblogs.com/whitewolf/p/3474990.html" target="_blank" rel="noopener">angular ng-model类型格式转化</a></li>
+<li><a href="http://www.cnblogs.com/whitewolf/p/3475687.html" target="_blank" rel="noopener">angularjs组件之input mask</a></li>
+</ul>
+<p>这阶段主要是折腾AngularJS的各种文档，google问题。有时候像无头的苍蝇到处乱撞。要顺利的度过这个阶段，得静下心来，系统的再看看AngularJS相关的东西，<a href="http://product.china-pub.com/3768727" target="_blank" rel="noopener">《用AngularJS开发下一代Web应用》</a>这本书也可以买来看看。这本书比较浅显，稍微熟悉AngularJS的一天就能看完。听说网上已经有开源版本出来了，不愿意花钱的也可以搜一下。</p>
+<p><strong>第三阶段：起死回生，自力更生</strong></p>
+<p>当你发现其实AngularJS或者AngularUI提供的各种directive都不能满足你的要求的时候，该到了写directive的时候了。这个有点类似于以前玩WinForm，当所有的控件都不满足要求的时候，就得自己写控件了。这个玩意儿我认为是AngularJS比较核心和困难的部分。</p>
+<p>最近一个多星期我都在写validate的directive，也遇到了一些问题。但由于对AngularJS的用法更为了解以后，解决问题起来就显得稍微有了一些谱。</p>
+<p><strong>第四阶段：深入理解，融会贯通</strong></p>
+<p>这阶段，我认为还没达到，由于项目的需求还没要求能力达到这种程度。所以要达到这个阶段，我认为需要自己去努力，在AngularJS的源代码中去寻找真理了。</p>
+<p>加油吧！</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2013-06-23-hua-wei-san-nian-12-ju-zhong/" class="post-title-link">华为三年纪念——(12)剧终</a></h2><div class="post-info">Jun 23, 2013</div><div class="post-content"><p>清明节过后去给PL沟通离职的事情。当时我espace给PL说有点事情想谈谈。走在去会议室的路上，PL不断问我啥事啊，直到我说出来要准备离职了。他说不感到意外。和他聊了一刻钟左右，他也支持我离开这里去寻找一片更适合自己生长的土地。这里天天加班，技术上，人上都在逐渐埋没人才，呆的越久越让人发现没意思，和外界的竞争力也越来越低。不在这里迸发出去，就只有在这里沉默了。</p>
+<p>清明节过后，PL就给我们软件部经理说了离职的事情。其实这个时候说离职是不怎么明智的，后来才知道，由于这时候正在评奖金，还没最终定下来，一旦提出离职等，奖金是会收到影响的。我几年来的绩效都是B+，奖金肯定是有的，但是也会打折。这个就全看领导的眼色了。</p>
+<p>软件部经理听说这个事情，第二天就找我沟通，一连谈了一个多小时。不停地给我画饼，不停地贬低别的公司，不停地说我的选择是错误的。还说华为的路子很多，这个部门不行还可以去另外的部门。领导的话，就当笑话听听吧。后来实在遭不住了，也没法让他给我同意，算了，我还是退一步，说再回去想想。</p>
+<p>当然，决心已定，哪里有回头的路。第二天我就发了邮件说还是坚持。只是，后来领导的态度就变了。由于要确定离职的时间，我说找他再沟通沟通，不理我。经过几次的各种电话、espace，都不理我，都说忙。好吧，第四天早上，我看到他来了，就直接到他座位上，问能不能有几分钟时间再聊聊。这时候他也说忙，但事不过三，当然他也没法推了。让我等了一下处理了事情，然后开始谈。最终确定了时间为5月15号离职，符合我的预期。这样我还有半个多月的时间，抽出十天到广州去和老婆孩子一起玩一下，剩下的几天时间回来休息一下。</p>
+<p>以为事情就这样就风平浪静了。我问了一下之前离职的几个兄弟，他们都没有我这么折腾，一般都是给PL说了然后就交接工作卷铺盖走人的。我这个折腾了半天，这个沟通那个沟通。人力资源的也找了我一次，说支持我的。只不过在我和领导确定了时间之后，第二次又找到我，说部门现在人手紧，什么产品又确认，上面有挽留我的意思，希望我能6月底再走。</p>
+<p>凭啥呢？反正我的离职电子流已经提交，一个月不放的话，我会想办法的。人力资源的HRP说，只能找部门大主管了。好吧，过了软件部经理这一关，还要搞定更大的BOSS，真是烦人。</p>
+<p>首先写邮件，第二天就回绝我说不行，说人力紧张咋咋咋的。然后，我说找个时间聊一聊。没搭理我。这段时间正好是部门换大主管的时候，各种不爽都在这里爆发。最后，在庐山地震早上，我到了大领导，说了我的意思。大领导还要稍微好点，PK了十几分钟，同意了以产品的TR4A点作为事件，也就是5月10号左右。</p>
+<p>最后，软件部经理给我定为了5月15号。经历了两个星期的各种折腾，终于搞定了。</p>
+<p>接下来就是工作的交接。PL说给我找了个外包的员工来接手我的CI的工作。这个外包员工的技能实在是太低了，连个IE都不怎么会用。由于CI是我搞了很久才搞出来的，1个月不到的交接期要把我半年多的积累都交出去，还是很难。更难的是所谓的CI的星级。本来CI就是用来做持续集成的，是一种辅助工具。在这里硬是搞成了一种指标，各种指标计算出来一个星级，有些指标要达到是相当困难。有时候为了达到指标，为了让领导看起来觉得好，会想尽一切办法，让星级上去。我们项目要达到4星级。前期，想了一些合理的办法能够达到四星，后来就再也没有达到过了。我也想过数据造假作弊，但这些实在是真的没有必要。</p>
+<p>刚开始几天都放得比较松。后来PL说不行啊这样，我就只好给他施加压力。给他说成研所的1，2，4都是晚上要加班的啥啥啥。本来计划需要2天的时间搞的东西，一天就要搞定。没办法，到了华为就只能接受华为的文化。所以，这个小子就加班了。</p>
+<p>为了让他能够有一个记录也更是为了我能够展示交接的工作量，我给他出了几十个题目。里面涉及到工作中可能会遇到的各种问题。叫他自己整理好。最后，交接工作基本上OK。</p>
+<p>最后一个月，每天都是准时上下班，保证工时够。在公司就把交接的事情做好就OK了。最后几天，办理各种手续各种签字。</p>
+<p>最后一天，收拾好被子和床，退了电脑，退了工卡，看了一下午的杂志。6点钟，要下班了。拿着手头的东西，给朝夕相处的同事道别。其实还真的舍不得这些同事，只是真的要离开了。眼睛觉得有一些湿润，还有一些的依依不舍。</p>
+<p>出门，最后一天签到，衬着夕阳，离开了华为。</p>
+<p>在这短短的两年半的时间，自己成长了很多，有了自己的家庭，学会了在大公司里如何做人、做事。要感谢华为的培养，跳出去，也会体现出自己的价值；要感谢一起做项目的同事，大家的奋斗场景现在回想起来也是历历在目；最后要感谢老婆的鼓励与指点，给了自己一个选择未来的机会。</p>
+<p>6月3日，新的起点，ThoughtWorks，更大的挑战，更丰富的职业选择，加油~！</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2013-06-15-hua-wei-san-nian-ji-nian-11-mian_shi/" class="post-title-link">华为三年纪念——(11)面试</a></h2><div class="post-info">Jun 15, 2013</div><div class="post-content"><p>12年年底，一直在忙项目，在空闲时间，买了一些书补充知识，另外在猎头网，51job等网站上，投了简历。</p>
+<p>第一次猎头找我是问我能不能去韩国NHN公司，这家公司待遇挺好，但最终他们不需要做嵌入式开发的；后来又有问我要不要去诺西的，说实话有华为在，诺西的日子真的不好过，说不定过去了就倒闭了还说不准；后来就没什么音讯了。一直到春节之后，都没有什么动静。</p>
+<p>春节前后的日志都是加班的日子，没日没夜的加班。整个团队已经在打疲劳战，每个周末两天的休息只能休一天，连着休的长假也一般砍掉一半。每天晚上9点以后才走人。当然，我还算好的了，晚上加班到凌晨都是常态。生病了无法休息，得赶进度。项目经理每次都把发版本的时间定在周一，这样周末两天就必须要抽一天加班，有时候必须要两天加班。系统的不稳定，硬件软件的不配合，在这个电信级的超大系统中展现的淋漓尽致。整个团队，都在崩溃的边缘，每个人都想有一个时间能够停下来休息一下。奔跑了好几个月了，都没能停下来一下。</p>
+<p>然而，春节后，开发代表还给我们开了个会，说我们要提前一个月达到TR5，还问我们兴不兴奋。我只想说违背客观规律的瞎扯淡，只能体现项目管理的混乱与无能。人没有见多，时间却又要减少一个月，如何达成？开发代表只想着马儿不吃草就可以满地跑，哄哄我们就可以让我们继续？</p>
+<p>这次开会后，就开始有点零星的水果作为问候了。当然，这些水果基本上都是9点以后才给你拿过来，随便吃吃罢了。当然，过来视察一下还是主要目的了。就这样，每天都反复反复，每天都在单位吃饭。在华为基地，可见每天下班后，都有很大一群人，在园区里散步，然后回去加班。一个星期，只能周六晚上和周天，能够在家和家人吃吃饭，其他时间全在公司耗着。</p>
+<p>必须要改变。</p>
+<p>3月底，带着试一试的心情，投了ThoughtWorks的简历。不想，第二天就给我电话面试，聊了半个多小时。通过后再约了周五去笔试。笔试真是令人抓狂，有机会大家做做就知道了。当然，明白了其中的道理以后，换个思路就容易做了。笔试完了以后，就准备做HOMEWORK了。这个我还比较有信息。我选了一题，精心准备了一下。耐心的等待了几天后，叫我去做最后的面试。</p>
+<p>最后的面试，和两位TWer一起。先准备环境搞了好半天，中途的时间就一直聊天。还好我的东西多，随便聊。等环境搞好了以后，一起看了一下程序，介绍了思路，然后做Pair。他们立刻指出了我测试用例写的不怎么好，然后做一个需求。整个过程还比较顺利，但还是有点紧张，这在后面的面试中也给我提出来了。这一关过了以后，就是熊杰和周周一起面试了。</p>
+<p>当时我还真没听清楚熊杰的自我介绍，隐约觉得是他吧。中间问了许多问题，还做了英语的介绍。最糟糕的是当时只准备了自我介绍的英文，结果要介绍项目，郁闷。突然就紧张起来了，憋足的英语介绍，突然感觉估计要挂了。还好，后来慢慢适应了，就不那么紧张了，讲完了。</p>
+<p>中午和熊杰一起吃了饭，下午就回家了。由于是周五，HR说下周才能有结果。整个周六周天都是在紧张中度过的，一直在猜测是否搞定。星期一去上班的时候，一直等电话啊，直到下午两点过，终于迎来了电话。</p>
+<p>刚开始的对话，问到了我这样那样的不足，以至于前20分钟的时间，我都觉得我没希望了。直到后来，HR说给我说一下Offer的事情，才终于尘埃落定。可以准备离开了。</p>
+<p>这段时间依然加班，清明节放假加两天，我给PL沟通了离职的事情。</p>
+</div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/9/" class="prev">PREV</a><a href="/page/11/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

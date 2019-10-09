@@ -1,0 +1,67 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 摩拜单车爬虫解析——找到API · 我是思聪</title><meta name="description" content="摩拜单车爬虫解析——找到API - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">摩拜单车爬虫解析——找到API</h1><div class="post-info">Feb 12, 2017</div><div class="post-content"><blockquote>
+<p>警告：此篇文章仅作为学习研究参考用途，请不要用于非法目的。</p>
+</blockquote>
+<p>在上一篇文章<a href="http://www.jianshu.com/p/2a20d2a97ac0" target="_blank" rel="noopener">《摩拜单车非官方大数据分析》</a>中提到了我在春节期间对摩拜单车的数据分析，在后面的系列文章中我将进一步的阐述我的爬虫是如何高效的爬到这些数据的。</p>
+<h1 id="为什么爬摩拜的数据"><a href="#为什么爬摩拜的数据" class="headerlink" title="为什么爬摩拜的数据"></a>为什么爬摩拜的数据</h1><p>摩拜是最早进入成都的共享单车，每天我从地铁站下来的时候，在APP中能看到很多单车，但走到那里的时候，才发现车并不在那里。有些车不知道藏到了哪里；有些车或许是在高楼的后面，由于有GPS的误差而找不到了；有些车被放到了小区里面，一墙之隔让骑车人无法获得到车。</p>
+<p>那么有没有一个办法通过获得这些单车的数据，来分析这些车是否变成了僵尸车？是否有人故意放到小区里面让人无法获取呢？</p>
+<p>带着这些问题，我开始了研究如何获取这些数据。</p>
+<h1 id="从哪里获得数据"><a href="#从哪里获得数据" class="headerlink" title="从哪里获得数据"></a>从哪里获得数据</h1><p>如果你能够看到数据，那么我们总有办法自动化的获取到这些数据。只不过获取数据的方式方法决定了获取数据的效率，对于摩拜单车的数据分析这个任务而言，这个爬虫要能够在短时间内（通常是10分钟左右）获取到更多的数据，对于数据分析才有用处。那么数据来源于哪里？</p>
+<p>最直接的来源是摩拜单车的APP。现代的软件设计都讲究前后端分离，而且服务端会同时服务于APP、网页等。在这种趋势下我们只需要搞清楚软件的HTTP请求就好了。一般而言有以下一些工具可以帮忙：</p>
+<p>直接抓包：</p>
+<ul>
+<li>Wireshark （在路由器或者电脑）</li>
+<li>Shark for Root (Android)</li>
+</ul>
+<p>用代理进行HTTP请求抓包及调试：</p>
+<ul>
+<li>Fiddler 4</li>
+<li>Charles</li>
+<li>Packet Capture (Android)</li>
+</ul>
+<p>由于我的手机没有root，在路由器上抓包又太多的干扰，对于https也不好弄。所以只能首先采用Fiddler或者Charles的方式试试。挂上Fiddler的代理，然后在手机端不停的移动位置，看有没有新的请求。但遗憾的是似乎请求都是去拿高德地图的，并没有和摩拜车相关的数据。</p>
+<p>那怎么一回事？试试手机端的。换成Packet Capture后果然就有流量了，在请求中找到了我最关心的那个：</p>
+<p><img src="/images/2017/02-12/4372317-de272f8395d2106f.png" alt></p>
+<p>这个API请求一看就很显然了，在postman中试了一下能够正确的返回信息，看来就是你了！</p>
+<h1 id="高兴得太早"><a href="#高兴得太早" class="headerlink" title="高兴得太早"></a>高兴得太早</h1><p>连续爬了几天的数据，将数据进行一分析，发现摩拜单车的GPS似乎一直在跳动，有时候跳动会超过几公里的距离，显然不是一个正常的值。</p>
+<p>难道是他们的接口做了手脚返回的是假数据？我观察到即便在APP中，单车返回的数据也有跳动。有某一天凌晨到第二天早上，我隔段时间刷新一下我家附近的车，看看是否真的如此。</p>
+<p>图片我找不到了，但是观察后得出的结论是，APP中返回的位置确实有问题。有一台车放在一个很偏僻的位置，一会儿就不见了，待会儿又回来了，和我抓下来的数据吻合。而且这个跳动和手机、手机号、甚至移动运营商没有关系，说明这个跳动是摩拜接口的问题，也可以从另一方面解释为什么有时候看到车但其实那里没有车。</p>
+<p>这是之前发的一个朋友圈的视频截图，可以看到在营门口附近有一个尖，在那里其实车是停住的，但是GPS轨迹显示短时间内在附近攒动，甚至攒动到很远，又回到那个位置。</p>
+<p><img src="/images/2017/02-12/4372317-64fd9ff2d577ee19.png" alt></p>
+<p>这样的数据对于数据分析来讲根本没法用，我差点就放弃了。</p>
+<h1 id="转机"><a href="#转机" class="headerlink" title="转机"></a>转机</h1><p>随着微信小程序的火爆，摩拜单车也在第一时间出了小程序。我一看就笑了，不错，又给我来了一个数据源，试试。用Packet Capture抓了一次数据后很容易确定API，具体过程就不在阐述。抓取后爬取了两三天的数据，发现出现了转机，数据符合正常的单车的轨迹。</p>
+<p>剩下事情，就是提高爬虫的效率了。</p>
+<h1 id="其他尝试"><a href="#其他尝试" class="headerlink" title="其他尝试"></a>其他尝试</h1><p>有时候直接分析APP的源代码会很方便的找到API入口，将摩拜的Android端的APP进行反编译，但发现里面除了一些资源文件有用外，其他的文件都是用奇虎360的混淆器加壳的。网上有文章分析如何进行脱壳，但我没有太多时间去钻研，也就算了。</p>
+<h1 id="也谈API的设计"><a href="#也谈API的设计" class="headerlink" title="也谈API的设计"></a>也谈API的设计</h1><p>摩拜单车的API之所以很容易抓取和分析，很大程度上来讲是由于API设计的太简陋：</p>
+<ul>
+<li>仅使用http请求，使得很容易进行抓包分析</li>
+<li>在这些API中都没有对request进行一些加密，使得自己的服务很容易被人利用。</li>
+<li>另外微信小程序也是泄露API的一个重要来源，毕竟在APP中request请求可以通过native代码进行加密然后在发出，但在小程序中似乎还没有这样的功能。</li>
+</ul>
+<p>如果大家有兴趣，可以试着看一下小蓝单车APP的request，他们使用https请求，对数据的request进行了加密，要抓取到他们的数据难度会增加非常多。</p>
+<p>当然了，如果摩拜单车官方并不care数据的事情的话，这样的API设计也是ok的。</p>
+<p>下一篇文章将开源爬虫的源代码，敬请期待！如果您觉得文章有用，请打赏一杯咖啡，谢谢：）</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2017-03-04-mobike-source-code/" class="prev">PREV</a><a href="/post/2017-02-05-mobike-unofficial-data-analysis/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

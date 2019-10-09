@@ -1,0 +1,32 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> VMWare workstation 6.5在Ubuntu 8.10下键位失灵问题解决 · 我是思聪</title><meta name="description" content="VMWare workstation 6.5在Ubuntu 8.10下键位失灵问题解决 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">VMWare workstation 6.5在Ubuntu 8.10下键位失灵问题解决</h1><div class="post-info">Oct 27, 2008</div><div class="post-content"><p>今天把UBUNTU 8.10装好了，字体使用了文泉译的字体，很好看。哪知道装了虚拟机就来了很多问题。发现虚拟机里面方向键不能用了，其实回车键右边的所有键都不能用了。怎么回事哟。以前6.5在8.04上都好好的呢，怎么现在出了问题呢？6.5的BUG？和8.10不兼容？？在网上搜了N久没有找到问题的描述。</p>
+<p>后来放弃了，装了VirtualBox，好用，但问题来了，虚拟Windows98需要关闭虚拟化技术～只能软件模拟～～哎，毕竟是16位和32位混合的产物，指令没法直接使用的。没法和Windows2000同使用，而且好像没有相应的显卡驱动，麻烦。试了试KVM，不支持98～放弃。</p>
+<p>最后还是回到VMware来，怎么回事呢？？？？还亏了我巨大的耐心和无敌的搜索技能，终于<a href="http://communities.vmware.com/message/918459#918459" target="_blank" rel="noopener">找到一个和我一样的人</a>～～，一看问题和我一样，高兴了。哟，那儿去找~/.vmware/config文件哦，没有，郁闷了。嘿嘿，再看了看，文中提到了<a href="http://www.vmware.com/support/ws55/doc/ws_devices_keymap_linux_longer.html" target="_blank" rel="noopener">“The Longer Story”</a>，草草的看了看，明白了起中的道理，好的把/etc/vmware/config最后一行加入：</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">xkeymap.nokeycodeMap</span> = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>就OK了。</p>
+<p>我想，可能问题在于键位映射，和选择的中文环境可能有一些关系。</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2008-10-31-operating-system-installed-for-a-week/" class="prev">PREV</a><a href="/post/2008-10-21-you-definitely-do-not-know-the-earth-mars-base/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

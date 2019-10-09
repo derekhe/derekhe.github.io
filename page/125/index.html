@@ -1,0 +1,52 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 我是思聪</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2006-08-11-3-order-matrix-with-fast-and-accurate-method-for-evaluating-matrix/" class="post-title-link">3阶矩阵的伴随矩阵的快速准确求法</a></h2><div class="post-info">Aug 11, 2006</div><div class="post-content"><p>这些天求逆矩阵求得心烦，初等行变换有的时候算得真的很烦，特别有遇到分数的时候运算比较大。后来总结了一下3阶的矩阵还是用伴随矩阵的做法比较快捷和方便。但是伴随矩阵的求解总是牵扯到正负号的问题，有时候会遗忘，这就会给求解带来一些困难。</p>
+<p>后来总结了一下，有以下一种快速有效的方法可循:</p>
+<ul>
+<li>首先求出|A|，对于3阶矩阵相比大家很熟悉</li>
+<li>在草稿纸上写上如下的矩阵<br>＋(  )  －( )    ＋(   )<br>－(  )  ＋( )    －(   )<br>＋(  )  －( )    ＋(   )</li>
+<li>填数。</li>
+</ul>
+<p>由于我们经常忘记Aij的正负号的问题，所以我们这里首先给出了正负号，然后脱离正负号的束缚，划掉Aij对应的aij元素所在的行和列，直接进行二阶矩阵的计算。每计算一个数就填进取，大部分可以用口算得出，填入的数注意:一定要行的竖着写！(这也是二李书上强调过的P391)</p>
+<ul>
+<li>整理|A|A*，就算出了。</li>
+</ul>
+<p>这样的方法优点在于:</p>
+<ul>
+<li>省略了考虑正负号的部分</li>
+<li>如果先写出A11,A12….，填数的时候难免会填出错(特别是行的代数余子式竖着填这点常常忘记)，也避免了草稿纸的上书写巨大的书写量</li>
+<li>节约了草稿纸</li>
+</ul>
+<p>大家对于行初等变换有没有一些心得呢，老是算这个算不对……~希望能够与大家交流</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2006-08-10-google-sitemap-online-production/" class="post-title-link">在线制作Google Sitemap</a></h2><div class="post-info">Aug 10, 2006</div><div class="post-content"><p>找到一个网站可以在线制作Google Sitemap的网站<a href="http://www.xml-sitemaps.com/，我倒是已经给这个域名做了一个sitemap，不知道具体用出在哪里，呵呵。管他的，反正，有的服务都尝试尝试……" target="_blank" rel="noopener">http://www.xml-sitemaps.com/，我倒是已经给这个域名做了一个sitemap，不知道具体用出在哪里，呵呵。管他的，反正，有的服务都尝试尝试……</a></p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2006-08-08-finally-buttoned-notebook-stand/" class="post-title-link">终于搞定笔记本的待机</a></h2><div class="post-info">Aug 8, 2006</div><div class="post-content"><p>我的Benq Joybook 3000就没有怎么好好的待过几次机，常常就是一睡不醒，很是烦人。习惯了台式机3秒钟进入工作状态的我还是不习惯笔记本慢吞吞的进入Windows，所以干脆就重装系统来个彻底干净。</p>
+<p>这次装的是番茄花园版的，将就用了哦，虽然有点抵触不是原版的，但还是图一个省心吧。装好所有的驱动程序以后，测试了一下，ＯＫ，竟然可以待机了，赫赫，好了，终于可以睡觉了～～～</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2006-08-08-been-using-firefox/" class="post-title-link">一直在用FireFox</a></h2><div class="post-info">Aug 8, 2006</div><div class="post-content"><p>原来一直比较抵触FireFox，以为就是在Linux下面很无赖无法用IE的时候才用的浏览器，后来在工作室里面看大家用FireFox测试网页也就下载了一个来试试。结果却是不令人满意，说回来，FireFox强大，但是当时我没有意识到而已。</p>
+<p>后来暑假里面没事情做下载了几个FireFox的插件，才终于意识到FireFox的强大是来自于它的插件。装了上面推荐的插件以后，特别是安装了FasterFox以后浏览速度大幅度提升，以前以为只有Opera才是最快的浏览器，结果FireFox也能做到。</p>
+<p>还有就是最令人激动的Google Browser Sync这个功能。因为我用一个笔记本一个台式机，常常因为Bookmark不统一搞得很郁闷，还有备份IE的收藏夹也是一个麻烦事情，经常重装系统就忘了备份，有了这个插件以后就省心多了。就是每次开启FireFox的时候有一段等待的时间而已，但是大大的方便了平常的使用，也就不感觉繁琐了。</p>
+<p>现在大多数时候我都在用FireFox，感觉蛮不错，也推荐大家使用哦~！</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2006-08-07-started-pjblog/" class="post-title-link">开始用pjblog</a></h2><div class="post-info">Aug 7, 2006</div><div class="post-content"><p>终于找到一个很好的blog，比oblog功能强大，插件丰富，很多skin相当漂亮，就作为最终的选择了。主要最近忙于考研复习，以前oblog里面的东西我会慢慢挪动过来，以后可能也不会变了。希望大家经常来小站看看哦：)</p>
+<p>如果需要访问我原来的blog，请用下面链接访问：<br><a href="http://www.hesicong.net/blog/UserData/2/" target="_blank" rel="noopener">http://www.hesicong.net/blog/UserData/2/</a></p>
+</div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/124/" class="prev">PREV</a><a href="/page/126/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

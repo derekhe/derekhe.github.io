@@ -1,0 +1,42 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 如何获得ngScenario中的element的text的值 · 我是思聪</title><meta name="description" content="如何获得ngScenario中的element的text的值 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">如何获得ngScenario中的element的text的值</h1><div class="post-info">Feb 13, 2014</div><div class="post-content"><p>在AngularJS的ngScenario测试中， 我们有时需要对返回的值做一些特殊的处理，然后再进行比较。</p>
+<p>例如我们验证select的值为abcd</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">expect(element(<span class="string">"select"</span>).text()).toBe(<span class="string">"abcd"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>但用jquery发现这个select的值为</p>
+<figure class="highlight livescript"><table><tr><td class="code"><pre><span class="line"><span class="string">\n</span>   abc   <span class="string">\n</span></span><br></pre></td></tr></table></figure>
+
+<p>前后会多出一些空白字符。我们要做的是先对其进行trim操作，然后与abcd对比即可。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">expect(_.str.trim(element(<span class="string">"select"</span>).text())).toBe(<span class="string">"abcd"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>注意_.str.trim是Underscore.String提供的。</p>
+<p>但这样是行不通的，_.str.trim函数接收到的是一个promise对象，所以里面没有text的值。</p>
+<p>要正确的获得值，需要做一些改进。在<a href="http://stackoverflow.com/questions/20691139/why-is-the-text-function-returning-object-object-in-ngscenario-for-angularj" target="_blank" rel="noopener">这里</a>有一些讨论，可以参考：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> textPromise = element(<span class="string">'select'</span>).query(<span class="function"><span class="keyword">function</span> (<span class="params">nameElement, done</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> text = _.str.trim(nameElement.text()); <span class="comment">// Can finally access this guy!</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// The first param null indicates a nominal execution, the second param is a return of sorts</span></span><br><span class="line">    done(<span class="literal">null</span>, text);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Passes</span></span><br><span class="line">  expect(textPromise).toBe(<span class="string">'abcd'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这样，通过query这个函数，即可获得真正的text的值了。</p>
+<p><a href="http://stackoverflow.com/questions/20691139/why-is-the-text-function-returning-object-object-in-ngscenario-for-angularj" target="_blank" rel="noopener">这里</a>还有一些别的例子，请参考原文。</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2014-02-16-chrome-remote-debugging-blank-webview-inspect-window/" class="prev">PREV</a><a href="/post/2013-12-24-steps-to-angularjs/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

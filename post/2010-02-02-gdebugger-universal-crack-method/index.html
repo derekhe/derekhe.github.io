@@ -1,0 +1,36 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> gDebugger通用破解方法 · 我是思聪</title><meta name="description" content="gDebugger通用破解方法 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">gDebugger通用破解方法</h1><div class="post-info">Feb 2, 2010</div><div class="post-content"><p>下载0day的5.2.1的破解(地址网上找哈)，得到lic_gen.exe用于生成文件。</p>
+<p>下载最新的5.4.0，安装，将gDEBuggerAppCode.dll中的RSA字符串(字串)：</p>
+<p>C4DD47CE9C8B14AD4993751B8E92598765868B23653DF74B06EF9131EFAEE53013760709FF932832C244AED24E1371673BA091BF5D04CE1A6ADA20378F81CDC912200FD6ADB517BA4CD32164D6D905E9B713406A1416295D4DEB8BFE769A3E46A2A20F1B36BBA06D17D3C2118A25A134EBC7B5A0412308422724BBE81635F9BB</p>
+<p>替换成</p>
+<p>CB64B8141DA2441B39902D0C890BE6C6C668B7D0C69275EC4DC55BC0583BF89FCB1B978F5F11558A0FA0910D19EF8ACE6E074CAF31DE7DADF768878CE2EF456FF9A1967F7F594E6D0B6AEF92CB73B7534ADE8383BD537698419E9F1CFC21D873FB1F6D5038603D1E68A8ADF3CB9511475D865454421FAEFB723A9C6BDA1DF0A9</p>
+<p>并保存。这是代替key_replacer的作用(这个程序只针对5.2.1)</p>
+<p>覆盖原文件后，按照5.2.1破解操作进行。用lic_gen生成Licence。注意生成Licence的时候选择第一个。<br>进入后不会提示需要注册的窗口，看似完全破解了。按“播放键”进行调试会没有反应，不清楚为啥。<br>退出程序，打开OllyDbg，选择File-&gt;Open，选择gDebugger.exe，然后按F9，就可以用了。注意将OllyDbg的Debugging Options中的Exceptions的Ignore (pass to program) following exceptions所有选项勾上。防止在pause程序的时候被OllyDbg中断。</p>
+<p>这时就是真正的完全破解版。目前5.2.1和5.4.0均可以使用此方法破解。</p>
+<p>另外，如果达人有能力会破解的帮忙看看为什么用OllyDbg载入后他的限制就消失了，应该会有一个检测调试器的函数怎么的，把这个函数破解了就好办了。</p>
+<p>如需要原版和破解的压缩文件，请留下你的联系方式。</p>
+<p>Enjoy!</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2010-02-07-hardware-museum/" class="prev">PREV</a><a href="/post/2010-01-21-poor-state/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

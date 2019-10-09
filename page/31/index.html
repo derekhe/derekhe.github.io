@@ -1,0 +1,50 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 我是思聪</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2010-01-07-c-serialization-reported-unable-to-cast-object-of-type-u002639xu002639-to-type-u002639xu002639-problem/" class="post-title-link">C#序列化报Unable to cast object of type 'X' to type 'X'的问题</a></h2><div class="post-info">Jan 7, 2010</div><div class="post-content"><p>最近遇到个奇怪的现象，在调试我的C#程序时，如果VS不打开“启动非托管代码调试”的话，序列化我的一个ApplicationConfig类就会报告“Unable to cast object of type ‘X’ to type ‘X’”的问题，打开后万事大吉，但是无法进行暂停后编辑运行。</p>
+<p>遇到这个问题后第一反应就是VS出问题了，重装系统后无法解决问题。</p>
+<p>后GOOGLE到：<a href="http://www.google.cn/search?hl=zh-CN&amp;source=hp&amp;q=Can%27t+cast+type+X+to+X&amp;btnG=Google+%E6%90%9C%E7%B4%A2&amp;aq=f&amp;oq=" target="_blank" rel="noopener">http://www.google.cn/search?hl=zh-CN&amp;source=hp&amp;q=Can%27t+cast+type+X+to+X&amp;btnG=Google+%E6%90%9C%E7%B4%A2&amp;aq=f&amp;oq=</a></p>
+<p>发现其他人也遇到相同的问题，但具体问题不太一样。但大体看来是程序集出了问题。我选择清空项目然后重新编译，问题依旧，这就奇怪了。</p>
+<p>最后偶然之间到我的编译目录下一看，清空后竟然dll文件还在。手动删除后，一切问题解决。</p>
+<p>最后看来，还是DLL没有被正确删除造成的。那位什么没有被删除的DLL会影响随后的编译和调试呢？神奇了。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2010-01-07-the-computer-will-not-start-and-really-amazing-the-result-is-a-keyboard-stuck/" class="post-title-link">电脑启动不了了，真神奇，结果是键盘卡住了</a></h2><div class="post-info">Jan 7, 2010</div><div class="post-content"><p>前天一杯水倒了泼到键盘里面了，当时还能用，第二天早上起来就用不了了，花了半天的时间把明基的海湾键盘拆了个完完全全，累啊。光是X型架构那么多按键也够我拆了。</p>
+<p>最后发现是键盘的薄膜进水了，这是最郁闷不过的事情。我看键盘的三层膜其实是粘合了的 ，结果还能进水。以前的键盘的膜直接揭开，擦干即可，海湾的这个就麻烦的多了，只能把三层膜分开，然后用纸巾擦干。弄完了再合并回去。这样就把键盘修好咯。</p>
+<p>神奇的是今天早上竟然就不能开机了，微星的P35 NEO2上面的DEBUG灯停留在“红绿绿红”的状态，一查手册是说正在显示CPU信息什么的，不会是CPU挂了吧。屏幕没有显示任何信息啊，怎么回事哦。把BIOS复位，进入到BIOS的初始设置里面，倒是能用了。一保存又用不了了。后来多摸索西摸索，把键盘拔了，对了，能启动了。换了个USB键盘(幸好我家键盘多~)，能够进到系统了，庆幸。</p>
+<p>最后又把键盘拆开，在拆电路板的时候突然发现，原来PAUSE被卡住了。将其复位，一切OK<del>原来是这么回事</del>晕死。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2009-12-31-happy-new-year-2/" class="post-title-link">新年快乐</a></h2><div class="post-info">Dec 31, 2009</div><div class="post-content"><p>2009-&gt;2010</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2009-12-26-solution-under-svn-commit-error-in-windows-7-issues/" class="post-title-link">解决SVN在Windows 7下commit出错的问题</a></h2><div class="post-info">Dec 26, 2009</div><div class="post-content"><p>自从操作系统升级到Win 7以后，SVN Commit就经常出现类似错误：</p>
+<blockquote>
+<p>Commit<br>G:doc\projects\estar\trunk\vs\EstarSharp\EstarSharp\DataWorkData.cs<br>G:doc\projects\estar\trunk\vs\EstarSharp\EstarSharp\GUIFormsAbout.cs<br>G:doc\projects\estar\trunk\vs\EstarSharp\EstarSharp\GUIFormsMainForm.cs<br>G:doc\projects\estar\trunk\vs\EstarSharp\EstarSharp\GUIFormsMainForm.cs<br>G:doc\projects\estar\trunk\vs\EstarSharp\EstarSharp\DataWorkData.cs<br>G:doc\projects\estar\trunk\vs\EstarSharp\EstarSharp\GUIFormsAbout.cs<br>Commit succeeded, but other errors follow:<br>Error bumping revisions post-commit (details follow):<br>Can’t move<br>‘G:doc\projects\estar\trunk\vs\EstarSharp\EstarSharp\Data.svntmpentries’ to<br>‘G:doc\projects\estar\trunk\vs\EstarSharp\EstarSharp\Data.svnentries’: The<br>file or directory is corrupted and unreadable.</p>
+</blockquote>
+<p>说文件损坏或者无法读取。这是一个很令人费解的问题，到底commit是成功还是失败了？网上查询一番后找到有朋友遇到相同的问题并且给出了解决方案(见：<a href="http://schleichermann.wordpress.com/2009/12/09/svn-tortoisesvn-cant-move-the-file-or-directory-is-corrupted-and-unreadable-windows-7/" target="_blank" rel="noopener">http://schleichermann.wordpress.com/2009/12/09/svn-tortoisesvn-cant-move-the-file-or-directory-is-corrupted-and-unreadable-windows-7/</a>)</p>
+<p>原因是Win7启动了索引服务和SVN Commit时候移动文件冲突了。解决方法是关闭Win 7的对SVN仓库的索引服务。</p>
+<p>打开Win7的控制面选，选择“索引选项”，然后选择“修改”，将<code>G:\doc\projects\estar</code>全部反选即可</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2009-12-24-christmas-2/" class="post-title-link">圣诞节</a></h2><div class="post-info">Dec 24, 2009</div><div class="post-content"><p>早上大雾，下午天气好转</p>
+<p>圣诞节与我无关，继续改BUG</p>
+<p>小妹的笔记本估计进水弄坏了</p>
+<p>晚上购物，打游戏，研究微分几何</p>
+<p>再看看几年前的TimeMachine，我当时在圣诞节做些什么：</p>
+<p>2008年：[cref 1490]<br>2007年：[cref 286]<br>2006年：[cref 110]<br>2005年：未知<br>2004年：应该是和女朋友在春熙路上玩~</p>
+<p>购物~</p>
+</div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/30/" class="prev">PREV</a><a href="/page/32/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

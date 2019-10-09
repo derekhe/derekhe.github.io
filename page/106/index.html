@@ -1,0 +1,103 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 我是思聪</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2007-02-03-learning-experience/" class="post-title-link">学习心得</a></h2><div class="post-info">Feb 3, 2007</div><div class="post-content"><p>感冒接近尾声了，真实感觉身体素质那么差喔，一天吃那么多东西都是浪费…………最近又重新开始弄弯管机的玩意儿了，有些学习心得和实际操作心得，留个纪录：<br>１、关于矩阵乘法<br>OpenGL规定，最后定义的变换最先应用，每一步操作，都在CMT再右乘一个矩阵。所以坐标架原点p经过放射变换到q，公式如下：</p>
+<figure class="highlight gcode"><table><tr><td class="code"><pre><span class="line">q=<span class="name">M1</span>*<span class="name">M2</span>*<span class="name">M3</span>*<span class="name">M4</span>*p</span><br></pre></td></tr></table></figure>
+
+<p>其中M1为第一次变换，M2为第二次，以此类推。</p>
+<p>特别要搞清楚到底是右乘还是左乘。取决于你是在移动坐标架还是在移动点。</p>
+<p>如果是移动点，坐标系不变，则是：</p>
+<figure class="highlight gcode"><table><tr><td class="code"><pre><span class="line">q=<span class="name">M4</span>*<span class="name">M3</span>*<span class="name">M2</span>*<span class="name">M1</span>*p</span><br></pre></td></tr></table></figure>
+
+<p>相关文章参见《交互式计算机图形学——基于OpenGL的自顶向下方法(第三版)》P136和P145。<br>２、关于RAPID碰撞检测的调试</p>
+<p>这个碰撞检测库需要你提供变换矩阵(tMatrix)和一个包含模型三角形的一个类的实例(model)。model比较好构建，只需要把模型三角形添加进去即可。tMatrix难度较大，需要做矩阵的乘法，往往这个不对会造成碰撞检测的失败。为了真实的看到碰撞检测是否正确，可以：</p>
+<figure class="highlight abnf"><table><tr><td class="code"><pre><span class="line">glPushMatrix()<span class="comment">;</span></span><br><span class="line">glLoadIdentity()<span class="comment">;</span></span><br><span class="line">glTranslate(tMatrix)<span class="comment">;</span></span><br><span class="line">model.RenderTriangles()<span class="comment">;</span></span><br><span class="line">glPopMatrix()<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+
+<p>另外可以将碰撞检测所检测到的碰撞三角形显示出来，以重点测试tMatrix变换是否正确。<br>３、关于程序的一些设计</p>
+<p>试验阶段，不必要一定遵循面向对象的一些设计思路，这样反而会弄得很麻烦。前段时间一直想用面向对象的设计思路来封装对象，结果后来一旦发现整体思路不正确，又要改很多很多，真的很麻烦。还不如面向过程，不管是书写还是调试都会有一定的速度优势。而可能更好的一面在于，万一方案不行，改动的时候会方便很多。举个例子：</p>
+<p>比如对于一个类的名字：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">GetName</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SetName</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>* name)</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"><span class="built_in">string</span> name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后需要写对应的函数。</p>
+<p>还不如直接</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="built_in">string</span> name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>虽然暴露了成员，但是给调试和写测试程序带来了很多方便。所以，凡是不要绝对化，该用什么的时候还是用什么比较好。<br>４、被骗</p>
+<p>问题来自于3ds文件的Node的名字。他的名字只有10个字符长，但是3dsmax的max中却可以有很长的名字。</p>
+<p>所以如果我需要调入GeoSphere01，其实在3ds文件中，只存在名字为GeoSphere0的Node。所以我想直接把Name调整大小成10就是了：</p>
+<figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">string</span> <span class="built_in">name</span>=<span class="string">"GeoSphere01"</span>;</span><br><span class="line"><span class="built_in">string</span> name1=<span class="string">"GeoSphere0"</span>;</span><br><span class="line"><span class="built_in">name</span>.resize(<span class="number">10</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">name</span>.compare(name1)==<span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">cout&lt;&lt;<span class="string">"Identical"</span>&lt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样正确。</p>
+<p>但是遇到这样的情况：</p>
+<figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">string</span> <span class="built_in">name</span>=<span class="string">"Hello"</span>;</span><br><span class="line"><span class="built_in">string</span> name1=<span class="string">"Hello"</span>;</span><br><span class="line"><span class="built_in">name</span>.resize(<span class="number">10</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">name</span>.compare(name1)==<span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">cout&lt;&lt;<span class="string">"Identical"</span>&lt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果不注意其实用了resize以后，name就变成了Hello\n\n\n\n\n，结果和name1比较，结果不会是相同的(VS2005编译结果)。需要注意！可能是string类的compare函数实现上不以\n作为结尾而是以实际长度作为长度判断标准(瞎猜，要看看相应的文献再说)</p>
+<p>５、简单测试内存是否泄漏</p>
+<p>简单来说内存泄漏就是new了忘记delete，占用了内存。往往这些在于一个类的实例执行某些函数的时候new了一些东西，而忘记了在析构函数里面删除。</p>
+<p>那么如何测试到底有没有泄漏呢？我的简单方法如下：</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(int <span class="attribute">i</span>=0;i&lt;10000;i++)</span><br><span class="line">&#123;</span><br><span class="line">CObj <span class="attribute">obj1</span>=new CObj();</span><br><span class="line">obj1.doSomeTask();</span><br><span class="line">delete obj1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果忘记了删除的话，你会看到任务管理器里面程序占用了大量的内存。这时候就说明obj1确实存在泄漏问题。如果要确定到底是什么原因造成的，可以在执行这段语句之前纪录下内存使用mem1，然后执行完了看看内存使用mem2。然后(mem2-mem1)/10000就是每一次new的大小，这样顺藤摸瓜总会找到一些没有delete的东西。</p>
+<p>当然，更好的办法还是用专用工具。但现在对于我来说还没有用上：)</p>
+<p>６、闲话</p>
+<p>要早点睡觉，身体那么差了，唉～～～～～～～～～睡觉！</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2007-02-02-lib3ds-cvs-2007-1-12/" class="post-title-link">lib3ds-cvs-2007-1-12</a></h2><div class="post-info">Feb 2, 2007</div><div class="post-content"><p>lib3ds is a 3ds file format loader. See <a href="http://lib3ds.sourceforge.net" target="_blank" rel="noopener">http://lib3ds.sourceforge.net</a> for detail.<br>Because the source code tarball download from lib3ds.sourceforge.net have so many bugs, so I checkout a latest CVS version and recompiled it with VS2003. It works very well.<br>Due to it’s lack of documents, I use Doxygen to generate a very good documents.<br>And here is the file info:</p>
+<p>CVS Checkout date: 2007-1-12<br>Visual Studio 2003 Rebuild version<br>Add full documents to lib3ds. See documents.chm<br>Link: [download id=”16”]</p>
+<p>Document: [download id=”17”]</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2007-01-31-installed-always-pain/" class="post-title-link">装机，总是痛</a></h2><div class="post-info">Jan 31, 2007</div><div class="post-content"><p>写这个题目倒不是我出钱痛，别人装机，我心痛。</p>
+<p>面对越来越快的IT，我的很多硬件知识已经无法满足现在的需要了，很多经验还停留在2004年左右的水平，这也没办法，我用的电脑也就是那个时候配置的。三年的发展，从当初火爆的Barton核心，一直到现在扣肉双核，变化之大啊。但我发现，好歹现在我的台式机配置还是够用，没有升级的必要：<br>AMD Athlon 3200+的芯，1G内存，200G硬盘，丽台6600GT AGP，刻录机，电视卡，COOLER MASTER蜗轮风冷，SAMSUNG 19’ LCD。一切都够用了，这些配置足以把最近的BF2142跑得流畅，极品飞车10也能基本流畅的运行。</p>
+<p>笔记本也是廉颇老矣，2003年年底的配置：<br>Mobile Pentium4 2.4G，512DDR，80G SEAGATE 5400.3(最近升级的)，Geforce 4 420Go 32M。也够了，上次升级了硬盘以后明显感觉速度快了很多。</p>
+<p>但看看现在的电脑配置，双核、DDR. 垂直纪录、磁盘阵列、宽屏HDTV LCD、光雕、蓝光，哇哇，太多的技术词汇了，都是钱砸出来的。但我对这些以外的东西，了解多少呢？双核到底有会快多少呢？落后啦……</p>
+<p>所以，现在我有点惧怕别人叫我给他写配置单，因为3年前很多电脑就是我配置的，他们以为我是老手。可是，实际经验的落后，使我不好去选择硬件，也不能写出一个良好的配置，真是想负责也没办法。不给人家写吧，人家觉得你小气。两难，只好苦了自己……</p>
+<p>不管了，硬件这些东西了解点点吧，至少在我配置电脑以前我是不会仔细了解很多东西的，这些知识过时得太快了，还不如老老实实学一些其他方面的知识呢。</p>
+<p>下一步，打扫我的爱机，上上油，COOLER MASTER已经缺油了。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2007-01-31-chengdu-food-festival-sun-u003d-easy/" class="post-title-link">成都美食节＋晒太阳＝安逸~!</a></h2><div class="post-info">Jan 31, 2007</div><div class="post-content"><p>真是艳阳高照啊。虽然晚上没有睡好，外加感冒吃感冒药头晕，还是坚持了一天出去走走，到成都美食节主会场去看了看，好多好吃的哦，就是太贵。下午人民公园晒太阳，唉，那个惬意啊！随手拍了一些PP，随便看看：)<br>图一：biang biang 面，这个字…………自己造的吧……<br><a href="/images/2007-1-30/IMG_0309.JPG"></a><img src="/images/2007-1-30/image/thumb/IMG_0309.JPG" alt></p>
+<p>图二：哦，好辣<br><a href="/images/2007-1-30/IMG_0311.JPG"></a><img src="/images/2007-1-30/image/thumb/IMG_0311.JPG" alt></p>
+<p>图三：(配台词)男：啊哟，真的有点辣哦……   女：我给你说了嘛，辣……<br><a href="/images/2007-1-30/IMG_0312.JPG"></a><img src="/images/2007-1-30/image/thumb/IMG_0312.JPG" alt></p>
+<p>图四：好吃哦，看到都安逸……就是太贵了，春卷哦……<br><a href="/images/2007-1-30/IMG_0313.JPG"></a><img src="/images/2007-1-30/image/thumb/IMG_0313.JPG" alt></p>
+<p>图五：金沙蜀宴，气派，宏大啊。就是不能品尝，只能看<br><a href="/images/2007-1-30/IMG_0315.JPG"></a><img src="/images/2007-1-30/image/thumb/IMG_0315.JPG" alt></p>
+<p>图六：龟仙人<br><a href="/images/2007-1-30/IMG_0316.JPG"></a><img src="/images/2007-1-30/image/thumb/IMG_0316.JPG" alt></p>
+<p>图七：这个做得好看<br><a href="/images/2007-1-30/IMG_0320.JPG"></a><img src="/images/2007-1-30/image/thumb/IMG_0320.JPG" alt></p>
+<p>图八：不用我多说，自己看总看得懂三。<br><a href="/images/2007-1-30/IMG_0321.JPG"></a><img src="/images/2007-1-30/image/thumb/IMG_0321.JPG" alt></p>
+<p>图九：糖饼，貌似好多地方都有糖饼。这个技术不错哦，自行车惟妙惟肖！<br><a href="/images/2007-1-30/IMG_0322.JPG"></a><img src="/images/2007-1-30/image/thumb/IMG_0322.JPG" alt></p>
+<p>图十：成都本土文化，面娃娃。那些花花啊，娃娃啊，都是用面捏出来的，安逸哦：)玫瑰花那个逼真程度堪称一绝。<br><a href="/images/2007-1-30/IMG_0323.JPG"></a><img src="/images/2007-1-30/image/thumb/IMG_0323.JPG" alt></p>
+<p>图十一：梅花，还是面捏出来的，有点以假乱真了吧：)<br><a href="/images/2007-1-30/IMG_0324.JPG"></a><img src="/images/2007-1-30/image/thumb/IMG_0324.JPG" alt></p>
+<p>图十二：外国的一些东东，忘了是哪国的啦<br><a href="/images/2007-1-30/IMG_0325.JPG"></a><img src="/images/2007-1-30/image/thumb/IMG_0325.JPG" alt></p>
+<p>图十三：这个也是外国的，法国的，具体是什么……~忘了<br><a href="/images/2007-1-30/IMG_0326.JPG"></a><img src="/images/2007-1-30/image/thumb/IMG_0326.JPG" alt></p>
+<p>图十四：成都名堂。虽然吃的多，但是贵，又少……<br><a href="/images/2007-1-30/IMG_0327.JPG"></a><img src="/images/2007-1-30/image/thumb/IMG_0327.JPG" alt></p>
+<p>图十五：会场一角，其实还大得很。<br><a href="/images/2007-1-30/IMG_0328.JPG"></a><img src="/images/2007-1-30/image/thumb/IMG_0328.JPG" alt></p>
+<p>图十六：哇卡卡，蝎子。是活的…………不晓得要咋个吃<br><a href="/images/2007-1-30/IMG_0329.JPG"></a><img src="/images/2007-1-30/image/thumb/IMG_0329.JPG" alt></p>
+<p>图十七：什么蚱蜢、爬沙虫、笋子虫，还有些乱七八糟的玩意儿，都可以吃<del>我看着就恶心</del><br><a href="/images/2007-1-30/IMG_0330.JPG"></a><img src="/images/2007-1-30/image/thumb/IMG_0330.JPG" alt></p>
+<p>图十八：海星，555，这里都能看得到海星，真强。貌似是烧烤了吃。<br><a href="/images/2007-1-30/IMG_0331.JPG"></a><img src="/images/2007-1-30/image/thumb/IMG_0331.JPG" alt></p>
+<p>图十九：人民公园，三个人，呵呵。我又是电灯泡。<br><a href="/images/2007-1-30/IMG_0333.JPG"></a><img src="/images/2007-1-30/image/thumb/IMG_0333.JPG" alt></p>
+<p>图二十：好好睡一觉…………~晒太阳啦。<br><a href="/images/2007-1-30/IMG_0341.JPG"></a><img src="/images/2007-1-30/image/thumb/IMG_0341.JPG" alt></p>
+<p>图二十一：貌似是鹏鹏的影影……<br><a href="/images/2007-1-30/IMG_0354.JPG"></a><img src="/images/2007-1-30/image/thumb/IMG_0354.JPG" alt></p>
+<p>图二十二：纪念碑，纪念保路运动的历史纪念碑。 呵呵，后面的房子简直反光过度，都是玻璃，郁闷。<br><a href="/images/2007-1-30/IMG_0370.JPG"></a><img src="/images/2007-1-30/image/thumb/IMG_0370.JPG" alt></p>
+<p>图二十三：哈哈，打太极，打太极。当我想拍第二张的时候，别人就不打了……晕，难道我长相有问题？<br><a href="/images/2007-1-30/IMG_0371.JPG"></a><img src="/images/2007-1-30/image/thumb/IMG_0371.JPG" alt></p>
+<p>图二十四：安逸哦，晚上吃自助西餐，狂哉这两个“娃娃”，出来已经七点过了，餐厅外面“星星点点”<br><a href="/images/2007-1-30/IMG_0375.JPG"></a><img src="/images/2007-1-30/image/thumb/IMG_0375.JPG" alt></p>
+<p>哎呀，安逸哦，回来都是坐的末班车。发现一个现象，貌似新的公交车灯箱在线路已经全部收车以后对应的车次下面的日光灯管会熄灭以作为提示。(这句话好长)<br>安逸，安逸，太阳好安逸，</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2007-01-30-saga-bf2-rank/" class="post-title-link">SAGA BF2 RANK</a></h2><div class="post-info">Jan 30, 2007</div><div class="post-content"><p>只能算个很业余的player了，今天在SAGA 12号服务器看见了些真正的“鸟人”强悍啊！手雷扔得不偏不倚，作战战术相当之高超，团队配合之默契，唉…………<del>还差得远啊。再说了，我也只是随便玩玩而已，呵呵</del>！
+<a href="http://rank.bf2.com.cn/player/44380698/" target="_blank" rel="noopener"><img src="http://rank.bf2.com.cn/sig/44380698.png" alt></a></p>
+<p>下个月真的要好好的学习了，电脑反正也刚不起，经常自动跳出游戏，之郁闷。唉，可能系统要重装了，顺便重装一下LINUX。经常都是在重装当中学到东西，何时能有一个大的飞跃啊~!</p>
+</div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/105/" class="prev">PREV</a><a href="/page/107/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

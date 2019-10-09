@@ -1,0 +1,65 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 我是思聪</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2006-06-27-two-lines-of-code-to-achieve-the-u0026quotone-button-off-screenu0026quot/" class="post-title-link">两行代码实现“一键关屏”</a></h2><div class="post-info">Jun 27, 2006</div><div class="post-content"><p>有时候暂时离开一下电脑，不关显示器呢觉得又浪费电了，不手动关呢又要等一段时候屏保才启动，还是要浪费少许电。还是自己动手写一个算了。查阅了相关的资料，发现两行代码足以。</p>
+<p>在vs2005里面建立一个vc++工程，创建一个main.cpp，然后拷贝一下代码进去。<br>1<img src="http://www.cnblogs.com/Images/OutliningIndicators/None.gif" alt>#include &lt;windows.h&gt;<br>2<img src="http://www.cnblogs.com/Images/OutliningIndicators/None.gif" alt>int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)<br>3<img src="http://www.cnblogs.com/Images/OutliningIndicators/ExpandedBlockStart.gif" alt><img src="http://www.cnblogs.com/Images/OutliningIndicators/ContractedBlock.gif" alt><img src="http://www.cnblogs.com/Images/dot.gif" alt>{
+4<img src="http://www.cnblogs.com/Images/OutliningIndicators/InBlock.gif" alt> // Eliminate user’s interaction for 500 ms<br>5<img src="http://www.cnblogs.com/Images/OutliningIndicators/InBlock.gif" alt> Sleep(500);<br>6<img src="http://www.cnblogs.com/Images/OutliningIndicators/InBlock.gif" alt><br>7<img src="http://www.cnblogs.com/Images/OutliningIndicators/InBlock.gif" alt> // Turn off monitor<br>8<img src="http://www.cnblogs.com/Images/OutliningIndicators/InBlock.gif" alt> SendMessage(HWND_BROADCAST, WM_SYSCOMMAND, SC_MONITORPOWER, (LPARAM) 2);<br>9<img src="http://www.cnblogs.com/Images/OutliningIndicators/InBlock.gif" alt><br>10<img src="http://www.cnblogs.com/Images/OutliningIndicators/InBlock.gif" alt> return 0;<br>11<img src="http://www.cnblogs.com/Images/OutliningIndicators/ExpandedBlockEnd.gif" alt>}
+12<img src="http://www.cnblogs.com/Images/OutliningIndicators/None.gif" alt><br>13<img src="http://www.cnblogs.com/Images/OutliningIndicators/None.gif" alt></p>
+<p>编译以后生成一个文件，然后在桌面上创建一个它的快捷方式。</p>
+<p>编辑快捷方式的属性，找到“快捷键”这一栏，设置为你需要的快捷键。我这里设置为Ctrl+Shift+Alt+F12，保存，这样需要关屏的时候只需要按以上快捷键就可以了。<br><img src="http://images.cnblogs.com/cnblogs_com/hesicong/untitled.JPG" alt></p>
+<p>如果你还嫌麻烦(真懒……)，那么下载这个文件就行了：<br><a href="http://hesicong.cnblogs.com/Files/hesicong/OneClickDisplayTurnoff.rar" target="_blank" rel="noopener"></a>[download id=”30”]</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2006-06-20-write-something-of-my-own/" class="post-title-link">写给我自己的一些话</a></h2><div class="post-info">Jun 20, 2006</div><div class="post-content"><p>我一直在一个小笔记本上写下片刻之间想到的话，摘录一些话语，堆叠起来，应该算是对自己的一种鼓励和反省吧。</p>
+<ul>
+<li>当你和她无缘的时候，不要再夺去思考无关的事。</li>
+<li>努力工作，相信自己能够做好。</li>
+<li>多学电脑以外的东西，真正让自己多才多能。</li>
+<li>渐渐学会观察人。</li>
+<li>需要的时候，满足自己给她个电话吧。</li>
+<li>不去猜测别人的生活。</li>
+<li>注意言行举止。</li>
+<li>该忘的就忘吧，忘不掉的泰然处之。</li>
+<li>真没有机会，没有条件的时候，不要勉强。</li>
+<li>并不是每个想要的东西都可以得到。</li>
+<li>每个人都有自己的生活。</li>
+<li>你并不是上帝，并不能改变别人的生活、做好自己</li>
+<li>平淡的接受快乐、不要太幻想。</li>
+<li>男生要大方。</li>
+<li>拿得起放得下。</li>
+<li>心里的沙子去掉了剩下的就是快乐了。</li>
+<li>量变最终导致质变，当然要学会总结。</li>
+<li>对女生要让她对你形成一种习惯。</li>
+<li>不要太心急、不要太急于求成。</li>
+<li>好好地、用心地去爱。</li>
+<li>不要在你的智慧中夹杂着傲慢。不要使你的谦虚心缺乏智慧。</li>
+</ul>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2006-06-19-hear-the-voice-of-the-universe/" class="post-title-link">聆听宇宙的声音</a></h2><div class="post-info">Jun 19, 2006</div><div class="post-content"><p>闲来无事找到一个好网站可以聆听宇宙的声音，当然很多都是无线电波，受到干扰或者其他什么的作用而改变了声音。<br>具体网址可以见：<a href="http://www.spacesounds.com/" target="_blank" rel="noopener">http://www.spacesounds.com</a></p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2006-06-18-6-18-days/" class="post-title-link">6-18日</a></h2><div class="post-info">Jun 18, 2006</div><div class="post-content"><p>因为一直在工作室工作，所以很少有时间回家，博客日记也写得少了，这次回家也顺便能够写写日记，虽然文字略显单薄，但也算弥补一下博客久日未更新的遗憾。</p>
+<p>六月的成都也渐渐热起来了，这些天晚上的云彩真让人有一种用照相机拍下来的冲动。昨天下午吃晚饭和爸爸妈妈还有弟弟一起开车出去兜风，为了想离开城市的喧 嚣，去稍远一点的地方，有田地的地方。清新的空气和片片的绿意让我久久的陶醉在乡间的小路。乡间的小路不大，只有并行通过两个车的能力。旁边的绿树应和着 金黄的阳光，太阳在云朵的印衬下显得更大，更亮。云也不甘寂寞，时而变换着自己的色彩，在蓝蓝的背景下，变得多姿多彩……</p>
+<p>遗憾的是自己依然不会描写，描写不出动人的画面，描绘不出令人向往的地方，我想，可能摄影会弥补我这方面的不足吧。当然有机会要学学摄影了，工作室有个哥们儿摄影搞得比较专业，我也有兴趣跟着他学，算是慢慢培养我的第二个兴趣爱好吧。</p>
+<p>前段时候心情搞得郁闷，全然是因为自己的“失恋”，一个自己用心喜欢的女孩子离开了我的生活。痛苦和失败的挫折感一次一次的打击自己的心，还好有朋友的陪伴，让我慢慢的清醒了过来，也认识到了自己的方方面面的不足。庆幸的是自己才21岁，还不成熟吧，只希望以后，不要再像这样。</p>
+<p>暑假也要来临了，会在工作室里面待很长的时间，也继续思考和寻找更好的发展，期望到一个大公司里面，去发挥自己的长处。</p>
+<p>……</p>
+<p>也不知道该记录些什么了，每当语竭词穷的时候就只能以省略号结尾，期望一切都好吧，我的未来……</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2006-06-13-good-use-of-a-software-e-border/" class="post-title-link">很好用的一款软件e-Border</a></h2><div class="post-info">Jun 13, 2006</div><div class="post-content"><p>由于我们工作室只能通过Socks5代理连接上外网，所以每个软件都需要设置代理。更为繁琐的是并不是每一个软件都支持Socks5代理，比如 NewzCrawler、Opera等等就是。这给我的工作带来了很大的不便。后来在网上找到一款e-Broder的软件，它可以把它启动以后应用程序对 网络的连接进行拦截(钩子原理)，然后再通过Socks5代理发送，整个过程相当透明，几乎所有的软件都能用，包括 NewzCrawler,Outlook,QQ,IE,Opera和很多的游戏。推荐有类似我这样情况的用户使用e-Border：)</p>
+</div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/126/" class="prev">PREV</a><a href="/page/128/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

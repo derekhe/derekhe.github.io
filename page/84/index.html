@@ -1,0 +1,80 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 我是思聪</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2007-09-24-open-ncq-hard-drive-function/" class="post-title-link">硬盘打开NCQ功能</a></h2><div class="post-info">Sep 24, 2007</div><div class="post-content"><p>五月才说了不要那么太技术，没办法啊，总不可能把技术写成小说吧……那也太强了。</p>
+<p>前些日子买了SATA2硬盘，支持NCQ，但当时重装系统的时候没有考虑到打开NCQ技术，所以感觉系统和以前IDE硬盘时候差不了多远。前些天图书馆看报纸的时候终于知道打开NCQ还需要做一些“手脚”，最麻烦的还是需要重装系统，要不然一开启AHCI，就进不了WINDOWS，直接蓝屏。试了一下果然如此。只好关闭AHCI然后回到模拟IDE模式。</p>
+<p>网上搜了一段时间，发现很多文章都是说用IBM的一个驱动，然后就可以不用重装搞定。我想没有那么麻烦吧，真是不负有心人啊，找到了ICH9R下面打开NCQ最方便的方法：</p>
+<ul>
+<li>下载Intel Matrix Storage 安装程序，我下载的英文版iata76_enu.exe</li>
+<li>然后运行它，加上参数-a -a:</li>
+</ul>
+<figure class="highlight livecodeserver"><table><tr><td class="code"><pre><span class="line">iata76_enu -<span class="keyword">a</span> -<span class="keyword">a</span></span><br></pre></td></tr></table></figure>
+
+<p>这步只是解压相应文件而已。</p>
+<ul>
+<li>运行附件注册表<br>[download id=”11”]</li>
+<li>把 Program FilesIntelIntel Matrix Storage ManagerDriverIaStor.sys 复制到 windowssystem32drivers 目录下，如果有旧版本就覆盖。</li>
+<li>重启并打开AHCI</li>
+<li>完成</li>
+</ul>
+<p>这样就打开了NCQ。也不知道系统到底快了多少，应该读取小文件的时候才能发挥威力吧。</p>
+<p>准备装个Vista和Ubuntu 7.10测试版玩玩。不知道Vista能得多少分~</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2007-09-22-home-at-last-back-to-normal-2/" class="post-title-link">主页终于恢复正常</a></h2><div class="post-info">Sep 22, 2007</div><div class="post-content"><p>哎，主页已经挂成习惯了。服务器经常有人攻击，这些人还是真是没事找事做…………</p>
+<p>重新开张第一件事情还是祝福大家中秋节快乐，吃月饼哦！</p>
+<p>我还得继续忙去了，这几天都搞得晕头转向得了………………都是猪肉涨价惹得祸~！</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2007-09-18-finally-ported-to-unix-windows-gts-under-the-following-said-than-done/" class="post-title-link">终于把UNIX下的GTS移植到WINDOWS下面~难啊</a></h2><div class="post-info">Sep 18, 2007</div><div class="post-content"><p>最近一致在寻找一个很好的几何实体布尔操作的库，找到了小巧精致但特别功能要收费的的sgCore，强大的不知道怎么使用的openCASCADE，GNU开源UNIX系统的GNU Triangulated Surface Library(GTS)，还听闻一些收费的HOOPS等。</p>
+<p>最开始，sgCore非常让我满意，精巧的结构，很易于使用的编程风格，强大的功能，小巧的身材……可是，当需要用到将三角形模型转换成实体模型的时候，就要收费了。最低收费标准400美元，我的天啊，抢人……</p>
+<p>最终还是放弃了这个美丽的“陷阱”。</p>
+<p>openCASCADE库，借用论坛上坐沙发流行的一句话：很好，很强大！无与伦比的功能，包括CAD/CAM的方方面面，从二维样条曲线，到三维的实体操作，样样俱全，可是，太大了……600多M的安装包，加上200M的文档，源程序还是*.cxx的。强大到根本搞不清楚怎么入手，最终放弃了…………</p>
+<p>最后的希望来自于GNU的GTS，小巧，免费，精致，强大。唯独一个缺点是目前只有UNIX版本的，虽然写了可以在WIN32下面编译，但是其MAKEFILE还是VC6时代的，还需要3个依赖包。而这两个做好的WIN32下的依赖包还是VC6编译的，即便在VC++2005下面吧GTS编译成功了，也用不起。因为这两个DLL用的是MSVCRT.DLL，而VC++2005编译的GTS库用的MSVCRT80.DLL，会导致不兼容。</p>
+<p>查阅了大量的资料，发现解决方法有如下：</p>
+<ul>
+<li>使用cygwin编译。缺点很显然，我写程序也得在cygwin下面去编译，显然有些不太方便。而且编译出来的DLL还不好用。</li>
+<li>用VC++2005全部重新编译所有的依赖包。</li>
+<li>放弃……~</li>
+</ul>
+<p>最终选择了2。拼死活命也要将GTS编译出来。</p>
+<p>第一个难题就是glib的编译问题。因为GTS需要用到glib，所以就到网上寻glib的win32版本。竟然，还是只有那个VC6的版本。还好，glib最新的源代码中已经包含了VC++2005的makefile了。还需要找gettext和libiconv的WIN32版本。</p>
+<p>经过查询，找到gettext 0.14.4，据说可以编译成功。试了N久，发现少了relocate.h这个头文件，即使弄上去了编译也出问题。又是google，找到一个人的问题和我一样，解决方案是用0.14.6版本编译。果然通过了。幸福……</p>
+<p>编译libiconv也遇到了一些莫名其妙的问题，都是一些什么玩意儿没有定义啊，什么宏没有定义这些，很烦人。glib也是一些win32下老的makefile需要更新。……</p>
+<p>4天时间都在搞这些玩意儿，彻底记不清楚具体是怎么把他搞成功的了。最后做了一个安装包，只需执行一个批处理，傻瓜化的就完成了编译安装。……</p>
+<p>PS：准备又要开始研究SMS相关的东西了……哎，一天忙啊</p>
+<p>下载：</p>
+<p><a href="http://www.hesicong.net/Store/gts_win32_build_vc8.rar" target="_blank" rel="noopener">http://www.hesicong.net/Store/gts_win32_build_vc8.rar</a></p>
+<p>包含所有源代码，在VS2005的命令提示里面直接执行build_all.bat即可编译安装成功，很费功夫的哦：</p>
+<p><a href="http://www.hesicong.net/Store/gts_win32_src.rar" target="_blank" rel="noopener">http://www.hesicong.net/Store/gts_win32_src.rar</a></p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2007-09-12-3dmark-06-overclocking-results-on-10-000/" class="post-title-link">3DMARK 06超频后成绩上万</a></h2><div class="post-info">Sep 12, 2007</div><div class="post-content"><p>昨天一时间心血来潮，超频！超频之前3DMARK06分数在9800以上，忘了具体数值了。</p>
+<p>首先CPU开始。听说Q6600 G0步进的比较好超，基本上轻松从2.4G到3G，我试了一下，我这个U可以外频最高450，460点不亮。而且450的时候DDR2 800内存频率只能选择低频，所以最后采用433外频。倍频是7，这样下来CPU就是3031Mhz。很奇怪的是XP将CPU频率识别成了4G，天啊，当时把我吓了一跳，用CPU-Z看了一下才确定是3G。</p>
+<p>威刚的红色威龙DDR2 800超频性能还是很好的，采用外频和内存比为1:1.2的方式超频，这样内存就工作在1039Mhz。经过3DMARK 06测试，稳定。</p>
+<p>SUPER PI成绩还是蛮不错的，未超频之前是104万位是22秒，超频以后最快可以达到17秒。还是那些双核超频到5.13G的牛啊，毕竟这个胶水四核的功率那是相当大。</p>
+<p>CPU和内存基本就那样了，也没有时间慢慢的寻找最快频率。那么显卡继续~</p>
+<p>七彩虹的这个8800GTS默认频率是核心512Mhz，显存1584Mhz。看网上的8800GTS超频性能都不错，所以大胆的将核心超到600以上，显存在1.8G以上。经过反复的调整，最终选择了645和1.98G。</p>
+<p>超频后的电脑3DMARK06分数达到了12219分，简直是太强了。3DMARK06的数据库中，我排名进了全球7万名行列，这个成绩相当不错了。</p>
+<p>顺带说来，中午顺便买了“荣誉勋章空降神兵”和“光晕2”。空降我装上了，默认什么都是最高，但是很奇怪没有关于反锯齿的选项，游戏里面到处都是锯齿。更令人感觉恼火的是玩这个游戏老是头晕，天啊……我想是不是基于Unreal 3引擎的通病啊，或者是电脑确实太牛了………………~10分钟后，由于头晕恶心，卸载了这个游戏。</p>
+<p>光晕2还没有试过，但听说画面不是太好，等几天有空了再看看。</p>
+<p>哎，还是继续玩NFS系列或者DIRT吧，战地系列也不会头晕……~</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2007-09-10-osg-select-and-drag/" class="post-title-link">OSG——选取和拖拽</a></h2><div class="post-info">Sep 10, 2007</div><div class="post-content"><p>物体的选取和拖拽算是GUI里面用得比较多的部分，特别是三维的选取和拖拽更是比较麻烦。最近钻研了一下，参考了osgManipulator的拖拽部分和osgPick的选取部分，实现了选取和拖拽。程序使用的方法不一定是最好的。给大家分享分享。如果大家有更好的例子，不妨拿出来一起讨论，谢谢：)</p>
+<p>注：VS2005工程，请自行更改头文件、库文件地址和源代码中示例模型所在地。</p>
+<p><img src="images/download.gif" alt="下载文件"> <a href="http://www.hesicong.net/blog/upload/month_0709/i2007910185153.rar" target="_blank" rel="noopener">点击下载此文件</a></p>
+</div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/83/" class="prev">PREV</a><a href="/page/85/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

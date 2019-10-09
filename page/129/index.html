@@ -1,0 +1,52 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 我是思聪</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2005-11-30-opera-mini-use-in-the-pocketpc/" class="post-title-link">在PocketPC上使用Opera Mini</a></h2><div class="post-info">Nov 30, 2005</div><div class="post-content"><p>今天在手机上下载了一个Opera Mini，发现极好用，由于网页在显示之前被Opera服务器处理，所以在保持网页的结构的同时省了很多的流量。后来在PocketPC上用Java虚拟机也安装上了一个Opera Mini，这样就可以用大屏幕浏览了。呵呵：)</p>
+<p>首先需要下载一个“中国移动百宝箱”(<a href="http://bbs.pdafans.com/viewthread.php?tid=117911" target="_blank" rel="noopener">http://bbs.pdafans.com/viewthread.php?tid=117911</a>)，其实也就是一个Java虚拟机。安装上……</p>
+<p>其次，下载Opera Mini，放到PocketPC根目录中，点击Opera.jad安装。</p>
+<p>然后，就尽情使用吧：)</p>
+<p>注意对于没有按键的PocketPC用起来可能有些问题。在我的HP1937上面用上下左右移动光标，中间的键确定。由于中文比较小，所以浏览起来还是有些遗憾。期待Opera for PocketPC的出现……</p>
+<p>以下是几个截图：<br><img src="http://images.cnblogs.com/cnblogs_com/hesicong/pc_capture1.jpg" alt> <img src="http://images.cnblogs.com/cnblogs_com/hesicong/pc_capture4.jpg" alt><img src="http://images.cnblogs.com/cnblogs_com/hesicong/pc_capture2.jpg" alt></p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2005-11-06-repair-damaged-msdn-browser/" class="post-title-link">修复损坏的MSDN浏览器</a></h2><div class="post-info">Nov 6, 2005</div><div class="post-content"><p>今天弄得我很郁闷，VS2005的MSDN文档无法打开了，现象为点击以后无任何反应。重新安装MSDN未果，使用Repair选项未果。</p>
+<p>经过搜索，发现C:Program FilesCommon FilesMicrosoft SharedHelp 8Microsoft Document Explorer 2005目录里面有一个Install.exe，是Microsoft Documents Explorer 2005的安装程序。遂安装看看，使用其Repair选项，几分钟后，MSDN恢复如初！</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2005-10-30-how-to-use-nokia-at-commands-to-send-and-receive/" class="post-title-link">如何使用发送和接收Nokia AT指令</a></h2><div class="post-info">Oct 30, 2005</div><div class="post-content"><p>以前很困惑于Windows自带的超级终端无法发送和接收Nokia手机的AT指令，所以一直以为Nokia手机无法使用AT指令。</p>
+<p>今天用Serial Monitor重新监视了一下玩转手机的通讯过程，发现只要设置RTS=ON和DTR=ON就可以发送和接收AT指令了。超级终端连接的时候只把DTR设置为ON，而RTS没有，这就是为何无法连接的原因。</p>
+<p>另外当发送和接收FBUS命令时需要把RTS=OFF和DTR=OFF。呵呵，看来串口这个东西还是挺好玩的：)</p>
+<p>有空写一个比较完整的好用的串口工具了。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2005-10-30-nokia-mobile-phone-data-transfer-on-the-part-of-some-progress/" class="post-title-link">关于Nokia手机数据传输部分的一些进展</a></h2><div class="post-info">Oct 30, 2005</div><div class="post-content"><p>由于以前都研究的是Siemens的手机，所以对西门子的手机的数据方式比较熟悉，也做了PDU解码器编码器、OBEX传输协议等等东西。最近狠下心花了1875元买了一个Nokia 6021手机，准备开始探究Nokia手机的一些数据协议。</p>
+<p>我找到一个很好的开源项目gnokii，是专门做Nokia手机发送短信等等的一个软件。其文档提供了FBUS、MBUS的数据传输格式，我觉得应该是研究Nokia手机数据传输的宝贵资料了。</p>
+<p>第二步就是找IrDA Monitor、Blueteeth Monitor来监视数据通讯过程，不知道现在有没有这些软件，要不然就要安装Linux来研究gnokii进而取得需要的东西了。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2005-10-25-net-2-0-rc-a-bug/" class="post-title-link">.NET 2.0 RC的一个Bug</a></h2><div class="post-info">Oct 25, 2005</div><div class="post-content"><p>.NET 2.0 Bug   ——虚拟COM口名出错</p>
+<p>今天发现.NET 2.0 RC版本(2.0.50727)的一个BUG：</p>
+<p>很简单的一句话<br><img src="http://www.cnblogs.com/Images/OutliningIndicators/None.gif" alt>Dim ports As String() = System.IO.Ports.SerialPort.GetPortNames()</p>
+<p>一般情况下会正常的显示所有的串口名，但是近日发现此函数在处理虚拟COM口时会出现问题。</p>
+<p>先说说我电脑上的COM端口的配置：<br>COM. COM2：电脑上自带的两个COM端口<br>COM9：Siemens CXV65手机红外连接电脑以后虚拟出来的一个Siemens S45 Modem占用。<br>COM12：Bluetooth链路上的标准调制解调器#2——为Nokia 6021蓝牙链接以后虚拟的Modem</p>
+<p>系统内的配置：<br><img src="http://images.cnblogs.com/cnblogs_com/hesicong/pic1.jpg" alt><br>ports返回：<br><img src="http://images.cnblogs.com/cnblogs_com/hesicong/pic2.jpg" alt></p>
+<p>其中COM12返回出错为COM12c，COM9返回为COM92。有些时候会返回COMx和一个随机的乱码。但是物理端口返回参数始终正常。</p>
+<p>此后更换红外设备和蓝牙设备的USB接口，重新进行红外和蓝牙连接后，原COM9变为COM13(Siemens S45)，原COM12变为COM14(Nokia 6021蓝牙连接)</p>
+<p>结果为：<br><img src="http://images.cnblogs.com/cnblogs_com/hesicong/pic3.jpg" alt></p>
+<p>端口名还是错误的。</p>
+<p>此函数在RC版本之前都是完全正确的，不知道是怎么回事，应该是.NET 2.0 RC的一个Bug吧。</p>
+<p>另外问一下：在哪个地方报告一下这个Bug呢？</p>
+</div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/128/" class="prev">PREV</a><a href="/page/130/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

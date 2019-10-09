@@ -1,0 +1,69 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> Ubuntu 9.10+BCM4315成功破解WEP网络 · 我是思聪</title><meta name="description" content="Ubuntu 9.10+BCM4315成功破解WEP网络 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">Ubuntu 9.10+BCM4315成功破解WEP网络</h1><div class="post-info">Feb 17, 2010</div><div class="post-content"><p>我的联想U150的本本的BCM4315网卡一直没有得到BT4和BT3的完美支持，就连Ubuntu 9.10装好后也需要自己再装Restricted Driver。这个驱动装好后好像不能被aircrack系列支持。我认为只要把4315驱动搞定了，就能在任何Linux系统下应用aircrack。那么第一步就是把b43驱动驱动起来。<br>寻找了很久以后找到了这个帖子：<a href="http://ubuntuforums.org/showthread.php?t=1266620" target="_blank" rel="noopener">http://ubuntuforums.org/showthread.php?t=1266620</a><br>使用2.6.32.12的kernel加上b43的驱动就可以完全搞定它。<br>Ï32位系统的内核：<br><a href="http://mirrors.kernel.org/ubuntu/pool/main/l/linux/linux-image-2.6.32-12-generic_2.6.32-12.17_i386.deb" target="_blank" rel="noopener">http://mirrors.kernel.org/ubuntu/pool/main/l/linux/linux-image-2.6.32-12-generic_2.6.32-12.17_i386.deb</a><br><a href="http://mirrors.kernel.org/ubuntu/pool/main/l/linux/linux-headers-2.6.32-12-generic_2.6.32-12.17_i386.deb" target="_blank" rel="noopener">http://mirrors.kernel.org/ubuntu/pool/main/l/linux/linux-headers-2.6.32-12-generic_2.6.32-12.17_i386.deb</a><br><a href="http://mirrors.kernel.org/ubuntu/pool/main/l/linux/linux-headers-2.6.32-12_2.6.32-12.17_all.deb" target="_blank" rel="noopener">http://mirrors.kernel.org/ubuntu/pool/main/l/linux/linux-headers-2.6.32-12_2.6.32-12.17_all.deb</a></p>
+<ul>
+<li>安装内核：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo dpkg -i linux*2.6.*.deb</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>下载<a href="http://linuxwireless.org/download/compat-wireless-2.6/" target="_blank" rel="noopener">compat-wireless驱动</a>，照着它的说明，我用最新的编辑无法成功，用compat-wireless-2010-01-26.tar.bz2即可。</li>
+<li>编译：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>卸载老的驱动</li>
+</ul>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">sudo make unload</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>刷新驱动</li>
+</ul>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">sudo depmod</span></span><br><span class="line"><span class="attribute">sudo depmod -a</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打开PIO模式：</li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">echo <span class="string">"options b43 pio=1"</span> <span class="string">| sudo tee -a "</span>/etc/modprobe.d/b43-thingy.conf<span class="string">"</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>屏蔽STA驱动：</li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">echo <span class="string">"blacklist wl"</span> <span class="string">| sudo tee "</span>/etc/modprobe.d/wedontneednonossdrivers.conf<span class="string">"</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>启动时打开B43驱动：</li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">echo <span class="string">"b43"</span> <span class="string">| sudo tee -a "</span>/etc/modules<span class="string">"</span></span><br></pre></td></tr></table></figure>
+
+<p>1* 打开/etc/rc.local， 在exit(0)之前加入</p>
+<figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">modprobe</span> -r <span class="keyword">b43</span></span><br><span class="line"><span class="keyword">sleep </span><span class="number">3</span></span><br><span class="line"><span class="symbol">modprobe</span> <span class="keyword">b43</span></span><br></pre></td></tr></table></figure>
+
+<p>然后就可以用aircrack的工具进行破解了。<br>spoonwap在ubuntu的sudo环境下回提示表达式不正确，解决方法是</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">sudo <span class="keyword">ln</span> -<span class="keyword">sf</span> bash /bin/<span class="keyword">sh</span></span><br></pre></td></tr></table></figure>
+
+<p>然后享受吧，我用了1分多的时间把自己的无线网络破解了，隔壁的网络没有活动的客户端破解相对繁琐，改日再研究。</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2010-03-04-writing-papers/" class="prev">PREV</a><a href="/post/2010-02-13-condolence/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

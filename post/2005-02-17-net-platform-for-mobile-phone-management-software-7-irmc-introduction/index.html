@@ -1,0 +1,81 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> .net平台手机管理软件开发(7)——IrMC简介 · 我是思聪</title><meta name="description" content=".net平台手机管理软件开发(7)——IrMC简介 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">.net平台手机管理软件开发(7)——IrMC简介</h1><div class="post-info">Feb 17, 2005</div><div class="post-content"><p>(七)  IrMC简介</p>
+<p>要实现通讯薄、日历、便签的同步，需要用到IrDA协议里面的IrMC部分。<br>IrMC全称为Ir Mobile Communications。它定义了利用IR无线传输的设备之间通讯的规则。IrMC协议文档详细叙述了IrMC的方方面面，可以在我的主页(<a href="http://dream-world.nease.net)下载到PDF版本。" target="_blank" rel="noopener">http://dream-world.nease.net)下载到PDF版本。</a></p>
+<p>下面主要讲述我在开发当中所用到的部分以及实现方法。更为详细的资料请参考IrMC协议。<br>Phonebook</p>
+<p>在手机软件桌面端通讯薄的管理是整个软件的必备功能之一，利用其信息可以方便的和Outlook等软件实现同步，实现更强大的功能。</p>
+<p>通讯薄的管理分为读取、删除、增添、修改。通过这几个功能的组合可以实现更为强大的同步功能。下面分条概述。<br>l         读取</p>
+<p>n         读取所有的Entry</p>
+<p>使用OBEX的GET命令取得telecompb.vcf文件。</p>
+<p>得到的的文件是一个vCard文件，里面包含了所有的通讯薄。其格式为vCard格式。关于vCard的简介及编码器解码器见后。下面给出一个范例：<br>BEGIN:VCARD<br>VERSION:2.1<br>X-IRMC-LUID:1017646<br>X-ESI-CATEGORIES;CHARSET=UTF-8;ENCODING=QUOTED-PRINTABLE:=E5=AE=B6=E4=BA=BA<br>N:test<br>ADR:;;Street;city;;610000;country<br>ORG:company<br>TEL;HOME:123456<br>TEL;WORK:123456<br>TEL;CELL:123456<br>TEL;FAX:123456<br>TEL;FAX;HOME:123456<br>EMAIL;INTERNET:<a href="mailto:a@a.ao" target="_blank" rel="noopener">a@a.ao</a><br>EMAIL;HOME;INTERNET:b@g<br><a href="http://blog.csdn.net/hesicong/admin/http" target="_blank" rel="noopener">URL:http</a><br>BDAY:1985-04-23<br>END:VCARD</p>
+<p>也可以通过X-IRMC-LUID所给的LUID号码直接取得相应的vCard。</p>
+<ol>
+<li>读取指定LUID的Entry</li>
+</ol>
+<p>使用OBEX的GET命令取得telecompbluidxxxx.vcf，其中xxxx代表了LUID号码。</p>
+<p>得到的依然是一个vCard文件，只不过只包含特定LUID号码的vCard信息。可以简单的通过Outlook查看vCard所包含的信息。</p>
+<p>l         删除</p>
+<p>欲删除一个Entry</p>
+<ol>
+<li><p>连接到IrMC_Sync_Service(发送0x80, 0x0, 0x13, 0x10, 0x0, 0x40, 0x6, 0x46, 0x0, 0xC, 0x49, 0x52, 0x4D, 0x43, 0x2D, 0x53, 0x59, 0x4E, 0x43)使手机处于同步状态。</p>
+</li>
+<li><p>得到ChangeCount<br>ChangeCount是手机里面储存修改次数的一个数值，主要用于同步。具体相关资料请参考IrMC协议。</p>
+</li>
+<li><p>构建数据包。<br>Opcode：PUT<br>NameHeader：xxxx.vcf(xxxx为欲删除的entry的LUID)<br>AppParam：0x11，ChangCount字符串形式长度(Integer)，ChangeCount的ANSI形式</p>
+</li>
+<li><p>使用OBEX的PUT命令，传输一个xxxx.vcf(xxxx指LUID)空文件到telecompbluid覆盖即可。</p>
+</li>
+<li><p>发送0x81, 0x0, 0x3断开IrMC_Sync_service</p>
+</li>
+</ol>
+<p>l         添加</p>
+<p>欲添加一个文件：</p>
+<ol>
+<li><p>连接到IrMC_Sync_Service</p>
+</li>
+<li><p>得到ChangeCount</p>
+</li>
+<li><p>构建数据包<br>Opcode：PUT<br>NameHeader：.vcf<br>AppHeader：0x11，ChangeCount字符串长度(Interger)，ChangCount的ANSI形式<br>Body或者End-of-Body Header：vcf文件内容</p>
+</li>
+<li><p>OBEX的PUT命令上传到telecompb.vcf文件即可。</p>
+</li>
+</ol>
+<p>注意：文件名取名为“.vcf”。</p>
+<ol start="5">
+<li>发送0x81, 0x0, 0x3断开IrMC_Sync_service</li>
+</ol>
+<p>l         修改</p>
+<p>修改过程与添加过程相似，只是将文件名改为欲修改的vCard的LUID.vcf就行了。</p>
+<p>Notes</p>
+<p>便签是大多数手机都提供的功能，能够方便的记录简短的信息。在我的M55手机上能够储存150Byte的信息，也就是150个英文或者75个汉字。软件通过管理便签可以与Outlook等软件同步，实现更高级的功能。</p>
+<p>管理Notes的方法和Phonebook类似。得到全部Notes的vNote只需要获取telecomnt.vnt即可。删除、添加、修改只需要把telecompbluid改为telecomntluid即可。在此不再赘述。<br>Calendar</p>
+<p>日历功能提供了事件提醒功能，分为重要记事(vEvent)和任务(vTodo)。通过管理日历，同样可以实现和Outlook同步，实现电脑和手机的同步。</p>
+<p>管理Calendar的方法和Phonebook类似。得到全部vCalendar只需要获取telecomcal.vcs。删除、添加、修改只需要把telecompbluid改为telecomcalluid即可。在此不再赘述。</p>
+<p>但值得注意的是vCalendar的结构<br>BEGIN:VCALENDAR<br>VERSION:1.0<br>BEGIN:VEVENT<br>….<br>END:VEVENT<br>BEGIN:VTODO<br>…
+END:VTODO<br>END:VCALENDAR</p>
+<p>完整的vCalender包含了至少一个vEvent或者一个vTodo，因此在添加、修改vEvent、vTodo时要将其补充为一个完整的vCalender结构，否则服务端会拒绝操作。</p>
+<p>遇到的问题：</p>
+<p>在实际操作中，遇到问题最多的地方在Phonebook部分。我的手机第一次同步的时候经常出现数据库被锁的情况，用SiMoCo读取也是一样，说明是手机拒绝写操作。这时候关闭手机再重新启动就好了。至于原因，我还没有搞清楚，希望能有高人指点。</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2005-02-17-net-platform-for-mobile-phone-management-software-8-vcard-vnote-vcalender-format-description/" class="prev">PREV</a><a href="/post/2005-02-14-net-platform-for-mobile-phone-management-software-6-obex-application-file-transfer-part-of-the/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

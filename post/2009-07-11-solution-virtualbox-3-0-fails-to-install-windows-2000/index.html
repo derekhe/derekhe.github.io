@@ -1,0 +1,52 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 解决VirtualBox 3.0安装Windows 2000失败 · 我是思聪</title><meta name="description" content="解决VirtualBox 3.0安装Windows 2000失败 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">解决VirtualBox 3.0安装Windows 2000失败</h1><div class="post-info">Jul 11, 2009</div><div class="post-content"><p>最近在试用VirtualBox 3.0遇到了极大的问题，Windows 2000没法顺利安装，表现为在安装的最后阶段出现虚拟机自动重启的现象。我原来以为是IOAPIC等配置的原因，结果一一试过后都不能解决问题。最后只有在Bug系统上报告这个问题了(<a href="http://www.virtualbox.org/ticket/4474" target="_blank" rel="noopener">http://www.virtualbox.org/ticket/4474</a>)</p>
+<p>今天一回来就得到了回复，很快，就一句话：</p>
+<p>This is documented in the manual. There’s a workaround mentioned in chapter 11 iirc.</p>
+<p>果然，我找到了原文如下：<a href="http://www.virtualbox.org/manual/UserManual.html#id2531590" target="_blank" rel="noopener">http://www.virtualbox.org/manual/UserManual.html#id2531590</a></p>
+<blockquote>
+<h3 id="Windows-2000-installation-failures"><a href="#Windows-2000-installation-failures" class="headerlink" title="Windows 2000 installation failures"></a>Windows 2000 installation failures</h3><p>When installing Windows 2000 guests, you might run into one of the       following issues:</p>
+<ul>
+<li>Installation reboots, usually during component           registration.</li>
+<li>Installation fills the whole hard disk with empty log           files.</li>
+<li>Installation complains about a failure installing           <code>msgina.dll</code>.
+These problems are all caused by a bug in the hard disk driver of       Windows 2000. After issuing a hard disk request, there is a race       condition in the Windows driver code which leads to corruption if the       operation completes too fast, i.e. the hardware interrupt from the IDE       controller arrives too soon. With physical hardware, there is a       guaranteed delay in most systems so the problem is usually hidden there       (however it should be possible to reproduce it on physical hardware as       well). In a virtual environment, it is possible for the operation to be       done immediately (especially on very fast systems with multiple CPUs)       and the interrupt is signaled sooner than on a physical system. The       solution is to introduce an artificial delay before delivering such       interrupts. This delay can be configured for a VM using the following       command:</li>
+</ul>
+<p>VBoxManage setextradata VMNAME “VBoxInternal/Devices/piix3ide/0/Config/IRQDelay” 1</p>
+<p>This sets the delay to one millisecond. In case this doesn’t help,       increase it to a value between 1 and 5 milliseconds. Please note that       this slows down disk performance. After installation, you should be able       to remove the key (or set it to 0).</p>
+</blockquote>
+<p>Windows 2000 安装失败</p>
+<p>当作为客户端安装Windows 2000时，你可能回遇到如下的问题：</p>
+<ul>
+<li>安装重启，通常发生在组件注册这个环节</li>
+<li>安装将整个磁盘用空的日志文件塞满</li>
+<li>安装时报告安装msgina.dll失败</li>
+</ul>
+<p>这些问题都是由Windows 2000的硬盘驱动的一个bug造成。在一个磁盘请求以后，在Windows的驱动中会出现一种竞争状态， 这种状态将会导致崩溃如果操作完成得过于迅速，例如来自于IDE控制器的硬件终端来得太快。在物理硬件上，在大部分系统上都有有一个可以得到保证的延迟， 所以这个问题通常隐匿了起来(但是在物理硬件上也可能可以重现)。在虚拟环境中，操作系统可能会立刻完成这个请求(特别是在非常快的多CPU环境中)并且 中断信号会比物理系统上来的早。解决方案是在这种中断前加人为的延迟。这种延迟可以使用下面的命令进行配置：</p>
+<blockquote>
+<p>VBoxManage setextradata VMNAME “VBoxInternal/Devices/piix3ide/0/Config/IRQDelay” 1</p>
+</blockquote>
+<p>这将设置1毫秒的延迟。如果这都还不能解决问题，增加这个值于1到5毫秒之间。注意这会降低磁盘性能。在安装完以后，你可以将这个键值去掉(或者设置为0)<br>补充：VBoxManage命令在你的VirtualBox目录下面，在运行中输入cmd然后切换到VirtualBox目录就可以操作了。</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2009-07-19-google-no-longer-to-advertise-the/" class="prev">PREV</a><a href="/post/2009-07-10-planted-jasmine/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

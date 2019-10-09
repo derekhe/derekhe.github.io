@@ -1,0 +1,41 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 测试GPU的材质填充率 · 我是思聪</title><meta name="description" content="测试GPU的材质填充率 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">测试GPU的材质填充率</h1><div class="post-info">Aug 8, 2008</div><div class="post-content"><p>体渲染最重要的一个优化就是减少GPU的采样工作。测试GPU的材质填充率能够指导我们的工作。要知道为什么GPU在800*600的环境中只能达到12FPS么？这就要看GPU每秒钟采样的次数啦。</p>
+<p>我写了一个简单的ＯＳＧ程序，用来测试采样次数：[download id=”3”]</p>
+<p>程序原理很简单，分几步：创建窗口-&gt;生成和设置纹理-&gt;载入SHADER-&gt;渲染。具体如何做要看程序里面啦，这里就不再贴出来了。</p>
+<p>直接说最后的测试的结果了。我的8800GTS(G80)官方资料说材质填充率能够达到24Billion/Sec，官方资料给的核心频率500Mhz，着色器频率1200Mhz，显存800Mhz。我将我的显卡也按照这个数据进行了降频。</p>
+<p>测试环境：窗口800<em>600，3D贴图256</em>256*256，数据是LUMINACE_ALPHA，每个像素2BYTE。每个像素的Shader采样3D贴图512次。</p>
+<p>最后得到测试FPS为11.98帧。算算：800<em>600</em>512*11.98=2,944,204,800，因为是3D纹理所以每个采样实际要有8次采样工作，所以最终的材质填充率：23,553,638,400，和24Billion/Sec很接近了。</p>
+<p>换用2D贴图可以得到相似的结果，只是FPS会快一倍。原因是三线性采样的工作量是二线性采样的两倍，很显然FPS会提升一倍。</p>
+<p>那么怎么去优化呢？下面做一些测试：</p>
+<ol>
+<li>减小3D贴图的大小，以便尽可能的装到CACHE里面。直接设置为1<em>1</em>1，结果发现性能一样。</li>
+<li>更换3D贴图的internal format为RGBA，发现性能一样。</li>
+<li>超频：超核心，性能提升百分比和超频百分比几乎一样。超Shader，几乎没变化。超显存，几乎没变化。</li>
+<li>降频：降核心，性能降低百分比和降频百分比几乎一样。降Shader，几乎没办法。降显存，一直降到400Mhz也没有变化。</li>
+<li>降低每像素采样率：降低为256后，性能提升一倍，和预期一样。<br>最终的结果很明显。3D贴图的采样已经成了整个系统的瓶颈，已经让显卡的贴图单元达到了极限。Shader处理器由于计算量很小，所以还很空闲。由于采样过滤的繁忙，贴图单元也不需要很大的显存带宽，所以显存的影响几乎没有。</li>
+</ol>
+<p>优化的措施：只能尽可能的减少采样次数，或者找更快的卡。目前看来只有G92的9800GTX或者8800GTS的采样率能够达到43.2Billion/Sec以上，GTX280官方资料也只能达到48.2Billion/Sec，GTX260 36.9Billion/Sec。9800GX2能够达到76.8Billion/Sec，就是不知道实际SLI的性能能不能满足需要了。看来如何选择适合体渲染的卡已经有一个理论和实际的指导了。</p>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2008-08-14-ubuntu-more-and-more-fun/" class="prev">PREV</a><a href="/post/2008-08-01-wake-up/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>
