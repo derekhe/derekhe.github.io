@@ -141,9 +141,9 @@
     
       <category term="机票" scheme="http://www.april1985.com/tags/%E6%9C%BA%E7%A5%A8/"/>
     
-      <category term="数据分析" scheme="http://www.april1985.com/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
-    
       <category term="爱飞狗" scheme="http://www.april1985.com/tags/%E7%88%B1%E9%A3%9E%E7%8B%97/"/>
+    
+      <category term="数据分析" scheme="http://www.april1985.com/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
     
   </entry>
   
@@ -793,33 +793,6 @@
   </entry>
   
   <entry>
-    <title>3D打印及技巧</title>
-    <link href="http://www.april1985.com/post/2015-03-07-3d-printing/"/>
-    <id>http://www.april1985.com/post/2015-03-07-3d-printing/</id>
-    <published>2015-02-23T19:00:00.000Z</published>
-    <updated>2019-09-01T13:55:00.630Z</updated>
-    
-    <content type="html"><![CDATA[<p>春节过完，花了4699买了个mBot的木头3D打印机。为什么要买呢？这还是要起源于公司内部有个同事在年前发起的一个众筹，每人可以捐一些培训经费采购一台3D打印机，很多人响应，凑了1万多块钱，昨天问他后来买了个<a href="http://item.taobao.com/item.htm?spm=a1z09.2.9.140.Vdkbms&id=37905659431&_u=58lap0q91ae" target="_blank" rel="noopener">6600多块的</a>，那么这事情也就成了。</p><p><img src="/images/2015/03/microMsg.1425553218011.jpg" alt="硕大的箱子"><br><img src="/images/2015/03/microMsg.1425553490849.jpg" alt="开箱，其实不怎么重里面"><br><img src="/images/2015/03/microMsg.1425556501654.jpg" alt="一堆东西，工具还很好用"></p><p>为啥公司有自己还要自己买一个呢？我不怎么喜欢共用一个东西，独自拥有了怎么折腾都好，也不会受谁的限制。其实买3D打印机这个想法也不是没有，之前主要是觉得价格太贵然后加上不怎么成熟。记得前一两年最常见的创客活动就是秀3D打印机了，感觉有一个是多么的神奇。在等上个一段时间以后，现在看来各项指标都好了很多，生产厂家也逐渐的丰富了起来，是时候下手了。</p><p>开机</p><p><img src="/images/2015/03/microMsg.1425558957060.jpg" alt="只有原点开关，没有限位开关"><br><img src="/images/2015/03/microMsg.1425558992165.jpg" alt="只有原点开关，没有限位开关"><br><img src="/images/2015/03/microMsg.1425559019489.jpg" alt="只有原点开关，没有限位开关"><br><img src="/images/2015/03/microMsg.1425559032383.jpg" alt="只有原点开关，没有限位开关"></p><p>拿到打印机后，迫不及待的拆好，装上软件，很顺利的打了一个简单的测试图形。我本来叫卖家给我白色的料的，结果寄过来个透明的，打印出来的东西有点奇葩。</p><p><img src="/images/2015/03/microMsg.1425565144406.jpg" alt="卡里面的测试图形"></p><p><img src="/images/2015/03/20150305_230800.jpg" alt="撑牙刷的，打印中。。"><br><img src="/images/2015/03/microMsg.1425569307146.jpg" alt="撑牙刷的，人家打印出来是那样，我的是这样。。。汗死"></p><p>刚开始选择的层高0.1，实在是太小了，打印了好久。<br><img src="/images/2015/03/20150305_231857.jpg" alt="打印时间"></p><p>感觉不错。后来想要不直接来个猛的？下载了个埃菲尔铁塔，结果ReplicatorG花了半个多小时，最后无法生成路径。也罢，后来选了个发动机引擎来打印，结果第一个严重也是常见的问题出现了————翘边。</p><p><img src="/images/2015/03/microMsg.1425610624897.jpg" alt="ReplicateG生成很久，还不如用厂家的MPlay"><br><img src="/images/2015/03/20150306_164828.jpg" alt="刚出炉，还没有去掉底部的底座"><br><img src="/images/2015/03/20150306_164850.jpg" alt="翘边啦"><br><img src="/images/2015/03/20150306_170146.jpg" alt="拆下来的支撑"></p><p><img src="/images/2015/03/20150306_175754.jpg" alt="大图形很容易翘边"><br><img src="/images/2015/03/20150306_193755.jpg" alt="自己想当然，搞个黑胶布粘上，一点用也没"></p><p>出现翘边以后，网上搜索了一下然后打电话给技术支持。技术支持告诉我我最牢固的方式是用丙酮，但家里面有小孩不能用，挥发性大易燃易爆；美纹胶也可以，增加接触面的粗糙度，但效果不一定好；还有一个方式是3M胶，效果也比较好的。</p><p>最终我选择了3M胶。京东上睡一觉第二天就到货。第一天就废了15块钱左右，感觉还是比较值。还好用的是PLA材料，生物可降解，其实强度那些也是很棒的，之前我还担心用力捏一下就断呢。</p><p><img src="/images/2015/03/20150306_202920.jpg" alt="92克，每克1.5，算下来15块钱左右"></p><p>今天早上3M胶到了，贴上去倒是很方便，问题来了，背面的红色的胶非常难取，一般用手是抠不下来的。使了用铲子顶进去压住下面的胶，然后再配合美工刀，完美解决问题。</p><p><img src="/images/2015/03/20150307_171804.jpg" alt="很难取"></p><p>打印一个电池盒子<br><img src="/images/2015/03/microMsg.1425712978017.jpg" alt="试一下"><br><img src="/images/2015/03/microMsg.1425715047986.jpg" alt="不错"></p><p>贴上后试了一个比较长的物体，再没出现翘边了，但又有另外的问题发生。<br><img src="/images/2015/03/20150307_184909.jpg" alt="继续打印"></p><p>由于双面胶有一定的厚度，大概1.5张名片的厚度，贴胶的时候贴到了打印部件的位置，造成下面的底座和打印的工件粘合在一起，很难去除。下次一定小心点测量。</p><p><img src="/images/2015/03/20150307_185543.jpg" alt="很难去除，将就了"></p><p>还有个问题是由于两边的胶稍微高一点，会造成两边高中间低的问题。或许在零件的中间贴合一些胶能够解决。</p><p>如果不怕浪费点材料，在刚开始打印底座的时候，会打印一个图出来，当打的差不多的时候，就停下来，然后在边角的位置贴上3M胶，不要贴的太进去就好。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;春节过完，花了4699买了个mBot的木头3D打印机。为什么要买呢？这还是要起源于公司内部有个同事在年前发起的一个众筹，每人可以捐一些培训经费采购一台3D打印机，很多人响应，凑了1万多块钱，昨天问他后来买了个&lt;a href=&quot;http://item.taobao.com/i
-      
-    
-    </summary>
-    
-    
-      <category term="3D打印" scheme="http://www.april1985.com/tags/3D%E6%89%93%E5%8D%B0/"/>
-    
-      <category term="3D打印技巧" scheme="http://www.april1985.com/tags/3D%E6%89%93%E5%8D%B0%E6%8A%80%E5%B7%A7/"/>
-    
-      <category term="翘边" scheme="http://www.april1985.com/tags/%E7%BF%98%E8%BE%B9/"/>
-    
-  </entry>
-  
-  <entry>
     <title>春节</title>
     <link href="http://www.april1985.com/post/2015-02-24-spring-festival/"/>
     <id>http://www.april1985.com/post/2015-02-24-spring-festival/</id>
@@ -843,6 +816,33 @@
       <category term="春节" scheme="http://www.april1985.com/tags/%E6%98%A5%E8%8A%82/"/>
     
       <category term="香港" scheme="http://www.april1985.com/tags/%E9%A6%99%E6%B8%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>3D打印及技巧</title>
+    <link href="http://www.april1985.com/post/2015-03-07-3d-printing/"/>
+    <id>http://www.april1985.com/post/2015-03-07-3d-printing/</id>
+    <published>2015-02-23T19:00:00.000Z</published>
+    <updated>2019-09-01T13:55:00.630Z</updated>
+    
+    <content type="html"><![CDATA[<p>春节过完，花了4699买了个mBot的木头3D打印机。为什么要买呢？这还是要起源于公司内部有个同事在年前发起的一个众筹，每人可以捐一些培训经费采购一台3D打印机，很多人响应，凑了1万多块钱，昨天问他后来买了个<a href="http://item.taobao.com/item.htm?spm=a1z09.2.9.140.Vdkbms&id=37905659431&_u=58lap0q91ae" target="_blank" rel="noopener">6600多块的</a>，那么这事情也就成了。</p><p><img src="/images/2015/03/microMsg.1425553218011.jpg" alt="硕大的箱子"><br><img src="/images/2015/03/microMsg.1425553490849.jpg" alt="开箱，其实不怎么重里面"><br><img src="/images/2015/03/microMsg.1425556501654.jpg" alt="一堆东西，工具还很好用"></p><p>为啥公司有自己还要自己买一个呢？我不怎么喜欢共用一个东西，独自拥有了怎么折腾都好，也不会受谁的限制。其实买3D打印机这个想法也不是没有，之前主要是觉得价格太贵然后加上不怎么成熟。记得前一两年最常见的创客活动就是秀3D打印机了，感觉有一个是多么的神奇。在等上个一段时间以后，现在看来各项指标都好了很多，生产厂家也逐渐的丰富了起来，是时候下手了。</p><p>开机</p><p><img src="/images/2015/03/microMsg.1425558957060.jpg" alt="只有原点开关，没有限位开关"><br><img src="/images/2015/03/microMsg.1425558992165.jpg" alt="只有原点开关，没有限位开关"><br><img src="/images/2015/03/microMsg.1425559019489.jpg" alt="只有原点开关，没有限位开关"><br><img src="/images/2015/03/microMsg.1425559032383.jpg" alt="只有原点开关，没有限位开关"></p><p>拿到打印机后，迫不及待的拆好，装上软件，很顺利的打了一个简单的测试图形。我本来叫卖家给我白色的料的，结果寄过来个透明的，打印出来的东西有点奇葩。</p><p><img src="/images/2015/03/microMsg.1425565144406.jpg" alt="卡里面的测试图形"></p><p><img src="/images/2015/03/20150305_230800.jpg" alt="撑牙刷的，打印中。。"><br><img src="/images/2015/03/microMsg.1425569307146.jpg" alt="撑牙刷的，人家打印出来是那样，我的是这样。。。汗死"></p><p>刚开始选择的层高0.1，实在是太小了，打印了好久。<br><img src="/images/2015/03/20150305_231857.jpg" alt="打印时间"></p><p>感觉不错。后来想要不直接来个猛的？下载了个埃菲尔铁塔，结果ReplicatorG花了半个多小时，最后无法生成路径。也罢，后来选了个发动机引擎来打印，结果第一个严重也是常见的问题出现了————翘边。</p><p><img src="/images/2015/03/microMsg.1425610624897.jpg" alt="ReplicateG生成很久，还不如用厂家的MPlay"><br><img src="/images/2015/03/20150306_164828.jpg" alt="刚出炉，还没有去掉底部的底座"><br><img src="/images/2015/03/20150306_164850.jpg" alt="翘边啦"><br><img src="/images/2015/03/20150306_170146.jpg" alt="拆下来的支撑"></p><p><img src="/images/2015/03/20150306_175754.jpg" alt="大图形很容易翘边"><br><img src="/images/2015/03/20150306_193755.jpg" alt="自己想当然，搞个黑胶布粘上，一点用也没"></p><p>出现翘边以后，网上搜索了一下然后打电话给技术支持。技术支持告诉我我最牢固的方式是用丙酮，但家里面有小孩不能用，挥发性大易燃易爆；美纹胶也可以，增加接触面的粗糙度，但效果不一定好；还有一个方式是3M胶，效果也比较好的。</p><p>最终我选择了3M胶。京东上睡一觉第二天就到货。第一天就废了15块钱左右，感觉还是比较值。还好用的是PLA材料，生物可降解，其实强度那些也是很棒的，之前我还担心用力捏一下就断呢。</p><p><img src="/images/2015/03/20150306_202920.jpg" alt="92克，每克1.5，算下来15块钱左右"></p><p>今天早上3M胶到了，贴上去倒是很方便，问题来了，背面的红色的胶非常难取，一般用手是抠不下来的。使了用铲子顶进去压住下面的胶，然后再配合美工刀，完美解决问题。</p><p><img src="/images/2015/03/20150307_171804.jpg" alt="很难取"></p><p>打印一个电池盒子<br><img src="/images/2015/03/microMsg.1425712978017.jpg" alt="试一下"><br><img src="/images/2015/03/microMsg.1425715047986.jpg" alt="不错"></p><p>贴上后试了一个比较长的物体，再没出现翘边了，但又有另外的问题发生。<br><img src="/images/2015/03/20150307_184909.jpg" alt="继续打印"></p><p>由于双面胶有一定的厚度，大概1.5张名片的厚度，贴胶的时候贴到了打印部件的位置，造成下面的底座和打印的工件粘合在一起，很难去除。下次一定小心点测量。</p><p><img src="/images/2015/03/20150307_185543.jpg" alt="很难去除，将就了"></p><p>还有个问题是由于两边的胶稍微高一点，会造成两边高中间低的问题。或许在零件的中间贴合一些胶能够解决。</p><p>如果不怕浪费点材料，在刚开始打印底座的时候，会打印一个图出来，当打的差不多的时候，就停下来，然后在边角的位置贴上3M胶，不要贴的太进去就好。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;春节过完，花了4699买了个mBot的木头3D打印机。为什么要买呢？这还是要起源于公司内部有个同事在年前发起的一个众筹，每人可以捐一些培训经费采购一台3D打印机，很多人响应，凑了1万多块钱，昨天问他后来买了个&lt;a href=&quot;http://item.taobao.com/i
+      
+    
+    </summary>
+    
+    
+      <category term="3D打印" scheme="http://www.april1985.com/tags/3D%E6%89%93%E5%8D%B0/"/>
+    
+      <category term="3D打印技巧" scheme="http://www.april1985.com/tags/3D%E6%89%93%E5%8D%B0%E6%8A%80%E5%B7%A7/"/>
+    
+      <category term="翘边" scheme="http://www.april1985.com/tags/%E7%BF%98%E8%BE%B9/"/>
     
   </entry>
   
@@ -2409,9 +2409,9 @@
     
       <category term="bash" scheme="http://www.april1985.com/tags/bash/"/>
     
-      <category term="shell" scheme="http://www.april1985.com/tags/shell/"/>
-    
       <category term="cygwin" scheme="http://www.april1985.com/tags/cygwin/"/>
+    
+      <category term="shell" scheme="http://www.april1985.com/tags/shell/"/>
     
       <category term="备份" scheme="http://www.april1985.com/tags/%E5%A4%87%E4%BB%BD/"/>
     
@@ -5040,9 +5040,9 @@
     
       <category term=".htaccess" scheme="http://www.april1985.com/tags/htaccess/"/>
     
-      <category term="owa" scheme="http://www.april1985.com/tags/owa/"/>
-    
       <category term="bug" scheme="http://www.april1985.com/tags/bug/"/>
+    
+      <category term="owa" scheme="http://www.april1985.com/tags/owa/"/>
     
       <category term="wp-content" scheme="http://www.april1985.com/tags/wp-content/"/>
     
@@ -5072,9 +5072,9 @@
     
       <category term="wordpress" scheme="http://www.april1985.com/tags/wordpress/"/>
     
-      <category term="404" scheme="http://www.april1985.com/tags/404/"/>
-    
       <category term="owa" scheme="http://www.april1985.com/tags/owa/"/>
+    
+      <category term="404" scheme="http://www.april1985.com/tags/404/"/>
     
       <category term="rewriterule" scheme="http://www.april1985.com/tags/rewriterule/"/>
     
@@ -14857,9 +14857,9 @@
       <category term="其他" scheme="http://www.april1985.com/categories/%E5%85%B6%E4%BB%96/"/>
     
     
-      <category term="单片机" scheme="http://www.april1985.com/tags/%E5%8D%95%E7%89%87%E6%9C%BA/"/>
-    
       <category term="12232" scheme="http://www.april1985.com/tags/12232/"/>
+    
+      <category term="单片机" scheme="http://www.april1985.com/tags/%E5%8D%95%E7%89%87%E6%9C%BA/"/>
     
   </entry>
   

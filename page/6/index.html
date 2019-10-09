@@ -128,27 +128,34 @@
 <p>这些值和cookie相关，做一次请求，打几个断点，所有的秘密都清楚了。<br><img src="/images/2015/03/Screen%20Shot%202015-03-11%20at%2016.59.22.jpg" alt="Screen Shot 2015 03 11 At 16.59.22"></p>
 <p>好吧，我们来写一个简单的程序来模拟吧，请参考：<a href="https://github.com/derekhe/alitripAPI" target="_blank" rel="noopener">https://github.com/derekhe/alitripAPI</a></p>
 <p>nodejs可以非常好的完成任务，而且阿里不会阻止你采集（这点很大方啊）。我后来想把它写到手机上，用cordova做个app的，但可惜cordova不支持cookie这事情，让整个事情搁浅了。后续试试原生的http request，应该可以解决问题。</p>
-</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2015-03-07-3d-printing/" class="post-title-link">3D打印及技巧</a></h2><div class="post-info">Feb 24, 2015</div><div class="post-content"><p>春节过完，花了4699买了个mBot的木头3D打印机。为什么要买呢？这还是要起源于公司内部有个同事在年前发起的一个众筹，每人可以捐一些培训经费采购一台3D打印机，很多人响应，凑了1万多块钱，昨天问他后来买了个<a href="http://item.taobao.com/item.htm?spm=a1z09.2.9.140.Vdkbms&id=37905659431&_u=58lap0q91ae" target="_blank" rel="noopener">6600多块的</a>，那么这事情也就成了。</p>
-<p><img src="/images/2015/03/microMsg.1425553218011.jpg" alt="硕大的箱子"><br><img src="/images/2015/03/microMsg.1425553490849.jpg" alt="开箱，其实不怎么重里面"><br><img src="/images/2015/03/microMsg.1425556501654.jpg" alt="一堆东西，工具还很好用"></p>
-<p>为啥公司有自己还要自己买一个呢？我不怎么喜欢共用一个东西，独自拥有了怎么折腾都好，也不会受谁的限制。其实买3D打印机这个想法也不是没有，之前主要是觉得价格太贵然后加上不怎么成熟。记得前一两年最常见的创客活动就是秀3D打印机了，感觉有一个是多么的神奇。在等上个一段时间以后，现在看来各项指标都好了很多，生产厂家也逐渐的丰富了起来，是时候下手了。</p>
-<p>开机</p>
-<p><img src="/images/2015/03/microMsg.1425558957060.jpg" alt="只有原点开关，没有限位开关"><br><img src="/images/2015/03/microMsg.1425558992165.jpg" alt="只有原点开关，没有限位开关"><br><img src="/images/2015/03/microMsg.1425559019489.jpg" alt="只有原点开关，没有限位开关"><br><img src="/images/2015/03/microMsg.1425559032383.jpg" alt="只有原点开关，没有限位开关"></p>
-<p>拿到打印机后，迫不及待的拆好，装上软件，很顺利的打了一个简单的测试图形。我本来叫卖家给我白色的料的，结果寄过来个透明的，打印出来的东西有点奇葩。</p>
-<p><img src="/images/2015/03/microMsg.1425565144406.jpg" alt="卡里面的测试图形"></p>
-<p><img src="/images/2015/03/20150305_230800.jpg" alt="撑牙刷的，打印中。。"><br><img src="/images/2015/03/microMsg.1425569307146.jpg" alt="撑牙刷的，人家打印出来是那样，我的是这样。。。汗死"></p>
-<p>刚开始选择的层高0.1，实在是太小了，打印了好久。<br><img src="/images/2015/03/20150305_231857.jpg" alt="打印时间"></p>
-<p>感觉不错。后来想要不直接来个猛的？下载了个埃菲尔铁塔，结果ReplicatorG花了半个多小时，最后无法生成路径。也罢，后来选了个发动机引擎来打印，结果第一个严重也是常见的问题出现了————翘边。</p>
-<p><img src="/images/2015/03/microMsg.1425610624897.jpg" alt="ReplicateG生成很久，还不如用厂家的MPlay"><br><img src="/images/2015/03/20150306_164828.jpg" alt="刚出炉，还没有去掉底部的底座"><br><img src="/images/2015/03/20150306_164850.jpg" alt="翘边啦"><br><img src="/images/2015/03/20150306_170146.jpg" alt="拆下来的支撑"></p>
-<p><img src="/images/2015/03/20150306_175754.jpg" alt="大图形很容易翘边"><br><img src="/images/2015/03/20150306_193755.jpg" alt="自己想当然，搞个黑胶布粘上，一点用也没"></p>
-<p>出现翘边以后，网上搜索了一下然后打电话给技术支持。技术支持告诉我我最牢固的方式是用丙酮，但家里面有小孩不能用，挥发性大易燃易爆；美纹胶也可以，增加接触面的粗糙度，但效果不一定好；还有一个方式是3M胶，效果也比较好的。</p>
-<p>最终我选择了3M胶。京东上睡一觉第二天就到货。第一天就废了15块钱左右，感觉还是比较值。还好用的是PLA材料，生物可降解，其实强度那些也是很棒的，之前我还担心用力捏一下就断呢。</p>
-<p><img src="/images/2015/03/20150306_202920.jpg" alt="92克，每克1.5，算下来15块钱左右"></p>
-<p>今天早上3M胶到了，贴上去倒是很方便，问题来了，背面的红色的胶非常难取，一般用手是抠不下来的。使了用铲子顶进去压住下面的胶，然后再配合美工刀，完美解决问题。</p>
-<p><img src="/images/2015/03/20150307_171804.jpg" alt="很难取"></p>
-<p>打印一个电池盒子<br><img src="/images/2015/03/microMsg.1425712978017.jpg" alt="试一下"><br><img src="/images/2015/03/microMsg.1425715047986.jpg" alt="不错"></p>
-<p>贴上后试了一个比较长的物体，再没出现翘边了，但又有另外的问题发生。<br><img src="/images/2015/03/20150307_184909.jpg" alt="继续打印"></p>
-<p>由于双面胶有一定的厚度，大概1.5张名片的厚度，贴胶的时候贴到了打印部件的位置，造成下面的底座和打印的工件粘合在一起，很难去除。下次一定小心点测量。</p>
-<p><img src="/images/2015/03/20150307_185543.jpg" alt="很难去除，将就了"></p>
-<p>还有个问题是由于两边的胶稍微高一点，会造成两边高中间低的问题。或许在零件的中间贴合一些胶能够解决。</p>
-<p>如果不怕浪费点材料，在刚开始打印底座的时候，会打印一个图出来，当打的差不多的时候，就停下来，然后在边角的位置贴上3M胶，不要贴的太进去就好。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2015-02-24-spring-festival/" class="post-title-link">春节</a></h2><div class="post-info">Feb 24, 2015</div><div class="post-content"><p>今天初六，最后一天的休假，感觉时间过得很快。自从结婚以后每年都要回广州一两次，春节是必不可少的。爸妈也非常愿意我回广州，他们好出去旅游。在小的时候，春节走亲戚是必不可少的环节，年三十在外婆外公家吃一顿，大年初二在我家弄一大家子人的吃的，大人打牌，小孩哭闹。然而这些都是小时候的记忆了，随着爷爷奶奶辈的老人越来越少，工作压力的增加，过年的节奏已经变成了出去旅游的好时光了。春节从成都回广州过年机票便宜，提早一点买的话能买到很便宜的机票。在广州这边，老一辈的人们还保持着过年走亲戚的传统，年轻人可以稍微做个短途旅行，让春节不再那么闷。</p>
+<h2 id="初到香港"><a href="#初到香港" class="headerlink" title="初到香港"></a>初到香港</h2><p>今年去了趟迪士尼，带着小孩去，算是一趟很折腾的旅行。网上订的香港迪士尼的票，住香港九龙酒店两晚。从从化出发到深圳的班车有到罗湖口岸的班车，比较方便，两个半小时一趟。罗湖口岸过关很方便，比起之前的皇岗方便很多，人少，过去以后直接买个八达通坐火车到红磡。火车大概要40多分钟的样子到达红磡。到达红磡后到酒店还需要打个车，35港币左右。在这些地方坐出租车那是一个心跳啊，表跳的那是一个开心。</p>
+<p><img src="/images/2015/02/luohu_station.jpg" alt="罗湖火车站"><br><img src="/images/2015/02/hotel.png" alt="酒店"><br><img src="/images/2015/02/hotel.jpg" alt="酒店内景"></p>
+<p>九龙酒店就在地铁的上面，楼下购物啥的也挺方便，晚上找吃的也不是很难，最好先做好功课，在隔壁街的小道里面。房间也不大，虽然选的是大床房，但也只有大概1.4m左右，单床的是0.9m，真是寸土寸金。这里距离维多利亚港也是非常的近，只不过天公不作美，雾蒙蒙的啥都看不见，晚上就没有去海边了。在旁边的商场转了一圈，各种英文看不懂，搞得老婆化妆品也没买成。丁仔一路上都吵着要买玩具，就去旁边的一个玩具反斗城，转了好久，终于选定了自己喜欢的乐高消防车。弄得妈妈都没有时间购物了。</p>
+<p><img src="/images/2015/02/building_lego.jpg" alt="消防队组装中"><br><img src="/images/2015/02/lego.JPG" alt="完工"></p>
+<p>晚上出去吃了个捞面，贵的要死又不好吃。完了去逛了个超市。感觉香港这里和澳洲看起来差不多，超市啥的布局，习惯都比较像，可能是因为同样是英殖民地的缘故吧。</p>
+<p>晚上美美的睡了一觉，开始第二天的折腾。</p>
+<h2 id="迪士尼第一天"><a href="#迪士尼第一天" class="headerlink" title="迪士尼第一天"></a>迪士尼第一天</h2><p>早上拖拖拉拉的，坐地铁到迪士尼乐园花费40分钟左右，还是很快了。迪士尼的专线比较有意思，列车是定做的，上面有米奇的头像的窗户和各种摆设品。</p>
+<p><img src="/images/2015/02/to_disney.png" alt="坐车到迪士尼"><br><img src="/images/2015/02/20150216_104025.jpg" alt><br><img src="/images/2015/02/20150216_104145.jpg" alt><br><img src="/images/2015/02/20150216_104244.jpg" alt></p>
+<p>到达迪士尼，第一个游玩点就是迪士尼的观光火车。丁仔这个车神，喜欢火车、汽车不得了，只好排队来坐火车。基本上迪士尼里面的排队都是半个小时以上，甚至一个小时都是有可能的。刚开场我还不怎么相信排队处写的时间，但经过实践我还真的信了。迪士尼的排队，往往在外面看起来不长，哪知道进去屋子里面以后还有非常长的一长截，耐心不好的人真的是会被弄崩溃。老婆说她以前来人都不多，或许是因为寒暑假的缘故吧。</p>
+<p><img src="/images/2015/02/IMG_7848.JPG" alt="迪士尼特色火车"><br><img src="/images/2015/02/IMG_7849.JPG" alt="迪士尼特色火车"><br><img src="/images/2015/02/IMG_7850.JPG" alt="迪士尼特色火车"><br><img src="/images/2015/02/IMG_7852.JPG" alt="迪士尼特色火车"></p>
+<p>火车绕场一圈，中途停靠一个站，然后再回来。有些人喜欢转一圈把景色看完再多走半圈下来，所以每次轮到这个站点的时候，人都不下来，等的人就只有干捉急了。服务员也没办法，也不能要求他们强行下车。最终在等了三四次以后，终于等到了座位，而此时已经过了一个多小时了，到了中午吃饭时间。</p>
+<p>中午吃饭，价格很贵啊，108港元，这两天吃了四顿饭就用了800多港元。千万别点面，看起来就不好吃，点了炒饭还好，送可乐。吃饭的时候，顺便去看了一下飞天巡游。只是去的时间有点晚，所以只能排到后面。这个巡游还真的很好看，第二天老婆又带着丁仔去看了一次，站到前面看起来感觉相当不错。</p>
+<p>我觉得最好玩的项目是小小世界，排队40多分钟，非常值得。进去后坐到小船里面，左右两边一边有世界上各种不同地域的小小人用不同的语言唱小小世界。丁仔的眼睛都用不过来了，完了以后还不肯下车。</p>
+<p><img src="/images/2015/02/IMG_7866.JPG" alt="小小世界"><br>视频：<a href="http://pan.baidu.com/s/1gdkZMd9" target="_blank" rel="noopener">http://pan.baidu.com/s/1gdkZMd9</a></p>
+<p>带着小孩子真的是不容易，抱一会儿又不舒服，又要下来到处乱跑，还好丁仔的耐心很好，不会说很烦躁。</p>
+<p><img src="/images/2015/02/IMG_7882.JPG" alt="一边玩一边等"><br><img src="/images/2015/02/IMG_7883.JPG" alt><br><img src="/images/2015/02/IMG_7890.JPG" alt="戴上眼镜很帅"></p>
+<p>看米奇幻想曲。丁丁第一次看3D的电影，加上眼镜太大不好戴，在看唐老鸭坐飞毯的时候觉得头晕。最后还是坚持看完了，最后结束的场景特别好玩，唐老鸭从屏幕飞出来撞到墙上，把丁仔笑惨了。</p>
+<p>还有一些大人才能玩的玩具我们没有太多的玩，这样丁仔就只有等我们很无聊。<br><img src="/images/2015/02/IMG_7896.JPG" alt="迷离大宅，丁仔睡觉，我和老婆轮流玩"><br><img src="/images/2015/02/IMG_7910.JPG" alt="看起来很刺激的灰熊山过山车"><br><img src="/images/2015/02/IMG_7911.JPG" alt="现场演绎"><br><img src="/images/2015/02/IMG_7912.JPG" alt="泰山，我们没有去"></p>
+<p>去玩森林河流之旅，我们坐的英文版的，看起来要比普通话和粤语的队伍短很多，要快一些。<br><img src="/images/2015/02/IMG_7914.JPG" alt="坐在引擎旁边船，坐在引擎旁边，轰隆轰隆的很带感"></p>
+<p>游玩船等待坐赛车，这个项目太折腾人了，等待75分钟以上。实际等待90分钟左右。我都差点放弃了这个项目。这个赛车是有轨道的赛车，在直线的一些地方可以自己转一点方向，对我来说实际吸引力不大。但丁仔太喜欢了，妈妈和丁丁坐一个车，妈妈踩油门，丁仔打方向。</p>
+<p><img src="/images/2015/02/IMG_7921.JPG" alt="等待坐赛车"><br><img src="/images/2015/02/IMG_7922.JPG" alt="我来咯"><br><img src="/images/2015/02/IMG_7924.JPG" alt="等待"><br><img src="/images/2015/02/IMG_7925.JPG" alt="我就是不下来"></p>
+<p>开完车，夜幕降临，赶紧去排剧场看舞台剧。只可惜丁仔怕太吵的环境，还没看就和妈妈出去吃饭去了。<br><img src="/images/2015/02/IMG_7932.JPG" alt="飞天巡演晚间场，没去看"><br><img src="/images/2015/02/IMG_7933.JPG" alt="夜晚"><br><img src="/images/2015/02/IMG_7934.JPG" alt="夜晚"><br><img src="/images/2015/02/IMG_7937.JPG" alt="夜晚"></p>
+<p>晚上看了烟火，仔仔一直闹买玩具，脾气还挺大的，好吧，买了玩具回家。最后不得不赞一下迪士尼的地铁，车很快，烟花完了以后很多人上车，但是不算太拥挤，乘坐地铁很快的回到了酒店。</p>
+<h2 id="迪士尼第二天"><a href="#迪士尼第二天" class="headerlink" title="迪士尼第二天"></a>迪士尼第二天</h2><p>迪士尼周二早上9：30开门，到了已经10点钟了，还好人不算多。由于有些项目可以预约，这样就可以安排时间插队。老婆先去预约了飞跃太空山项目，我带丁丁去玩巴西光年打枪。这个小子还真的胆小，玩了一半说怕。。。。无语中。然后去史迪仔，没啥意思，丁仔还没进就闹着要走，肚子饿<del>~</del><br><img src="/images/2015/02/20150217_102621.jpg" alt="巴西光年"></p>
+<p>预约的飞越太空山项目到点了，这个项目非常刺激，是我玩过的过山车中最好玩的一个。在黑漆漆的“宇宙”中上下飞梭，永远不知道下一个是上坡还是急速下坠，是急速转弯还是一马平川，那感觉，只能亲自去体会一下了。丁仔由于年龄不到不能玩这个项目，我和老婆换着玩，丁丁就在外面等。很乖：）<br><img src="/images/2015/02/IMG_7955.JPG" alt="飞车"></p>
+<p>中途和一个演魔术的老人相遇，赶紧照个相留念：）<br><img src="/images/2015/02/IMG_7956.JPG" alt="和魔术老人合影"><br><img src="/images/2015/02/IMG_7958.JPG" alt="没有坐小飞象还是可以合影的嘛，开心"></p>
+<p>然后去排了对，看了一下维尼熊，但丁仔不怎么喜欢<br><img src="/images/2015/02/IMG_7968.JPG" alt="维尼熊，丁仔不怎么喜欢"><br>视频：<a href="http://pan.baidu.com/s/1c0Emg5i" target="_blank" rel="noopener">http://pan.baidu.com/s/1c0Emg5i</a></p>
+<p><img src="/images/2015/02/IMG_7975.JPG" alt="卖气球咯，120块钱一个。。。贼贵"><br><img src="/images/2015/02/IMG_7984.JPG" alt="和公主合影，我有点不适应呢。。。"></p>
+<p>中午吃完饭就就出发回广州了，折腾了两天，将人的耐心、体力发挥到了极限。如果下一次还来，就别选人多的时候了。</p>
 </div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/5/" class="prev">PREV</a><a href="/page/7/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>
