@@ -22,7 +22,162 @@
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(bp, s);
   })();
-  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2018-06-22-look-into-your-business/" class="post-title-link">小心！我正在偷窥你的运营</a></h2><div class="post-info">Jun 22, 2018</div><div class="post-content"><p>首先，问一个很简单的问题考考你——在上海，摩拜单车出行的高峰时段是什么？这个问题相对比较容易回答，根据普通人上下班的时段应该是早上七八点左右，下午六七点左右。恭喜，你答对了。</p>
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2019-04-17-book/" class="post-title-link">心路历程：爬虫实战——从数据到产品</a></h2><div class="post-info">Apr 17, 2019</div><div class="post-content"><p><img src="/images/2019/04-17/4372317-a5ecf0cdb82bfb23.png" alt></p>
+<p>京东链接：<a href="https://item.jd.com/12575102.html" target="_blank" rel="noopener">https://item.jd.com/12575102.html</a></p>
+<p>经过近一年的辛苦创作、编辑、等待，本书终于出版了。这种感觉有点像是十月怀胎，但没有生育时候的痛苦，只有最后得到的欣喜。现在回忆起去年接到写书的邀请，然后到纠结，再到刚开始痛苦的写作，以及最后成稿后的释然，一切都觉得是一场人生的经历。我倒是认为写书的目的不是为了赚钱，写一本书给自己，总结自己的过往，将经验传播给他人，就可以了。</p>
+<h1 id="故事——还得从2017年说起"><a href="#故事——还得从2017年说起" class="headerlink" title="故事——还得从2017年说起"></a>故事——还得从2017年说起</h1><p>2017年1月左右，摩拜单车终于进入到成都。不像重庆那样的上山下坡，成都平原地势较平，成都原本就有非常多骑自行车的人，街头巷尾都有自行车的踪影。作为短途的必要交通工具，摩拜单车的进入算是给出行带来了非常大的方便。</p>
+<p>有一天在查看摩拜单车的APP的时候，突发奇想是否可以将这些车的位置数据拿到，然后尝试分析一下运营状况，看看成都到底有多少车。打开电脑，轻车熟路的进行API分析，搞明白了API的接口，然后就写了一个简单的爬虫，获取了一个月左右的数据并进行了分析。然后在简书上发了几篇文章，并将源代码放在了<a href="https://github.com/derekhe/mobike-crawler" target="_blank" rel="noopener">https://github.com/derekhe/mobike-crawler</a>这个repo中。</p>
+<p><img src="/images/2019/04-17/4372317-c00a3a025050c133.png" alt="image.png"></p>
+<p>出乎意料的是，这些分析居然得到了非常大的流量，两三天时间就到了1万多的阅读量，甚至这个数据分析还“成功”的引起了对方的注意：被问到你怎么得到数据？</p>
+<h1 id="2018年"><a href="#2018年" class="headerlink" title="2018年"></a>2018年</h1><p>2018年，顺着这个思路，后来我又继续分析并爬取了共享汽车、自由职业者网站，并继续坚持将2016年6月开始做的机票的数据爬虫做得更快更稳定。</p>
+<p><img src="/images/2019/04-17/4372317-3cc428bc1c37c6b6.png" alt="image.png"></p>
+<p>2017年末，爱飞狗旅行小程序上线，将我收集到的机票的数据公开，并集成了一个预测系统。知晓小程序对此特意写了一篇文章进行报道。随后，在2018年下半年ThougtWorks对外的YottaBytes分享中，我将爱飞狗的整个产品的规划、开发以及背后的技术实践都分享出来，并写成文章。</p>
+<h1 id="写书？"><a href="#写书？" class="headerlink" title="写书？"></a>写书？</h1><p>2018年3月底，电子工业出版社的安娜编辑联系我，看我能不能约一本书稿。当时我还没放在心上，想想写个书算是一个大工程吧，费时费力的，当时就想想要不还是算了？后来和编辑的更多沟通中发现，爬虫方面的书最近还比较热，也能热一段时间，我做的这些工作也恰好和爬虫非常有关。</p>
+<p>我随后看了一些目前的爬虫相关的书籍， 发现很多爬虫的书籍都写得很初级，讲讲Python的语法、讲讲几个库的用法，弄两个例子就完了，甚至有些书居然用了76页讲各种东西的安装！！初级的爬虫往往很简单，爬几个网站即可，但更复杂的如何去拿到app的数据，如何破解一些sign的思路，却全然没有。或许是太复杂了吧。即便有些数据拿到手了，怎么分析，怎么可视化，也很少有讲解。</p>
+<p><img src="/images/2019/04-17/4372317-8bf24d9e42860a6e.png" alt></p>
+<p>如果我要写的话，我一定不会写这样的书，我不会写初级的书。我要写的话，一定是从一个想法开始，到如何实现这个想法，到如何解决各种困难。案例的话，一定是end to end的，将数据达到实用的阶段。</p>
+<p>还好之前做过的各种数据分析案例，都是有一定的业务背景的，有一些数据提供给了一些爱好者进行了更深入的分析，有一些数据甚至帮助一些公司进行一些新业务的拓展尝试。我和编辑沟通了这些想法，那就开始动手吧！（其实内心是有点纠结的，因为想到要写很长的时间，非常的难受）</p>
+<p><img src="/images/2019/04-17/4372317-d5ef021e64217c0c.png" alt></p>
+<h1 id="那就开始吧"><a href="#那就开始吧" class="headerlink" title="那就开始吧"></a>那就开始吧</h1><p>这是最原始的选题单，可以看到其实当时想写的例子其实比现在书中呈现的更多。但后来由于目标网站改动太大，以及有些网站的例子不太合适，所以进行了删减。</p>
+<p><img src="/images/2019/04-17/4372317-3dddb7f3e254949c.png" alt></p>
+<p>最后，只有半年的时间啊……</p>
+<p><img src="/images/2019/04-17/4372317-a2c6b2d22ddae00e.png" alt></p>
+<p>万事开头难，先写个提纲吧：</p>
+<p><img src="/images/2019/04-17/4372317-8473927c57cb4b9a.png" alt></p>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>工欲善其事必先利其器，2009年写过研究生的论文，倒是对Word玩的很溜。但如今都2018年了哟，好歹用点Markdown对吧！</p>
+<p>好吧，就用Markdown。但是用Markdown的话，我需要把每个章节分开么？后来尝试了一下发现，单一Markdown文件就非常利于管理，不用有洁癖一样把东西拆来拆去：</p>
+<ul>
+<li>方便预览整书情况</li>
+<li>方便章节之间相互引用</li>
+<li>避免调整章节时候的麻烦事 </li>
+</ul>
+<p>然后，在Visual Studio中安装了Markdown Preview Enhanced插件，这个工具很好：</p>
+<ul>
+<li>自动预览</li>
+<li>自动生成目录</li>
+<li>自动内嵌图片、内嵌代码</li>
+<li>能够导出成多种格式（Word格式、PDF格式等）</li>
+</ul>
+<p><img src="/images/2019/04-17/4372317-43052d93a0fabc33.png" alt></p>
+<p>最后，整个项目当然会用git进行管理，这是最基本的啦。</p>
+<p>其中我觉得需要拿出来讲的是，Markdown中可以直接引用代码。这意味着我一边写书一边写的代码，可以无缝的集成到文章中，这样我更改了代码以后，书中的代码也更新了，避免了不同步的问题。</p>
+<p><img src="/images/2019/04-17/4372317-ae07852f73432856.png" alt></p>
+<h1 id="一年"><a href="#一年" class="headerlink" title="一年"></a>一年</h1><p>现在回顾一下整个出书的历程。</p>
+<p>我这个人是喜欢一鼓作气做完一件事情。为了保证及时交付，每天都分配了至少两个小时的时间，再加上之前已经有一些素材的积累，所以整个书的书写都相对比较快。基本上在4个月时间内集中写完了书籍。初稿完成后，我的事情就比较少了，主要是一些校对的工作。</p>
+<ul>
+<li>4月底：建立Repo</li>
+<li>5月初：书写第一章</li>
+<li>6月初：完成单车部分书写</li>
+<li>6月底：完成共享汽车部分书写</li>
+<li>7月底：完成Freelancer部分书写</li>
+<li>8月初：增加爱飞狗产品</li>
+<li>9月底：完成所有书写，并转换成docx供编辑修改</li>
+<li>10月初——12月底 一排</li>
+<li>12月底到1月初： 二排，拿到书号</li>
+<li>2月底：终审</li>
+<li>3月中：封面、查重、定价</li>
+<li>3月底：样书到</li>
+</ul>
+<h1 id="经验"><a href="#经验" class="headerlink" title="经验"></a>经验</h1><ul>
+<li>持续和编辑联系，写完一章就给编辑大致看看得到反馈<br>这一点避免了很多走弯路。第一次写书，对写书需要做的事情了解的比较少，加之平时在敏捷项目中都强调快速反馈，在写书过程中也是，能够及时避免一些坑。</li>
+<li>一鼓作气，坚持每天花些时间写，避免拖拉</li>
+<li>长期写博客，积累素材</li>
+</ul>
+<h1 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h1><p>在写书的过程中也有一些不可避免的“坑”。一来是写书不像是写博客那么随意，对于语言以及内容的提供都要有一个监管在里面。运气不好的是初稿交了以后，编辑告诉我2018年国家对地图相关的图片管理很严。我了解到相关的书籍都必须要进行审核，虽然说是免费，但是为了避免审核的时间消耗和一些潜在的风险，我们对书中的一些地图相关的图片、内容进行了一些修改和删减。</p>
+<p>爬虫这种技术有一定的法律风险，再三考虑之下对书中也有提到一些特定APP名字的地方，我们将名字进行了打码，并强调了这些思路以及代码都仅供参考。</p>
+<p>初稿的反馈说书写的很直白，全是干货，审核后说是要语言柔和一些。由于这个书的架构和其他类似书籍先将一大堆基础知识不一样，出版社的领导提议说将书的结构进行调整，变成介绍工具在前，案例在后。但这就是我想尽力避免的，不想让读者的钱花到了原本网上可以很快查到的地方，所以拒绝了。</p>
+<p>由于互联网时代变化很快，网站和APP都在改版，所以爬虫相关的代码，目前有些已经无法使用了。这是预料之中的事情，但书中所传递的方法，是通用的。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>不管如何，第一本书也算是出来了，放在书架上也是对我的极大地鼓舞。写书不容易，一旦开始就要一鼓作气。平时的积累非常重要，所以多多写博客吧。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2018-07-26-aiflygo/" class="post-title-link">从数据到产品——爱飞狗背后的故事</a></h2><div class="post-info">Jul 25, 2018</div><div class="post-content"><p>这篇文章基于最近整理的一份演讲的Slide，由于报名太晚错过了截止日期，所以只好写成文章，一起来看看爱飞狗背后的一些故事。</p>
+<p><img src="/images/2018/07-26/4372317-845e9f8c73863592.jpeg" alt></p>
+<p>几年前我和家人会经常往返于成都和广州两个城市，从平时的观察中可以看到机票价格从400人民币到全价接近1500人民币，机票产生的波动有时候会高达100元以上，如果没有看好时间，一家人出行就会增加几百元的成本。</p>
+<p><img src="/images/2018/07-26/4372317-09d583c39cba3b63.jpeg" alt></p>
+<p>买机票的时候，我应该和大家差不多，会在买机票前进行一番观察。主要是观察未来几天起飞的机票价格，用来选择哪天出行。然后手工记录一下近期的价格变化，看看是不是在涨价还是跌价中。当然这个纯属体力活也容易错过最佳购票时期。我当时在想，如果我能知道去年的机票的价格和变化趋势，或许可以用来预测今年的价格的波动和判断是否需要购买机票。</p>
+<p><img src="/images/2018/07-26/4372317-6c33989450778817.jpeg" alt></p>
+<p>我提出了两个问题，近期的价格的趋势是什么？决定好起飞时间后，我应该提前多少天购票？</p>
+<p><img src="/images/2018/07-26/4372317-c8d8f8d74d0551bf.jpeg" alt></p>
+<p>我查了一下目前我们有的一些服务和APP，看是不是有人已经做过了类似的事情。</p>
+<ul>
+<li>Farecast是最早做机票预测服务的一家公司，后来被微软收购后并入了Bing，此后Google收购了Farecast所依赖的数据源后，Bing的这项业务也停止了，所以现在Farecast已经关闭，无法使用。</li>
+<li>Kaya这家网站提供了机票的近期价格曲线以及购票建议，十分切合我的需要，但遗憾的是中国的数据源非常少，几乎没有可参考性。</li>
+<li>Hopper也是最近两三年比较好的一款App，提供了出行的建议以及是否购票的提示。但Hopper不会提供去年的曲线图，也没有近期的票价情况，一切看你是否相信它的AI预测了。和Kaya类似，这个App也没有中国区域足够的数据，没有什么参考价值。</li>
+</ul>
+<p><img src="/images/2018/07-26/4372317-0ebfd0403e9f3169.jpeg" alt></p>
+<p>面对这样的情况，作为一个程序员，我觉得是时候出手了。</p>
+<p><img src="/images/2018/07-26/4372317-3883b9a01aa5868f.jpeg" alt></p>
+<p>由于我没有运营机票代理业务，所以无法获得机票信息的一手资源。对于我来讲唯一能够获取到数据的方式就是采用爬虫，通过模拟人工的搜索来获得票价信息，存储到数据库中。</p>
+<p><img src="/images/2018/07-26/4372317-bb86124bb4e2b527.jpeg" alt></p>
+<p>为了分析一整年的数据，我在给自己定了一些目标：</p>
+<ul>
+<li>至少要连续采集1年的数据</li>
+<li>更新频率大概在1小时左右</li>
+<li>低成本</li>
+<li>容忍爬虫或者数据源的失败</li>
+</ul>
+<p><img src="/images/2018/07-26/4372317-6efa8a1e343fbca9.jpeg" alt></p>
+<p>根据这些目标结合当时的情况，我将这个任务分解成了以下几个部分：</p>
+<ul>
+<li>机票采集的范围：中国范围内2800个航线的直飞的价格数据</li>
+<li>采集的数据：每条航线起飞前45天的票价信息</li>
+<li>数据源：4个数据源做互补，一来是为了检查数据的准确性，二来是为了防止数据源失效</li>
+<li>全年无休连续爬取</li>
+</ul>
+<p><img src="/images/2018/07-26/4372317-cdc01bb1f2bc4720.jpeg" alt></p>
+<p>在数据爬虫的架构上，我需要一个低成本的方案，毕竟要干上一年以上的时间（其实到现在已经2年多了）。我并没有使用各种爬虫的框架，而是自己写了一个轻量级的爬虫来处理代理的筛选逻辑和爬取数据的验证。这些爬虫将会运行在DigitalOcean或者Linode的$5的服务器上，这些服务器上只有1个CPU和1G的内存。自定义的爬虫能够尽可能的根据性能进行针对性的调优，从而增加性能。每个爬虫之间互相独立，部署在单独的机器上，也是为了减少爬虫之间的相互干扰。</p>
+<p>在存储上我是用了tar.xz的文件将所有的爬取到的原始文件按照每一轮爬取进行打包压缩，然后在本地里面的一台PC机负责将所有的数据拉回来，放到一个4T的硬盘上。同时这些数据也会存储到百度云上面进行备份。目前这些压缩包已经达到2T左右了，解压下来大约有20T的数据量，大约有380亿条数据。</p>
+<p>在数据处理上，首先是实时数据流的处理。使用了kafka来进行队列管理，一个Parser来进行实时的处理原始数据，将处理好的结果放到redis缓存中，供小程序的后端使用。</p>
+<p>在数据的分析上，我使用Java手写了一个高性能的ETL，直接读取压缩包然后进行数据解析。在这里也是使用了轻量的原则，没有使用更多框架，从而达到非常高的性能。</p>
+<p>在PC机上也使用了Postgres中进行数据存储，每一天的数据存储到一个表中。</p>
+<p><img src="/images/2018/07-26/4372317-38e021ce2918f5ab.jpeg" alt></p>
+<p>在近两年的时间中我积累了以下一些经验：</p>
+<ul>
+<li>在长时间的爬取中证明了简单的爬虫的可变性非常好，在针对特殊场景调优的时候非常有针对性。</li>
+<li>存储原始文本也为了应对数据结构的变化，当数据结构变化后，本地的Parser失败以后，可以重复的调用之前的数据，从而保证数据不丢失。</li>
+<li>多个数据源进行备份的设计非常好。目前依然有两个数据源在持续爬取。针对两个数据源我也可以进行数据的对比，发现数据对比后数据较为相似，说明没有爬取到脏数据。</li>
+</ul>
+<p><img src="/images/2018/07-26/4372317-c3723d433a95f688.jpeg" alt></p>
+<p>拿到这些数据后，就要开始数据分析了。</p>
+<p><img src="/images/2018/07-26/4372317-919ca4f2a5132147.jpeg" alt></p>
+<p>分析的结论在我的简书的前几篇文章中都有提到。这里不再赘述，请参看：<br><a href="https://www.jianshu.com/p/3b22fb101189" target="_blank" rel="noopener">https://www.jianshu.com/p/3b22fb101189</a><br><a href="https://www.jianshu.com/p/366e839af3ea" target="_blank" rel="noopener">https://www.jianshu.com/p/366e839af3ea</a></p>
+<p><img src="/images/2018/07-26/4372317-fbf60a7e84dfd7a8.jpeg" alt></p>
+<p><img src="/images/2018/07-26/4372317-6effc58faf6e16e0.jpeg" alt></p>
+<p><img src="/images/2018/07-26/4372317-e5cb6b59626330f3.jpeg" alt></p>
+<p><img src="/images/2018/07-26/4372317-66b3641b3d4c1e27.jpeg" alt></p>
+<p><img src="/images/2018/07-26/4372317-79ab3aa65bf96b24.jpeg" alt></p>
+<p><img src="/images/2018/07-26/4372317-19e11a47f31fd3e0.jpeg" alt></p>
+<p><img src="/images/2018/07-26/4372317-935fbad9889c8acd.jpeg" alt></p>
+<p>在分析完这些数据后，我们再回头看一下最初问题的定义：针对某一条航线，给定历史价格和近期的价格，现在看到当前的价格是P和距离起飞还有N天，我们应该是买还是等待？</p>
+<p><img src="/images/2018/07-26/4372317-e6b798b79cd6fb73.jpeg" alt></p>
+<p>我使用了以下一些算法来分析，包括决策树、支持向量机、Q-learning和神经网络。</p>
+<p><img src="/images/2018/07-26/4372317-95fc880ae8eafb40.jpeg" alt></p>
+<p>在准备数据时，提取了以下一些基本特征，当然针对不同的算法还是用不同的特征。</p>
+<p><img src="/images/2018/07-26/4372317-96d4609713a24521.jpeg" alt></p>
+<p>在数据的分割上，考虑到这个是时间序列相关的数据，将数据集分为1年的训练数据，2个月的测试数据和2个月的验证数据集。当然实际数据比这个多，可以尝试更多的组合。</p>
+<p><img src="/images/2018/07-26/4372317-28601a2ea2179098.jpeg" alt></p>
+<p>但这些算法算出来的结果还并不令人特别满意，达到的准确率也只能超过人工根据一些简单的规则推导出来的准确率，可能和我所用的数据训练方式有关。所以在线上计算的时候，我目前还是采用专家系统的做法，将数据分析的结果整理成规则，根据这些规则还是能够得到较高的预测准确率，其他的指标例如Recall等可能会比较差。</p>
+<p><img src="/images/2018/07-26/4372317-71607194c985ffa1.jpeg" alt></p>
+<p>那么为什么专家系统能够行得通呢？我从一些内部人士了解到，原因在于这些机票都是来源于中航信，而这个系统比较老旧，针对价格的调整也不够灵活，大多数都是给予一些人工的规则来进行。收益管理员基本上都是从这里学到一些规则然后进行调价，所以学到的规则其实比较相近，所以会产生大家都有差不多一样的规则。</p>
+<p><img src="/images/2018/07-26/4372317-a369324117452e1d.jpeg" alt></p>
+<p>有了数据之后，想到可以来造福大众，便产生了做一个小产品的想法。</p>
+<p><img src="/images/2018/07-26/4372317-7dfb7d987bc7eb50.jpeg" alt></p>
+<p>这时候正直小程序比较火的年代，小程序比较简单，而且受益于微信的用户群可以很方便的进行推广。所以设计了几个简单的功能，能够选择出发、到达和起飞日期，然后会显示出实时的价格和历史最低的价格，点进去后可以看到预测、近期的价格波动和去年的价格波动。这能够更好的指导大家进行机票的选择。</p>
+<p><img src="/images/2018/07-26/4372317-c081eee454b67914.jpeg" alt></p>
+<p>下面来看看产品背后的架构：</p>
+<ul>
+<li>前端当然是用微信提供的一套进行开发，这个和其他的小程序没有什么两样。</li>
+<li>后端使用Flask进行开发，简单快捷。</li>
+<li>数据提供方面有之前提到的实时数据的显示，来自Redis缓存，当然还有离线历史数据数据。这些数据每天从离线的PC机上同步到云端，然后由API进行展示。</li>
+<li>还有用户行为数据的存储及分析。这些数据都存在ElasticSearch服务器中以便进行快速的搜索，借助Kibana可以对用户行为进行在线的分析，非常的方便。当然还有一些和用户相关的需要实时更新的数据（例如session值和飞币的信息）也放在EleasticSearch中，主要是利用了NoSQL数据库没有Schema的特点，增加数据使用的灵活性。</li>
+<li>基础设施方面小程序相关的部分全部在阿里云的服务器上。所有的服务都使用Kubernetes进行管理，Rancher进行可视化管理，爬虫等服务放在DigitalOcean一遍节约成本。</li>
+</ul>
+<p><img src="/images/2018/07-26/4372317-67f8a98ca4a846e2.jpeg" alt></p>
+<p>小程序也发布了9个多月了，目前积累了大约4.3万的用户，数量还相对较少，这个小程序的未来如何考虑呢？</p>
+<p><img src="/images/2018/07-26/4372317-063e5114afe70da9.jpeg" alt></p>
+<p>首先是继续将机器学习应用到价格的预测，毕竟积累了2年的多的数据是一笔不小的财富。<br>然后是提供更好用的界面提升用户的使用满意度。<br>最后就是找到一套可行的商业模式进行变现。目前小程序还只能依靠广告有一点收益，完全是入不敷出的情况。</p>
+<p><img src="/images/2018/07-26/4372317-c219d1d44d455f0d.jpeg" alt></p>
+<p>如果您对这个小程序感兴趣，请试试微信搜索“爱飞狗旅行”和关注微信公众号“爱飞狗”，或者扫一扫下面的二维码。您的支持将是我进步的最大的动力。</p>
+<p><img src="/images/2018/07-26/4372317-f1ff858612c3b36d.jpg" alt></p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2018-06-22-look-into-your-business/" class="post-title-link">小心！我正在偷窥你的运营</a></h2><div class="post-info">Jun 22, 2018</div><div class="post-content"><p>首先，问一个很简单的问题考考你——在上海，摩拜单车出行的高峰时段是什么？这个问题相对比较容易回答，根据普通人上下班的时段应该是早上七八点左右，下午六七点左右。恭喜，你答对了。</p>
 <p>现在问一个稍微更难一点的问题：在上海，摩拜单车使用次数的分布是什么情况？对于我而言，基本上每天就从地铁站骑到公司，然后下班从地铁站骑回公司，就算做是两次吧，通常这部分人应该不少。而这道题问的是分布，那么得知道0次骑行的车的数量，骑行一次、两次、n次的车的数量。我们可以做个小范围的采样，在单车密集的区域架设几个摄像机，然后分析一下哪些车没有被骑走即可。但是，骑行两次、三次以及更多次数的车的数量如何得知呢？我们很难知道，或许我们可以通过发放调查问卷来得知，但如果样本太少会得到打的偏差。同样的道理，回答“摩拜单车的骑行距离的分布式什么情况”，也相对较难。</p>
 <p>要知道共享单车的运营情况，我们通常只能通过官方或者研究机构的各种报告来获取到。然而这些报告可能缺少一些时效性，对某些研究来讲并不能产生任何作用：例如在城市规划时研究OD线、叠加图层分析更多因素的结合时，就显得无能为力。最后的渠道也是最正规的渠道是通过和共享单车企业合作，然而由于涉及到商业机密，通常很难获得。</p>
 <blockquote>
@@ -144,34 +299,4 @@
 <p>#总结</p>
 <p>根据以上的分析，GoFun目前的发展势头还是稳步增长。在路上我们也越来越多的看到共享汽车的身影。以成都为例，当停车场数量、车的数量越来越多以后，出行的局限性会变的更少，相信会俘获更多的用户。</p>
 <p>#附件<br>互动报告：<a href="http://www.april1985.com/sharecar_report/report/index.html">http://www.april1985.com/sharecar_report/report/index.html</a><br>报告源代码：<a href="https://github.com/derekhe/sharecar_report" target="_blank" rel="noopener">https://github.com/derekhe/sharecar_report</a></p>
-</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2017-12-15-why-i-create-aiflygo/" class="post-title-link">我为什么要开发这款小程序？</a></h2><div class="post-info">Dec 15, 2017</div><div class="post-content"><p>2012年由于家庭的原因，我经常乘飞机往返于成都和广州。每次买机票前我都要观察一段机票的价格，然后再进行购买，但具体什么时候买很多时候都是靠拍脑袋。在买多几次机票后，我发现机票的价格变化还是有一定的规律可行。后来有一本叫做《大数据时代》的书提到了国外的一个Farecast产品，能够预测7天内的票价变化，给出买还是不买的建议。但很遗憾的是多年来国内一直没有相关的产品，这便触发了我做一款类似产品的想法。</p>
-<p>这款产品叫做“爱飞狗旅行”（简称爱飞狗），这个名字来源于英文“aiflygo”。其中的AI也有人工智能的意思。产品的核心价值在于尽最大可能回答“什么时候买机票便宜”。买机票分为两个阶段，第一个阶段是选去哪里、什么时候去， 携程、去哪儿等旅游网站已经解决了这个问题。第二阶段是什么时候买票，各大网站也提供了低价提醒等功能，帮用户预定到更便宜的票。但这些产品的并没有告诉用户最低价位是什么，从而用户很难判断是否应该能够购买，除非多观察几天，但很有可能会错过最佳购票时间。</p>
-<p>为了弥补最后的一环，这款产品首先要解决的问题的是当选定到达地点、出发日期和航班的前提下，什么时候买票最便宜。为免用户出现不会使用的情况，产品设计上我并没有标新立异，而是使用了传统的选择机票的流程。在用户选定了起降地点、时间，根据实时价格选定航班之后，传统的购票流程会显示订票的页面，而“爱飞狗”将会展示关于机票的一些购票提示。</p>
-<p>首先展示的是运用人工智结合大数据预测出的购买建议。购票建议通过历史数据和近期价格波动综合考虑出一个结果，给予用户最快的提示。</p>
-<p>然后是去年同期的最低价格。根据数据分析和航司的专业人士的告知，航空公司的价格定价会根据很大程度上根据去年价格，参考今年的运力波动进行定价。所以历史最低价位具有非常大的参考价值。同时，“爱飞狗”也给出最低票价出现的时间，方便用户决定今年什么时候买。在春节期间更是可以自动切换对齐到农历日期，这样更方便传统节日购票。</p>
-<p><img src="/images/2017/12-15/4372317-a4b4ec55de5a52be.png" alt></p>
-<p>最后，“爱飞狗”会展示出该航班近期的购票价格的波动。注意这个价格并不是很多OTA上面展示的未来的价格，而是某一天起飞航班的历史购票价格。例如12月28日起飞的ZH9441航班，将会展示起飞前45天到今天的购票价格。</p>
-<p><img src="/images/2017/12-15/4372317-f4f6ff39505e60c7.png" alt></p>
-<p>综合上述信息，用户可以根据波动情况决定是否购买。</p>
-<p>在小程序还在开发的时候，我通过数据分析购买到了去广州的最便宜的票，一家人节约了400多元。小程序上线后不久，有朋友通过“爱飞狗”公众号告诉我他一家人出游选好了购票时间节约了600多元，也是对小程序的极大的肯定。</p>
-<p>在未来，爱飞狗会继续优化用户体验和提高AI预测的准确性。由于产品目前还是个人开发，产品的更多的是靠口碑进行传播，由于个人力量所限，希望有志同道合的朋友能够一起将该产品做到更好，使得更多人受益。</p>
-</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2017-12-06-buy-spring-airfare/" class="post-title-link">2018春节机票怎么买？看这几张图就够了</a></h2><div class="post-info">Dec 6, 2017</div><div class="post-content"><p>2018年春节还有不到两个月了，各大航空公司已经准备春节的调价。根据《<a href="http://www.jianshu.com/p/3b22fb101189" target="_blank" rel="noopener">机票大数据分析，揭示购票的秘密</a>》一文，一般来讲提前两个月预订机票价格相对较高，两个月之内航空公司会多次调价。在春节这个特殊的时期，定价很大程度上来自于供需关系。那么如果我确定好出发时间和地点，机票价格大约是怎样的一个趋势？我什么时候该买机票呢？能买到最低的价位是什么？</p>
-<p>其实，每年的春节的价格都相差无几，参考2017年春节的机票价格，可以很大程度上预见2018年春节的机票价格及走势。我们选择了几个起飞日期来作为参考。</p>
-<h4 id="2018年2月10日，星期六，放假"><a href="#2018年2月10日，星期六，放假" class="headerlink" title="2018年2月10日，星期六，放假"></a>2018年2月10日，星期六，放假</h4><p>对应于2017年1月21日，星期六，均是节前的最后一个假日，很多人会选择在这时拼假回家。请看下面这个图：图片展示了中国机场吞吐量前29的城市的机票折扣，横向选择出发城市，竖向选择到达城市，交叉的点就是能买到的最低折扣价格，颜色越深表明价格越高。</p>
-<p><img src="/images/2017/12-06/4372317-fb7acc5275f39f8b.png" alt="2017-01-21起飞的机票最低价格"></p>
-<p>从图上可以看出从北上广深到内地城市的机票普遍价格较高，这是由于北上广深打工的人很多，所以返乡价格会更贵。如果你恰好在这些区域，那么就几乎只能买到全价票或者很少的折扣，早点购买是明智的选择，因为怕机票售罄。</p>
-<p>但从内地（例如成都）出发飞往北上广深的机票反而很便宜，所以可以等待机票价格下降到一定程度再购买，具体可以查询微信小程序“爱飞狗旅行”的历史价格，根据提示，可以知道大约起飞前4周能够买到最便宜的机票。</p>
-<p><img src="/images/2017/12-06/4372317-912f79f9aae83a12.png" alt="爱飞狗旅行查询成都至广州"></p>
-<p>最后，目的地为三亚、海口的机票价格也保持在一个较高的价位，某些城市（例如北京、兰州）等还可以有机会买到7折左右的票，但根据价格历史查询，发现最低价可能很难购买，所以请提前关注价格波动购买。</p>
-<h4 id="2018年2月14日，除夕前一天"><a href="#2018年2月14日，除夕前一天" class="headerlink" title="2018年2月14日，除夕前一天"></a>2018年2月14日，除夕前一天</h4><p>对应2017年1月26日。大多数人也会选择除夕前请一个假回家。</p>
-<p>这天起飞的航班的价格与1月25日起飞的航班的价格对比，可以发现票价有所上调，飞往三亚、海口的机票已经几乎都是全价。然后北上广深飞往内地的机票价格也几乎是全价票了。</p>
-<p><img src="/images/2017/12-06/4372317-743fc85c30a85158.png" alt="2017-01-26"></p>
-<h4 id="2018年2月15日，除夕当天"><a href="#2018年2月15日，除夕当天" class="headerlink" title="2018年2月15日，除夕当天"></a>2018年2月15日，除夕当天</h4><p>对应于2017年1月27日。由于工作的关系，很多人只能在除夕当天回家。</p>
-<p>虽然这一天回家有一些不尽人意，但这一天的机票对比除夕前一天价格有大幅度的回落，即便是之前很火的北上广深往内地的机票价格也回落到5折左右。但旅游城市三亚、海口的价格依然坚挺。</p>
-<p><img src="/images/2017/12-06/4372317-528f11d73ec674cf.png" alt="2017-01-27"></p>
-<ul>
-<li>2018年2月21日，春节假期最后一天<br>对应于2017年2月2日。返回家乡，准备第二天工作了。<br>这张图片和除夕前的图片看起来很类似，只是出发城市和到达城市相反而已。这个时间由于是返程，所以航空公司也肯定会狠赚一把。<br><img src="/images/2017/12-06/4372317-a43a730fa8347c3a.png" alt="2017-02-02"></li>
-</ul>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>通过这几幅图可以清楚地看出春节机票的购票规律，如果你需要查询其他几天出行的票价图，请关注微信公众号“爱飞狗”回复“春节”即可。通过这些图确定是否还有更低的价格，对于无折扣的热门航班，较早购买不会亏，而且可以避免机票售罄。对于机票价格较为便宜的航班，提前太长时间购买可能并不划算，可以参考“爱飞狗旅行”的机票价格历史，选择一个合适的购票时间窗口，买到最便宜的机票。</p>
-<p>小程序传送门：<br><img src="/images/2017/12-06/4372317-584feedb7b3e92af.jpg" alt="gh_d92817984f7d_1280.jpg"></p>
 </div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/" class="prev">PREV</a><a href="/page/3/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

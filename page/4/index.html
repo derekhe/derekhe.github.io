@@ -22,7 +22,91 @@
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(bp, s);
   })();
-  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2017-02-12-mobike-api-analysis/" class="post-title-link">摩拜单车爬虫解析——找到API</a></h2><div class="post-info">Feb 12, 2017</div><div class="post-content"><blockquote>
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2017-05-24-freelancer-analysis/" class="post-title-link">2017自由职业大数据分析</a></h2><div class="post-info">May 24, 2017</div><div class="post-content"><h1 id="阅读须知"><a href="#阅读须知" class="headerlink" title="阅读须知"></a>阅读须知</h1><blockquote>
+<p>本文以Freelancer.com的公开项目及用户数据，对自由职业进行大数据分析。由于Freelancer.com代表线上的自由职业，并不代表所有的自由职业划分，请勿以本文结论以偏概全。</p>
+</blockquote>
+<blockquote>
+<p>本文仅作为自我学习、研究用途，并不对数据的完整性、正确性负责，也不对使用、引用本文造成的法律问题负责。</p>
+</blockquote>
+<blockquote>
+<p>本文未经同意不允许任何平台转载。非法转载将追究其责任。</p>
+</blockquote>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Freelancer.com成立于2009年，后收购了数家自由职业者公司。成为世界上自由职业者相关网站的领头羊，分析该网站的数据能够窥见自由职业的现状和发展趋势。</p>
+<blockquote>
+<p>【重点推荐】以下分析均在<a href="http://www.april1985.com/freelancer">在线互动版本</a>中包含，请在电脑上点击查看，图片更清晰，可互动。</p>
+</blockquote>
+<h1 id="数据来源"><a href="#数据来源" class="headerlink" title="数据来源"></a>数据来源</h1><p>该报告数据来源于<a href="https://www.freelancer.com/api/docs/docs.html" target="_blank" rel="noopener">Freelancer.com的公开API</a>。采集了从2000年1月到2017年3月的上千万的数据包含项目、用户、投标、用户评价数据。存储为易于处理的json格式，整体打包大小约为40G。总计花费大约20天左右。</p>
+<h1 id="采集数据和网站数据对比"><a href="#采集数据和网站数据对比" class="headerlink" title="采集数据和网站数据对比"></a>采集数据和网站数据对比</h1><p>从采集到的数据来看，则项目数量在740万左右，用户数量在1700万，两者相差大约56%和35%左右。项目数和用户数总体上都存在一些差异，差异可能来自于不同的统计方式或者网站删除了部分违规的项目。</p>
+<p><img src="/images/2017/06-24/4372317-f92d5df1c084417d.png" alt></p>
+<h1 id="项目和用户增长情况"><a href="#项目和用户增长情况" class="headerlink" title="项目和用户增长情况"></a>项目和用户增长情况</h1><p>Freelaner的用户规模和项目规模在加速增长中，预计在2018年初突破2000万用户和800万项目。</p>
+<p><img src="/images/2017/06-24/4372317-8c93322b3396608b.png" alt></p>
+<h1 id="会员分布"><a href="#会员分布" class="headerlink" title="会员分布"></a>会员分布</h1><p>在Freelancer的会员体系中，免费的会员有1727万名，占据了99.66%（图中无标示）。付费会员总共有5.8万，免费和付费会员比为295:1。</p>
+<blockquote>
+<p>注：其中有一些会员类型可能是Freelancer之前的老会员类型。</p>
+</blockquote>
+<p><img src="/images/2017/06-24/4372317-d55ed51821d03b63.png" alt></p>
+<h1 id="自由职业者全球分布"><a href="#自由职业者全球分布" class="headerlink" title="自由职业者全球分布"></a>自由职业者全球分布</h1><p>全球分布中，以美国和印度为第一梯队，菲律宾、印度尼西亚、巴基斯坦紧为第二梯队，英国、澳大利亚、孟加拉国紧跟其后，巴西等国家也有较大的比重。</p>
+<p><img src="/images/2017/06-24/4372317-e6fdaf11e7f0c5af.png" alt></p>
+<h1 id="项目所有者全球分布"><a href="#项目所有者全球分布" class="headerlink" title="项目所有者全球分布"></a>项目所有者全球分布</h1><p>和自由职业者分布类似，美国和印度的项目占领了很大的份额，英国、澳大利亚、加拿大等发达国家保持着稳定的市场，菲律宾、巴基斯坦跟随其后，这些项目很有可能是二次外包的项目。</p>
+<p><img src="/images/2017/06-24/4372317-69067935dedf4d03.png" alt></p>
+<h1 id="业务种类分布"><a href="#业务种类分布" class="headerlink" title="业务种类分布"></a>业务种类分布</h1><p>网站35%的项目都是网站建设和软件相关业务，有23%的项目是设计类的项目，10%的是写作和内容类项目。这三类项目占据了7成以上的份额。</p>
+<p><img src="/images/2017/06-24/4372317-9ddce0804fe2515e.png" alt></p>
+<h1 id="具体业务分布"><a href="#具体业务分布" class="headerlink" title="具体业务分布"></a>具体业务分布</h1><p>在具体的业务分布中，前60%的市场都和网站建设和设计有关。其中PHP占据了20%的市场，这和WordPress等基于PHP的CMS网站建设有很大关系。Graphic Design占据12%的市场，紧接着又是网站建设。其他的类型则市场相对较小。</p>
+<p><img src="/images/2017/06-24/4372317-3a53cd2b963af1ba.png" alt></p>
+<h1 id="价值迁移图"><a href="#价值迁移图" class="headerlink" title="价值迁移图"></a>价值迁移图</h1><p>此图展示了项目价值的流动方向，可以看欧美、澳洲有项目和资金的大量流出。印度、巴基斯坦作为外包大国，有非常多的项目和资金流入。全球外包的中心图中可见一斑。</p>
+<p><img src="/images/2017/06-24/4372317-33f9c434557e84ee.png" alt></p>
+<h1 id="全球接单数TOP20"><a href="#全球接单数TOP20" class="headerlink" title="全球接单数TOP20"></a>全球接单数TOP20</h1><p>不出所料，全球接单数最多的20名自由职业中，来自于印度、巴基斯坦、菲律宾等欠发达国家的最多。 但接单数多并不意味着赚取的钱最多，接单数最多的平均每单才1美元不到，而最高的也才25美元， 说明在这些国家接的单都是价格低廉的单，总体赚钱不多。</p>
+<p><img src="/images/2017/06-24/4372317-9c68f9997144a6ba.png" alt></p>
+<h1 id="TOP-20接单种类分析"><a href="#TOP-20接单种类分析" class="headerlink" title="TOP 20接单种类分析"></a>TOP 20接单种类分析</h1><p>图标、媒体设计类是最多的单，其中Graphic Design和Logo Design占据了最多的份额。其次是网站建设，在网站建设中PHP依然是很火的，和WordPress等PHP架构的网站息息相关。</p>
+<p><img src="/images/2017/06-24/4372317-1674736ffb2d258f.png" alt></p>
+<h1 id="中国接单数TOP20"><a href="#中国接单数TOP20" class="headerlink" title="中国接单数TOP20"></a>中国接单数TOP20</h1><p>虽然在全世界范围内中国的自由职业者不算太多，但对比全球接单最多的国家（印度、巴基斯坦等）<br>中国的自由职业者平均每单的价格均超过了15美元，这应该和中国的实际消费水平相关。</p>
+<p>与全球类似，第一名SunrisePHP为了和其他国家的低价竞争，只能以低价取胜，虽然数量很多但整体收入欠佳。<br>形成鲜明对比的zhengnami13，平均每单价格高的700美元，与选择的高质量的工程的性质有关。</p>
+<p><img src="/images/2017/06-24/4372317-7b18e6d17d78327a.png" alt></p>
+<h1 id="用户ZHENGNAMI13分析"><a href="#用户ZHENGNAMI13分析" class="headerlink" title="用户ZHENGNAMI13分析"></a>用户ZHENGNAMI13分析</h1><h2 id="收入分析"><a href="#收入分析" class="headerlink" title="收入分析"></a>收入分析</h2><p>从<a href="https://www.freelancer.com/u/zhengnami13.html" target="_blank" rel="noopener">自我介绍</a>上可以看到，该用户来自于中国的沈阳。 从2013年4月加入，Rate为50$每小时，擅长移动开发。 该用户最低每单都在860$以上，每月最低都有2000$以上的收入，几乎每月都有3个以上的单，接单质量相对较高。</p>
+<p><img src="/images/2017/06-24/4372317-169762a06300d584.png" alt></p>
+<h2 id="接单类型和客户分析"><a href="#接单类型和客户分析" class="headerlink" title="接单类型和客户分析"></a>接单类型和客户分析</h2><p>该用户主攻方向和描述一致，主要是涉及到移动领域的开发。具体来讲iOS的比Android开发更多，纯HTML5的开发也占有少量的比例。 该用户的客户主要是欧美和澳洲的客户，这些客户质量要求高、资金雄厚，做好这些客户也可以给自己打下良好的口碑的基础。</p>
+<p><img src="/images/2017/06-24/4372317-8258316bd90c13f2.png" alt></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>Freelancer.com的数据很有意思，具有15年以上的历史数据并且数据大部分可见。在分析这些数据的过程中可以发现很多有意思的点，由于篇幅所限在这个报告中不能一一呈现。如果您对这个报告以及分析感兴趣，希望从数据中发现更多有意义的洞见，请联系我。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2017-03-04-mobike-source-code/" class="post-title-link">摩拜单车爬虫源码及解析</a></h2><div class="post-info">Mar 4, 2017</div><div class="post-content"><p>前两篇文章分析了我为什么抓取摩拜单车的接口以及数据分析的结果，这篇文章中讲直接提供可运行的源代码供学习。</p>
+<blockquote>
+<p>声明：<br>此爬虫仅用于学习、研究用途，请不要用于非法用途。任何由此引发的法律纠纷自行负责。</p>
+</blockquote>
+<p>没耐心看文章的请后直接：</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/derekhe/mobike-crawler</span><br><span class="line"><span class="keyword">python3</span> crawler.<span class="keyword">py</span></span><br></pre></td></tr></table></figure>
+
+<p>爽了以后请别忘了给个star和打赏！</p>
+<h1 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h1><ul>
+<li>\analysis - jupyter做数据分析</li>
+<li>\influx-importer - 导入到influxdb，但之前没怎么弄好</li>
+<li>\modules - 代理模块</li>
+<li>\web - 实时图形化显示模块，当时只是为了学一下react而已，效果请见<a href="www.april1985.com/mobike">这里</a></li>
+<li>crawler.py - 爬虫核心代码</li>
+<li>importToDb.py - 导入到postgres数据库中进行分析</li>
+<li>sql.sql - 创建表的sql</li>
+<li>start.sh -　持续运行的脚本</li>
+</ul>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>核心代码放在crawler.py中，数据首先存储在sqlite3数据库中，然后去重复后导出到csv文件中以节约空间。</p>
+<p>摩拜单车的API返回的是一个正方形区域中的单车，我只要按照一块一块的区域移动就能抓取到整个大区域的数据。</p>
+<p>left,top,right,bottom定义了抓取的范围，目前是成都市绕城高速之内以及南至南湖的正方形区域。offset定义了抓取的间隔，现在以0.002为基准，在DigitalOcean 5$的服务器上能够15分钟内抓取一次。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">start</span><span class="params">(self)</span>:</span></span><br><span class="line">    left = <span class="number">30.7828453209</span></span><br><span class="line">    top = <span class="number">103.9213455517</span></span><br><span class="line">    right = <span class="number">30.4781772402</span></span><br><span class="line">    bottom = <span class="number">104.2178123382</span></span><br><span class="line"></span><br><span class="line">    offset = <span class="number">0.002</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> os.path.isfile(self.db_name):</span><br><span class="line">        os.remove(self.db_name)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">with</span> sqlite3.connect(self.db_name) <span class="keyword">as</span> c:</span><br><span class="line">            c.execute(<span class="string">'''CREATE TABLE mobike</span></span><br><span class="line"><span class="string">                (Time DATETIME, bikeIds VARCHAR(12), bikeType TINYINT,distId INTEGER,distNum TINYINT, type TINYINT, x DOUBLE, y DOUBLE)'''</span>)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> ex:</span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<p>然后就启动了250个线程，至于你要问我为什么没有用协程，哼哼～～我当时没学～～～其实是可以的，说不定效率更高。</p>
+<p>由于抓取后需要对数据进行去重，以便消除小正方形区域之间重复的部分，最后的group_data正是做这个事情。</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">executor = ThreadPoolExecutor(max_workers=<span class="number">250</span>)</span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(<span class="string">"Start"</span>)</span></span></span><br><span class="line">self<span class="selector-class">.total</span> = <span class="number">0</span></span><br><span class="line">lat_range = np.arange(<span class="attribute">left</span>, right, -offset)</span><br><span class="line"><span class="keyword">for</span> lat <span class="keyword">in</span> lat_range:</span><br><span class="line">    lon_range = np.arange(<span class="attribute">top</span>, bottom, offset)</span><br><span class="line">    <span class="keyword">for</span> lon <span class="keyword">in</span> lon_range:</span><br><span class="line">        self<span class="selector-class">.total</span> += <span class="number">1</span></span><br><span class="line">        executor.submit(self<span class="selector-class">.get_nearby_bikes</span>, (lat, lon))</span><br><span class="line"></span><br><span class="line">executor.shutdown()</span><br><span class="line">self.group_data()</span><br></pre></td></tr></table></figure>
+
+<p>最核心的API代码在这里。小程序的API接口，搞几个变量就可以了，十分简单。</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">def get_nearby_bikes(self, <span class="keyword">args</span>):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        url = <span class="string">"https://mwx.mobike.com/mobike-api/rent/nearbyBikesInfo.do"</span></span><br><span class="line"></span><br><span class="line">        payload = <span class="string">"latitude=%s&amp;longitude=%s&amp;errMsg=getMapCenterLocation"</span> % (<span class="keyword">args</span>[<span class="number">0</span>], <span class="keyword">args</span>[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">        headers = &#123;</span><br><span class="line">            <span class="string">'charset'</span>: <span class="string">"utf-8"</span>,</span><br><span class="line">            <span class="string">'platform'</span>: <span class="string">"4"</span>,</span><br><span class="line">            <span class="string">"referer"</span>:<span class="string">"https://servicewechat.com/wx40f112341ae33edb/1/"</span>,</span><br><span class="line">            <span class="string">'content-type'</span>: <span class="string">"application/x-www-form-urlencoded"</span>,</span><br><span class="line">            <span class="string">'user-agent'</span>: <span class="string">"MicroMessenger/6.5.4.1000 NetType/WIFI Language/zh_CN"</span>,</span><br><span class="line">            <span class="string">'host'</span>: <span class="string">"mwx.mobike.com"</span>,</span><br><span class="line">            <span class="string">'connection'</span>: <span class="string">"Keep-Alive"</span>,</span><br><span class="line">            <span class="string">'accept-encoding'</span>: <span class="string">"gzip"</span>,</span><br><span class="line">            <span class="string">'cache-control'</span>: <span class="string">"no-cache"</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        self.request(headers, payload, <span class="keyword">args</span>, url)</span><br><span class="line">    except Exception <span class="keyword">as</span> <span class="keyword">ex</span>:</span><br><span class="line">        <span class="keyword">print</span>(<span class="keyword">ex</span>)</span><br></pre></td></tr></table></figure>
+
+<p>最后你可能要问频繁的抓取IP没有被封么？其实摩拜单车是有IP的访问速度限制的，只不过破解之道非常简单，就是用大量的代理。</p>
+<p>我是有一个代理池，每天基本上有8000以上的代理。在ProxyProvider中直接获取到这个代理池然后提供一个pick函数用于随机选取得分前50的代理。请注意，我的代理池是每小时更新的，但是代码中提供的jsonblob的代理列表仅仅是一个样例，过段时间后应该大部分都作废了。</p>
+<p>在这里用到一个代理得分的机制。我并不是直接随机选择代理，而是将代理按照得分高低进行排序。每一次成功的请求将加分，而出错的请求将减分。这样一会儿就能选出速度、质量最佳的代理。如果有需要还可以存下来下次继续用。</p>
+<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProxyProvider</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>, min_proxies=<span class="number">200</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">self</span>._bad_proxies = &#123;&#125;</span><br><span class="line">        <span class="keyword">self</span>._minProxies = min_proxies</span><br><span class="line">        <span class="keyword">self</span>.lock = threading.RLock()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">self</span>.get_list()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_list</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        logger.debug(<span class="string">"Getting proxy list"</span>)</span><br><span class="line">        r = requests.get(<span class="string">"https://jsonblob.com/31bf2dc8-00e6-11e7-a0ba-e39b7fdbe78b"</span>, timeout=<span class="number">10</span>)</span><br><span class="line">        proxies = ujson.decode(r.text)</span><br><span class="line">        logger.debug(<span class="string">"Got %s proxies"</span>, len(proxies))</span><br><span class="line">        <span class="keyword">self</span>._proxies = list(map(lambda <span class="symbol">p:</span> Proxy(p), proxies))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pick</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        with <span class="keyword">self</span>.<span class="symbol">lock:</span></span><br><span class="line">            <span class="keyword">self</span>._proxies.sort(key = lambda <span class="symbol">p:</span> p.score, reverse=True)</span><br><span class="line">            proxy_len = len(<span class="keyword">self</span>._proxies)</span><br><span class="line">            max_range = <span class="number">50</span> <span class="keyword">if</span> proxy_len &gt; <span class="number">50</span> <span class="keyword">else</span> proxy_len</span><br><span class="line">            proxy = <span class="keyword">self</span>._proxies[random.randrange(<span class="number">1</span>, max_range)]</span><br><span class="line">            proxy.used()</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> proxy</span><br></pre></td></tr></table></figure>
+
+<p>在实际使用中，通过proxyProvider.pick()选择代理，然后使用。如果代理出现任何问题，则直接用proxy.fatal_error()降低评分，这样后续就不会选择到这个代理了。</p>
+<figure class="highlight zephir"><table><tr><td class="code"><pre><span class="line">def request(<span class="keyword">self</span>, headers, payload, args, url):</span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">        proxy = <span class="keyword">self</span>.proxyProvider.pick()</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            response = requests.request(</span><br><span class="line">                <span class="string">"POST"</span>, url, data=payload, headers=headers,</span><br><span class="line">                proxies=&#123;<span class="string">"https"</span>: proxy.url&#125;,</span><br><span class="line">                timeout=<span class="number">5</span>,verify=<span class="keyword">False</span></span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line">            with <span class="keyword">self</span>.lock:</span><br><span class="line">                with sqlite3.connect(<span class="keyword">self</span>.db_name) <span class="keyword">as</span> c:</span><br><span class="line">                    <span class="keyword">try</span>:</span><br><span class="line">                        <span class="keyword">print</span>(response.text)</span><br><span class="line">                        decoded = ujson.decode(response.text)[<span class="string">'object'</span>]</span><br><span class="line">                        <span class="keyword">self</span>.done += <span class="number">1</span></span><br><span class="line">                        <span class="keyword">for</span> x in decoded:</span><br><span class="line">                            c.execute(<span class="string">"INSERT INTO mobike VALUES (%d,'%s',%d,%d,%s,%s,%f,%f)"</span> % (</span><br><span class="line">                                <span class="keyword">int</span>(time.time()) * <span class="number">1000</span>, x[<span class="string">'bikeIds'</span>], <span class="keyword">int</span>(x[<span class="string">'biketype'</span>]), <span class="keyword">int</span>(x[<span class="string">'distId'</span>]),</span><br><span class="line">                                x[<span class="string">'distNum'</span>], x[<span class="string">'type'</span>], x[<span class="string">'distX'</span>],</span><br><span class="line">                                x[<span class="string">'distY'</span>]))</span><br><span class="line"></span><br><span class="line">                        timespend = datetime.datetime.now() - <span class="keyword">self</span>.start_time</span><br><span class="line">                        percent = <span class="keyword">self</span>.done / <span class="keyword">self</span>.total</span><br><span class="line">                        total = timespend / percent</span><br><span class="line">                        <span class="keyword">print</span>(args, <span class="keyword">self</span>.done, percent * <span class="number">100</span>, <span class="keyword">self</span>.done / timespend.total_seconds() * <span class="number">60</span>, total,</span><br><span class="line">                              total - timespend)</span><br><span class="line">                    except <span class="keyword">Exception</span> <span class="keyword">as</span> ex:</span><br><span class="line">                        <span class="keyword">print</span>(ex)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        except <span class="keyword">Exception</span> <span class="keyword">as</span> ex:</span><br><span class="line">            proxy.fatal_error()</span><br></pre></td></tr></table></figure>
+
+<p>好了，基本上就到此了～～～其他的代码自己研究吧～～～</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2017-02-12-mobike-api-analysis/" class="post-title-link">摩拜单车爬虫解析——找到API</a></h2><div class="post-info">Feb 12, 2017</div><div class="post-content"><blockquote>
 <p>警告：此篇文章仅作为学习研究参考用途，请不要用于非法目的。</p>
 </blockquote>
 <p>在上一篇文章<a href="http://www.jianshu.com/p/2a20d2a97ac0" target="_blank" rel="noopener">《摩拜单车非官方大数据分析》</a>中提到了我在春节期间对摩拜单车的数据分析，在后面的系列文章中我将进一步的阐述我的爬虫是如何高效的爬到这些数据的。</p>
@@ -95,91 +179,4 @@
 <figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">docker <span class="builtin-name">run</span> <span class="built_in">..</span><span class="built_in">..</span> --log-opt <span class="attribute">max-size</span>=100M</span><br></pre></td></tr></table></figure>
 
 <p>By doing this, the problem is solved. You can find out more options for log on that page to manage your log.</p>
-</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2016-08-24-api-deisgn-best-practices-txt/" class="post-title-link">再看API设计——从黑客的角度</a></h2><div class="post-info">Aug 24, 2016</div><div class="post-content"><p>互联网的高速发展以及多终端设备的广泛使用使得前后端分离架构变成了必须，越来越多的网络应用暴露出API以便于前端的使用，RESTFul API的设计成为了业界主流的设计范式。在持续的业务增长以及后端技术的革新中，微服务架构(Microservice)崭露头角，解决了单体应用(Monolithic Application)的诸多问题而越来越流行。现在，在客户端与服务、服务与服务之间，有更多的数据通过常用的json等结构化的方式进行交互。这些交互过程在单体应用中对外并不可见，但在微服务架构下对于却变得透明，黑客可以通过窥探及猜测系统内部的结构，会比以前更容易攻击系统。在这篇文章中，我将以一个数据黑客的角度，展示如何利用API来大规模的获取所要的信息。</p>
-<h2 id="数据黑客"><a href="#数据黑客" class="headerlink" title="数据黑客"></a>数据黑客</h2><p>数据黑客没有一个准确的定义，在我看来这帮人对于数据具有敏锐的嗅觉；他们尝试得到一切能够获得的数据并进行数据分析；他们尝试在数据的云海中找出规律以便预测未来。在程序员拯救世界的今天，数据黑客则掌握了世界的未来。</p>
-<p>在若干年前，前后端分离的架构还尚未普及，很多数据的呈现方式都是直接在页面中打印出来，为了解析数据，数据黑客们使用XPATH去解析数据，将数据装入数据库进行分析，甚至从中赚钱。如今，我们有着大量的API供使用，数据变得唾手可得。我们不用再去繁琐的解析易变的HTML，只需要访问一个URL即可获得我们需要的数据。</p>
-<h3 id="10天内获得自由职业网站8百万项目数据"><a href="#10天内获得自由职业网站8百万项目数据" class="headerlink" title="10天内获得自由职业网站8百万项目数据"></a>10天内获得自由职业网站8百万项目数据</h3><p>我对自由职业充满了好奇，想试一下自由职业是怎么接到活的。在Freelancer网站上，几乎每分钟都有新的项目发布，一般一分钟之内就有好几个投标信息(bid)。每个投标信息包含了投标的内容、价格以及完成时间，然后雇主根据这些信息来筛选谁可能接这个项目。一般来讲会在交谈之后，明确所有的事宜后，再将项目分配给自由职业者。</p>
-<p>作为自由职业者，我们可以看到其他人投标的价格以及别人的信誉度、别人做过的项目等信息，但不能看到具体的投标内容。作为雇主，价格、自由职业者的信誉度、是否通过一些测试可能都是影响雇主是否第一轮筛选进行交谈。那么，通过数据分析，能否回答以下几个问题以便帮助我们正确的投标：</p>
-<ul>
-<li>针对投标信息，雇主对自由职业者的信誉度和价格，哪个看得更重？</li>
-<li>针对澳洲的雇主，我如何能够增加我被选中的几率，是通过降低价格还是提升自己的质量？</li>
-</ul>
-<p>为了回答这些问题，我需要尽快的将网站上所有可能拿到的信息都拿下来进行分析。</p>
-<h4 id="网站及API分析"><a href="#网站及API分析" class="headerlink" title="网站及API分析"></a>网站及API分析</h4><p>打开一个项目<a href="https://www.freelancer.com/projects/Javascript/Web-Page-Scraper/" target="_blank" rel="noopener">页面(注：你需要翻墙)</a>，你会看到页面如图所示：</p>
-<p><img src="/images/2016/8/1.png" alt="image"></p>
-<p>简单的看一下HTML后，发现网站将所有的信息都内嵌到HTML中的一个script中，在浏览器执行完成后会得到project变量。这个变量包含了项目的所有信息，所以理论上讲，我们拿到一个HTML然后解析Javascript，是可以得到我们需要的数据的。</p>
-<p><img src="/images/2016/8/2.png" alt="image"></p>
-<p>但这种方式也存在一些问题，一来是解析HTML非常费事，二来是执行Javascript也比较繁琐。并且没有一个办法能够遍历所有的项目，可行性并不大。</p>
-<p>通常来讲，我不会去解析主网站，因为其防范一般比较严。但很多网站的马奇诺防线在移动端就失效了，Freelancer也不例外。</p>
-<p>打开<a href="https://m.freelancer.com/projects/Javascript/Web-Page-Scraper/#info" target="_blank" rel="noopener">移动端的网页</a>。简单看一下可以知道它是基于AngularJS写的网站。</p>
-<p><img src="/images/2016/8/3.png" alt="image"></p>
-<p>通过分析API的请求，可以很快的看到API的样子：</p>
-<p><img src="/images/2016/8/4.png" alt="image"></p>
-<p>我们来分析一下这个URL，红色部分代表了这个项目的简写名字，将其改为其他的项目名称以后能够得到对应的信息。</p>
-<p><img src="/images/2016/8/5.png" alt="image"></p>
-<p>理论上我只要得到所有项目的简写名字，再用这个地址就可以获得所有的信息了。但且慢，我注意到了投标信息的API：</p>
-<p><img src="/images/2016/8/7.png" alt="image"></p>
-<p>红色部分用的是一串数字，如果你了解RESTFul API，则很容易知道这个bids的信息是属于9844976项目的。将之前的projects后面的名字变为数字，果然返回ID为9844976的项目的信息，和用简写名字同样的效果。这样的话我就确定了网站每个项目的ID是可以直接访问的，从0开始遍历这个ID即可得到所有网站的信息。</p>
-<p><img src="/images/2016/8/8.png" alt="image"></p>
-<h4 id="阻力：API访问速度限制"><a href="#阻力：API访问速度限制" class="headerlink" title="阻力：API访问速度限制"></a>阻力：API访问速度限制</h4><p>当爬到1000个左右的时候，网站就报告API Rate Limit限制了，大概需要一个小时左右才能再次访问。作为一个大型的网站，API访问速度限制是很平常的事情。如果照这个速度访问，则爬完所有的信息需要将近一年。能不能更快呢？</p>
-<p>通过匿名代理可以让访问的服务器无法识别出您的真实的IP地址，所以如果有大量的匿名代理，就可以满足爬虫的需求。但这个网站使用的是HTTPS，要找到大量稳定的HTTPS代理需要较高的代价，网络上常见的匿名代理网站提供的代理通常都不稳定。</p>
-<p><img src="/images/2016/8/10.png" alt="image"></p>
-<p>那么，有没有一个更廉价的方式能够获得更多的IP地址呢？洋葱网络为我们提供可以非常好的途径来隐藏自己的真实身份，并能够得到大量稳定的IP，并且能够在达到API Rate Limit之前就更新IP地址，非常符合我们的要求。</p>
-<p><img src="/images/2016/8/11.png" alt="image"></p>
-<p>为了让多线程并行，我在<a href="https://m.do.co/c/4bc532e3ef94" target="_blank" rel="noopener">DigitalOcean的5美元的服务器</a>上用Docker启动了10个Tor的客户端，这样每个客户端就拥有一个独立的IP，并且每10秒钟切换一次。脚本连续运行10天后，所有的数据全部到达本地。</p>
-<h4 id="从黑客的角度看"><a href="#从黑客的角度看" class="headerlink" title="从黑客的角度看"></a>从黑客的角度看</h4><p>好的几点：</p>
-<ul>
-<li>该网站提供了移动端的API。</li>
-<li>有API的限速。</li>
-</ul>
-<p>需要改进的有：</p>
-<ul>
-<li>ID号可遍历：通过将ID变为UUID，可以解决资源被遍历的问题。但这个要视业务场景来定，如果业务上并没有需要保护数据，则简单的ID也是一种选择。</li>
-<li>加载的数据包含了很多额外的信息，造成一些信息泄露：在返回的数据中包含了大量的其他信息，黑客可以利用此信息得到页面上没有显示的信息。例如网站上对投标者对雇主的id、用户名等信息是不知道的，但API返回的数据中却有这些信息。这样黑客可以通过这些信息通过其他渠道联系上雇主。</li>
-<li>保护网站遭受匿名网络攻击：根据业务的不同，可以设置针对地域的IP限制。例如如果网站大部分针对澳洲客户，则澳洲客户的API使用量可以设置为1千/小时，而其他国家则设置为100个/小时，并且在适当时候显示验证码。</li>
-</ul>
-<p><img src="/images/2016/8/12.png" alt="image"></p>
-<h3 id="获得一年中6亿的机票数据"><a href="#获得一年中6亿的机票数据" class="headerlink" title="获得一年中6亿的机票数据"></a>获得一年中6亿的机票数据</h3><p>由于家庭的需要，我会在节假日往返成都和广州，而我想买到最便宜的机票。那么问题在于，我需要提前多少天才能买到足够便宜的机票呢？在我得到数据之前，我曾手工的看机票的数据，但很难发现规律，往往意识到涨价的时候，已经比最低值高出了很多。如果我能持续的抓取每天看到的30天之内的机票的数据，并用于一年后的数据分析，我是否能够找到一些规律呢？</p>
-<p>为了完成这个任务，从2012年开始，我开始从各大机票售卖网站抓取机票信息。这里想举一个从某网站中获取机票的例子来看看我们能够从中学到一些什么。</p>
-<p>我之前说过从主站入手往往很难攻破，所以直接打开移动的网站：</p>
-<p><img src="/images/2016/8/13.png" alt="image"></p>
-<p>只需要看一下网络的请求就可以很方便的定位到获取机票的API以及返回值：</p>
-<p><img src="/images/2016/8/14.png" alt="image"></p>
-<h4 id="API分析"><a href="#API分析" class="headerlink" title="API分析"></a>API分析</h4><p>来我们看看API中包含了些什么：</p>
-<figure class="highlight gcode"><table><tr><td class="code"><pre><span class="line">data=<span class="meta">%</span><span class="number">7</span>B<span class="meta">%</span><span class="number">22</span>searchType<span class="meta">%</span><span class="number">22</span><span class="meta">%</span><span class="number">3</span>A<span class="meta">%</span>……</span><br></pre></td></tr></table></figure>
-
-<p>这部分应该是存储的数据，很简单，我们通过decodeURI即可得到可见的信息：</p>
-<p><img src="/images/2016/8/15.png" alt="image"></p>
-<p>后面一部分是固定的串，有API的key以及版本信息</p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">useNative</span>=<span class="literal">true</span>&amp;ttid=<span class="number">201300</span>@travel_h<span class="number">5_3</span>.<span class="number">1.0</span>&amp;appKey=<span class="number">12574478</span></span><br></pre></td></tr></table></figure>
-
-<p>对于爬虫来讲，最麻烦的部分在于：</p>
-<figure class="highlight excel"><table><tr><td class="code"><pre><span class="line"><span class="built_in">t</span>=<span class="number">1426062775998</span>&amp;<span class="built_in">sign</span>=<span class="number">3</span>feb52aed67967a2c47aa7a2b9f2a417</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/2016/8/16.png" alt="image"></p>
-<p>这部分一直在变，并且若干秒后会失效。sign的计算和cookie中的<em>m</em>h5_tk有很大的关系，并且每次服务器要返回新的<em>m</em>h5_tk的token用于下一次请求。所以如果要生成这个url，必须要将他的计算规律搞清楚。对手前端的加密来讲，基本上如果了解js的开发，能够较快的找出来。首先搜索API中包含的字符串h5apiUpdate，很容易就定位到这里：</p>
-<p><img src="/images/2016/8/17.png" alt="image"></p>
-<p>但这部分代码已经被压缩，无法打断点。Chrome提供了一个非常棒的代码格式化工具可以方便的将代码格式化为可读性很好的代码：</p>
-<p><img src="/images/2016/8/18.png" alt="image"><br><img src="/images/2016/8/19.png" alt="image"></p>
-<p>再在这里打上断点，所有的秘密都呈现在了眼前：</p>
-<p><img src="/images/2016/8/20.png" alt="image"><br><img src="/images/2016/8/21.png" alt="image"></p>
-<p>剩下的事情就是将这个写成脚本即可，请参考后记。</p>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>从这个例子中我们学到了什么：</p>
-<ul>
-<li>可以用时间作为token来生成动态的url</li>
-<li>用sign去检查请求是否合法</li>
-<li>服务端可以用时间token来拒绝重发的请求</li>
-<li>JS端的压缩可以较为容易的破解</li>
-</ul>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>以上的代码我都分享在我的<a href="https://github.com/derekhe/" target="_blank" rel="noopener">github账号</a>。仅用于学习用途，请勿用于恶意攻击。</p>
-<ul>
-<li>关于爬Freelancer那的<a href="https://github.com/derekhe/freelancer-crawler" target="_blank" rel="noopener">代码</a>。</li>
-<li>机票爬取的部分<a href="https://github.com/derekhe/alitripAPI" target="_blank" rel="noopener">代码</a>。由于网站已经升级，反爬措施变得比较难于琢磨，所以这段代码已经无法正常运行了，仅供参考。</li>
-<li>还有1分钟启动10个tor的<a href="https://github.com/derekhe/tor-client-minimal" target="_blank" rel="noopener">代码</a>。</li>
-</ul>
-<p>后来我发现Freelancer网站有一个隐藏的<a href="https://www.freelancer.com/api/docs/" target="_blank" rel="noopener">API接口文档</a>，在这个文档中还有更多的信息可以参考。另外知乎上也有一些反爬虫的一些讨论，挺有趣，可以<a href="https://www.zhihu.com/question/28168585" target="_blank" rel="noopener">参考</a>。</p>
-</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2016-04-05-api-deisgn-best-practices/" class="post-title-link">API Design Best Practices -- From a hacker's view</a></h2><div class="post-info">Apr 5, 2016</div><div class="post-content"><p>两个星期前接到一个大坑，成都办公室需要人去参加客户的一个API的活动。和几个同事头脑风暴一番以后，发现客户已经有我们需要讲的议题了。那么我们搞点特别的吧，他们讲一些小正面的，我面来一些反面的。然后我就跳到了这个坑里。</p>
-<p>从准备材料到最终讲只剩下一个多星期，花了两天多准备PPT，板式采用纯黑的主题，加上一些在flaticon上面找的图标，配起来自我感觉良好^_^。PPT在分享在<a href="http://www.slideshare.net/hesicong/api-design-best-practices-from-a-hackers-view" target="_blank" rel="noopener">这里</a>，有兴趣的可以看。</p>
-<p>关于Freelancer那的<a href="https://github.com/derekhe/freelancer-crawler" target="_blank" rel="noopener">代码</a>，阿里那一段段的<a href="https://github.com/derekhe/alitripAPI" target="_blank" rel="noopener">代码</a>，还有1分钟启动10个tor的<a href="https://github.com/derekhe/tor-client-minimal" target="_blank" rel="noopener">代码</a>。</p>
-<p>其实最近我发现Freelancer也是提供了API的文档的，只是这个网站的页面设计得很奇葩，找东西非常难找，在<a href="https://www.freelancer.com/api/docs/" target="_blank" rel="noopener">这里</a>。</p>
 </div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/3/" class="prev">PREV</a><a href="/page/5/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

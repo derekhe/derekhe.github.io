@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.april1985.com/"/>
-  <updated>2019-10-09T14:40:28.535Z</updated>
+  <updated>2019-10-23T15:06:01.582Z</updated>
   <id>http://www.april1985.com/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>国内机票历史价格数据库</title>
+    <link href="http://www.april1985.com/post/2019-10-23-airfare-db/"/>
+    <id>http://www.april1985.com/post/2019-10-23-airfare-db/</id>
+    <published>2019-10-22T16:00:00.000Z</published>
+    <updated>2019-10-23T15:06:01.582Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>该数据库包含从2017年1月1日至今，国内2千多条直飞航线的出发前90天内的历史价格信息，具有包含价格历史长、连续性高、密度高、价格数据准确等特点。数据来源于互联网公开可查询数据，可用于科研、价格预测、出行优化等各种领域。</p><p>相关应用文章：</p><ul><li><a href="http://www.april1985.com/post/2017-11-28-how-to-buy-airfare/">机票大数据分析，揭示购票的秘密</a></li><li><a href="http://www.april1985.com/post/2017-12-06-buy-spring-airfare/">2018春节机票怎么买？看这几张图就够了</a></li><li><a href="http://www.april1985.com/post/2017-12-15-why-i-create-aiflygo/">我为什么要开发这款小程序？</a></li><li><a href="http://www.april1985.com/post/2018-07-26-aiflygo/">从数据到产品——爱飞狗背后的故事</a></li></ul><p>联系方式：微信号bcdata</p><h1 id="数据详情"><a href="#数据详情" class="headerlink" title="数据详情"></a>数据详情</h1><ul><li>时间跨度：从2016年7月1日至今</li><li><a href="https://github.com/derekhe/aiflygo-intro/raw/master/airline.csv" target="_blank" rel="noopener">航线列表</a></li><li><a href="https://github.com/derekhe/aiflygo-intro/raw/master/flightno.csv" target="_blank" rel="noopener">航班列表</a></li></ul><h2 id="数据量"><a href="#数据量" class="headerlink" title="数据量"></a>数据量</h2><p>注：以下统计数据从2017年1月1日至2019年10月1日，共计1003天进行计算。</p><h3 id="低频数据"><a href="#低频数据" class="headerlink" title="低频数据"></a>低频数据</h3><p>低频数据收集每日下午2点附近的机票价格，数据库中总共包含1025159650（10亿）条数据。平均每天1025159（一百万）条数据。</p><h3 id="高频数据"><a href="#高频数据" class="headerlink" title="高频数据"></a>高频数据</h3><p>高频数据采取连续收集，每日采集从10次到20次不等，数据量大约为低频数据的10到20倍不等，约100亿到200亿条数据。平均每天一千万左右。高频数据可以看到每日不同时刻价格的变化，可以更加深入的分析。</p><h2 id="字段"><a href="#字段" class="headerlink" title="字段"></a>字段</h2><p>数据包含以下字段：</p><table><thead><tr><th>字段</th><th>解释</th></tr></thead><tbody><tr><td>departdate</td><td>起飞日期</td></tr><tr><td>departtime</td><td>起飞时间</td></tr><tr><td>arrivetime</td><td>到达时间</td></tr><tr><td>crawldate</td><td>采集日期。2019年1月13日前包含起飞前45天内的价格信息，之后包含起飞前90天的价格信息</td></tr><tr><td>flightno</td><td>航班号</td></tr><tr><td>sharedflightno</td><td>共享航班号</td></tr><tr><td>departcity</td><td>出发机场三字码</td></tr><tr><td>departtower</td><td>出发航站楼</td></tr><tr><td>arrivecity</td><td>到达机场三字码</td></tr><tr><td>arrivetower</td><td>到达航站楼</td></tr><tr><td>discount</td><td>折扣价格</td></tr><tr><td>price</td><td>经济舱最低价格信息</td></tr></tbody></table><h2 id="样例数据"><a href="#样例数据" class="headerlink" title="样例数据"></a>样例数据</h2><ul><li>2017年1月1日起飞的CA4305航班数据，通过crawldate可以看到距离起飞前若干天的机票变化情况（未排序）。例如第一条2016年12月29日，就是起飞前3天的价格数据，不含税为1020元，折扣为7.1折；同理第二条为起飞前5天的价格数据，为540元，3.8折。</li></ul><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">index,departdate,departtime,arrivetime,crawldate,flightno,sharedflightno,departcity,departtower,arrivecity,arrivetower,discount,price</span><br><span class="line">0,2017-01-01,07:30:00,09:55:00,2016-12-29,CA4305,,CTU,T2,CAN,,71,1020</span><br><span class="line">1,2017-01-01,07:30:00,09:55:00,2016-12-27,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">2,2017-01-01,07:30:00,09:55:00,2016-12-31,CA4305,,CTU,T2,CAN,,68,970</span><br><span class="line">3,2017-01-01,07:30:00,09:55:00,2016-12-26,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">4,2017-01-01,07:30:00,09:55:00,2016-12-30,CA4305,,CTU,T2,CAN,,68,970</span><br><span class="line">5,2017-01-01,07:30:00,09:55:00,2016-12-25,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">6,2017-01-01,07:30:00,09:55:00,2016-12-24,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">7,2017-01-01,07:30:00,09:55:00,2016-12-23,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">8,2017-01-01,07:30:00,09:55:00,2016-12-22,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">9,2017-01-01,07:30:00,09:55:00,2016-12-28,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">10,2017-01-01,07:30:00,09:55:00,2016-12-21,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">11,2017-01-01,07:30:00,09:55:00,2016-12-20,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">12,2017-01-01,07:30:00,09:55:00,2016-12-17,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">13,2017-01-01,07:30:00,09:55:00,2016-12-18,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">14,2017-01-01,07:30:00,09:55:00,2016-12-16,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">15,2017-01-01,07:30:00,09:55:00,2016-12-19,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">16,2017-01-01,07:30:00,09:55:00,2016-12-13,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">17,2017-01-01,07:30:00,09:55:00,2016-12-12,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">18,2017-01-01,07:30:00,09:55:00,2016-12-11,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">19,2017-01-01,07:30:00,09:55:00,2016-12-15,CA4305,,CTU,T2,CAN,,45,640</span><br><span class="line">20,2017-01-01,07:30:00,09:55:00,2016-12-14,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">21,2017-01-01,07:30:00,09:55:00,2016-12-10,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">22,2017-01-01,07:30:00,09:55:00,2016-12-09,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">23,2017-01-01,07:30:00,09:55:00,2016-12-07,CA4305,,CTU,T2,CAN,,30,430</span><br><span class="line">24,2017-01-01,07:30:00,09:55:00,2016-12-08,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">25,2017-01-01,07:30:00,09:55:00,2016-12-06,CA4305,,CTU,T2,CAN,,30,430</span><br><span class="line">26,2017-01-01,07:30:00,09:55:00,2016-12-04,CA4305,,CTU,T2,CAN,,38,550</span><br><span class="line">27,2017-01-01,07:30:00,09:55:00,2016-12-05,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">28,2017-01-01,07:30:00,09:55:00,2016-12-03,CA4305,,CTU,T2,CAN,,38,548</span><br><span class="line">29,2017-01-01,07:30:00,09:55:00,2016-12-02,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">30,2017-01-01,07:30:00,09:55:00,2016-12-01,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">31,2017-01-01,07:30:00,09:55:00,2016-11-30,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">32,2017-01-01,07:30:00,09:55:00,2016-11-29,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">33,2017-01-01,07:30:00,09:55:00,2016-11-27,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">34,2017-01-01,07:30:00,09:55:00,2016-11-26,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">35,2017-01-01,07:30:00,09:55:00,2016-11-25,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">36,2017-01-01,07:30:00,09:55:00,2016-11-28,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">37,2017-01-01,07:30:00,09:55:00,2016-11-23,CA4305,,CTU,T2,CAN,,40,570</span><br><span class="line">38,2017-01-01,07:30:00,09:55:00,2016-11-22,CA4305,,CTU,T2,CAN,,40,570</span><br><span class="line">39,2017-01-01,07:30:00,09:55:00,2016-11-24,CA4305,,CTU,T2,CAN,,38,540</span><br></pre></td></tr></table></figure><ul><li>CA4305航班2017年1月1日至2019年10月1日共计1003天的起飞数据。链接<a href="https://pan.baidu.com/s/12-n3FH6nBB9gRJ201Vb0KA" target="_blank" rel="noopener">https://pan.baidu.com/s/12-n3FH6nBB9gRJ201Vb0KA</a> 提取码请加微信号bcdata获取。以上数据可渲染出此<a href="https://raw.githubusercontent.com/derekhe/aiflygo-intro/master/CA4305.png" target="_blank" rel="noopener">价格图</a>，可参考此文章<a href="http://www.april1985.com/post/2017-11-28-how-to-buy-airfare/">《机票大数据分析，揭示购票的秘密》</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;该数据库包含从2017年1月1日至今，国内2千多条直飞航线的出发前90天内的历史价格信息，具有包含价格历史长、连续性高、密度高、价格数据准确
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>玩遥控车（一）——小时的记忆</title>
+    <link href="http://www.april1985.com/post/2019-10-21-rc-car-1/"/>
+    <id>http://www.april1985.com/post/2019-10-21-rc-car-1/</id>
+    <published>2019-10-21T12:51:00.000Z</published>
+    <updated>2019-10-21T14:07:18.689Z</updated>
+    
+    <content type="html"><![CDATA[<p>四驱小子这个动画片，我想大多数80年代出生的人都有看过，也或多或少的买过那种装电池、一开开关就跑、只能通过转向轮转向的四驱车。我还记得小时候玩这种四驱车的时候，买过很多的干电池，学会了如何给干电池充电（你没看错，确实是可以的），还去外面找卖烟的叔叔阿姨给我烟盒的包装，用来粘贴轨道。当然这些烟盒实在是太软了，精度也差，稍微跑快一点就卡死要不就撞坏。小时候家里没多少钱，有钱买几个合金的车模都要争取很久去了。</p><p><img src="/images/2019/10-21/si-qu-xiao-zi.jpg" alt="四驱车"></p><p>后来过生日舅妈花了300多块钱给我买了一个遥控车，可以前进和后退但不能转向。如果需要转向的话，需要后退，然后带动轮子就能转向了。想想90年代，300多块钱的遥控车还真是贵啊。印象中好像还有大脚车，遥控的可以发射子弹的BB坦克。以前在成都游乐园里面，有那种开船的。当时交通很不发达，从西边到那里去玩一次单边坐车要接近两个小时，但玩个10多分钟这样的遥控船也是相当相当的开心。不记得什么时候，爸爸给我用木头做过一个船，就是把比较大的木头做成船型，中间开一个槽然后装上一个小电机。电机后面再装一个用一个细铁棍和一片易拉罐剪成的螺旋桨，接上四个干电池和很长的线。至于前进和后退，不知道是怎么控制的了，我猜可能是三个触点，前进的时候和倒退的时候正负极相反即可。这艘船在爸爸单位上的假山下面的池子里面开过，在河里面开过，现在想起还回味无穷。</p><p>后来五年级以后，有了电脑作伴，玩这些玩具就少多了，好像也就没有怎么买过遥控的玩具了。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;四驱小子这个动画片，我想大多数80年代出生的人都有看过，也或多或少的买过那种装电池、一开开关就跑、只能通过转向轮转向的四驱车。我还记得小时候玩这种四驱车的时候，买过很多的干电池，学会了如何给干电池充电（你没看错，确实是可以的），还去外面找卖烟的叔叔阿姨给我烟盒的包装，用来粘
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>产品运营从开始到失败</title>
@@ -793,33 +835,6 @@
   </entry>
   
   <entry>
-    <title>春节</title>
-    <link href="http://www.april1985.com/post/2015-02-24-spring-festival/"/>
-    <id>http://www.april1985.com/post/2015-02-24-spring-festival/</id>
-    <published>2015-02-23T19:00:00.000Z</published>
-    <updated>2019-09-01T13:55:00.629Z</updated>
-    
-    <content type="html"><![CDATA[<p>今天初六，最后一天的休假，感觉时间过得很快。自从结婚以后每年都要回广州一两次，春节是必不可少的。爸妈也非常愿意我回广州，他们好出去旅游。在小的时候，春节走亲戚是必不可少的环节，年三十在外婆外公家吃一顿，大年初二在我家弄一大家子人的吃的，大人打牌，小孩哭闹。然而这些都是小时候的记忆了，随着爷爷奶奶辈的老人越来越少，工作压力的增加，过年的节奏已经变成了出去旅游的好时光了。春节从成都回广州过年机票便宜，提早一点买的话能买到很便宜的机票。在广州这边，老一辈的人们还保持着过年走亲戚的传统，年轻人可以稍微做个短途旅行，让春节不再那么闷。</p><h2 id="初到香港"><a href="#初到香港" class="headerlink" title="初到香港"></a>初到香港</h2><p>今年去了趟迪士尼，带着小孩去，算是一趟很折腾的旅行。网上订的香港迪士尼的票，住香港九龙酒店两晚。从从化出发到深圳的班车有到罗湖口岸的班车，比较方便，两个半小时一趟。罗湖口岸过关很方便，比起之前的皇岗方便很多，人少，过去以后直接买个八达通坐火车到红磡。火车大概要40多分钟的样子到达红磡。到达红磡后到酒店还需要打个车，35港币左右。在这些地方坐出租车那是一个心跳啊，表跳的那是一个开心。</p><p><img src="/images/2015/02/luohu_station.jpg" alt="罗湖火车站"><br><img src="/images/2015/02/hotel.png" alt="酒店"><br><img src="/images/2015/02/hotel.jpg" alt="酒店内景"></p><p>九龙酒店就在地铁的上面，楼下购物啥的也挺方便，晚上找吃的也不是很难，最好先做好功课，在隔壁街的小道里面。房间也不大，虽然选的是大床房，但也只有大概1.4m左右，单床的是0.9m，真是寸土寸金。这里距离维多利亚港也是非常的近，只不过天公不作美，雾蒙蒙的啥都看不见，晚上就没有去海边了。在旁边的商场转了一圈，各种英文看不懂，搞得老婆化妆品也没买成。丁仔一路上都吵着要买玩具，就去旁边的一个玩具反斗城，转了好久，终于选定了自己喜欢的乐高消防车。弄得妈妈都没有时间购物了。</p><p><img src="/images/2015/02/building_lego.jpg" alt="消防队组装中"><br><img src="/images/2015/02/lego.JPG" alt="完工"></p><p>晚上出去吃了个捞面，贵的要死又不好吃。完了去逛了个超市。感觉香港这里和澳洲看起来差不多，超市啥的布局，习惯都比较像，可能是因为同样是英殖民地的缘故吧。</p><p>晚上美美的睡了一觉，开始第二天的折腾。</p><h2 id="迪士尼第一天"><a href="#迪士尼第一天" class="headerlink" title="迪士尼第一天"></a>迪士尼第一天</h2><p>早上拖拖拉拉的，坐地铁到迪士尼乐园花费40分钟左右，还是很快了。迪士尼的专线比较有意思，列车是定做的，上面有米奇的头像的窗户和各种摆设品。</p><p><img src="/images/2015/02/to_disney.png" alt="坐车到迪士尼"><br><img src="/images/2015/02/20150216_104025.jpg" alt><br><img src="/images/2015/02/20150216_104145.jpg" alt><br><img src="/images/2015/02/20150216_104244.jpg" alt></p><p>到达迪士尼，第一个游玩点就是迪士尼的观光火车。丁仔这个车神，喜欢火车、汽车不得了，只好排队来坐火车。基本上迪士尼里面的排队都是半个小时以上，甚至一个小时都是有可能的。刚开场我还不怎么相信排队处写的时间，但经过实践我还真的信了。迪士尼的排队，往往在外面看起来不长，哪知道进去屋子里面以后还有非常长的一长截，耐心不好的人真的是会被弄崩溃。老婆说她以前来人都不多，或许是因为寒暑假的缘故吧。</p><p><img src="/images/2015/02/IMG_7848.JPG" alt="迪士尼特色火车"><br><img src="/images/2015/02/IMG_7849.JPG" alt="迪士尼特色火车"><br><img src="/images/2015/02/IMG_7850.JPG" alt="迪士尼特色火车"><br><img src="/images/2015/02/IMG_7852.JPG" alt="迪士尼特色火车"></p><p>火车绕场一圈，中途停靠一个站，然后再回来。有些人喜欢转一圈把景色看完再多走半圈下来，所以每次轮到这个站点的时候，人都不下来，等的人就只有干捉急了。服务员也没办法，也不能要求他们强行下车。最终在等了三四次以后，终于等到了座位，而此时已经过了一个多小时了，到了中午吃饭时间。</p><p>中午吃饭，价格很贵啊，108港元，这两天吃了四顿饭就用了800多港元。千万别点面，看起来就不好吃，点了炒饭还好，送可乐。吃饭的时候，顺便去看了一下飞天巡游。只是去的时间有点晚，所以只能排到后面。这个巡游还真的很好看，第二天老婆又带着丁仔去看了一次，站到前面看起来感觉相当不错。</p><p>我觉得最好玩的项目是小小世界，排队40多分钟，非常值得。进去后坐到小船里面，左右两边一边有世界上各种不同地域的小小人用不同的语言唱小小世界。丁仔的眼睛都用不过来了，完了以后还不肯下车。</p><p><img src="/images/2015/02/IMG_7866.JPG" alt="小小世界"><br>视频：<a href="http://pan.baidu.com/s/1gdkZMd9" target="_blank" rel="noopener">http://pan.baidu.com/s/1gdkZMd9</a></p><p>带着小孩子真的是不容易，抱一会儿又不舒服，又要下来到处乱跑，还好丁仔的耐心很好，不会说很烦躁。</p><p><img src="/images/2015/02/IMG_7882.JPG" alt="一边玩一边等"><br><img src="/images/2015/02/IMG_7883.JPG" alt><br><img src="/images/2015/02/IMG_7890.JPG" alt="戴上眼镜很帅"></p><p>看米奇幻想曲。丁丁第一次看3D的电影，加上眼镜太大不好戴，在看唐老鸭坐飞毯的时候觉得头晕。最后还是坚持看完了，最后结束的场景特别好玩，唐老鸭从屏幕飞出来撞到墙上，把丁仔笑惨了。</p><p>还有一些大人才能玩的玩具我们没有太多的玩，这样丁仔就只有等我们很无聊。<br><img src="/images/2015/02/IMG_7896.JPG" alt="迷离大宅，丁仔睡觉，我和老婆轮流玩"><br><img src="/images/2015/02/IMG_7910.JPG" alt="看起来很刺激的灰熊山过山车"><br><img src="/images/2015/02/IMG_7911.JPG" alt="现场演绎"><br><img src="/images/2015/02/IMG_7912.JPG" alt="泰山，我们没有去"></p><p>去玩森林河流之旅，我们坐的英文版的，看起来要比普通话和粤语的队伍短很多，要快一些。<br><img src="/images/2015/02/IMG_7914.JPG" alt="坐在引擎旁边船，坐在引擎旁边，轰隆轰隆的很带感"></p><p>游玩船等待坐赛车，这个项目太折腾人了，等待75分钟以上。实际等待90分钟左右。我都差点放弃了这个项目。这个赛车是有轨道的赛车，在直线的一些地方可以自己转一点方向，对我来说实际吸引力不大。但丁仔太喜欢了，妈妈和丁丁坐一个车，妈妈踩油门，丁仔打方向。</p><p><img src="/images/2015/02/IMG_7921.JPG" alt="等待坐赛车"><br><img src="/images/2015/02/IMG_7922.JPG" alt="我来咯"><br><img src="/images/2015/02/IMG_7924.JPG" alt="等待"><br><img src="/images/2015/02/IMG_7925.JPG" alt="我就是不下来"></p><p>开完车，夜幕降临，赶紧去排剧场看舞台剧。只可惜丁仔怕太吵的环境，还没看就和妈妈出去吃饭去了。<br><img src="/images/2015/02/IMG_7932.JPG" alt="飞天巡演晚间场，没去看"><br><img src="/images/2015/02/IMG_7933.JPG" alt="夜晚"><br><img src="/images/2015/02/IMG_7934.JPG" alt="夜晚"><br><img src="/images/2015/02/IMG_7937.JPG" alt="夜晚"></p><p>晚上看了烟火，仔仔一直闹买玩具，脾气还挺大的，好吧，买了玩具回家。最后不得不赞一下迪士尼的地铁，车很快，烟花完了以后很多人上车，但是不算太拥挤，乘坐地铁很快的回到了酒店。</p><h2 id="迪士尼第二天"><a href="#迪士尼第二天" class="headerlink" title="迪士尼第二天"></a>迪士尼第二天</h2><p>迪士尼周二早上9：30开门，到了已经10点钟了，还好人不算多。由于有些项目可以预约，这样就可以安排时间插队。老婆先去预约了飞跃太空山项目，我带丁丁去玩巴西光年打枪。这个小子还真的胆小，玩了一半说怕。。。。无语中。然后去史迪仔，没啥意思，丁仔还没进就闹着要走，肚子饿<del>~</del><br><img src="/images/2015/02/20150217_102621.jpg" alt="巴西光年"></p><p>预约的飞越太空山项目到点了，这个项目非常刺激，是我玩过的过山车中最好玩的一个。在黑漆漆的“宇宙”中上下飞梭，永远不知道下一个是上坡还是急速下坠，是急速转弯还是一马平川，那感觉，只能亲自去体会一下了。丁仔由于年龄不到不能玩这个项目，我和老婆换着玩，丁丁就在外面等。很乖：）<br><img src="/images/2015/02/IMG_7955.JPG" alt="飞车"></p><p>中途和一个演魔术的老人相遇，赶紧照个相留念：）<br><img src="/images/2015/02/IMG_7956.JPG" alt="和魔术老人合影"><br><img src="/images/2015/02/IMG_7958.JPG" alt="没有坐小飞象还是可以合影的嘛，开心"></p><p>然后去排了对，看了一下维尼熊，但丁仔不怎么喜欢<br><img src="/images/2015/02/IMG_7968.JPG" alt="维尼熊，丁仔不怎么喜欢"><br>视频：<a href="http://pan.baidu.com/s/1c0Emg5i" target="_blank" rel="noopener">http://pan.baidu.com/s/1c0Emg5i</a></p><p><img src="/images/2015/02/IMG_7975.JPG" alt="卖气球咯，120块钱一个。。。贼贵"><br><img src="/images/2015/02/IMG_7984.JPG" alt="和公主合影，我有点不适应呢。。。"></p><p>中午吃完饭就就出发回广州了，折腾了两天，将人的耐心、体力发挥到了极限。如果下一次还来，就别选人多的时候了。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;今天初六，最后一天的休假，感觉时间过得很快。自从结婚以后每年都要回广州一两次，春节是必不可少的。爸妈也非常愿意我回广州，他们好出去旅游。在小的时候，春节走亲戚是必不可少的环节，年三十在外婆外公家吃一顿，大年初二在我家弄一大家子人的吃的，大人打牌，小孩哭闹。然而这些都是小时候
-      
-    
-    </summary>
-    
-    
-      <category term="旅游" scheme="http://www.april1985.com/tags/%E6%97%85%E6%B8%B8/"/>
-    
-      <category term="春节" scheme="http://www.april1985.com/tags/%E6%98%A5%E8%8A%82/"/>
-    
-      <category term="香港" scheme="http://www.april1985.com/tags/%E9%A6%99%E6%B8%AF/"/>
-    
-  </entry>
-  
-  <entry>
     <title>3D打印及技巧</title>
     <link href="http://www.april1985.com/post/2015-03-07-3d-printing/"/>
     <id>http://www.april1985.com/post/2015-03-07-3d-printing/</id>
@@ -843,6 +858,33 @@
       <category term="3D打印技巧" scheme="http://www.april1985.com/tags/3D%E6%89%93%E5%8D%B0%E6%8A%80%E5%B7%A7/"/>
     
       <category term="翘边" scheme="http://www.april1985.com/tags/%E7%BF%98%E8%BE%B9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>春节</title>
+    <link href="http://www.april1985.com/post/2015-02-24-spring-festival/"/>
+    <id>http://www.april1985.com/post/2015-02-24-spring-festival/</id>
+    <published>2015-02-23T19:00:00.000Z</published>
+    <updated>2019-09-01T13:55:00.629Z</updated>
+    
+    <content type="html"><![CDATA[<p>今天初六，最后一天的休假，感觉时间过得很快。自从结婚以后每年都要回广州一两次，春节是必不可少的。爸妈也非常愿意我回广州，他们好出去旅游。在小的时候，春节走亲戚是必不可少的环节，年三十在外婆外公家吃一顿，大年初二在我家弄一大家子人的吃的，大人打牌，小孩哭闹。然而这些都是小时候的记忆了，随着爷爷奶奶辈的老人越来越少，工作压力的增加，过年的节奏已经变成了出去旅游的好时光了。春节从成都回广州过年机票便宜，提早一点买的话能买到很便宜的机票。在广州这边，老一辈的人们还保持着过年走亲戚的传统，年轻人可以稍微做个短途旅行，让春节不再那么闷。</p><h2 id="初到香港"><a href="#初到香港" class="headerlink" title="初到香港"></a>初到香港</h2><p>今年去了趟迪士尼，带着小孩去，算是一趟很折腾的旅行。网上订的香港迪士尼的票，住香港九龙酒店两晚。从从化出发到深圳的班车有到罗湖口岸的班车，比较方便，两个半小时一趟。罗湖口岸过关很方便，比起之前的皇岗方便很多，人少，过去以后直接买个八达通坐火车到红磡。火车大概要40多分钟的样子到达红磡。到达红磡后到酒店还需要打个车，35港币左右。在这些地方坐出租车那是一个心跳啊，表跳的那是一个开心。</p><p><img src="/images/2015/02/luohu_station.jpg" alt="罗湖火车站"><br><img src="/images/2015/02/hotel.png" alt="酒店"><br><img src="/images/2015/02/hotel.jpg" alt="酒店内景"></p><p>九龙酒店就在地铁的上面，楼下购物啥的也挺方便，晚上找吃的也不是很难，最好先做好功课，在隔壁街的小道里面。房间也不大，虽然选的是大床房，但也只有大概1.4m左右，单床的是0.9m，真是寸土寸金。这里距离维多利亚港也是非常的近，只不过天公不作美，雾蒙蒙的啥都看不见，晚上就没有去海边了。在旁边的商场转了一圈，各种英文看不懂，搞得老婆化妆品也没买成。丁仔一路上都吵着要买玩具，就去旁边的一个玩具反斗城，转了好久，终于选定了自己喜欢的乐高消防车。弄得妈妈都没有时间购物了。</p><p><img src="/images/2015/02/building_lego.jpg" alt="消防队组装中"><br><img src="/images/2015/02/lego.JPG" alt="完工"></p><p>晚上出去吃了个捞面，贵的要死又不好吃。完了去逛了个超市。感觉香港这里和澳洲看起来差不多，超市啥的布局，习惯都比较像，可能是因为同样是英殖民地的缘故吧。</p><p>晚上美美的睡了一觉，开始第二天的折腾。</p><h2 id="迪士尼第一天"><a href="#迪士尼第一天" class="headerlink" title="迪士尼第一天"></a>迪士尼第一天</h2><p>早上拖拖拉拉的，坐地铁到迪士尼乐园花费40分钟左右，还是很快了。迪士尼的专线比较有意思，列车是定做的，上面有米奇的头像的窗户和各种摆设品。</p><p><img src="/images/2015/02/to_disney.png" alt="坐车到迪士尼"><br><img src="/images/2015/02/20150216_104025.jpg" alt><br><img src="/images/2015/02/20150216_104145.jpg" alt><br><img src="/images/2015/02/20150216_104244.jpg" alt></p><p>到达迪士尼，第一个游玩点就是迪士尼的观光火车。丁仔这个车神，喜欢火车、汽车不得了，只好排队来坐火车。基本上迪士尼里面的排队都是半个小时以上，甚至一个小时都是有可能的。刚开场我还不怎么相信排队处写的时间，但经过实践我还真的信了。迪士尼的排队，往往在外面看起来不长，哪知道进去屋子里面以后还有非常长的一长截，耐心不好的人真的是会被弄崩溃。老婆说她以前来人都不多，或许是因为寒暑假的缘故吧。</p><p><img src="/images/2015/02/IMG_7848.JPG" alt="迪士尼特色火车"><br><img src="/images/2015/02/IMG_7849.JPG" alt="迪士尼特色火车"><br><img src="/images/2015/02/IMG_7850.JPG" alt="迪士尼特色火车"><br><img src="/images/2015/02/IMG_7852.JPG" alt="迪士尼特色火车"></p><p>火车绕场一圈，中途停靠一个站，然后再回来。有些人喜欢转一圈把景色看完再多走半圈下来，所以每次轮到这个站点的时候，人都不下来，等的人就只有干捉急了。服务员也没办法，也不能要求他们强行下车。最终在等了三四次以后，终于等到了座位，而此时已经过了一个多小时了，到了中午吃饭时间。</p><p>中午吃饭，价格很贵啊，108港元，这两天吃了四顿饭就用了800多港元。千万别点面，看起来就不好吃，点了炒饭还好，送可乐。吃饭的时候，顺便去看了一下飞天巡游。只是去的时间有点晚，所以只能排到后面。这个巡游还真的很好看，第二天老婆又带着丁仔去看了一次，站到前面看起来感觉相当不错。</p><p>我觉得最好玩的项目是小小世界，排队40多分钟，非常值得。进去后坐到小船里面，左右两边一边有世界上各种不同地域的小小人用不同的语言唱小小世界。丁仔的眼睛都用不过来了，完了以后还不肯下车。</p><p><img src="/images/2015/02/IMG_7866.JPG" alt="小小世界"><br>视频：<a href="http://pan.baidu.com/s/1gdkZMd9" target="_blank" rel="noopener">http://pan.baidu.com/s/1gdkZMd9</a></p><p>带着小孩子真的是不容易，抱一会儿又不舒服，又要下来到处乱跑，还好丁仔的耐心很好，不会说很烦躁。</p><p><img src="/images/2015/02/IMG_7882.JPG" alt="一边玩一边等"><br><img src="/images/2015/02/IMG_7883.JPG" alt><br><img src="/images/2015/02/IMG_7890.JPG" alt="戴上眼镜很帅"></p><p>看米奇幻想曲。丁丁第一次看3D的电影，加上眼镜太大不好戴，在看唐老鸭坐飞毯的时候觉得头晕。最后还是坚持看完了，最后结束的场景特别好玩，唐老鸭从屏幕飞出来撞到墙上，把丁仔笑惨了。</p><p>还有一些大人才能玩的玩具我们没有太多的玩，这样丁仔就只有等我们很无聊。<br><img src="/images/2015/02/IMG_7896.JPG" alt="迷离大宅，丁仔睡觉，我和老婆轮流玩"><br><img src="/images/2015/02/IMG_7910.JPG" alt="看起来很刺激的灰熊山过山车"><br><img src="/images/2015/02/IMG_7911.JPG" alt="现场演绎"><br><img src="/images/2015/02/IMG_7912.JPG" alt="泰山，我们没有去"></p><p>去玩森林河流之旅，我们坐的英文版的，看起来要比普通话和粤语的队伍短很多，要快一些。<br><img src="/images/2015/02/IMG_7914.JPG" alt="坐在引擎旁边船，坐在引擎旁边，轰隆轰隆的很带感"></p><p>游玩船等待坐赛车，这个项目太折腾人了，等待75分钟以上。实际等待90分钟左右。我都差点放弃了这个项目。这个赛车是有轨道的赛车，在直线的一些地方可以自己转一点方向，对我来说实际吸引力不大。但丁仔太喜欢了，妈妈和丁丁坐一个车，妈妈踩油门，丁仔打方向。</p><p><img src="/images/2015/02/IMG_7921.JPG" alt="等待坐赛车"><br><img src="/images/2015/02/IMG_7922.JPG" alt="我来咯"><br><img src="/images/2015/02/IMG_7924.JPG" alt="等待"><br><img src="/images/2015/02/IMG_7925.JPG" alt="我就是不下来"></p><p>开完车，夜幕降临，赶紧去排剧场看舞台剧。只可惜丁仔怕太吵的环境，还没看就和妈妈出去吃饭去了。<br><img src="/images/2015/02/IMG_7932.JPG" alt="飞天巡演晚间场，没去看"><br><img src="/images/2015/02/IMG_7933.JPG" alt="夜晚"><br><img src="/images/2015/02/IMG_7934.JPG" alt="夜晚"><br><img src="/images/2015/02/IMG_7937.JPG" alt="夜晚"></p><p>晚上看了烟火，仔仔一直闹买玩具，脾气还挺大的，好吧，买了玩具回家。最后不得不赞一下迪士尼的地铁，车很快，烟花完了以后很多人上车，但是不算太拥挤，乘坐地铁很快的回到了酒店。</p><h2 id="迪士尼第二天"><a href="#迪士尼第二天" class="headerlink" title="迪士尼第二天"></a>迪士尼第二天</h2><p>迪士尼周二早上9：30开门，到了已经10点钟了，还好人不算多。由于有些项目可以预约，这样就可以安排时间插队。老婆先去预约了飞跃太空山项目，我带丁丁去玩巴西光年打枪。这个小子还真的胆小，玩了一半说怕。。。。无语中。然后去史迪仔，没啥意思，丁仔还没进就闹着要走，肚子饿<del>~</del><br><img src="/images/2015/02/20150217_102621.jpg" alt="巴西光年"></p><p>预约的飞越太空山项目到点了，这个项目非常刺激，是我玩过的过山车中最好玩的一个。在黑漆漆的“宇宙”中上下飞梭，永远不知道下一个是上坡还是急速下坠，是急速转弯还是一马平川，那感觉，只能亲自去体会一下了。丁仔由于年龄不到不能玩这个项目，我和老婆换着玩，丁丁就在外面等。很乖：）<br><img src="/images/2015/02/IMG_7955.JPG" alt="飞车"></p><p>中途和一个演魔术的老人相遇，赶紧照个相留念：）<br><img src="/images/2015/02/IMG_7956.JPG" alt="和魔术老人合影"><br><img src="/images/2015/02/IMG_7958.JPG" alt="没有坐小飞象还是可以合影的嘛，开心"></p><p>然后去排了对，看了一下维尼熊，但丁仔不怎么喜欢<br><img src="/images/2015/02/IMG_7968.JPG" alt="维尼熊，丁仔不怎么喜欢"><br>视频：<a href="http://pan.baidu.com/s/1c0Emg5i" target="_blank" rel="noopener">http://pan.baidu.com/s/1c0Emg5i</a></p><p><img src="/images/2015/02/IMG_7975.JPG" alt="卖气球咯，120块钱一个。。。贼贵"><br><img src="/images/2015/02/IMG_7984.JPG" alt="和公主合影，我有点不适应呢。。。"></p><p>中午吃完饭就就出发回广州了，折腾了两天，将人的耐心、体力发挥到了极限。如果下一次还来，就别选人多的时候了。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;今天初六，最后一天的休假，感觉时间过得很快。自从结婚以后每年都要回广州一两次，春节是必不可少的。爸妈也非常愿意我回广州，他们好出去旅游。在小的时候，春节走亲戚是必不可少的环节，年三十在外婆外公家吃一顿，大年初二在我家弄一大家子人的吃的，大人打牌，小孩哭闹。然而这些都是小时候
+      
+    
+    </summary>
+    
+    
+      <category term="旅游" scheme="http://www.april1985.com/tags/%E6%97%85%E6%B8%B8/"/>
+    
+      <category term="春节" scheme="http://www.april1985.com/tags/%E6%98%A5%E8%8A%82/"/>
+    
+      <category term="香港" scheme="http://www.april1985.com/tags/%E9%A6%99%E6%B8%AF/"/>
     
   </entry>
   
@@ -2409,9 +2451,9 @@
     
       <category term="bash" scheme="http://www.april1985.com/tags/bash/"/>
     
-      <category term="cygwin" scheme="http://www.april1985.com/tags/cygwin/"/>
-    
       <category term="shell" scheme="http://www.april1985.com/tags/shell/"/>
+    
+      <category term="cygwin" scheme="http://www.april1985.com/tags/cygwin/"/>
     
       <category term="备份" scheme="http://www.april1985.com/tags/%E5%A4%87%E4%BB%BD/"/>
     
@@ -3100,8 +3142,6 @@
       <category term="生活" scheme="http://www.april1985.com/categories/%E7%94%9F%E6%B4%BB/"/>
     
     
-      <category term="键盘" scheme="http://www.april1985.com/tags/%E9%94%AE%E7%9B%98/"/>
-    
       <category term="拆卸" scheme="http://www.april1985.com/tags/%E6%8B%86%E5%8D%B8/"/>
     
       <category term="明基" scheme="http://www.april1985.com/tags/%E6%98%8E%E5%9F%BA/"/>
@@ -3109,6 +3149,8 @@
       <category term="海湾" scheme="http://www.april1985.com/tags/%E6%B5%B7%E6%B9%BE/"/>
     
       <category term="海贝" scheme="http://www.april1985.com/tags/%E6%B5%B7%E8%B4%9D/"/>
+    
+      <category term="键盘" scheme="http://www.april1985.com/tags/%E9%94%AE%E7%9B%98/"/>
     
   </entry>
   
@@ -3164,13 +3206,13 @@
     
       <category term="u150" scheme="http://www.april1985.com/tags/u150/"/>
     
+      <category term="键盘" scheme="http://www.april1985.com/tags/%E9%94%AE%E7%9B%98/"/>
+    
       <category term="上网本" scheme="http://www.april1985.com/tags/%E4%B8%8A%E7%BD%91%E6%9C%AC/"/>
     
       <category term="戴尔" scheme="http://www.april1985.com/tags/%E6%88%B4%E5%B0%94/"/>
     
       <category term="联想" scheme="http://www.april1985.com/tags/%E8%81%94%E6%83%B3/"/>
-    
-      <category term="键盘" scheme="http://www.april1985.com/tags/%E9%94%AE%E7%9B%98/"/>
     
   </entry>
   
@@ -4712,9 +4754,9 @@
       <category term="旅游" scheme="http://www.april1985.com/categories/%E6%97%85%E6%B8%B8/"/>
     
     
-      <category term="兴文石海" scheme="http://www.april1985.com/tags/%E5%85%B4%E6%96%87%E7%9F%B3%E6%B5%B7/"/>
-    
       <category term="蜀南竹海" scheme="http://www.april1985.com/tags/%E8%9C%80%E5%8D%97%E7%AB%B9%E6%B5%B7/"/>
+    
+      <category term="兴文石海" scheme="http://www.april1985.com/tags/%E5%85%B4%E6%96%87%E7%9F%B3%E6%B5%B7/"/>
     
   </entry>
   
@@ -6302,9 +6344,9 @@
       <category term="生活" scheme="http://www.april1985.com/categories/%E7%94%9F%E6%B4%BB/"/>
     
     
-      <category term="class" scheme="http://www.april1985.com/tags/class/"/>
-    
       <category term="hate" scheme="http://www.april1985.com/tags/hate/"/>
+    
+      <category term="class" scheme="http://www.april1985.com/tags/class/"/>
     
       <category term="miss" scheme="http://www.april1985.com/tags/miss/"/>
     
@@ -14857,9 +14899,9 @@
       <category term="其他" scheme="http://www.april1985.com/categories/%E5%85%B6%E4%BB%96/"/>
     
     
-      <category term="12232" scheme="http://www.april1985.com/tags/12232/"/>
-    
       <category term="单片机" scheme="http://www.april1985.com/tags/%E5%8D%95%E7%89%87%E6%9C%BA/"/>
+    
+      <category term="12232" scheme="http://www.april1985.com/tags/12232/"/>
     
   </entry>
   

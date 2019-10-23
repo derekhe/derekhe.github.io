@@ -22,7 +22,18 @@
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(bp, s);
   })();
-  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2008-08-08-gpu-texture-fill-rate-test/" class="post-title-link">测试GPU的材质填充率</a></h2><div class="post-info">Aug 8, 2008</div><div class="post-content"><p>体渲染最重要的一个优化就是减少GPU的采样工作。测试GPU的材质填充率能够指导我们的工作。要知道为什么GPU在800*600的环境中只能达到12FPS么？这就要看GPU每秒钟采样的次数啦。</p>
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2008-08-28-august-28/" class="post-title-link">8月28</a></h2><div class="post-info">Aug 28, 2008</div><div class="post-content"><p>晃眼就到了8月底了，很不负责的我由于太忙了也没有时间更新日志。今天终于有一些闲暇时间来写写近况。</p>
+<p>暑假也就这样过去了，也算是出旅游了一圈，算是完成了今年年初制定的计划。和以前一样的习惯，回到家了以后就成了宅男，每天早上起来就是中午了，晚上要一两点才睡觉。一天天过去，总是觉得一天很累的样子，就像睡觉，我想可能和生活习惯有一定关系。前天回到学校的，晚上老板一个电话说是叫我第二天帮忙修个电脑。最后还是到学校好了，顺便晚上演示一下3D立体显示的效果。</p>
+<p>对于编程这方面，8月也没有过多的做什么东西。3D立体显示花了120块钱，加上以前的一个老CRT显示器就成功了。用了一天的时间就搞出来了，效果令人满意。8月更多的时间用在了试用各种软件开发包，看现在最新的一些技术，期待能够将其合成到一起做一个产品，走在别人的前面。</p>
+<p>最近也在使用Linux操作系统了，习惯了以后反而不太怎么用Windows了。由于前段时间经常内存告急，所以前天去多买了1G的内存，加起来就4G内存了。可怜的Windows XP竟然只能识别到3.25G，即便加上了PAE选项那0.75G还是没办法找回来，解决方案使用2003 Server或者VISTA很是郁闷。而Linux系统就不一样了，我用的是Ubuntu 8.04，根据<a href="http://ubuntuforums.org/showthread.php?t=855511" target="_blank" rel="noopener">这篇文章所述</a>进行内核重新编译，简单的修改一个内核选项，就可以支持4G以上内存了。之前我还试过用Ubuntu的Server版的内核，可以正确是识别到4G，但是NVIDIA的显卡驱动又不支持这个内核，只好作罢。重新编译内核用了半个多小时时间，还是比较久的，我在想编译的时候能不能像make以上加上-j的参数以后进行多线程编译呢？以后升级内核的时候再管吧。还是感觉Linux系统在这方便占据了很大的优势。</p>
+<p>近期也看过CUDA的一些东西，总的来说ＣＵＤＡ对于我的吸引力还是比较大的，写过几个小程序以后基本上知道了CUDA编程是怎么回事了。我还在想做体渲染用CUDA能不能带来速度上的进一步提高？基于Shader的图形方式的编程已经让Texture Unit不堪重负，如果从CUDA的Global Memory里面取体数据，用Stream Processor来计算又能不能释放Texture Unit的能力从而得到更好的速度呢？还是需要实验才能知道，而且算法一定还比较麻烦，要设计到如何有效的从Global Memory里面提取数据然后放到Shared Memory来进行数据缓冲～～但目前我还没有这个打算做下去，目前的显示的速度已经够用了。</p>
+<p>基于CUDA的NVIDIA的物理驱动也能够正常运行了，但流体模拟的速度还很缓慢，看来还是需要另一张显卡进行加速。NVIDA的算盘还是挺牛的，没了物理卡，多了显卡装的物理卡。我倒是在想，以后的游戏AI、物理甚至音频计算都到显卡上去了，CPU拿来干嘛么？到时候全部计算都抗到GPU上面了，CPU闲死，GPU累死，反而卡卡卡。再看啦，以后我的项目也可能要用到软物体的模拟的，期待PhysX进一步强大，多多益善～</p>
+<p>Vmware Workstation 6.5的RC版本已经发布了，说明已经离正式版很近了。其实Vmware更新一贯是很快的，这次的RC版本提供了增强3D显示的支持。据测试已经能够很好的支持Shader Model 2.0了。我虚拟机里面分配了1.5G内存给虚拟机，将其VESA驱动装好，装了3DMARK 05 1.3版本，测试成绩是2700分左右，基本上达到了6600的水平。然后兴奋的试了试战地2142，竟然能够完美的工作！！最高特效下速度能够达到真实显卡的1／3左右，当然人多的复杂场景帧数会降到15FPS一下，就没有可玩性了。在最低画质的情况下还是能够基本流畅运行，算是一个很大的进不了。</p>
+<p>当然我的说完美并不是真正的完美，而是有BUG的完美。BUG是如果没有配置好虚拟机的显示器为使用本机设置，那么到选择重生点的界面时就鼠标就是乱跑的。第二个BUG堪称完美，VESA驱动不支持FOG，也就是雾效。想雾效效果一直以来都是游戏里面最重要的元素，以来是增加了逼真度，而来是减少了显卡渲染的量，以至于2000年左右的时候，很多游戏里面的雾效都达到了夸张的效果，记忆里面那款“猎杀恐龙”你的可是距离就不超过10米～～当然，计算雾效还是需要显卡计算，以前可以固定管线进行计算，而后来则可以使用Shader进行更高级的雾效。也不清楚为什么战地2142里面雾效果没了，驱动没有做雾效还是2142使用的固定管弦的雾处理，倒是雾效在3DMARK05里面是正常的。呵呵，没有了雾效，自然战地2142的狙击手就能够看得更清出了，画面和作弊器没有区别，唯一的好处就是目前不会被反作弊系统踢出来。</p>
+<p>VMWARE的UNITY模式也好算是能够正常运行了，只是速度确实太慢了，托窗口都不能流畅拖动。原理我想可能就是在后太有一个抓屏的软件，然后传到前台窗体里面，将图贴上去就可以了。期待正式版能够进一步完善，加强速度。呵呵。</p>
+<p>好玩的东西都玩玩了。接下来的任务还是一样的繁重，只是回到了学校，又恢复了基本正常的生活规律，人也没那么恼火了。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2008-08-14-ubuntu-more-and-more-fun/" class="post-title-link">Ubuntu 越来越好玩～</a></h2><div class="post-info">Aug 14, 2008</div><div class="post-content"><p>这些天学习VTK顺便研究一下Ubuntu。抱着本看没用，还是要实际用起来才知道。为了解决显卡声卡的问题还是学了不少东西，然后编译什么的。为了支付淘宝的费用，最后费了多大功夫装了个IE6，最后把钱给了，还可以浏览QQ空间。最后试了试qq2008，竟然可以在wine的支持下很好的运行～～～最牛的竟然QQ2008的截图功能能够很正常的使用，太强了～～继续探索中～～</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2008-08-08-gpu-texture-fill-rate-test/" class="post-title-link">测试GPU的材质填充率</a></h2><div class="post-info">Aug 8, 2008</div><div class="post-content"><p>体渲染最重要的一个优化就是减少GPU的采样工作。测试GPU的材质填充率能够指导我们的工作。要知道为什么GPU在800*600的环境中只能达到12FPS么？这就要看GPU每秒钟采样的次数啦。</p>
 <p>我写了一个简单的ＯＳＧ程序，用来测试采样次数：[download id=”3”]</p>
 <p>程序原理很简单，分几步：创建窗口-&gt;生成和设置纹理-&gt;载入SHADER-&gt;渲染。具体如何做要看程序里面啦，这里就不再贴出来了。</p>
 <p>直接说最后的测试的结果了。我的8800GTS(G80)官方资料说材质填充率能够达到24Billion/Sec，官方资料给的核心频率500Mhz，着色器频率1200Mhz，显存800Mhz。我将我的显卡也按照这个数据进行了降频。</p>
@@ -55,53 +66,4 @@
 <p>回到宾馆，依然心痛，依然回忆，依然放不下，依然恋恋不忘。</p>
 <p>还有再次的相遇么？还能够相见么？</p>
 <p>舍不得</p>
-</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2008-07-17-emei-travel-the-next-day/" class="post-title-link">峨眉游记－第二天</a></h2><div class="post-info">Jul 17, 2008</div><div class="post-content"><p>更多视频请见：<a href="/images/2008-7-12/IMG_0039.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0039.JPG" alt></p>
-<p>图：接引殿</p>
-<p><a href="/images/2008-7-12/IMG_0040.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0040.JPG" alt><br>我在想哟，如果不做缆车，上去８公里，下来８公里，残废了，呵呵。</p>
-<p>做了缆车上去就离金顶不远了。导游在给我们讲述金顶的故事。<br>等介绍完就上去看卧云禅院，以前被毁过，后来重新修建了，还是不错的哟，从远处看雪白的，特别是从金殿后面看上去，金色和雪色融为一体，很是壮观。<br>图：卧云禅院</p>
-<p><a href="/images/2008-7-12/IMG_0044.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0044.JPG" alt></p>
-<p>图：一片雾茫茫</p>
-<p><a href="/images/2008-7-12/IMG_0048.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0048.JPG" alt></p>
-<p>因为上面雾气太大了，普贤的像也看不清楚。听导游说这个佛像６６６吨，铜的，加上手上２００斤纯金的法器，太值钱了……<br>图：铜像下方</p>
-<p><a href="/images/2008-7-12/IMG_0050.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0050.JPG" alt></p>
-<p>铜殿和金殿在阳光下也颇为壮观，只是今天无缘了，雾那么大。还好没有住在上面，住在上面既看不见日出，也遭了好几百的住宿费。其实这里和瓦屋山的一样的气候，当时去瓦屋山的时候人家就说日出不容易看见。铜殿里面确实大部分是铜的，我的天啊，要多少钱哟～～～</p>
-<p>图：雾中看普贤</p>
-<p><a href="/images/2008-7-12/IMG_0053.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0053.JPG" alt><br>图：金顶</p>
-<p><a href="/images/2008-7-12/IMG_0055.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0055.JPG" alt><br>图：金碧辉煌哟</p>
-<p><a href="/images/2008-7-12/IMG_0056.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0056.JPG" alt><br>图：一角</p>
-<p><a href="/images/2008-7-12/IMG_0058.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0058.JPG" alt><br>图：都在等雾消散，有点崭露头角了</p>
-<p><a href="/images/2008-7-12/IMG_0082.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0082.JPG" alt><br>图：一瞬间，雾全部散开了，</p>
-<p><a href="/images/2008-7-12/IMG_0085.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0085.JPG" alt><br>图：金刚嘴</p>
-<p><a href="/images/2008-7-12/IMG_0094.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0094.JPG" alt><br>图：金顶，我顶</p>
-<p><a href="/images/2008-7-12/IMG_0098.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0098.JPG" alt><br>图：金顶3079</p>
-<p><a href="/images/2008-7-12/IMG_0102.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0102.JPG" alt><br>图：下山之前</p>
-<p><a href="/images/2008-7-12/IMG_0104.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0104.JPG" alt><br>在上边参观合影留念以后就准备下山了。下山的缆车还好，刚好站在了控制人员的旁边，可以把运行状态录下来了。看数据显示缆车应该有１０００多米，然后最高速度在１０m/s，很快。</p>
-<p>下山了又坐车到半山腰，到万年车场吃中午饭。我们没有订中午饭(省了２０块钱)，所以就直接上山，去万年寺了。下来很热了，和山上的气候简直是两个样。中途到一个厕所换裤子，进去之前把裤包里面的钱包、手机都拿了出来，放到书包里了，害怕走厕所里面万一掉到坑里面就亏大了。出来的时候因为牛仔裤塞不进去，就把包里面的东西拿了出来整理了又塞了回去，然后就匆匆上路了，追前面的导游。走着走着我想吃点零食，就把书包甩到了前面，一看，遭了，书包咋个打开了呢？哟，我的手机呢？！！！好像是在老蒋那儿哇，我以为他手上一直捏着我的手机，郁闷，翻了翻，不见了。我用他的手机打了一下，遭了，通了，没听到我的手机的铃声，肯定掉道路上了。后来竟然有人接了，我说我手机掉了，马上下来。我一路狂奔，结果到了厕所再联系的时候，已经关机了。哎，看来不是个好心人——不要以为捡了我手机就很牛逼，你是穷人的话你还会穷三辈子，是富人你出门遭车碾死！就这样我的Ｅ５０就被耍掉了，可惜哦，这次开销加上１５００，刚刚买了一年的手机啊。我觉得诺基亚和我有仇，两个诺基亚的手机都丢了，反而两个西门子的手机好好的，直到用坏了都没有掉。</p>
-<p>手机掉了当然郁闷，一路上又热，哎，走路也没有心情，一路都是下坡，脚都走痛了。</p>
-<p>坚持到了清音阁，总算可以休息一会儿了。<br>路过清音阁就向生态猴区进发了，一路上可以看见几个石刻<br>一路上左边的小溪的水很清澈，看了看流速很快，很清凉，就装了一瓶来喝，相当的舒服。一般来说上游的流速快的水都是可以喝的，上次在回龙沟上游喝的冰水还是挺爽的。大多数景区都有“一线天”这个景点，这不，这儿也有一个。<br>图：一线天</p>
-<p><a href="/images/2008-7-12/IMG_0114.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0114.JPG" alt><br>到峨眉山看猴子，这儿猴子比人凶，管理员也属于纵容的，你不给水给猴子，管理员帮忙抢过来给猴子，呵呵，想想嘛，你还得买<br>，卖水的生意就好了。除了可以比较近的看猴子以外，也没有啥稀奇的啦，上次到回龙沟看野生猴也不错。<br>猴子我不太喜欢，呵呵。</p>
-<p>下山太累了，一路上走，下面有一个湖，水面还真是水平如镜啊！</p>
-<p><a href="/images/2008-7-12/IMG_0119.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0119.JPG" alt><br>下山已经很累了，脚也不大走得动了，上车，回家。还好，回来的车比较快。六点过出发的，八点半就到成都市区了。两天的游玩结束～～</p>
-</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2008-07-17-emei-travels-the-first-day/" class="post-title-link">峨眉游记－第一天</a></h2><div class="post-info">Jul 17, 2008</div><div class="post-content"><p>峨眉旅游视频请见：<a href="/images/2008-7-12/IMG_0006.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0006.JPG" alt></p>
-<p>图：震旦第一山。PS：这个字咋看起来就像是在“震”呢？</p>
-<p><a href="/images/2008-7-12/IMG_0009.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0009.JPG" alt></p>
-<p>图：峨眉山</p>
-<p><a href="/images/2008-7-12/IMG_0011.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0011.JPG" alt><br>听老板说博物馆有得一看，还有空调，多凉快的，走吧，就到博物馆看看，收费不哟？呵呵，竟然不收费。其实要是知道这个博物馆里面的东西的话，花个几块钱块钱进去看看也是相当不错的，增长见识了哟。看看下面的一些照片吧：<br>图：1957年的标本</p>
-<p><a href="/images/2008-7-12/IMG_0012.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0012.JPG" alt><br>图：峨眉山蝴蝶，实在是很多</p>
-<p><a href="/images/2008-7-12/IMG_0014.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0014.JPG" alt><br><a href="/images/2008-7-12/IMG_0015.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0015.JPG" alt></p>
-<p>图：蝴蝶翅膀的光泽</p>
-<p><a href="/images/2008-7-12/IMG_0016.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0016.JPG" alt></p>
-<p>图：竹节虫和枯叶蝶，以前没见过，嘿嘿</p>
-<p><a href="/images/2008-7-12/IMG_0019.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0019.JPG" alt><br>图：大把大把的蝴蝶</p>
-<p><a href="/images/2008-7-12/IMG_0020.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0020.JPG" alt><br>图：蛇和蛇皮</p>
-<p><a href="/images/2008-7-12/IMG_0021.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0021.JPG" alt><br><a href="/images/2008-7-12/IMG_0022.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0022.JPG" alt></p>
-<p>图：两栖动物</p>
-<p><a href="/images/2008-7-12/IMG_0023.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0023.JPG" alt><br>图：菊花石，够像</p>
-<p><a href="/images/2008-7-12/IMG_0025.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0025.JPG" alt><br>图：龙骨</p>
-<p><a href="/images/2008-7-12/IMG_0026.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0026.JPG" alt></p>
-<p><a href="/images/2008-7-12/IMG_0027.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0027.JPG" alt><br>后来我们去了报国寺和伏虎寺，要钱才能进去，算了，我们这些又不烧香拜佛，门口照一张ＯＫ！</p>
-<p><a href="/images/2008-7-12/IMG_0028.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0028.JPG" alt><br>走了一下午，脚也有些累了，回去休息了一阵商量了一下剩下的时间怎么用。我看了一下地图，如果走路的话实在是太远了，最长的路上去５２公里，来回１００公里，而且听老板说中途还有猴区比较麻烦。走那么远的路简直太没意思了，本来脚就有些不舒服，我估计是没办法走下去的。所以就订了一个团，每个人９５块钱，还算便宜。</p>
-<p>吃了晚饭到西南交大峨眉校区逛了一圈，学校好大哟，又天黑了，最后走迷路了只好原路返回。<br>图：交大峨眉校区</p>
-<p><a href="/images/2008-7-12/IMG_0031.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0031.JPG" alt></p>
-<p><a href="/images/2008-7-12/IMG_0033.JPG"></a><img src="/images/2008-7-12/image/thumb/IMG_0033.JPG" alt><br>路上买了一个西瓜，结果后来只吃了一点，哎，浪费了。晚上一夜没有睡好，蚊子啊蚊子，你咋个就偏偏咬我呢……</p>
 </div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/61/" class="prev">PREV</a><a href="/page/63/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

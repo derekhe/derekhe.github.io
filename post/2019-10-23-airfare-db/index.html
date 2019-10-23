@@ -1,0 +1,107 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="baidu-site-verification" content="aZ679hf2Rw"><title> 国内机票历史价格数据库 · 我是思聪</title><meta name="description" content="国内机票历史价格数据库 - 贺思聪"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/prontera.css"><link rel="search" type="application/opensearchdescription+xml" href="http://www.april1985.com/atom.xml" title="我是思聪"><!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129409069-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129409069-1');
+</script>
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="post-container"><div class="post"><article class="post-block"><h1 class="post-title">国内机票历史价格数据库</h1><div class="post-info">Oct 23, 2019</div><div class="post-content"><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>该数据库包含从2017年1月1日至今，国内2千多条直飞航线的出发前90天内的历史价格信息，具有包含价格历史长、连续性高、密度高、价格数据准确等特点。数据来源于互联网公开可查询数据，可用于科研、价格预测、出行优化等各种领域。</p>
+<p>相关应用文章：</p>
+<ul>
+<li><a href="http://www.april1985.com/post/2017-11-28-how-to-buy-airfare/">机票大数据分析，揭示购票的秘密</a></li>
+<li><a href="http://www.april1985.com/post/2017-12-06-buy-spring-airfare/">2018春节机票怎么买？看这几张图就够了</a></li>
+<li><a href="http://www.april1985.com/post/2017-12-15-why-i-create-aiflygo/">我为什么要开发这款小程序？</a></li>
+<li><a href="http://www.april1985.com/post/2018-07-26-aiflygo/">从数据到产品——爱飞狗背后的故事</a></li>
+</ul>
+<p>联系方式：微信号bcdata</p>
+<h1 id="数据详情"><a href="#数据详情" class="headerlink" title="数据详情"></a>数据详情</h1><ul>
+<li>时间跨度：从2016年7月1日至今</li>
+<li><a href="https://github.com/derekhe/aiflygo-intro/raw/master/airline.csv" target="_blank" rel="noopener">航线列表</a></li>
+<li><a href="https://github.com/derekhe/aiflygo-intro/raw/master/flightno.csv" target="_blank" rel="noopener">航班列表</a></li>
+</ul>
+<h2 id="数据量"><a href="#数据量" class="headerlink" title="数据量"></a>数据量</h2><p>注：以下统计数据从2017年1月1日至2019年10月1日，共计1003天进行计算。</p>
+<h3 id="低频数据"><a href="#低频数据" class="headerlink" title="低频数据"></a>低频数据</h3><p>低频数据收集每日下午2点附近的机票价格，数据库中总共包含1025159650（10亿）条数据。平均每天1025159（一百万）条数据。</p>
+<h3 id="高频数据"><a href="#高频数据" class="headerlink" title="高频数据"></a>高频数据</h3><p>高频数据采取连续收集，每日采集从10次到20次不等，数据量大约为低频数据的10到20倍不等，约100亿到200亿条数据。平均每天一千万左右。高频数据可以看到每日不同时刻价格的变化，可以更加深入的分析。</p>
+<h2 id="字段"><a href="#字段" class="headerlink" title="字段"></a>字段</h2><p>数据包含以下字段：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>departdate</td>
+<td>起飞日期</td>
+</tr>
+<tr>
+<td>departtime</td>
+<td>起飞时间</td>
+</tr>
+<tr>
+<td>arrivetime</td>
+<td>到达时间</td>
+</tr>
+<tr>
+<td>crawldate</td>
+<td>采集日期。2019年1月13日前包含起飞前45天内的价格信息，之后包含起飞前90天的价格信息</td>
+</tr>
+<tr>
+<td>flightno</td>
+<td>航班号</td>
+</tr>
+<tr>
+<td>sharedflightno</td>
+<td>共享航班号</td>
+</tr>
+<tr>
+<td>departcity</td>
+<td>出发机场三字码</td>
+</tr>
+<tr>
+<td>departtower</td>
+<td>出发航站楼</td>
+</tr>
+<tr>
+<td>arrivecity</td>
+<td>到达机场三字码</td>
+</tr>
+<tr>
+<td>arrivetower</td>
+<td>到达航站楼</td>
+</tr>
+<tr>
+<td>discount</td>
+<td>折扣价格</td>
+</tr>
+<tr>
+<td>price</td>
+<td>经济舱最低价格信息</td>
+</tr>
+</tbody></table>
+<h2 id="样例数据"><a href="#样例数据" class="headerlink" title="样例数据"></a>样例数据</h2><ul>
+<li>2017年1月1日起飞的CA4305航班数据，通过crawldate可以看到距离起飞前若干天的机票变化情况（未排序）。例如第一条2016年12月29日，就是起飞前3天的价格数据，不含税为1020元，折扣为7.1折；同理第二条为起飞前5天的价格数据，为540元，3.8折。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">index,departdate,departtime,arrivetime,crawldate,flightno,sharedflightno,departcity,departtower,arrivecity,arrivetower,discount,price</span><br><span class="line">0,2017-01-01,07:30:00,09:55:00,2016-12-29,CA4305,,CTU,T2,CAN,,71,1020</span><br><span class="line">1,2017-01-01,07:30:00,09:55:00,2016-12-27,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">2,2017-01-01,07:30:00,09:55:00,2016-12-31,CA4305,,CTU,T2,CAN,,68,970</span><br><span class="line">3,2017-01-01,07:30:00,09:55:00,2016-12-26,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">4,2017-01-01,07:30:00,09:55:00,2016-12-30,CA4305,,CTU,T2,CAN,,68,970</span><br><span class="line">5,2017-01-01,07:30:00,09:55:00,2016-12-25,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">6,2017-01-01,07:30:00,09:55:00,2016-12-24,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">7,2017-01-01,07:30:00,09:55:00,2016-12-23,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">8,2017-01-01,07:30:00,09:55:00,2016-12-22,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">9,2017-01-01,07:30:00,09:55:00,2016-12-28,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">10,2017-01-01,07:30:00,09:55:00,2016-12-21,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">11,2017-01-01,07:30:00,09:55:00,2016-12-20,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">12,2017-01-01,07:30:00,09:55:00,2016-12-17,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">13,2017-01-01,07:30:00,09:55:00,2016-12-18,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">14,2017-01-01,07:30:00,09:55:00,2016-12-16,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">15,2017-01-01,07:30:00,09:55:00,2016-12-19,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">16,2017-01-01,07:30:00,09:55:00,2016-12-13,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">17,2017-01-01,07:30:00,09:55:00,2016-12-12,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">18,2017-01-01,07:30:00,09:55:00,2016-12-11,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">19,2017-01-01,07:30:00,09:55:00,2016-12-15,CA4305,,CTU,T2,CAN,,45,640</span><br><span class="line">20,2017-01-01,07:30:00,09:55:00,2016-12-14,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">21,2017-01-01,07:30:00,09:55:00,2016-12-10,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">22,2017-01-01,07:30:00,09:55:00,2016-12-09,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">23,2017-01-01,07:30:00,09:55:00,2016-12-07,CA4305,,CTU,T2,CAN,,30,430</span><br><span class="line">24,2017-01-01,07:30:00,09:55:00,2016-12-08,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">25,2017-01-01,07:30:00,09:55:00,2016-12-06,CA4305,,CTU,T2,CAN,,30,430</span><br><span class="line">26,2017-01-01,07:30:00,09:55:00,2016-12-04,CA4305,,CTU,T2,CAN,,38,550</span><br><span class="line">27,2017-01-01,07:30:00,09:55:00,2016-12-05,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">28,2017-01-01,07:30:00,09:55:00,2016-12-03,CA4305,,CTU,T2,CAN,,38,548</span><br><span class="line">29,2017-01-01,07:30:00,09:55:00,2016-12-02,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">30,2017-01-01,07:30:00,09:55:00,2016-12-01,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">31,2017-01-01,07:30:00,09:55:00,2016-11-30,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">32,2017-01-01,07:30:00,09:55:00,2016-11-29,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">33,2017-01-01,07:30:00,09:55:00,2016-11-27,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">34,2017-01-01,07:30:00,09:55:00,2016-11-26,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">35,2017-01-01,07:30:00,09:55:00,2016-11-25,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">36,2017-01-01,07:30:00,09:55:00,2016-11-28,CA4305,,CTU,T2,CAN,,38,540</span><br><span class="line">37,2017-01-01,07:30:00,09:55:00,2016-11-23,CA4305,,CTU,T2,CAN,,40,570</span><br><span class="line">38,2017-01-01,07:30:00,09:55:00,2016-11-22,CA4305,,CTU,T2,CAN,,40,570</span><br><span class="line">39,2017-01-01,07:30:00,09:55:00,2016-11-24,CA4305,,CTU,T2,CAN,,38,540</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>CA4305航班2017年1月1日至2019年10月1日共计1003天的起飞数据。链接<a href="https://pan.baidu.com/s/12-n3FH6nBB9gRJ201Vb0KA" target="_blank" rel="noopener">https://pan.baidu.com/s/12-n3FH6nBB9gRJ201Vb0KA</a> 提取码请加微信号bcdata获取。以上数据可渲染出此<a href="https://raw.githubusercontent.com/derekhe/aiflygo-intro/master/CA4305.png" target="_blank" rel="noopener">价格图</a>，可参考此文章<a href="http://www.april1985.com/post/2017-11-28-how-to-buy-airfare/">《机票大数据分析，揭示购票的秘密》</a></li>
+</ul>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2019-10-21-rc-car-1/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

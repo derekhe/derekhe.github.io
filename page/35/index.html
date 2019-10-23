@@ -22,7 +22,15 @@
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(bp, s);
   })();
-  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2009-10-25-join-huawei/" class="post-title-link">终于卖给华为了</a></h2><div class="post-info">Oct 25, 2009</div><div class="post-content"><p>这段时间都没有更新帖子了，一直在为找工作的事情而奋斗。不停地投简历、笔试、面试，可是一个都没有搞。现在终于签华为了，在华为成都研究所，还是不错了，算是上上签了，呵呵。</p>
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2009-11-04-mini2440-successfully-run-enlightenment/" class="post-title-link">MINI2440上成功运行Enlightenment</a></h2><div class="post-info">Nov 4, 2009</div><div class="post-content"><p>花了些时间终于在MINI2440上把enlightenment运行起来了，速度还行，比XFCE和GNOME快多了。XFCE和GNOME的X的CPU占用率高达50%，难怪很慢。Englithenment没有这个问题，不用的时候CPU占用率很低。</p>
+<p>编译Enlightenment仅需要使用Openembedded就可以构建，详细步骤今天没时间写了，以后有空补上。</p>
+<p>看看截图吧，解解馋。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2009-10-30-fix-ubuntu-installation-hang-when-detecting-file-system/" class="post-title-link">Fix Ubuntu installation hang when detecting file system</a></h2><div class="post-info">Oct 30, 2009</div><div class="post-content"><p>My Ubuntu hanged every time when detecting file system. Sometimes even I can’t see the GUI of Kubuntu. I found out that when it hanged my hard disk was reading something. I encountered this problem several years ago, but the detecting process ended not very long after the “Detecting file system” dialog. This time, after 10 minutes waiting, no response. I had to power off my PC.</p>
+<p>Last time I thought the problem was caused by non standard or problematical partition. I remembered that I had one logical partition between two primary partitions. I fixed this problem and the installation went on.</p>
+<p>But the problem was not the same as my last time, I fixed had a regular partition. I found out that I had some disk errors so I “chkdsk” first my drivers. No luck. I had no ideas about this. I tried to search the problem but no one had the same issue I met. So I had to figure it out by myself.</p>
+<p>I tried to unplug the disk first and then after the liveCD desktop showed I plug it so I can see the GUI interface. Just after the “Detecting file system”, the hard disk was still reading something without a stop. I switched to another console and type “top” to find the most CPU consume program. One of them is “ntfsresize”. So I killed this program. But it appeared again. I killed it until no new “ntfsresize” was shown. And finally I saw the partition. Then the whole installation went on smoothly.</p>
+<p>So, this problem must be caused by the “ntfsresize”. I didn’t know what’s wrong with my disk or partitions that “ntfsresize” need to read it again and again. I even did not need to resize my ntfs partition. Next time, kill it first~</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2009-10-25-join-huawei/" class="post-title-link">终于卖给华为了</a></h2><div class="post-info">Oct 25, 2009</div><div class="post-content"><p>这段时间都没有更新帖子了，一直在为找工作的事情而奋斗。不停地投简历、笔试、面试，可是一个都没有搞。现在终于签华为了，在华为成都研究所，还是不错了，算是上上签了，呵呵。</p>
 <p>我从8月份左右就开始为找工作做一些准备了，包括简历的准备和C++的复习。简历都准备了两个版本，反复的修改，包括格式及内容。然后还有一个哥哥过来帮我看了看，小面了一下，知道了一些不足。</p>
 <p>接下来就是正式实践了。</p>
 <p>第一次正式笔试是Gameloft。后来叫我去面试，但由于和华赛的冲突了就没有去。</p>
@@ -156,56 +164,4 @@
 <p><a href="/images/2009-10-4-6/IMG_2912.JPG"></a><img src="/images/2009-10-4-6/image/thumb/IMG_2912.JPG" alt></p>
 <p><a href="/images/2009-10-4-6/IMG_2919.JPG"></a><img src="/images/2009-10-4-6/image/thumb/IMG_2919.JPG" alt></p>
 <p>好了，一天下来真是累啊，上上下下也得几百层楼了吧。强烈的阳光照射的人眼睛很不舒服，出发了。奔向蜀南竹海。</p>
-</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2009-10-07-09-day-xingwen-bamboo-sea-the-first-day-on-the-road/" class="post-title-link">09国庆兴文石海、蜀南竹海-第一天，路上</a></h2><div class="post-info">Oct 7, 2009</div><div class="post-content"><p>今年国庆中秋连着放八天。倒是对我们研究生来说放不放也不是一个大问题，反正也是玩，玩过了就开始找工作啦。估计这是最后一个过得轻松愉快的十一大长假，可以陪父母一起出去游玩更长的时间。工作了可没有这个闲心了。</p>
-<p>这次出游到兴文的石海和蜀南竹海，路很好走，比5.1去的丹巴那个XX路好上万倍。从成都出发走成渝高速到内江下，走内宜高速到宜宾下，然后途径蜀南竹海到兴文石海。我们首先去的是兴文石海，从4号出发。和大多数错峰旅游，免得挤死、贵死。</p>
-<p><a href="/images/2009-10-4-6/IMG_2650.JPG"></a><img src="/images/2009-10-4-6/image/thumb/IMG_2650.JPG" alt></p>
-<p><a href="/images/2009-10-4-6/IMG_2656.JPG"></a><img src="/images/2009-10-4-6/image/thumb/IMG_2656.JPG" alt></p>
-<p>早上八点半过出发上三环，到宜宾本来找吃饭的，结果沿途上没有合适的，还好有月饼啊这些干粮充饥。最后路上看到了“李庄”，走一个岔道过去，距离主干道8公里左右，是一个古镇，顺便走那儿吃个饭。停车费6元。我们在外面一般吃的很节省，也没有必要浪费钱，吃饱就好了。</p>
-<p><a href="/images/2009-10-4-6/IMG_2652.JPG"></a><img src="/images/2009-10-4-6/image/thumb/IMG_2652.JPG" alt></p>
-<p><a href="/images/2009-10-4-6/IMG_2653.JPG"></a><img src="/images/2009-10-4-6/image/thumb/IMG_2653.JPG" alt></p>
-<p>我们了解到李庄白肉比较有名，就点了个白肉(确实做得好，小份18块钱，放好吃)、一个豆花、一个土豆丝、一个番茄蛋花汤。吃完饭，走古镇转了转。古镇在长江边上，以前抗日时期同济大学在这里避难，工学院和医学院都在这里有遗址。整个古镇不大，半个多小时就逛完了，除了白肉和同济，还有一个古楼以外也没有什么别的特色东西。在这里前前后后耽搁了一个多小时时间就又上路了。</p>
-<p><a href="/images/2009-10-4-6/IMG_2653.JPG"></a><img src="/images/2009-10-4-6/image/thumb/IMG_2653.JPG" alt></p>
-<p><a href="/images/2009-10-4-6/IMG_2654.JPG"></a><img src="/images/2009-10-4-6/image/thumb/IMG_2654.JPG" alt></p>
-<p><a href="/images/2009-10-4-6/IMG_2655.JPG"></a><img src="/images/2009-10-4-6/image/thumb/IMG_2655.JPG" alt></p>
-<p><a href="/images/2009-10-4-6/IMG_2656.JPG"></a><img src="/images/2009-10-4-6/image/thumb/IMG_2656.JPG" alt></p>
-<p><a href="/images/2009-10-4-6/IMG_2657.JPG"></a><img src="/images/2009-10-4-6/image/thumb/IMG_2657.JPG" alt></p>
-<p><a href="/images/2009-10-4-6/IMG_2658.JPG"></a><img src="/images/2009-10-4-6/image/thumb/IMG_2658.JPG" alt></p>
-<p><a href="/images/2009-10-4-6/IMG_2659.JPG"></a><img src="/images/2009-10-4-6/image/thumb/IMG_2659.JPG" alt></p>
-<p><a href="/images/2009-10-4-6/IMG_2661.JPG"></a><img src="/images/2009-10-4-6/image/thumb/IMG_2661.JPG" alt></p>
-<p><a href="/images/2009-10-4-6/IMG_2665.JPG"></a><img src="/images/2009-10-4-6/image/thumb/IMG_2665.JPG" alt></p>
-<p><a href="/images/2009-10-4-6/IMG_2666.JPG"></a><img src="/images/2009-10-4-6/image/thumb/IMG_2666.JPG" alt></p>
-<p><a href="/images/2009-10-4-6/IMG_2668.JPG"></a><img src="/images/2009-10-4-6/image/thumb/IMG_2668.JPG" alt></p>
-<p><a href="/images/2009-10-4-6/IMG_2668.JPG"></a><img src="/images/2009-10-4-6/image/thumb/IMG_2668.JPG" alt></p>
-<p>去往蜀南竹海的旅游公路全程限速80，路很宽很直，有点像成都去黄龙溪的路，没有电子警察，路上也没有人管，开个100码问题不大，放心的开就是。晚上5点过到兴文石海。第一件事情就是找旅馆。</p>
-<p>附近的一些农家乐看你到了就要的拉生意，这时候你最好问一下这些农家乐。我们住的那家在山门前的左边的一条路上，是一个诊所老板开的。最后讲价到100块钱一间房，两个房200块钱搞定。之前我们还问了山顶的停车场附近的，那叫一个贼贵啊，至少都是200块一间以上的价位，太贵了，住不起。</p>
-<p>农家乐还算干净，电烧的热水洗个澡挺舒服。晚上比较冷，关上窗户就好。空气比较干燥，注意多喝点水。那天晚上月亮很明亮啊，顺便来个15的月亮，那天刚刚下了雨的成都天气格外清新和透明，月亮显得特别的明亮，特别的大。</p>
-<p><a href="/images/2009-10-4-6/IMG_2645.JPG"></a><img src="/images/2009-10-4-6/image/thumb/IMG_2645.JPG" alt></p>
-<p>晚上洗了个澡，睡觉~</p>
-</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2009-10-03-openembedded-console-image-build-success/" class="post-title-link">OpenEmbedded console-image 编译成功</a></h2><div class="post-info">Oct 3, 2009</div><div class="post-content"><p>我是才接触OpenEmbedded不久，也算是个菜鸟。看到这么方便的东西以为bitbake xxxx就可以了，结果哪知道这个才是唐僧刚刚上马，遇到的妖魔鬼怪还多着呢。这里总结一下我最近bitbake console-image所历经的磨难。</p>
-<p><a href="/images/mini2440/IMG_0117.JPG"></a><img src="/images/mini2440/image/thumb/IMG_0117.JPG" alt></p>
-<p><a href="/images/mini2440/IMG_0118.JPG"></a><img src="/images/mini2440/image/thumb/IMG_0118.JPG" alt></p>
-<p><a href="/images/mini2440/IMG_0119.JPG"></a><img src="/images/mini2440/image/thumb/IMG_0119.JPG" alt></p>
-<p>. 准备</p>
-<ul>
-<li>一个超级好的网络是必不可少的，否则当你什么都下载不了的时候你就知道什么是痛苦了。</li>
-<li>一个4核的CPU是很有必要的，当然如果有钱可以买个core i7更好</li>
-<li>如果想在编译的时候能够打发一下时光，建议安装vmware。特别建议用7.0的技术预览版(网上找找看有没有，我是vmware邀请测试的)，因为可以支持大于2个CPU。</li>
-<li>留至少80G连续的硬盘空间。</li>
-<li>选一个比较吉祥的日子，准备好耐心<br>. 下载和建立好local.conf</li>
-</ul>
-<p>从OE的官方git源clone一个副本，这个步骤我就省略了，但是记得经常<code>git pull</code>。我的local.conf的MACHINE定义为mini2440，DISTRO定义为openmoko。想编译一个openmoko出来玩。</p>
-<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line">bitbake console-<span class="built_in">image</span></span><br></pre></td></tr></table></figure>
-
-<p>然后bitbake就会工作了，期间肯定会遇上小的妖魔鬼怪，什么preferred version not found之类的，只需要改变一下conf/distro/conf文件里面的preferredxxxxx.inc文件就可以了。具体是什么文件可以用<code>grep xxxx -r .</code>来搜索，当然这你得有一些基本的linux尝试。</p>
-<p>其他的问题比较多的是：</p>
-<ul>
-<li>编译出错。我想这不是我的错，如果在recipes的相应组件中找到了更新的版本，可以使用另外的版本来替换。替换的方法是修改PREFERRED_VERSION_xxxxx的值即可。一般使用高点的版本就会OK。</li>
-<li>没有本地的工具支持。有些编译项目需要本地支持。上次编译mtd-utils就遇到了本地有一个工具没有安装。如果看到了有些错误位于i686目录(有这个字样的)，就可以怀疑是本地有些工具或者库没有安装，从而不能正常编译。懂点脑子把东西装上应该就会对。</li>
-<li>版本不兼容。有时候包与包之间有可能不兼容，方法是把出错的包在网上搜一下，例如这个编译mtd-native的错误就是由包之间不兼容引起的：<a href="http://projects.linuxtogo.org/pipermail/openembedded-devel/2009-January/007571.html" target="_blank" rel="noopener">http://projects.linuxtogo.org/pipermail/openembedded-devel/2009-January/007571.html</a></li>
-<li>其它问题。有时候编译中途出了问题(例如电脑死机、意外重启、停电等)会造成一些莫名其妙的文傳統，把tmp文件夹删除了再编译，看会不会OK。当然删除tmp文件夹要有点耐心，文件太多了。</li>
-</ul>
-<p>如果想在晚上通宵运行，那么加一个<code>-k</code>参数就好，这样第二天早上再来处理那些莫名其妙的问题。</p>
-<p>写这篇文章的时候我只记得这么几个问题了，还有一些另外的小问题，但也都是很容易解决的。多多搜索，或者利用邮件列表来解决。</p>
-<p>现在开始另一站了，编译<code>bitbake x11-office-image</code>。</p>
-<p>外面下雨了，这个国庆真是恼火~</p>
 </div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/34/" class="prev">PREV</a><a href="/page/36/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

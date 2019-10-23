@@ -22,7 +22,334 @@
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(bp, s);
   })();
-  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2005-01-21-practical-tips-fast-decoding-unicodeutf8-coding/" class="post-title-link">实用小技巧——迅速解码UNICODE/UTF8编码</a></h2><div class="post-info">Jan 21, 2005</div><div class="post-content"><p>编程难免遇到需要转换Unicode或UTF8到字符串的情形。例如在vCard里面就有</p>
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2005-02-13-net-platform-for-mobile-phone-management-software-development-1-4/" class="post-title-link">.net平台手机管理软件开发(1-4)</a></h2><div class="post-info">Feb 13, 2005</div><div class="post-content"><p>.net平台手机管理软件开发<br>(一) 简介</p>
+<p>通过几个月零零碎碎地学习各方面知识之后在这个大二的寒假笔者终于用VB.Net写出了西门子手机的辅助软件——Siemens Support Tool。虽然我没有最终的完成这个软件的所有设计，但核心的功能已经开发完成，界面也基本到位，我的学习的目的也就达到了。在2月12日正式停止开发的以后，我想到把寒假20几天的辛苦历程作一个总结，为以后重温这部分知识起到一定的作用，也为广大编程爱好者提供一些帮助和启发。笔者才疏学浅，编程也是零碎时间自学过来的，所以有缺陷和谬误请大家斧正。</p>
+<p>(二) 为何要设计？设计目的？</p>
+<p>用过西门子手机的都知道西门子手机在人性化设计方面做得比较好，但是让笔者失望的是电脑端上使用的官方软件SDS，其缺点是操作不方便，速度比较慢，感觉人性化设计不到位。后来官方推出了用于65系列的Mobile Phone Manager，界面很好看，但安装后大于120MB的容量及其较慢的速度又让人大跌眼镜。<br>GhostMobile(简称GM)是我用过的国产非官方软件里面比较好的一款，但经常出现传输中一直等待的情况。估计作者并没有超时设计。另外GM文件传输速度很慢，短信管理不方便，后来也由于作者使用了新的手机，也就放弃了GM。后来又找到一款Siemens Mobile Control，简称SiMoCo，是国外的非官方软件。800多kb的身躯及其速度、功能方面都超过了官方及GM，令人刮目相看，一度成为我最喜欢的软件。但用后发现一些问题，软件过于专业，选项太多，对中文的支持不好。</p>
+<p>所以最终的目的就是做一款能够实现文件传输、短信、便签、任务、重要记事管理的软件。</p>
+<p>(三) 准备工作<br>2004的暑假我已经做了一部分，实现了基本的文件传输和短信功能，当时取名叫作M55 File Transfer Tool。后来在东北手机网上公开了，有一些GM无法连接的手机我的软件都可以连接，所以到现在为止有些网友还在使用我的这个软件。但由于知识不够，做得不是很理想，经常出现问题。</p>
+<p>短信部分是官方网站下载的ATC_Command_Set_For_L55_Platform，详细地讲述了55平台上的AT指令集。其实SMS部分的AT指令各大手机厂商都是通用的，已基本上属于同一的指令集了。但是发现文件传输是OBEX却不是那么简单。</p>
+<p>官方并没有任何开发文档说明数据传输使用的是什么协议，我用Serial Monitor监视到了数据传输的过程，全是HEX代码，不知道是什么意思。那段时间一度陷入迷茫状态，不知道如何下手。后来在google搜索，又在CSDN里发了一些帖子求救，但却没有一个能够明确说明的。有一个网友的留言给了我一些线索，他说可能是蓝牙协议里面的部分。</p>
+<p>这条线索给我了极大的鼓舞，因为后来，顺藤摸瓜找到了红外线传输协议，意外地发现了IrOBEX的描述协议竟然和监视到的HEX代码的结构一样。随后经过仔细的研究发现就是OBEX协议，此协议可以作为上层协议用在红外线协议、蓝牙协议等。此过程大约经历了2个多月。其实现在看来这个问题简单了，手机的工厂模式的串口监视里面就会显示当前使用的协议。当数据传输开始时，会自动从GIPSY变为OBEX。但那个时候哪知道呢？</p>
+<p>跨越了OBEX协议的障碍以后我写了一个OBEX-Multithread类，写得很垃圾，把十六进制转换成字符串，然后再转回来在发送。中间使用了string作字符串操作，速度很慢，测试以后只能勉强超过GM的传输速度。</p>
+<p>后来借着Serial Monitor监视GM读取手机通讯薄的原理，发现通讯薄是在telecompb目录里面，但是这个目录在手机里面是隐藏的，无法直接访问。由于原来写得OBEX库很糟糕，只能对应文件传输，对于这个特殊文件夹里面的文件都无法操作。修改了之后效果不好，遂放弃了OBEX-Multithread。</p>
+<p>由于学习的原因，中途也只得停下来准备期末考试和六级。中途无聊的时候研究IrMC里面的vCard、vNote、vCalc格式，基本弄懂了如何同步通讯薄、便签、日历。2005年1月14日，放假回家了就正式开始动工，把所有的东西都重新写，对我来说，这是一个巨大的挑战。</p>
+<p>(四) AT指令简介<br>AT指令在当代手机通讯中起着重要的作用，能够通过AT指令控制手机的许多行为，包括拨叫号码、按键控制、传真、GPRS等。西门子M55手机为我提供了很多的AT指令，网络上关于AT指令的资料也很多，我这里提取一些比较重要的做个简单解释。其他的手机也基本上通用，更详细的资料请查阅手机生产商的资料。</p>
+<p>欲使用AT命令，可以安装微软的超级终端程序，选择好端口连接速度以后就可以正常使用了。</p>
+<p>AT指令用法</p>
+<p>.  测试命令(Test Command)</p>
+<p>在AT指令后面加上“=?”即构成测试命令。</p>
+<p>例如“AT+CSCS=?”会列举出所有支持的字符集。</p>
+<p>.  读取命令(Read Command)</p>
+<p>在AT指令后面加上“?”即构成读取命令。</p>
+<p>例如“AT+CSCS?”会列举出当前设置。</p>
+<p>.  执行命令(Execute Command)</p>
+<p>一般而言在AT指令后加上“=”及命令参数即可。有些命令例如AT+CMGR命令没有参数，直接就可以执行。</p>
+<p>注：并不是所有的AT指令都支持1和2。</p>
+<p>常用基本AT指令</p>
+<table style="border: medium none; width: 100%; border-collapse: collapse;" border="1" width="100%" cellpadding="0" cellspacing="0" class="MsoTableGrid">
+<tbody>
+<tr>
+
+<td width="18%" style="border: 1pt solid windowtext; padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+
+<p>命令</p>
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>作用</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>测试连接是否正确</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+ATE0
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>关闭回显。程序初始化AT部分首先关闭回显。</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+ATE1
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>打开回显。使用超级终端测试命令时打开。</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CGMI
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>得到厂商信息</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CGMR
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>得到手机版本号</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CGSN
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>得到手机序列号(IMEI)</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CIMI
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>得到手机IMSI号码</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CSCS
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>获取、设置手机当前字符集。可设置为GSM或UCS2</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CBC
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>获取手机电量</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CCLK
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>获取设置手机时钟</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CNUM
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>机身号码。分为线路一和线路二</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CSQ
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>当前信号</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+COPS
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>网络营运商</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CSCA
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>短信中心号码</p>
+</td>
+</tr>
+</tbody></table>
+
+<p>以上这些指令都用于与手机连接的时候初始化用。取得手机IMEI及IMSI可以给使程序支持更多的手机连接并且保持数据独立。</p>
+<p>短信部分</p>
+<table style="border: medium none; width: 100%; border-collapse: collapse;" border="1" width="100%" cellpadding="0" cellspacing="0" class="MsoTableGrid">
+<tbody>
+<tr>
+
+<td width="18%" style="border: 1pt solid windowtext; padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+
+<p>命令</p>
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>作用</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CPMS
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>选择短信储存地点。可选择ME(SIM卡)和MT(机身)</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CMGL
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>列出指定状态的短信息的PDU代码</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CMGR
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>列出指定序号的短信息PDU代码</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CMGS
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>发送短信</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CMGD
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>删除指定的短信</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CMGF
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>短信格式。分为Text模式和PDU模式</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CNMI
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>设置新短消息通知电脑端</p>
+</td>
+</tr>
+<tr>
+
+<td width="18%" style="padding: 0cm 5.4pt; width: 18.16%; background-color: transparent;" valign="top">
+AT+CSCA
+
+</td>
+
+<td width="81%" style="padding: 0cm 5.4pt; width: 81.84%; background-color: transparent;" valign="top">
+
+<p>短信中心</p>
+</td>
+</tr>
+</tbody></table>
+
+<p>以上命令是短消息部分最经常使用的命令。具体条目及使用方法会在后面重点讲解。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2005-02-09-net-ide-interface-programming-autoscale-property-mess-in-big-trouble/" class="post-title-link">.net IDE 界面编程AutoScale属性惹的大麻烦</a></h2><div class="post-info">Feb 9, 2005</div><div class="post-content"><p>最近我我在英文XP SP2环境下制作了一个比较精美的界面，请一个同学帮忙测试。他用的是中文版的操作系统。然而奇怪的是界面大小发生了改变，在中文环境下窗体变大了，按钮 也变大了，所有的Label也移位了。我开始以为是他那里Windows设置的问题，后来在我新装的一个中文环境当中也出现了同样的问题，很是纳闷。</p>
+<p>后来到处寻找原因，以为是微软的一个BUG。后在CSDN里面找到了答案，竟然是小小的AutoScale属性惹得货。<br>AutoScale属性默认设置为True，也就是根据字体的大小自动缩放窗体。很有可能在英文XP环境下的字体和中文环境里面的不一样(但看起来是一样的)，导致了这个问题。最终把AutoScale属性设置为False，再编译，一切问题都解决了。</p>
+<p>所以得到一个小经验，在需要开发多语言的程序的时候一定要把AutoScale属性设置为False，不然很好的界面(特别是图形化的)就会变得面目全非。另外使用Dock，Anchor也对界面维护起到一定的效果。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2005-01-21-practical-tips-fast-decoding-unicodeutf8-coding/" class="post-title-link">实用小技巧——迅速解码UNICODE/UTF8编码</a></h2><div class="post-info">Jan 21, 2005</div><div class="post-content"><p>编程难免遇到需要转换Unicode或UTF8到字符串的情形。例如在vCard里面就有</p>
 <figure class="highlight excel"><table><tr><td class="code"><pre><span class="line">X-ESI-CATEGORIES;CHARSET=UTF-<span class="number">8</span>;ENCODING=QUOTED-PRINTAB<span class="symbol">LE:</span>=<span class="symbol">E6</span>=<span class="number">9</span>C=AA=<span class="symbol">E8</span>=AE=BE=</span><br><span class="line">=<span class="symbol">E5</span>=AE=<span class="number">9</span>A=<span class="symbol">E7</span>=BE=<span class="symbol">A4</span>=<span class="symbol">E7</span>=BB=<span class="number">84</span></span><br></pre></td></tr></table></figure>
 
 <p>我们关注这一句的后面部分，使用的是UTF8编码。我想知道它包含的是什么内容，又不想编程，我们可以借用Winhex编辑一个文本文件，然后用Notepad(记事本)打开，就可以知道具体内容了。</p>
@@ -35,73 +362,4 @@
 <figure class="highlight coq"><table><tr><td class="code"><pre><span class="line">Shared <span class="keyword">Function</span> Decode7Bit(ByVal str7BitCode As String) As String</span><br><span class="line">Dim Inv7BitCode As String = InvertHexString(str7BitCode)</span><br><span class="line">Dim Binary As String</span><br><span class="line">Dim Result As String</span><br><span class="line">Dim i As Integer</span><br><span class="line">For i = <span class="number">0</span> To Inv7BitCode.Length - <span class="number">1</span> <span class="keyword">Step</span> <span class="number">2</span></span><br><span class="line">Binary += ByteToBinary(CByte(Val(<span class="string">"&amp;H"</span> &amp; Inv7BitCode.Substring(i, <span class="number">2</span>))))</span><br><span class="line"><span class="keyword">Next</span></span><br><span class="line">Dim Temp As Integer</span><br><span class="line">For i = <span class="number">1</span> To Binary.Length  <span class="number">7</span></span><br><span class="line">Temp = BinaryToInt(Binary.Substring(Binary.Length - i * <span class="number">7</span>, <span class="number">7</span>))</span><br><span class="line"><span class="keyword">If</span> Temp = <span class="number">0</span> Then Temp = <span class="number">64</span></span><br><span class="line">Result = Result + ASCII_7to8(Temp) 'OLD &gt;&gt;&gt;&gt; 'Result = Result + ChrW(Temp)</span><br><span class="line"><span class="keyword">Next</span></span><br><span class="line">Return (Result)</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Function</span></span><br><span class="line"></span><br><span class="line">#Region <span class="string">" ASCII_7to8 "</span></span><br><span class="line">Shared ASCII_7to8() As String = &#123; <span class="keyword">_</span></span><br><span class="line"><span class="string">"@"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"£"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"$"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"¥"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"è"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"é"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"ù"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"ì"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"ò"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"Ç"</span>, <span class="keyword">_</span></span><br><span class="line">vbLf, <span class="keyword">_</span></span><br><span class="line"><span class="string">"Ø"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"ø"</span>, <span class="keyword">_</span></span><br><span class="line">vbCr, <span class="keyword">_</span></span><br><span class="line"><span class="string">"Å"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"å"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"Δ"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"_"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"Φ"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"Γ"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"Λ"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"Ω"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"Π"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"Ψ"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"Σ"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"Θ"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"Ξ"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"1"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"Æ"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"æ"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"ß"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"É"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">" "</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"!"</span>, <span class="keyword">_</span></span><br><span class="line">Chr(<span class="number">34</span>), <span class="keyword">_</span></span><br><span class="line"><span class="string">"#"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"¤"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"%"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"&amp;"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"'"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"("</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">")"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"*"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"+"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">","</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"-"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"."</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"/"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"0"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"1"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"2"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"3"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"4"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"5"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"6"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"7"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"8"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"9"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">":"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">";"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"&lt;"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"="</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"&gt;"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"?"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"¡"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"A"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"B"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"C"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"D"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"E"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"F"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"G"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"H"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"I"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"J"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"K"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"L"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"M"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"N"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"O"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"P"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"Q"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"R"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"S"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"T"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"U"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"V"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"W"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"X"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"Y"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"Z"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"Ä"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"Ö"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"Ñ"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"Ü"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"§"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"¿"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"a"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"b"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"c"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"d"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"e"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"f"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"g"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"h"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"i"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"j"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"k"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"l"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"m"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"n"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"o"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"p"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"q"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"r"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"s"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"t"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"u"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"v"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"w"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"x"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"y"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"z"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"ä"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"ö"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"ñ"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"ü"</span>, <span class="keyword">_</span></span><br><span class="line"><span class="string">"à"</span> <span class="keyword">_</span></span><br><span class="line">&#125;</span><br><span class="line">#<span class="keyword">End</span> Region</span><br></pre></td></tr></table></figure>
 
 </div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2004-11-13-vcard-reader-class/" class="post-title-link">vCard Reader Class</a></h2><div class="post-info">Nov 13, 2004</div><div class="post-content"><p>vCard Reader Class</p>
-</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2004-10-28-at-commands-at-cpms-description/" class="post-title-link">AT指令：AT+CPMS介绍</a></h2><div class="post-info">Oct 28, 2004</div><div class="post-content"><p>这是我在SIEMENS AT COMMAND SET里面摘录的一段：</p>
-<p>AT+CPMS Preferred SMS message storage</p>
-<p>Revision according to GSM 07.05 Version 4.7.0</p>
-<p>Test command</p>
-<p>AT+CPMS=?</p>
-<p>Response</p>
-<p>+CPMS: (list of supported <mem1>s),( list of supported <mem2>s) ,(list<br>+of</mem2></mem1></p>
-<p>supported <mem3>s)</mem3></p>
-<p>Parameter</p>
-<mem1>
-
-<p>Memory from which messages are read and deleted</p>
-<p>SM SIM message storage</p>
-<p>ME Mobile Equipment message storage</p>
-<p>MT combination of “ME” and “SM” storages</p>
-<p><mem2> Messages will be written and sent to this memory storage:</mem2></p>
-<p>SM SIM message storage</p>
-<p>ME Mobile Equipment message storage</p>
-<p>MT combination of “ME” and “SM” storages</p>
-<p><mem3> Memory in which received messages are preferred to be stored, if</mem3></p>
-<p>routing to TE is not set (see AT+CNMI command with parameter</p>
-<p><mt>=2)</mt></p>
-<p>SM SIM message storage</p>
-<p>ME Mobile Equipment message storage</p>
-<p>MT combination of “ME” and “SM” storages</p>
-<p>Read command</p>
-<p>AT+CPMS?</p>
-<p>Response</p>
-<p>+CPMS:</p>
-<p><mem1>,<used1>,<total1>,<mem2>,<used2>,<total2>,<mem3>,<used3>,&lt;total3</used3></mem3></total2></used2></mem2></total1></used1></mem1></p>
-<blockquote>
-</blockquote>
-<p>Parameter</p>
-<memx>
-
-<p>Memory from which messages are read and deleted</p>
-<p><usedx> Number of messages currently in <memx></memx></usedx></p>
-<p><totalx> Total number of messages that can be stored in <memx></memx></totalx></p>
-<p>Write command</p>
-<p>AT+CPMS= <mem1>[,<mem2>[,<mem3>]]</mem3></mem2></mem1></p>
-<p>Parameter</p>
-<mem1>
-
-<p>See Test command</p>
-<p><mem2> See Test command</mem2></p>
-<p><mem3> See Test command</mem3></p>
-<p>+CPMS: <used1>,<total1>,<used2>,<total2>,<used3>,<total3></total3></used3></total2></used2></total1></used1></p>
-<p>OK/ERROR/+CMS ERROR</p>
-<p>Notes 1) The Mobil Equipment storage “ME” has capacity for 25 short messages</p>
-<p>2) The storage “MT” is a combination of “ME” and “SM” storage. If “MT” is</p>
-<p>chosen indices &lt; 26 refer to ME” storage while indices 26 or higher are</p>
-<p>associated with the “SM” storage</p>
-<p>3) Incoming short messages with message class 2 (see GSM 03.38) will be</p>
-<p>stored in the “SM” storage only. Therefore, the AT^SMGO:2 indication (see</p>
-<p>AT^SMGO command) can occur without a preceding AT^SMGO:1 indication.</p>
-<p>一些概念：</p>
-<p>MEM1：读取和删除短信所在的内存空间。<br>MEM2：写入短信和发送短信所在的内存空间。<br>MEM3：接收到的短信的储存位置。</p>
-<p>具体用法：</p>
-<p>. 语句：<br>AT+CPMS=?<br>作用：</p>
-<p>测试命令。用于得到手机所支持的储存位置的列表。在我的SIEMENS M55手机上返回：<br>AT+CPMS=?<br>+CPMS: (“MT”,”SM”,”ME”),(“MT”,”SM”,”ME”),(“MT”,”SM”,”ME”)</p>
-<p>表示手机支持MT(手机终端),SM(SIM卡),ME(手机设备)</p>
-<p>. 语句：<br>AT+CPMS=”MT”,”ME”,”SIM”<br>设置MEM1为MT，MEM2为ME，MEM3为SIM</p>
-<p>. 语句：<br>AT+CPMS?</p>
-<p>作用：<br>得到当前的设置。<br>例如通过第二条语句的设置以后返回：</p>
-<p>AT+CPMS?<br>+CPMS: “MT”,7,150,”ME”,7,100,”SM”,0,50</p>
-<p>表示MT里面有7条短信，总共可以储存150条。ME里面有7条，共可以储存150条。SIM卡上可以储存50条。</p>
-</mem1></memx></mem1></div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2004-09-28-encode-charactors-to-7bitcode-or-ucs2-pdu-string-vb-net/" class="post-title-link">Encode Charactors to 7BitCode or UCS2 PDU string (vb.net)</a></h2><div class="post-info">Sep 28, 2004</div><div class="post-content"><p>Encode Charactors to 7BitCode or UCS2 PDU string (vb.net)</p>
-<figure class="highlight vbnet"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Public</span> <span class="keyword">Function</span> Encode7Bit(<span class="keyword">ByVal</span> Content <span class="keyword">As</span> <span class="built_in">String</span>) <span class="keyword">As</span> <span class="built_in">String</span></span><br><span class="line"><span class="comment">'Prepare</span></span><br><span class="line"><span class="keyword">Dim</span> CharArray <span class="keyword">As</span> <span class="built_in">Char</span>() = Content.ToCharArray</span><br><span class="line"><span class="keyword">Dim</span> c <span class="keyword">As</span> <span class="built_in">Char</span></span><br><span class="line"><span class="keyword">Dim</span> t <span class="keyword">As</span> <span class="built_in">String</span></span><br><span class="line"><span class="keyword">For</span> <span class="keyword">Each</span> c <span class="keyword">In</span> CharArray</span><br><span class="line">t = CharTo7Bits(c) + t</span><br><span class="line"><span class="keyword">Next</span></span><br><span class="line"><span class="comment">'Add "0"</span></span><br><span class="line"><span class="keyword">Dim</span> i <span class="keyword">As</span> <span class="built_in">Integer</span></span><br><span class="line"><span class="keyword">If</span> (t.Length <span class="keyword">Mod</span> <span class="number">8</span>) &lt;&gt; <span class="number">0</span> <span class="keyword">Then</span></span><br><span class="line"><span class="keyword">For</span> i = <span class="number">1</span> <span class="keyword">To</span> <span class="number">8</span> - (t.Length <span class="keyword">Mod</span> <span class="number">8</span>)</span><br><span class="line">t = <span class="string">"0"</span> + t</span><br><span class="line"><span class="keyword">Next</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"><span class="comment">'Split into 8bits</span></span><br><span class="line"><span class="keyword">Dim</span> result <span class="keyword">As</span> <span class="built_in">String</span></span><br><span class="line"><span class="keyword">For</span> i = t.Length - <span class="number">8</span> <span class="keyword">To</span> <span class="number">0</span> <span class="keyword">Step</span> <span class="number">-8</span></span><br><span class="line">result = result + BitsToHex(<span class="keyword">Mid</span>(t, i + <span class="number">1</span>, <span class="number">8</span>))</span><br><span class="line"><span class="keyword">Next</span></span><br><span class="line"><span class="keyword">Return</span> result</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Function</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">Private</span> <span class="keyword">Function</span> BitsToHex(<span class="keyword">ByVal</span> Bits <span class="keyword">As</span> <span class="built_in">String</span>) <span class="keyword">As</span> <span class="built_in">String</span></span><br><span class="line"><span class="comment">'Convert 8Bits to Hex String</span></span><br><span class="line"><span class="keyword">Dim</span> i, v <span class="keyword">As</span> <span class="built_in">Integer</span></span><br><span class="line"><span class="keyword">For</span> i = <span class="number">0</span> <span class="keyword">To</span> Bits.Length - <span class="number">1</span></span><br><span class="line">v = v + Val(<span class="keyword">Mid</span>(Bits, i + <span class="number">1</span>, <span class="number">1</span>)) * <span class="number">2</span> ^ (<span class="number">7</span> - i)</span><br><span class="line"><span class="keyword">Next</span></span><br><span class="line"><span class="keyword">Dim</span> result <span class="keyword">As</span> <span class="built_in">String</span></span><br><span class="line">result = Format(v, <span class="string">"X"</span>)</span><br><span class="line"><span class="keyword">If</span> result.Length = <span class="number">1</span> <span class="keyword">Then</span></span><br><span class="line">result = <span class="string">"0"</span> + result</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"><span class="keyword">Return</span> result</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Function</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">Private</span> <span class="keyword">Function</span> CharTo7Bits(<span class="keyword">ByVal</span> c <span class="keyword">As</span> <span class="built_in">Char</span>) <span class="keyword">As</span> <span class="built_in">String</span></span><br><span class="line"><span class="keyword">Dim</span> Result <span class="keyword">As</span> <span class="built_in">String</span></span><br><span class="line"><span class="keyword">Dim</span> i <span class="keyword">As</span> <span class="built_in">Integer</span></span><br><span class="line"><span class="keyword">For</span> i = <span class="number">0</span> <span class="keyword">To</span> <span class="number">6</span></span><br><span class="line"><span class="keyword">If</span> (Asc(c) <span class="keyword">And</span> <span class="number">2</span> ^ i) &gt; <span class="number">0</span> <span class="keyword">Then</span></span><br><span class="line">Result = <span class="string">"1"</span> + Result</span><br><span class="line"><span class="keyword">Else</span></span><br><span class="line">Result = <span class="string">"0"</span> + Result</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"><span class="keyword">Next</span></span><br><span class="line"><span class="keyword">Return</span> Result</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Function</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">Private</span> <span class="keyword">Function</span> EncodeUCS2(<span class="keyword">ByVal</span> Content <span class="keyword">As</span> <span class="built_in">String</span>) <span class="keyword">As</span> <span class="built_in">String</span></span><br><span class="line"><span class="keyword">Dim</span> i, j, v <span class="keyword">As</span> <span class="built_in">Integer</span></span><br><span class="line"><span class="keyword">Dim</span> Result, t <span class="keyword">As</span> <span class="built_in">String</span></span><br><span class="line"><span class="keyword">For</span> i = <span class="number">1</span> <span class="keyword">To</span> Content.Length <span class="keyword">Step</span> <span class="number">4</span></span><br><span class="line">v = AscW(<span class="keyword">Mid</span>(Content, i, <span class="number">4</span>))</span><br><span class="line">t = Format(v, <span class="string">"X"</span>)</span><br><span class="line"><span class="keyword">For</span> j = <span class="number">1</span> <span class="keyword">To</span> <span class="number">4</span> - t.Length</span><br><span class="line">t = <span class="string">"0"</span> &amp; t</span><br><span class="line"><span class="keyword">Next</span></span><br><span class="line">Result += t</span><br><span class="line"><span class="keyword">Next</span></span><br><span class="line"><span class="keyword">Return</span> Result</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Function</span></span><br></pre></td></tr></table></figure>
-
 </div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/138/" class="prev">PREV</a><a href="/page/140/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

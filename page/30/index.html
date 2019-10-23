@@ -22,7 +22,63 @@
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(bp, s);
   })();
-  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2010-02-13-condolence/" class="post-title-link">哀悼</a></h2><div class="post-info">Feb 13, 2010</div><div class="post-content"><p>2010年2月12日中午12：54分，奶奶离世。</p>
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2010-03-04-writing-papers/" class="post-title-link">写论文</a></h2><div class="post-info">Mar 4, 2010</div><div class="post-content"><p>哎哟，似乎这个博客很久不动就没有动力动下去了。习惯了QQ上一句话新闻般的所谓“心情”，都不想长篇大论的写博客了。最终想了想，归结于还是自己懒。</p>
+<p>最近买了好多样东西，GPS也换代了，换成了HOLUX M-241A，胶卷样的一个小GPS，带轨迹记录，比夏新那个GPS166搜星速度快到哪儿去了。回来还可以将轨迹合并到地图上，下次准备在飞机上用一下，记录一下飞机的轨迹~嘿嘿。</p>
+<p><img src="http://img05.taobaocdn.com/bao/uploaded/i5/T1CnxlXbKjKtOaewYa_090947.jpg_310x310.jpg" alt></p>
+<p>然后还有一个贝尔金的车载逆变器，200W的，以后有更多时间出去玩了，笔记本电脑还有的用。</p>
+<p>最近战地叛逆连队2PC版也出来了，下载了单机版的玩了一阵，8800GTS宝刀未老，可惜分辨率只能在1280*800下跑了，320M显存的硬伤无法避免，只能将贴图设置为中，然后进行超频。</p>
+<p>单机版最好玩的在于拆房子。我玩游戏经常不以常规玩法玩，特别是这种自由度较高的游戏，喜欢下载作弊器，无忧无虑的“虐待”NPC，呵呵。应该说在增加了物理效果以后，网络对战将会变得更为好玩，战术将会更加灵活，不会有坦克打不到的窝在房子里面的人的事情发生了。或许，有一帮人可能结派，什么事情都不做，专门拆人家房子。</p>
+<p>单机版玩到后来有一关似乎游戏出了bug，我按照视频功率的做法打也过不了关。算了，将游戏卸载了，不玩了。随后在淘宝订购了一套PC标准版的，花了248块钱，差点冲动就去EA Store买下载版了，算了一下要360块钱，抢人啊。</p>
+<p>现在游戏还在路上，明天才能到深圳，然后老板分发后快递到我们手上。所以预计10号就可以玩了，到时候就期待我们的网通的网络争气了。</p>
+<p>哎哟，写了那么多，忘了题目是“写论文”了。</p>
+<p>1号开始正式写论文，截止目前为止已经完成了30页了，一半了。在缩减一些图，算下来好歹还有20多页。生下来就看怎么忽悠，怎么忽悠…………</p>
+<p>11号到14号，张家界去耍，时间有点少了点，期待中。16号到18号到上海，参加PCB展会，看看别人的PCB设备，长长见识。</p>
+<p>加油写论文~</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2010-02-17-ubuntu-9-10-bcm4315-cracked-wep-network/" class="post-title-link">Ubuntu 9.10+BCM4315成功破解WEP网络</a></h2><div class="post-info">Feb 17, 2010</div><div class="post-content"><p>我的联想U150的本本的BCM4315网卡一直没有得到BT4和BT3的完美支持，就连Ubuntu 9.10装好后也需要自己再装Restricted Driver。这个驱动装好后好像不能被aircrack系列支持。我认为只要把4315驱动搞定了，就能在任何Linux系统下应用aircrack。那么第一步就是把b43驱动驱动起来。<br>寻找了很久以后找到了这个帖子：<a href="http://ubuntuforums.org/showthread.php?t=1266620" target="_blank" rel="noopener">http://ubuntuforums.org/showthread.php?t=1266620</a><br>使用2.6.32.12的kernel加上b43的驱动就可以完全搞定它。<br>Ï32位系统的内核：<br><a href="http://mirrors.kernel.org/ubuntu/pool/main/l/linux/linux-image-2.6.32-12-generic_2.6.32-12.17_i386.deb" target="_blank" rel="noopener">http://mirrors.kernel.org/ubuntu/pool/main/l/linux/linux-image-2.6.32-12-generic_2.6.32-12.17_i386.deb</a><br><a href="http://mirrors.kernel.org/ubuntu/pool/main/l/linux/linux-headers-2.6.32-12-generic_2.6.32-12.17_i386.deb" target="_blank" rel="noopener">http://mirrors.kernel.org/ubuntu/pool/main/l/linux/linux-headers-2.6.32-12-generic_2.6.32-12.17_i386.deb</a><br><a href="http://mirrors.kernel.org/ubuntu/pool/main/l/linux/linux-headers-2.6.32-12_2.6.32-12.17_all.deb" target="_blank" rel="noopener">http://mirrors.kernel.org/ubuntu/pool/main/l/linux/linux-headers-2.6.32-12_2.6.32-12.17_all.deb</a></p>
+<ul>
+<li>安装内核：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo dpkg -i linux*2.6.*.deb</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>下载<a href="http://linuxwireless.org/download/compat-wireless-2.6/" target="_blank" rel="noopener">compat-wireless驱动</a>，照着它的说明，我用最新的编辑无法成功，用compat-wireless-2010-01-26.tar.bz2即可。</li>
+<li>编译：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>卸载老的驱动</li>
+</ul>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">sudo make unload</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>刷新驱动</li>
+</ul>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">sudo depmod</span></span><br><span class="line"><span class="attribute">sudo depmod -a</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打开PIO模式：</li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">echo <span class="string">"options b43 pio=1"</span> <span class="string">| sudo tee -a "</span>/etc/modprobe.d/b43-thingy.conf<span class="string">"</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>屏蔽STA驱动：</li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">echo <span class="string">"blacklist wl"</span> <span class="string">| sudo tee "</span>/etc/modprobe.d/wedontneednonossdrivers.conf<span class="string">"</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>启动时打开B43驱动：</li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">echo <span class="string">"b43"</span> <span class="string">| sudo tee -a "</span>/etc/modules<span class="string">"</span></span><br></pre></td></tr></table></figure>
+
+<p>1* 打开/etc/rc.local， 在exit(0)之前加入</p>
+<figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">modprobe</span> -r <span class="keyword">b43</span></span><br><span class="line"><span class="keyword">sleep </span><span class="number">3</span></span><br><span class="line"><span class="symbol">modprobe</span> <span class="keyword">b43</span></span><br></pre></td></tr></table></figure>
+
+<p>然后就可以用aircrack的工具进行破解了。<br>spoonwap在ubuntu的sudo环境下回提示表达式不正确，解决方法是</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">sudo <span class="keyword">ln</span> -<span class="keyword">sf</span> bash /bin/<span class="keyword">sh</span></span><br></pre></td></tr></table></figure>
+
+<p>然后享受吧，我用了1分多的时间把自己的无线网络破解了，隔壁的网络没有活动的客户端破解相对繁琐，改日再研究。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2010-02-13-condolence/" class="post-title-link">哀悼</a></h2><div class="post-info">Feb 13, 2010</div><div class="post-content"><p>2010年2月12日中午12：54分，奶奶离世。</p>
 </div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2010-02-07-hardware-museum/" class="post-title-link">硬件博物馆</a></h2><div class="post-info">Feb 7, 2010</div><div class="post-content"><p>意外之间找到一个硬件博物馆网站，很好，搜集的东西又多。<br><a href="http://www.yjfy.com/" target="_blank" rel="noopener">http://www.yjfy.com/</a></p>
 </div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2010-02-02-gdebugger-universal-crack-method/" class="post-title-link">gDebugger通用破解方法</a></h2><div class="post-info">Feb 2, 2010</div><div class="post-content"><p>下载0day的5.2.1的破解(地址网上找哈)，得到lic_gen.exe用于生成文件。</p>
 <p>下载最新的5.4.0，安装，将gDEBuggerAppCode.dll中的RSA字符串(字串)：</p>
@@ -35,7 +91,4 @@
 <p>另外，如果达人有能力会破解的帮忙看看为什么用OllyDbg载入后他的限制就消失了，应该会有一个检测调试器的函数怎么的，把这个函数破解了就好办了。</p>
 <p>如需要原版和破解的压缩文件，请留下你的联系方式。</p>
 <p>Enjoy!</p>
-</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2010-01-21-poor-state/" class="post-title-link">状态不佳</a></h2><div class="post-info">Jan 21, 2010</div><div class="post-content"><p>最近状态不佳，一天过得稀里糊涂的，毕业论文也还没有着落，偶尔还感冒感冒，弄得人郁闷。博客暂停更新一段时间，我也没有什么太多想写的。祝福大家快乐<br>！</p>
-</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2010-01-10-went-to-wenzhou/" class="post-title-link">又去温州</a></h2><div class="post-info">Jan 10, 2010</div><div class="post-content"><p>去年光棍节去了温州，今年小光棍节1月11日又要启程到温州去咯。上次去调试钻床相关的事情，这次需要去调试铣床的程序。我估计只要一个多星期就可以回来。</p>
-<p>这几天也真是无聊，虽然有事情做，毕业设计等也放在那儿的，但一直不想做，身体也不太舒服，天天想睡，早上睡得很迟晚上又很早就想睡了。似乎最近精神很差，但愿这次出差了生活再规律点就好咯。什么时候能够更振作点呢？~</p>
 </div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/29/" class="prev">PREV</a><a href="/page/31/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>
