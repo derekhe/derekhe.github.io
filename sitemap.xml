@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.april1985.com/post/2020-03-09-new-printer/</loc>
+    
+    <lastmod>2020-03-10T01:16:43.640Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.april1985.com/post/2019-10-23-airfare-db/</loc>
     
     <lastmod>2019-10-23T15:06:01.582Z</lastmod>
@@ -93,14 +100,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2017-11-27-stop-pairing/</loc>
+    <loc>http://www.april1985.com/post/2017-07-15-share-bike-crawler/</loc>
     
     <lastmod>2019-09-04T12:09:44.515Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2017-07-15-share-bike-crawler/</loc>
+    <loc>http://www.april1985.com/post/2017-11-27-stop-pairing/</loc>
     
     <lastmod>2019-09-04T12:09:44.515Z</lastmod>
     
@@ -163,14 +170,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2015-07-20-android-offline-download/</loc>
+    <loc>http://www.april1985.com/post/2015-12-21-emei-mountain-1/</loc>
     
     <lastmod>2019-09-04T12:09:44.508Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2015-12-21-emei-mountain-1/</loc>
+    <loc>http://www.april1985.com/post/2015-07-20-android-offline-download/</loc>
     
     <lastmod>2019-09-04T12:09:44.508Z</lastmod>
     
@@ -205,14 +212,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2015-03-11-ali-api-analysis/</loc>
+    <loc>http://www.april1985.com/post/2015-02-08-make-mac-hot/</loc>
     
     <lastmod>2019-09-04T12:09:44.504Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2015-02-08-make-mac-hot/</loc>
+    <loc>http://www.april1985.com/post/2015-03-11-ali-api-analysis/</loc>
     
     <lastmod>2019-09-04T12:09:44.504Z</lastmod>
     
@@ -289,14 +296,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2014-10-23-sydney-city-impression/</loc>
+    <loc>http://www.april1985.com/post/2014-10-13-sydney-first-time/</loc>
     
     <lastmod>2019-09-01T13:55:00.625Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2014-10-13-sydney-first-time/</loc>
+    <loc>http://www.april1985.com/post/2014-10-23-sydney-city-impression/</loc>
     
     <lastmod>2019-09-01T13:55:00.625Z</lastmod>
     
@@ -324,14 +331,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2014-02-20-how-to-show-messages-when-nggrid-have-no-values/</loc>
+    <loc>http://www.april1985.com/post/2014-09-15-wordpress-docker/</loc>
     
     <lastmod>2019-09-01T13:55:00.623Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2014-09-15-wordpress-docker/</loc>
+    <loc>http://www.april1985.com/post/2014-02-20-how-to-show-messages-when-nggrid-have-no-values/</loc>
     
     <lastmod>2019-09-01T13:55:00.623Z</lastmod>
     
@@ -366,13 +373,6 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2013-06-01-hua-wei-san-nian-ji-nian-10-feng-kuang-de-yi_nian/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.620Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.april1985.com/post/2013-06-15-hua-wei-san-nian-ji-nian-11-mian_shi/</loc>
     
     <lastmod>2019-09-01T13:55:00.620Z</lastmod>
@@ -380,7 +380,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2013-05-31-hua-wei-san-nian-ji-nian-9-di-yi-nian-xia-mang-lu-de-xin-xiang_mu/</loc>
+    <loc>http://www.april1985.com/post/2013-06-01-hua-wei-san-nian-ji-nian-10-feng-kuang-de-yi_nian/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.620Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2013-05-29-hua-wei-san-nian-ji-nian-8-di-yi-nian_shang/</loc>
     
     <lastmod>2019-09-01T13:55:00.619Z</lastmod>
     
@@ -394,21 +401,21 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2013-05-29-hua-wei-san-nian-ji-nian-8-di-yi-nian_shang/</loc>
+    <loc>http://www.april1985.com/post/2013-05-31-hua-wei-san-nian-ji-nian-9-di-yi-nian-xia-mang-lu-de-xin-xiang_mu/</loc>
     
     <lastmod>2019-09-01T13:55:00.619Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2013-05-23-hua-wei/</loc>
+    <loc>http://www.april1985.com/post/2013-05-19-hua-wei-san-nian-ji-nian-6-cheng-yan-di-yi-tian-de-sheng_huo/</loc>
     
     <lastmod>2019-09-01T13:55:00.618Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2013-05-19-hua-wei-san-nian-ji-nian-6-cheng-yan-di-yi-tian-de-sheng_huo/</loc>
+    <loc>http://www.april1985.com/post/2013-05-23-hua-wei/</loc>
     
     <lastmod>2019-09-01T13:55:00.618Z</lastmod>
     
@@ -429,14 +436,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2013-05-12-hua-wei-san-nian-ji-nian-2-bi-ye-qian-zui-hou-de-feng_kuang/</loc>
+    <loc>http://www.april1985.com/post/2013-05-13-hua-wei-san-nian-ji-nian-3-guang_zhou/</loc>
     
     <lastmod>2019-09-01T13:55:00.616Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2013-05-13-hua-wei-san-nian-ji-nian-3-guang_zhou/</loc>
+    <loc>http://www.april1985.com/post/2013-05-12-hua-wei-san-nian-ji-nian-2-bi-ye-qian-zui-hou-de-feng_kuang/</loc>
     
     <lastmod>2019-09-01T13:55:00.616Z</lastmod>
     
@@ -457,14 +464,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2013-01-19-bai-du-yun-rom-adb-shen-qi-de-wen_ti/</loc>
+    <loc>http://www.april1985.com/post/2013-02-05-qa-ying-gai-xie-dai_ma/</loc>
     
     <lastmod>2019-09-01T13:55:00.614Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2013-02-05-qa-ying-gai-xie-dai_ma/</loc>
+    <loc>http://www.april1985.com/post/2013-01-19-bai-du-yun-rom-adb-shen-qi-de-wen_ti/</loc>
     
     <lastmod>2019-09-01T13:55:00.614Z</lastmod>
     
@@ -506,14 +513,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2012-11-10-hp1018-ubuntu-10-04-an-zhuang-zhi_dao/</loc>
+    <loc>http://www.april1985.com/post/2012-12-24-jin-tian-bu-shang_ban/</loc>
     
     <lastmod>2019-09-01T13:55:00.611Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2012-12-24-jin-tian-bu-shang_ban/</loc>
+    <loc>http://www.april1985.com/post/2012-11-10-hp1018-ubuntu-10-04-an-zhuang-zhi_dao/</loc>
     
     <lastmod>2019-09-01T13:55:00.611Z</lastmod>
     
@@ -548,14 +555,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2012-08-04-ding-ding-you-yong/</loc>
+    <loc>http://www.april1985.com/post/2012-07-30-backup-not_easy/</loc>
     
     <lastmod>2019-09-01T13:55:00.608Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2012-07-30-backup-not_easy/</loc>
+    <loc>http://www.april1985.com/post/2012-08-04-ding-ding-you-yong/</loc>
     
     <lastmod>2019-09-01T13:55:00.608Z</lastmod>
     
@@ -569,14 +576,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2012-07-29-safe-backup/</loc>
+    <loc>http://www.april1985.com/post/2012-07-29-lonlife-crack/</loc>
     
     <lastmod>2019-09-01T13:55:00.607Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2012-07-29-lonlife-crack/</loc>
+    <loc>http://www.april1985.com/post/2012-07-29-safe-backup/</loc>
     
     <lastmod>2019-09-01T13:55:00.607Z</lastmod>
     
@@ -611,14 +618,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2011-10-09-blog-again/</loc>
+    <loc>http://www.april1985.com/post/2011-10-30-tired-week/</loc>
     
     <lastmod>2019-09-01T13:55:00.604Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2011-10-30-tired-week/</loc>
+    <loc>http://www.april1985.com/post/2011-10-09-blog-again/</loc>
     
     <lastmod>2019-09-01T13:55:00.604Z</lastmod>
     
@@ -632,14 +639,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2011-04-10-best-gallery/</loc>
+    <loc>http://www.april1985.com/post/2011-04-11-jiuzhai-chinglish/</loc>
     
     <lastmod>2019-09-01T13:55:00.603Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2011-04-11-jiuzhai-chinglish/</loc>
+    <loc>http://www.april1985.com/post/2011-04-10-best-gallery/</loc>
     
     <lastmod>2019-09-01T13:55:00.603Z</lastmod>
     
@@ -660,13 +667,6 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2011-03-16-fix-syntax-highlighter-compress-double-blank-line/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.601Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.april1985.com/post/2011-03-15-shell-file-backup/</loc>
     
     <lastmod>2019-09-01T13:55:00.601Z</lastmod>
@@ -674,9 +674,9 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2011-03-07-buy-a-nvidia-gtx-470/</loc>
+    <loc>http://www.april1985.com/post/2011-03-16-fix-syntax-highlighter-compress-double-blank-line/</loc>
     
-    <lastmod>2019-09-01T13:55:00.600Z</lastmod>
+    <lastmod>2019-09-01T13:55:00.601Z</lastmod>
     
   </url>
   
@@ -688,14 +688,21 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2011-01-26-longer-job/</loc>
+    <loc>http://www.april1985.com/post/2011-03-07-buy-a-nvidia-gtx-470/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.600Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2011-01-28-fucking-bfbc2/</loc>
     
     <lastmod>2019-09-01T13:55:00.599Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2011-01-28-fucking-bfbc2/</loc>
+    <loc>http://www.april1985.com/post/2011-01-26-longer-job/</loc>
     
     <lastmod>2019-09-01T13:55:00.599Z</lastmod>
     
@@ -800,14 +807,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2010-06-30-e59083e9a5ad/</loc>
+    <loc>http://www.april1985.com/post/2010-06-24-cheat-when-eat-fish/</loc>
     
     <lastmod>2019-09-01T13:55:00.592Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2010-06-24-cheat-when-eat-fish/</loc>
+    <loc>http://www.april1985.com/post/2010-06-30-e59083e9a5ad/</loc>
     
     <lastmod>2019-09-01T13:55:00.592Z</lastmod>
     
@@ -828,6 +835,13 @@
   </url>
   
   <url>
+    <loc>http://www.april1985.com/post/2010-06-08-book-good-read-good-book-loving-book-good-reading-book/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.590Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.april1985.com/post/2010-06-06-keyboard-die/</loc>
     
     <lastmod>2019-09-01T13:55:00.590Z</lastmod>
@@ -842,21 +856,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2010-06-08-book-good-read-good-book-loving-book-good-reading-book/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.590Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.april1985.com/post/2010-05-28-do-it-yourself/</loc>
+    <loc>http://www.april1985.com/post/2010-06-01-dell-notebook-damn/</loc>
     
     <lastmod>2019-09-01T13:55:00.589Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2010-06-01-dell-notebook-damn/</loc>
+    <loc>http://www.april1985.com/post/2010-05-28-do-it-yourself/</loc>
     
     <lastmod>2019-09-01T13:55:00.589Z</lastmod>
     
@@ -898,14 +905,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2010-05-14-ultraedit-all-language-highlights/</loc>
+    <loc>http://www.april1985.com/post/2010-05-11-paragon-softwareu002639s-products-with-caution/</loc>
     
     <lastmod>2019-09-01T13:55:00.586Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2010-05-11-paragon-softwareu002639s-products-with-caution/</loc>
+    <loc>http://www.april1985.com/post/2010-05-14-ultraedit-all-language-highlights/</loc>
     
     <lastmod>2019-09-01T13:55:00.586Z</lastmod>
     
@@ -926,6 +933,13 @@
   </url>
   
   <url>
+    <loc>http://www.april1985.com/post/2010-05-05-sell-domain-name/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.584Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.april1985.com/post/2010-05-04-list-of-common-serial-port-monitoring-software/</loc>
     
     <lastmod>2019-09-01T13:55:00.584Z</lastmod>
@@ -934,13 +948,6 @@
   
   <url>
     <loc>http://www.april1985.com/post/2010-05-05-best-to-use-the-file-synchronization-tool-goodsync/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.584Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.april1985.com/post/2010-05-05-sell-domain-name/</loc>
     
     <lastmod>2019-09-01T13:55:00.584Z</lastmod>
     
@@ -961,13 +968,6 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2010-04-26-apt-get-segmentation-fault/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.582Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.april1985.com/post/2010-04-28-ubuntu-10-04-lts-distribution-of-the-official-version-download/</loc>
     
     <lastmod>2019-09-01T13:55:00.582Z</lastmod>
@@ -975,14 +975,21 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2010-04-17-sports-sports/</loc>
+    <loc>http://www.april1985.com/post/2010-04-26-apt-get-segmentation-fault/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.582Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2010-04-13-my-hp-printer-engineers-to-maintain-a-dialogue/</loc>
     
     <lastmod>2019-09-01T13:55:00.581Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2010-04-13-my-hp-printer-engineers-to-maintain-a-dialogue/</loc>
+    <loc>http://www.april1985.com/post/2010-04-17-sports-sports/</loc>
     
     <lastmod>2019-09-01T13:55:00.581Z</lastmod>
     
@@ -996,14 +1003,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2010-04-01-gdebugger-5-x-crack-patch/</loc>
+    <loc>http://www.april1985.com/post/2010-04-06-win7-sd-card-become-available-under-the-u0026quothardu0026quot-patch/</loc>
     
     <lastmod>2019-09-01T13:55:00.580Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2010-04-06-win7-sd-card-become-available-under-the-u0026quothardu0026quot-patch/</loc>
+    <loc>http://www.april1985.com/post/2010-04-01-gdebugger-5-x-crack-patch/</loc>
     
     <lastmod>2019-09-01T13:55:00.580Z</lastmod>
     
@@ -1024,14 +1031,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2010-02-17-ubuntu-9-10-bcm4315-cracked-wep-network/</loc>
+    <loc>http://www.april1985.com/post/2010-03-04-writing-papers/</loc>
     
     <lastmod>2019-09-01T13:55:00.578Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2010-03-04-writing-papers/</loc>
+    <loc>http://www.april1985.com/post/2010-02-17-ubuntu-9-10-bcm4315-cracked-wep-network/</loc>
     
     <lastmod>2019-09-01T13:55:00.578Z</lastmod>
     
@@ -1059,14 +1066,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2010-01-10-went-to-wenzhou/</loc>
+    <loc>http://www.april1985.com/post/2010-01-21-poor-state/</loc>
     
     <lastmod>2019-09-01T13:55:00.576Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2010-01-21-poor-state/</loc>
+    <loc>http://www.april1985.com/post/2010-01-10-went-to-wenzhou/</loc>
     
     <lastmod>2019-09-01T13:55:00.576Z</lastmod>
     
@@ -1094,14 +1101,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-12-24-christmas-2/</loc>
+    <loc>http://www.april1985.com/post/2009-12-26-solution-under-svn-commit-error-in-windows-7-issues/</loc>
     
     <lastmod>2019-09-01T13:55:00.574Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-12-26-solution-under-svn-commit-error-in-windows-7-issues/</loc>
+    <loc>http://www.april1985.com/post/2009-12-24-christmas-2/</loc>
     
     <lastmod>2019-09-01T13:55:00.574Z</lastmod>
     
@@ -1122,13 +1129,6 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-12-13-18-55/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.572Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.april1985.com/post/2009-12-16-seems-to-have-suddenly-retired-and-sit-on-the/</loc>
     
     <lastmod>2019-09-01T13:55:00.572Z</lastmod>
@@ -1137,6 +1137,13 @@
   
   <url>
     <loc>http://www.april1985.com/post/2009-12-12-finally-returning-to-the-barbecue-to-eat-the-meal/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.572Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2009-12-13-18-55/</loc>
     
     <lastmod>2019-09-01T13:55:00.572Z</lastmod>
     
@@ -1171,6 +1178,13 @@
   </url>
   
   <url>
+    <loc>http://www.april1985.com/post/2009-11-24-postscript-hangzhou-to-suzhou/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.569Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.april1985.com/post/2009-11-24-postscript-hangzhou/</loc>
     
     <lastmod>2019-09-01T13:55:00.569Z</lastmod>
@@ -1185,21 +1199,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-11-24-postscript-hangzhou-to-suzhou/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.569Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.april1985.com/post/2009-11-05-android-on-mini2440/</loc>
+    <loc>http://www.april1985.com/post/2009-11-04-mini2440-successfully-run-enlightenment/</loc>
     
     <lastmod>2019-09-01T13:55:00.568Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-11-04-mini2440-successfully-run-enlightenment/</loc>
+    <loc>http://www.april1985.com/post/2009-11-05-android-on-mini2440/</loc>
     
     <lastmod>2019-09-01T13:55:00.568Z</lastmod>
     
@@ -1220,14 +1227,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-10-07-09-day-xingwen-bamboo-sea-the-third-day-bamboo-sea-return/</loc>
+    <loc>http://www.april1985.com/post/2009-10-07-09-day-xingwen-bamboo-sea-the-next-day-stone-sea-day-tour/</loc>
     
     <lastmod>2019-09-01T13:55:00.566Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-10-07-09-day-xingwen-bamboo-sea-the-next-day-stone-sea-day-tour/</loc>
+    <loc>http://www.april1985.com/post/2009-10-07-09-day-xingwen-bamboo-sea-the-third-day-bamboo-sea-return/</loc>
     
     <lastmod>2019-09-01T13:55:00.566Z</lastmod>
     
@@ -1241,13 +1248,6 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-10-02-month-to-buy-two-mini-computer-no-money-to-buy-a-navigation-software/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.565Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.april1985.com/post/2009-10-07-09-day-xingwen-bamboo-sea-the-first-day-on-the-road/</loc>
     
     <lastmod>2019-09-01T13:55:00.565Z</lastmod>
@@ -1255,9 +1255,9 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-09-21-to-solve-the-power-problem-zizi-ring/</loc>
+    <loc>http://www.april1985.com/post/2009-10-02-month-to-buy-two-mini-computer-no-money-to-buy-a-navigation-software/</loc>
     
-    <lastmod>2019-09-01T13:55:00.564Z</lastmod>
+    <lastmod>2019-09-01T13:55:00.565Z</lastmod>
     
   </url>
   
@@ -1269,9 +1269,9 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-09-11-notebook-problem-of/</loc>
+    <loc>http://www.april1985.com/post/2009-09-21-to-solve-the-power-problem-zizi-ring/</loc>
     
-    <lastmod>2019-09-01T13:55:00.563Z</lastmod>
+    <lastmod>2019-09-01T13:55:00.564Z</lastmod>
     
   </url>
   
@@ -1283,9 +1283,9 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-08-30-metaweblog-synchronization-problems-blog/</loc>
+    <loc>http://www.april1985.com/post/2009-09-11-notebook-problem-of/</loc>
     
-    <lastmod>2019-09-01T13:55:00.562Z</lastmod>
+    <lastmod>2019-09-01T13:55:00.563Z</lastmod>
     
   </url>
   
@@ -1304,14 +1304,21 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-08-29-installing-a-win7-mess-of-trouble-on-a-large-parra/</loc>
+    <loc>http://www.april1985.com/post/2009-08-30-metaweblog-synchronization-problems-blog/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.562Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2009-08-26-url-rewrite-to-solve-installation-visit-to-install-wordpress-in-a-subdirectory-of-the-root-problem-occurs-404/</loc>
     
     <lastmod>2019-09-01T13:55:00.561Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-08-26-url-rewrite-to-solve-installation-visit-to-install-wordpress-in-a-subdirectory-of-the-root-problem-occurs-404/</loc>
+    <loc>http://www.april1985.com/post/2009-08-29-installing-a-win7-mess-of-trouble-on-a-large-parra/</loc>
     
     <lastmod>2019-09-01T13:55:00.561Z</lastmod>
     
@@ -1332,14 +1339,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-08-16-workaround-for-virtualbox-3-0-4-bridged-networking-issue/</loc>
+    <loc>http://www.april1985.com/post/2009-08-21-gnome-iso-mount-and-uninstall-script/</loc>
     
     <lastmod>2019-09-01T13:55:00.559Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-08-21-gnome-iso-mount-and-uninstall-script/</loc>
+    <loc>http://www.april1985.com/post/2009-08-16-workaround-for-virtualbox-3-0-4-bridged-networking-issue/</loc>
     
     <lastmod>2019-09-01T13:55:00.559Z</lastmod>
     
@@ -1353,14 +1360,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-08-16-expression-of-a-number-of-fun-characters/</loc>
+    <loc>http://www.april1985.com/post/2009-08-09-msi-p35-neo2-fr-a-serial-port-but-did-not-pick-up/</loc>
     
     <lastmod>2019-09-01T13:55:00.558Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-08-09-msi-p35-neo2-fr-a-serial-port-but-did-not-pick-up/</loc>
+    <loc>http://www.april1985.com/post/2009-08-16-expression-of-a-number-of-fun-characters/</loc>
     
     <lastmod>2019-09-01T13:55:00.558Z</lastmod>
     
@@ -1395,7 +1402,7 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-08-01-windows-7/</loc>
+    <loc>http://www.april1985.com/post/2009-07-28-finally-back-from-zhejiang/</loc>
     
     <lastmod>2019-09-01T13:55:00.555Z</lastmod>
     
@@ -1409,21 +1416,21 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-07-28-finally-back-from-zhejiang/</loc>
+    <loc>http://www.april1985.com/post/2009-08-01-windows-7/</loc>
     
     <lastmod>2019-09-01T13:55:00.555Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-07-22-at-the-airport/</loc>
+    <loc>http://www.april1985.com/post/2009-07-22-chengdu-2009-total-solar-eclipse/</loc>
     
     <lastmod>2019-09-01T13:55:00.554Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-07-22-chengdu-2009-total-solar-eclipse/</loc>
+    <loc>http://www.april1985.com/post/2009-07-22-at-the-airport/</loc>
     
     <lastmod>2019-09-01T13:55:00.554Z</lastmod>
     
@@ -1444,14 +1451,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-07-05-summer-computer-maintenance-cheats/</loc>
+    <loc>http://www.april1985.com/post/2009-07-10-planted-jasmine/</loc>
     
     <lastmod>2019-09-01T13:55:00.552Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-07-10-planted-jasmine/</loc>
+    <loc>http://www.april1985.com/post/2009-07-05-summer-computer-maintenance-cheats/</loc>
     
     <lastmod>2019-09-01T13:55:00.552Z</lastmod>
     
@@ -1472,13 +1479,6 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-06-17-facebook-did-not-get-to-know/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.550Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.april1985.com/post/2009-06-19-shit-thing/</loc>
     
     <lastmod>2019-09-01T13:55:00.550Z</lastmod>
@@ -1486,9 +1486,9 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-06-04-who-is-that/</loc>
+    <loc>http://www.april1985.com/post/2009-06-17-facebook-did-not-get-to-know/</loc>
     
-    <lastmod>2019-09-01T13:55:00.549Z</lastmod>
+    <lastmod>2019-09-01T13:55:00.550Z</lastmod>
     
   </url>
   
@@ -1501,6 +1501,13 @@
   
   <url>
     <loc>http://www.april1985.com/post/2009-06-08-after-the-tragedy/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.549Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2009-06-04-who-is-that/</loc>
     
     <lastmod>2019-09-01T13:55:00.549Z</lastmod>
     
@@ -1535,14 +1542,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-05-10-grammer-girl-podcast-downloader/</loc>
+    <loc>http://www.april1985.com/post/2009-05-16-best-english-learning-sites-for-you/</loc>
     
     <lastmod>2019-09-01T13:55:00.546Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-05-16-best-english-learning-sites-for-you/</loc>
+    <loc>http://www.april1985.com/post/2009-05-10-grammer-girl-podcast-downloader/</loc>
     
     <lastmod>2019-09-01T13:55:00.546Z</lastmod>
     
@@ -1570,14 +1577,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-04-21-beg/</loc>
+    <loc>http://www.april1985.com/post/2009-04-20-so-tired/</loc>
     
     <lastmod>2019-09-01T13:55:00.544Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-04-20-so-tired/</loc>
+    <loc>http://www.april1985.com/post/2009-04-21-beg/</loc>
     
     <lastmod>2019-09-01T13:55:00.544Z</lastmod>
     
@@ -1598,13 +1605,6 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-03-25-i-hate-missing-class-like-this/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.542Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.april1985.com/post/2009-03-29-i-hate-the-rain/</loc>
     
     <lastmod>2019-09-01T13:55:00.542Z</lastmod>
@@ -1612,9 +1612,9 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-03-23-trip-to-yunding-mountain/</loc>
+    <loc>http://www.april1985.com/post/2009-03-25-i-hate-missing-class-like-this/</loc>
     
-    <lastmod>2019-09-01T13:55:00.541Z</lastmod>
+    <lastmod>2019-09-01T13:55:00.542Z</lastmod>
     
   </url>
   
@@ -1627,6 +1627,13 @@
   
   <url>
     <loc>http://www.april1985.com/post/2009-03-18-vampires/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.541Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2009-03-23-trip-to-yunding-mountain/</loc>
     
     <lastmod>2019-09-01T13:55:00.541Z</lastmod>
     
@@ -1654,13 +1661,6 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-03-13-forced-to-change-it-back/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.539Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.april1985.com/post/2009-03-03-yuan-tong-town/</loc>
     
     <lastmod>2019-09-01T13:55:00.539Z</lastmod>
@@ -1668,14 +1668,21 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-02-27-kaspersky-card-it-crashes-too-strong/</loc>
+    <loc>http://www.april1985.com/post/2009-03-13-forced-to-change-it-back/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.539Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2009-02-26-solution-net-application-efficiency/</loc>
     
     <lastmod>2019-09-01T13:55:00.538Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-02-26-solution-net-application-efficiency/</loc>
+    <loc>http://www.april1985.com/post/2009-02-27-kaspersky-card-it-crashes-too-strong/</loc>
     
     <lastmod>2019-09-01T13:55:00.538Z</lastmod>
     
@@ -1717,14 +1724,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-02-06-jobu002639s-a-good-english-website/</loc>
+    <loc>http://www.april1985.com/post/2009-02-10-how-to-use-the-arrow-keys-in-the-form/</loc>
     
     <lastmod>2019-09-01T13:55:00.535Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-02-10-how-to-use-the-arrow-keys-in-the-form/</loc>
+    <loc>http://www.april1985.com/post/2009-02-06-jobu002639s-a-good-english-website/</loc>
     
     <lastmod>2019-09-01T13:55:00.535Z</lastmod>
     
@@ -1738,14 +1745,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-02-04-demo-virtual-surgery/</loc>
+    <loc>http://www.april1985.com/post/2009-02-03-this-is-valid-and-wine-ah-are-knowledgeable-to-me-about/</loc>
     
     <lastmod>2019-09-01T13:55:00.534Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-02-03-this-is-valid-and-wine-ah-are-knowledgeable-to-me-about/</loc>
+    <loc>http://www.april1985.com/post/2009-02-04-demo-virtual-surgery/</loc>
     
     <lastmod>2019-09-01T13:55:00.534Z</lastmod>
     
@@ -1766,7 +1773,7 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-01-21-read-the-call-for-love-2/</loc>
+    <loc>http://www.april1985.com/post/2009-01-25-happy-chinese-new-year/</loc>
     
     <lastmod>2019-09-01T13:55:00.532Z</lastmod>
     
@@ -1780,7 +1787,7 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-01-25-happy-chinese-new-year/</loc>
+    <loc>http://www.april1985.com/post/2009-01-21-read-the-call-for-love-2/</loc>
     
     <lastmod>2019-09-01T13:55:00.532Z</lastmod>
     
@@ -1801,14 +1808,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-01-17-09-new-yearu002639s-day-hailuogou-1-start-evening/</loc>
+    <loc>http://www.april1985.com/post/2009-01-16-python-integer-is-converted-to-any-band-u0026ltu003d-36/</loc>
     
     <lastmod>2019-09-01T13:55:00.530Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2009-01-16-python-integer-is-converted-to-any-band-u0026ltu003d-36/</loc>
+    <loc>http://www.april1985.com/post/2009-01-17-09-new-yearu002639s-day-hailuogou-1-start-evening/</loc>
     
     <lastmod>2019-09-01T13:55:00.530Z</lastmod>
     
@@ -1864,14 +1871,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-12-27-it-is-again-deceiving-your-eyes/</loc>
+    <loc>http://www.april1985.com/post/2008-12-27-exquisite-beauty/</loc>
     
     <lastmod>2019-09-01T13:55:00.526Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-12-27-exquisite-beauty/</loc>
+    <loc>http://www.april1985.com/post/2008-12-27-it-is-again-deceiving-your-eyes/</loc>
     
     <lastmod>2019-09-01T13:55:00.526Z</lastmod>
     
@@ -1899,13 +1906,6 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-12-23-vs2005-compile-complete-slow/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.524Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.april1985.com/post/2008-12-24-christmas/</loc>
     
     <lastmod>2019-09-01T13:55:00.524Z</lastmod>
@@ -1913,9 +1913,9 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-12-19-ssh-over-tor-on-ubuntu-8-10/</loc>
+    <loc>http://www.april1985.com/post/2008-12-23-vs2005-compile-complete-slow/</loc>
     
-    <lastmod>2019-09-01T13:55:00.523Z</lastmod>
+    <lastmod>2019-09-01T13:55:00.524Z</lastmod>
     
   </url>
   
@@ -1927,14 +1927,21 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-12-14-samsung-19-inch-lcd-disassembly/</loc>
+    <loc>http://www.april1985.com/post/2008-12-19-ssh-over-tor-on-ubuntu-8-10/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.523Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2008-12-18-talk-winio-initialization-exception/</loc>
     
     <lastmod>2019-09-01T13:55:00.522Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-12-18-talk-winio-initialization-exception/</loc>
+    <loc>http://www.april1985.com/post/2008-12-14-samsung-19-inch-lcd-disassembly/</loc>
     
     <lastmod>2019-09-01T13:55:00.522Z</lastmod>
     
@@ -1997,14 +2004,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-12-06-speed-blog/</loc>
+    <loc>http://www.april1985.com/post/2008-12-05-increase-godaddy-host-site-for-the-gzip-compression/</loc>
     
     <lastmod>2019-09-01T13:55:00.518Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-12-05-increase-godaddy-host-site-for-the-gzip-compression/</loc>
+    <loc>http://www.april1985.com/post/2008-12-06-speed-blog/</loc>
     
     <lastmod>2019-09-01T13:55:00.518Z</lastmod>
     
@@ -2032,13 +2039,6 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-10-31-operating-system-installed-for-a-week/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.516Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.april1985.com/post/2008-11-15-east-butler-autumn-landscape-red-leaves-1/</loc>
     
     <lastmod>2019-09-01T13:55:00.516Z</lastmod>
@@ -2046,14 +2046,21 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-10-27-vmware-workstation-6-5-under-ubuntu-8-10-key-position-in-the-failure-of-problem-solving/</loc>
+    <loc>http://www.april1985.com/post/2008-10-31-operating-system-installed-for-a-week/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.516Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2008-10-21-you-definitely-do-not-know-the-earth-mars-base/</loc>
     
     <lastmod>2019-09-01T13:55:00.515Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-10-21-you-definitely-do-not-know-the-earth-mars-base/</loc>
+    <loc>http://www.april1985.com/post/2008-10-27-vmware-workstation-6-5-under-ubuntu-8-10-key-position-in-the-failure-of-problem-solving/</loc>
     
     <lastmod>2019-09-01T13:55:00.515Z</lastmod>
     
@@ -2144,6 +2151,13 @@
   </url>
   
   <url>
+    <loc>http://www.april1985.com/post/2008-08-14-ubuntu-more-and-more-fun/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.509Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.april1985.com/post/2008-08-30-back-home/</loc>
     
     <lastmod>2019-09-01T13:55:00.509Z</lastmod>
@@ -2151,9 +2165,9 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-08-14-ubuntu-more-and-more-fun/</loc>
+    <loc>http://www.april1985.com/post/2008-08-08-gpu-texture-fill-rate-test/</loc>
     
-    <lastmod>2019-09-01T13:55:00.509Z</lastmod>
+    <lastmod>2019-09-01T13:55:00.508Z</lastmod>
     
   </url>
   
@@ -2165,9 +2179,9 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-08-08-gpu-texture-fill-rate-test/</loc>
+    <loc>http://www.april1985.com/post/2008-07-17-emei-travels-the-first-day/</loc>
     
-    <lastmod>2019-09-01T13:55:00.508Z</lastmod>
+    <lastmod>2019-09-01T13:55:00.507Z</lastmod>
     
   </url>
   
@@ -2186,9 +2200,9 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-07-17-emei-travels-the-first-day/</loc>
+    <loc>http://www.april1985.com/post/2008-06-22-well-it-is-too-cheap/</loc>
     
-    <lastmod>2019-09-01T13:55:00.507Z</lastmod>
+    <lastmod>2019-09-01T13:55:00.506Z</lastmod>
     
   </url>
   
@@ -2200,21 +2214,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-06-22-well-it-is-too-cheap/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.506Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.april1985.com/post/2008-06-15-what-are-memories/</loc>
+    <loc>http://www.april1985.com/post/2008-06-18-find-yin-changgou-familiar-with-the-memory/</loc>
     
     <lastmod>2019-09-01T13:55:00.505Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-06-18-find-yin-changgou-familiar-with-the-memory/</loc>
+    <loc>http://www.april1985.com/post/2008-06-15-what-are-memories/</loc>
     
     <lastmod>2019-09-01T13:55:00.505Z</lastmod>
     
@@ -2256,6 +2263,13 @@
   </url>
   
   <url>
+    <loc>http://www.april1985.com/post/2008-05-03-detergent-wipe-display-a-thief-light/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.502Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.april1985.com/post/2008-05-02-to-the-botanical-gardens/</loc>
     
     <lastmod>2019-09-01T13:55:00.502Z</lastmod>
@@ -2264,13 +2278,6 @@
   
   <url>
     <loc>http://www.april1985.com/post/2008-05-03-gpu-voxelization-of/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.502Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.april1985.com/post/2008-05-03-detergent-wipe-display-a-thief-light/</loc>
     
     <lastmod>2019-09-01T13:55:00.502Z</lastmod>
     
@@ -2305,6 +2312,13 @@
   </url>
   
   <url>
+    <loc>http://www.april1985.com/post/2008-03-28-solution-mfc-program-error-out-of-the-question-when-the-destructor/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.499Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.april1985.com/post/2008-03-29-dream/</loc>
     
     <lastmod>2019-09-01T13:55:00.499Z</lastmod>
@@ -2313,13 +2327,6 @@
   
   <url>
     <loc>http://www.april1985.com/post/2008-04-05-puzhao-si/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.499Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.april1985.com/post/2008-03-28-solution-mfc-program-error-out-of-the-question-when-the-destructor/</loc>
     
     <lastmod>2019-09-01T13:55:00.499Z</lastmod>
     
@@ -2340,6 +2347,13 @@
   </url>
   
   <url>
+    <loc>http://www.april1985.com/post/2008-03-23-it-is-the-end-of-the-week/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.497Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.april1985.com/post/2008-03-18-these-days-3/</loc>
     
     <lastmod>2019-09-01T13:55:00.497Z</lastmod>
@@ -2354,21 +2368,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-03-23-it-is-the-end-of-the-week/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.497Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.april1985.com/post/2008-03-14-despair/</loc>
+    <loc>http://www.april1985.com/post/2008-03-12-dx10-dxut-way-with-nvidia-perfhud-5-7/</loc>
     
     <lastmod>2019-09-01T13:55:00.496Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-03-12-dx10-dxut-way-with-nvidia-perfhud-5-7/</loc>
+    <loc>http://www.april1985.com/post/2008-03-14-despair/</loc>
     
     <lastmod>2019-09-01T13:55:00.496Z</lastmod>
     
@@ -2389,14 +2396,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-02-28-bored/</loc>
+    <loc>http://www.april1985.com/post/2008-02-24-baidu-to-know-taking-a-girlu002639s-name-he-named/</loc>
     
     <lastmod>2019-09-01T13:55:00.494Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-02-24-baidu-to-know-taking-a-girlu002639s-name-he-named/</loc>
+    <loc>http://www.april1985.com/post/2008-02-28-bored/</loc>
     
     <lastmod>2019-09-01T13:55:00.494Z</lastmod>
     
@@ -2424,14 +2431,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-02-23-2008-2-22-such-a-unlucky-day/</loc>
+    <loc>http://www.april1985.com/post/2008-02-21-windows-server-2008-heroic-sacrifice/</loc>
     
     <lastmod>2019-09-01T13:55:00.492Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-02-21-windows-server-2008-heroic-sacrifice/</loc>
+    <loc>http://www.april1985.com/post/2008-02-23-2008-2-22-such-a-unlucky-day/</loc>
     
     <lastmod>2019-09-01T13:55:00.492Z</lastmod>
     
@@ -2459,14 +2466,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-02-16-linux-site-map/</loc>
+    <loc>http://www.april1985.com/post/2008-02-15-u0026quotstruggleu0026quot-after-reading/</loc>
     
     <lastmod>2019-09-01T13:55:00.490Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-02-15-u0026quotstruggleu0026quot-after-reading/</loc>
+    <loc>http://www.april1985.com/post/2008-02-16-linux-site-map/</loc>
     
     <lastmod>2019-09-01T13:55:00.490Z</lastmod>
     
@@ -2480,13 +2487,6 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-02-15-cnc-machining-three-dimensional-simulation-of-bending-video/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.489Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.april1985.com/post/2008-02-15-dust-video/</loc>
     
     <lastmod>2019-09-01T13:55:00.489Z</lastmod>
@@ -2494,9 +2494,9 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-02-14-nmr-three-dimensional-reconstruction-video/</loc>
+    <loc>http://www.april1985.com/post/2008-02-15-cnc-machining-three-dimensional-simulation-of-bending-video/</loc>
     
-    <lastmod>2019-09-01T13:55:00.488Z</lastmod>
+    <lastmod>2019-09-01T13:55:00.489Z</lastmod>
     
   </url>
   
@@ -2508,7 +2508,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-02-06-happy-new-year/</loc>
+    <loc>http://www.april1985.com/post/2008-02-14-nmr-three-dimensional-reconstruction-video/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.488Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2008-02-10-tried-the-ubuntu-8-04-alpha-4/</loc>
     
     <lastmod>2019-09-01T13:55:00.487Z</lastmod>
     
@@ -2522,16 +2529,9 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-02-10-tried-the-ubuntu-8-04-alpha-4/</loc>
+    <loc>http://www.april1985.com/post/2008-02-06-happy-new-year/</loc>
     
     <lastmod>2019-09-01T13:55:00.487Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.april1985.com/post/2008-02-04-windows-server-2008-trial/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.486Z</lastmod>
     
   </url>
   
@@ -2543,9 +2543,9 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-02-04-reprintede38091-e38090your-parents-when-you-find-it-too-when-you-read-these-words-must-read/</loc>
+    <loc>http://www.april1985.com/post/2008-02-04-windows-server-2008-trial/</loc>
     
-    <lastmod>2019-09-01T13:55:00.485Z</lastmod>
+    <lastmod>2019-09-01T13:55:00.486Z</lastmod>
     
   </url>
   
@@ -2557,7 +2557,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-02-02-overclocking/</loc>
+    <loc>http://www.april1985.com/post/2008-02-04-reprintede38091-e38090your-parents-when-you-find-it-too-when-you-read-these-words-must-read/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.485Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2008-02-03-three-dimensional-reconstruction-of-magnetic-resonance/</loc>
     
     <lastmod>2019-09-01T13:55:00.484Z</lastmod>
     
@@ -2571,7 +2578,7 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-02-03-three-dimensional-reconstruction-of-magnetic-resonance/</loc>
+    <loc>http://www.april1985.com/post/2008-02-02-overclocking/</loc>
     
     <lastmod>2019-09-01T13:55:00.484Z</lastmod>
     
@@ -2613,13 +2620,6 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-01-15-and-inkjet-printers-bye/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.481Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.april1985.com/post/2008-01-15-khan-chengdu-hot-u0026quotphone-number-changing-softwareu0026quot-caller-id-can-easily-change/</loc>
     
     <lastmod>2019-09-01T13:55:00.481Z</lastmod>
@@ -2627,9 +2627,9 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2008-01-05-sharpos/</loc>
+    <loc>http://www.april1985.com/post/2008-01-15-and-inkjet-printers-bye/</loc>
     
-    <lastmod>2019-09-01T13:55:00.480Z</lastmod>
+    <lastmod>2019-09-01T13:55:00.481Z</lastmod>
     
   </url>
   
@@ -2642,6 +2642,13 @@
   
   <url>
     <loc>http://www.april1985.com/post/2008-01-13-wash-e69dafe69daf/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.480Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2008-01-05-sharpos/</loc>
     
     <lastmod>2019-09-01T13:55:00.480Z</lastmod>
     
@@ -2676,14 +2683,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-12-30-opengl-may-be-returned-to-the/</loc>
+    <loc>http://www.april1985.com/post/2007-12-28-matrix-theory-took-the-two/</loc>
     
     <lastmod>2019-09-01T13:55:00.477Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-12-28-matrix-theory-took-the-two/</loc>
+    <loc>http://www.april1985.com/post/2007-12-30-opengl-may-be-returned-to-the/</loc>
     
     <lastmod>2019-09-01T13:55:00.477Z</lastmod>
     
@@ -2711,6 +2718,13 @@
   </url>
   
   <url>
+    <loc>http://www.april1985.com/post/2007-12-08-e5b9b3e99d99/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.475Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.april1985.com/post/2007-12-19-u0026quotjoel-wrote-the-softwareu0026quot-chinese-translation-quality-is-disappointing/</loc>
     
     <lastmod>2019-09-01T13:55:00.475Z</lastmod>
@@ -2725,21 +2739,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-12-08-e5b9b3e99d99/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.475Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.april1985.com/post/2007-12-06-untitled/</loc>
+    <loc>http://www.april1985.com/post/2007-12-08-console-output-affect-the-efficiency-of-procedures/</loc>
     
     <lastmod>2019-09-01T13:55:00.474Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-12-08-console-output-affect-the-efficiency-of-procedures/</loc>
+    <loc>http://www.april1985.com/post/2007-12-06-untitled/</loc>
     
     <lastmod>2019-09-01T13:55:00.474Z</lastmod>
     
@@ -2767,13 +2774,6 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-11-18-he-jiang-ting/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.472Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.april1985.com/post/2007-11-22-chengdu-travel-and-food/</loc>
     
     <lastmod>2019-09-01T13:55:00.472Z</lastmod>
@@ -2781,9 +2781,9 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-11-17-playing-games-of-recent/</loc>
+    <loc>http://www.april1985.com/post/2007-11-18-he-jiang-ting/</loc>
     
-    <lastmod>2019-09-01T13:55:00.471Z</lastmod>
+    <lastmod>2019-09-01T13:55:00.472Z</lastmod>
     
   </url>
   
@@ -2802,9 +2802,9 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-11-09-mobile-bug/</loc>
+    <loc>http://www.april1985.com/post/2007-11-17-playing-games-of-recent/</loc>
     
-    <lastmod>2019-09-01T13:55:00.470Z</lastmod>
+    <lastmod>2019-09-01T13:55:00.471Z</lastmod>
     
   </url>
   
@@ -2816,9 +2816,9 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-11-06-what-you-are-and-others/</loc>
+    <loc>http://www.april1985.com/post/2007-11-09-mobile-bug/</loc>
     
-    <lastmod>2019-09-01T13:55:00.469Z</lastmod>
+    <lastmod>2019-09-01T13:55:00.470Z</lastmod>
     
   </url>
   
@@ -2830,7 +2830,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-11-01-think/</loc>
+    <loc>http://www.april1985.com/post/2007-11-06-what-you-are-and-others/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.469Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2007-10-30-thoroughly-weighs/</loc>
     
     <lastmod>2019-09-01T13:55:00.468Z</lastmod>
     
@@ -2844,7 +2851,7 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-10-30-thoroughly-weighs/</loc>
+    <loc>http://www.april1985.com/post/2007-11-01-think/</loc>
     
     <lastmod>2019-09-01T13:55:00.468Z</lastmod>
     
@@ -2865,13 +2872,6 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-10-10-day-time-2/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.466Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.april1985.com/post/2007-10-09-gts-continuous-boolean-failure/</loc>
     
     <lastmod>2019-09-01T13:55:00.466Z</lastmod>
@@ -2879,7 +2879,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-10-04-economic-story-the-story-of-sub-porridge/</loc>
+    <loc>http://www.april1985.com/post/2007-10-10-day-time-2/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.466Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2007-09-29-damn-it/</loc>
     
     <lastmod>2019-09-01T13:55:00.465Z</lastmod>
     
@@ -2893,7 +2900,7 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-09-29-damn-it/</loc>
+    <loc>http://www.april1985.com/post/2007-10-04-economic-story-the-story-of-sub-porridge/</loc>
     
     <lastmod>2019-09-01T13:55:00.465Z</lastmod>
     
@@ -2963,6 +2970,13 @@
   </url>
   
   <url>
+    <loc>http://www.april1985.com/post/2007-09-10-back-to-bf2142/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.460Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.april1985.com/post/2007-09-09-openscenegraph-moving-objects/</loc>
     
     <lastmod>2019-09-01T13:55:00.460Z</lastmod>
@@ -2977,21 +2991,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-09-10-back-to-bf2142/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.460Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.april1985.com/post/2007-09-05-new-computer-to-get/</loc>
+    <loc>http://www.april1985.com/post/2007-08-28-starting-msi-p35-neo2-fr/</loc>
     
     <lastmod>2019-09-01T13:55:00.459Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-08-28-starting-msi-p35-neo2-fr/</loc>
+    <loc>http://www.april1985.com/post/2007-09-05-new-computer-to-get/</loc>
     
     <lastmod>2019-09-01T13:55:00.459Z</lastmod>
     
@@ -3005,14 +3012,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-08-15-e887aae8a18ce8bda6/</loc>
+    <loc>http://www.april1985.com/post/2007-08-16-hell-and-even-to-bianshi/</loc>
     
     <lastmod>2019-09-01T13:55:00.458Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-08-16-hell-and-even-to-bianshi/</loc>
+    <loc>http://www.april1985.com/post/2007-08-15-e887aae8a18ce8bda6/</loc>
     
     <lastmod>2019-09-01T13:55:00.458Z</lastmod>
     
@@ -3033,13 +3040,6 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-07-31-august-is-coming-up/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.456Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.april1985.com/post/2007-07-24-phone-with-the-beat/</loc>
     
     <lastmod>2019-09-01T13:55:00.456Z</lastmod>
@@ -3047,7 +3047,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-07-21-ubuntu-7-04-the-fastest-source-cnc/</loc>
+    <loc>http://www.april1985.com/post/2007-07-31-august-is-coming-up/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.456Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2007-07-23-blog-updated/</loc>
     
     <lastmod>2019-09-01T13:55:00.455Z</lastmod>
     
@@ -3061,16 +3068,9 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-07-23-blog-updated/</loc>
+    <loc>http://www.april1985.com/post/2007-07-21-ubuntu-7-04-the-fastest-source-cnc/</loc>
     
     <lastmod>2019-09-01T13:55:00.455Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.april1985.com/post/2007-07-21-finally-carbide-c-1-2-configured/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.454Z</lastmod>
     
   </url>
   
@@ -3082,14 +3082,21 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-07-13-dujiangyan-lingyan-temple/</loc>
+    <loc>http://www.april1985.com/post/2007-07-21-finally-carbide-c-1-2-configured/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.454Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2007-07-10-new-stuff-to-play/</loc>
     
     <lastmod>2019-09-01T13:55:00.453Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-07-10-new-stuff-to-play/</loc>
+    <loc>http://www.april1985.com/post/2007-07-13-dujiangyan-lingyan-temple/</loc>
     
     <lastmod>2019-09-01T13:55:00.453Z</lastmod>
     
@@ -3103,14 +3110,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-07-07-baffling/</loc>
+    <loc>http://www.april1985.com/post/2007-07-07-symbian-s60-third-edition-of-the-really-annoying-ah/</loc>
     
     <lastmod>2019-09-01T13:55:00.452Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-07-07-symbian-s60-third-edition-of-the-really-annoying-ah/</loc>
+    <loc>http://www.april1985.com/post/2007-07-07-baffling/</loc>
     
     <lastmod>2019-09-01T13:55:00.452Z</lastmod>
     
@@ -3215,14 +3222,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-06-04-graduation/</loc>
+    <loc>http://www.april1985.com/post/2007-06-03-my-del-icio-us/</loc>
     
     <lastmod>2019-09-01T13:55:00.445Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-06-03-my-del-icio-us/</loc>
+    <loc>http://www.april1985.com/post/2007-06-04-graduation/</loc>
     
     <lastmod>2019-09-01T13:55:00.445Z</lastmod>
     
@@ -3236,13 +3243,6 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-05-31-bf2142-latest-record/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.444Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.april1985.com/post/2007-05-25-deceived/</loc>
     
     <lastmod>2019-09-01T13:55:00.444Z</lastmod>
@@ -3250,14 +3250,21 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-05-18-c-and-c-co/</loc>
+    <loc>http://www.april1985.com/post/2007-05-31-bf2142-latest-record/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.444Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2007-05-23-weather-so-hot-ah/</loc>
     
     <lastmod>2019-09-01T13:55:00.443Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-05-23-weather-so-hot-ah/</loc>
+    <loc>http://www.april1985.com/post/2007-05-18-c-and-c-co/</loc>
     
     <lastmod>2019-09-01T13:55:00.443Z</lastmod>
     
@@ -3271,14 +3278,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-05-05-want-to-use-latex-to-write-papers-burongyia/</loc>
+    <loc>http://www.april1985.com/post/2007-05-16-home-at-last-back-to-normal/</loc>
     
     <lastmod>2019-09-01T13:55:00.442Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-05-16-home-at-last-back-to-normal/</loc>
+    <loc>http://www.april1985.com/post/2007-05-05-want-to-use-latex-to-write-papers-burongyia/</loc>
     
     <lastmod>2019-09-01T13:55:00.442Z</lastmod>
     
@@ -3320,14 +3327,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-04-22-s3-is-cracking-success-raw-format-is-available/</loc>
+    <loc>http://www.april1985.com/post/2007-04-23-happy-birthday/</loc>
     
     <lastmod>2019-09-01T13:55:00.439Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-04-23-happy-birthday/</loc>
+    <loc>http://www.april1985.com/post/2007-04-22-s3-is-cracking-success-raw-format-is-available/</loc>
     
     <lastmod>2019-09-01T13:55:00.439Z</lastmod>
     
@@ -3341,14 +3348,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-04-20-ubuntu-7-04-released/</loc>
+    <loc>http://www.april1985.com/post/2007-04-20-bf2142/</loc>
     
     <lastmod>2019-09-01T13:55:00.438Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-04-20-bf2142/</loc>
+    <loc>http://www.april1985.com/post/2007-04-20-ubuntu-7-04-released/</loc>
     
     <lastmod>2019-09-01T13:55:00.438Z</lastmod>
     
@@ -3369,6 +3376,13 @@
   </url>
   
   <url>
+    <loc>http://www.april1985.com/post/2007-04-11-sell-the-card-to-buy-the-game/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.436Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.april1985.com/post/2007-04-07-galaxy-6800xt-arrival/</loc>
     
     <lastmod>2019-09-01T13:55:00.436Z</lastmod>
@@ -3377,13 +3391,6 @@
   
   <url>
     <loc>http://www.april1985.com/post/2007-04-11-my-bookshelf/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.436Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.april1985.com/post/2007-04-11-sell-the-card-to-buy-the-game/</loc>
     
     <lastmod>2019-09-01T13:55:00.436Z</lastmod>
     
@@ -3404,13 +3411,6 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-04-04-openscenegraph-notes-how-to-export-data-triangle/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.434Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.april1985.com/post/2007-04-04-openscenegraph-notes-the-world-is-so-beautiful/</loc>
     
     <lastmod>2019-09-01T13:55:00.434Z</lastmod>
@@ -3418,14 +3418,21 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-04-03-openscenegraph-notes-form-mode/</loc>
+    <loc>http://www.april1985.com/post/2007-04-04-openscenegraph-notes-how-to-export-data-triangle/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2007-04-01-reference-openscenegraph-the-3ds-plug-learning-lib3ds/</loc>
     
     <lastmod>2019-09-01T13:55:00.433Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-04-01-reference-openscenegraph-the-3ds-plug-learning-lib3ds/</loc>
+    <loc>http://www.april1985.com/post/2007-04-03-openscenegraph-notes-form-mode/</loc>
     
     <lastmod>2019-09-01T13:55:00.433Z</lastmod>
     
@@ -3453,13 +3460,6 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-03-30-c-u0026amp-c3-decadent-one-day/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.431Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.april1985.com/post/2007-03-31-it-is-boring/</loc>
     
     <lastmod>2019-09-01T13:55:00.431Z</lastmod>
@@ -3467,9 +3467,9 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-03-23-300g-industrial-ftp-server/</loc>
+    <loc>http://www.april1985.com/post/2007-03-30-c-u0026amp-c3-decadent-one-day/</loc>
     
-    <lastmod>2019-09-01T13:55:00.430Z</lastmod>
+    <lastmod>2019-09-01T13:55:00.431Z</lastmod>
     
   </url>
   
@@ -3481,7 +3481,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-03-18-sleep-run-internet-cafes-to-play-bf2/</loc>
+    <loc>http://www.april1985.com/post/2007-03-23-300g-industrial-ftp-server/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.430Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2007-03-22-iu002639m-your-girl/</loc>
     
     <lastmod>2019-09-01T13:55:00.429Z</lastmod>
     
@@ -3495,21 +3502,21 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-03-22-iu002639m-your-girl/</loc>
+    <loc>http://www.april1985.com/post/2007-03-18-sleep-run-internet-cafes-to-play-bf2/</loc>
     
     <lastmod>2019-09-01T13:55:00.429Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-03-17-bender-has-basically-completed-the-virtual-machining/</loc>
+    <loc>http://www.april1985.com/post/2007-03-16-my-programming-tips/</loc>
     
     <lastmod>2019-09-01T13:55:00.428Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-03-16-my-programming-tips/</loc>
+    <loc>http://www.april1985.com/post/2007-03-17-bender-has-basically-completed-the-virtual-machining/</loc>
     
     <lastmod>2019-09-01T13:55:00.428Z</lastmod>
     
@@ -3530,6 +3537,13 @@
   </url>
   
   <url>
+    <loc>http://www.april1985.com/post/2007-03-15-miracle-unicom-quarters-these-days-even-a-free-internet/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.426Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.april1985.com/post/2007-03-10-completely-silent-on-the-schoolu002639s-broken-network/</loc>
     
     <lastmod>2019-09-01T13:55:00.426Z</lastmod>
@@ -3544,21 +3558,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-03-15-miracle-unicom-quarters-these-days-even-a-free-internet/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.426Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.april1985.com/post/2007-03-08-recent-updates-may-be-slow/</loc>
+    <loc>http://www.april1985.com/post/2007-03-07-find-a-specific-node-osg-method/</loc>
     
     <lastmod>2019-09-01T13:55:00.425Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-03-07-find-a-specific-node-osg-method/</loc>
+    <loc>http://www.april1985.com/post/2007-03-08-recent-updates-may-be-slow/</loc>
     
     <lastmod>2019-09-01T13:55:00.425Z</lastmod>
     
@@ -3642,7 +3649,7 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-02-10-opengl-mode-efficiency-of-gl_select/</loc>
+    <loc>http://www.april1985.com/post/2007-02-10-5200-miraculously-revived/</loc>
     
     <lastmod>2019-09-01T13:55:00.419Z</lastmod>
     
@@ -3656,16 +3663,9 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-02-10-5200-miraculously-revived/</loc>
+    <loc>http://www.april1985.com/post/2007-02-10-opengl-mode-efficiency-of-gl_select/</loc>
     
     <lastmod>2019-09-01T13:55:00.419Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.april1985.com/post/2007-02-09-oh-bad-luck/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.418Z</lastmod>
     
   </url>
   
@@ -3677,7 +3677,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-02-07-yeah/</loc>
+    <loc>http://www.april1985.com/post/2007-02-09-oh-bad-luck/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.418Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2007-02-05-huanglongxi/</loc>
     
     <lastmod>2019-09-01T13:55:00.417Z</lastmod>
     
@@ -3691,7 +3698,7 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-02-05-huanglongxi/</loc>
+    <loc>http://www.april1985.com/post/2007-02-07-yeah/</loc>
     
     <lastmod>2019-09-01T13:55:00.417Z</lastmod>
     
@@ -3726,13 +3733,6 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-01-30-saga-bf2-rank/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.414Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.april1985.com/post/2007-01-29-more-and-more-lazy/</loc>
     
     <lastmod>2019-09-01T13:55:00.414Z</lastmod>
@@ -3740,9 +3740,9 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-01-27-megarace-2-emule-download/</loc>
+    <loc>http://www.april1985.com/post/2007-01-30-saga-bf2-rank/</loc>
     
-    <lastmod>2019-09-01T13:55:00.413Z</lastmod>
+    <lastmod>2019-09-01T13:55:00.414Z</lastmod>
     
   </url>
   
@@ -3755,6 +3755,13 @@
   
   <url>
     <loc>http://www.april1985.com/post/2007-01-28-with-the-beat/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.413Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2007-01-27-megarace-2-emule-download/</loc>
     
     <lastmod>2019-09-01T13:55:00.413Z</lastmod>
     
@@ -3775,7 +3782,7 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-12-29-return-home/</loc>
+    <loc>http://www.april1985.com/post/2007-01-22-back-to-december-29-2006/</loc>
     
     <lastmod>2019-09-01T13:55:00.411Z</lastmod>
     
@@ -3789,7 +3796,7 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2007-01-22-back-to-december-29-2006/</loc>
+    <loc>http://www.april1985.com/post/2006-12-29-return-home/</loc>
     
     <lastmod>2019-09-01T13:55:00.411Z</lastmod>
     
@@ -3810,6 +3817,13 @@
   </url>
   
   <url>
+    <loc>http://www.april1985.com/post/2006-12-24-today-christmas-eve/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.409Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.april1985.com/post/2006-12-24-opengl-start-kit/</loc>
     
     <lastmod>2019-09-01T13:55:00.409Z</lastmod>
@@ -3818,13 +3832,6 @@
   
   <url>
     <loc>http://www.april1985.com/post/2006-12-23-merry-christmas/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.409Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.april1985.com/post/2006-12-24-today-christmas-eve/</loc>
     
     <lastmod>2019-09-01T13:55:00.409Z</lastmod>
     
@@ -3845,13 +3852,6 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-12-14-visual-assist-x-v10-3-1540-crack/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.407Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.april1985.com/post/2006-12-15-studies-find-something-opengl/</loc>
     
     <lastmod>2019-09-01T13:55:00.407Z</lastmod>
@@ -3859,9 +3859,9 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-12-10-apt-axel-script/</loc>
+    <loc>http://www.april1985.com/post/2006-12-14-visual-assist-x-v10-3-1540-crack/</loc>
     
-    <lastmod>2019-09-01T13:55:00.406Z</lastmod>
+    <lastmod>2019-09-01T13:55:00.407Z</lastmod>
     
   </url>
   
@@ -3874,6 +3874,13 @@
   
   <url>
     <loc>http://www.april1985.com/post/2006-12-10-autumn-school/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.406Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2006-12-10-apt-axel-script/</loc>
     
     <lastmod>2019-09-01T13:55:00.406Z</lastmod>
     
@@ -3901,13 +3908,6 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-12-02-office-onenote-mobile/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.404Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.april1985.com/post/2006-12-01-window-forms-application-multi-language-support/</loc>
     
     <lastmod>2019-09-01T13:55:00.404Z</lastmod>
@@ -3915,9 +3915,9 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-11-28-powerful-powerpoint-2007/</loc>
+    <loc>http://www.april1985.com/post/2006-12-02-office-onenote-mobile/</loc>
     
-    <lastmod>2019-09-01T13:55:00.403Z</lastmod>
+    <lastmod>2019-09-01T13:55:00.404Z</lastmod>
     
   </url>
   
@@ -3929,9 +3929,9 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-11-20-ubuntu-6-10-beryl-love-you-really-so-hard/</loc>
+    <loc>http://www.april1985.com/post/2006-11-28-powerful-powerpoint-2007/</loc>
     
-    <lastmod>2019-09-01T13:55:00.402Z</lastmod>
+    <lastmod>2019-09-01T13:55:00.403Z</lastmod>
     
   </url>
   
@@ -3943,14 +3943,21 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-11-18-ubuntu-6-10-sources/</loc>
+    <loc>http://www.april1985.com/post/2006-11-20-ubuntu-6-10-beryl-love-you-really-so-hard/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.402Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2006-11-16-bad-luck-2/</loc>
     
     <lastmod>2019-09-01T13:55:00.401Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-11-16-bad-luck-2/</loc>
+    <loc>http://www.april1985.com/post/2006-11-18-ubuntu-6-10-sources/</loc>
     
     <lastmod>2019-09-01T13:55:00.401Z</lastmod>
     
@@ -3978,7 +3985,7 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-11-07-ascii-code-corresponding-to-the-font-used-6x8/</loc>
+    <loc>http://www.april1985.com/post/2006-11-05-recently/</loc>
     
     <lastmod>2019-09-01T13:55:00.399Z</lastmod>
     
@@ -3992,7 +3999,7 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-11-05-recently/</loc>
+    <loc>http://www.april1985.com/post/2006-11-07-ascii-code-corresponding-to-the-font-used-6x8/</loc>
     
     <lastmod>2019-09-01T13:55:00.399Z</lastmod>
     
@@ -4013,13 +4020,6 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-10-05-national-these-days/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.397Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.april1985.com/post/2006-10-13-wasted-days/</loc>
     
     <lastmod>2019-09-01T13:55:00.397Z</lastmod>
@@ -4027,9 +4027,9 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-10-03-flying-home/</loc>
+    <loc>http://www.april1985.com/post/2006-10-05-national-these-days/</loc>
     
-    <lastmod>2019-09-01T13:55:00.396Z</lastmod>
+    <lastmod>2019-09-01T13:55:00.397Z</lastmod>
     
   </url>
   
@@ -4042,6 +4042,13 @@
   
   <url>
     <loc>http://www.april1985.com/post/2006-10-02-happy-happy-mid-autumn-day/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.396Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2006-10-03-flying-home/</loc>
     
     <lastmod>2019-09-01T13:55:00.396Z</lastmod>
     
@@ -4062,14 +4069,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-09-24-vista-the-evil-os-in-the-world/</loc>
+    <loc>http://www.april1985.com/post/2006-09-27-web-site-has-a-problem-yesterday/</loc>
     
     <lastmod>2019-09-01T13:55:00.394Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-09-27-web-site-has-a-problem-yesterday/</loc>
+    <loc>http://www.april1985.com/post/2006-09-24-vista-the-evil-os-in-the-world/</loc>
     
     <lastmod>2019-09-01T13:55:00.394Z</lastmod>
     
@@ -4097,14 +4104,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-09-16-these-days/</loc>
+    <loc>http://www.april1985.com/post/2006-09-15-i-am-depressed-albums-can-be-used-not/</loc>
     
     <lastmod>2019-09-01T13:55:00.392Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-09-15-i-am-depressed-albums-can-be-used-not/</loc>
+    <loc>http://www.april1985.com/post/2006-09-16-these-days/</loc>
     
     <lastmod>2019-09-01T13:55:00.392Z</lastmod>
     
@@ -4132,13 +4139,6 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-09-11-bought-a-canon-powershot-s3-is/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.390Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.april1985.com/post/2006-09-10-love-come/</loc>
     
     <lastmod>2019-09-01T13:55:00.390Z</lastmod>
@@ -4146,14 +4146,21 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-09-06-easy-to-use-electronic-forms-software-online/</loc>
+    <loc>http://www.april1985.com/post/2006-09-11-bought-a-canon-powershot-s3-is/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.390Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2006-09-08-installed-a-music-player/</loc>
     
     <lastmod>2019-09-01T13:55:00.389Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-09-08-installed-a-music-player/</loc>
+    <loc>http://www.april1985.com/post/2006-09-06-easy-to-use-electronic-forms-software-online/</loc>
     
     <lastmod>2019-09-01T13:55:00.389Z</lastmod>
     
@@ -4181,13 +4188,6 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-09-03-began-to-review-the/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.387Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.april1985.com/post/2006-09-02-to-the-school-day/</loc>
     
     <lastmod>2019-09-01T13:55:00.387Z</lastmod>
@@ -4195,14 +4195,21 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-08-29-suse-sled-still-canu002639t-work-on-my-computers/</loc>
+    <loc>http://www.april1985.com/post/2006-09-03-began-to-review-the/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.387Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2006-08-31-try-aol-research-u0026amp-learn-and-google-books/</loc>
     
     <lastmod>2019-09-01T13:55:00.386Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-08-31-try-aol-research-u0026amp-learn-and-google-books/</loc>
+    <loc>http://www.april1985.com/post/2006-08-29-suse-sled-still-canu002639t-work-on-my-computers/</loc>
     
     <lastmod>2019-09-01T13:55:00.386Z</lastmod>
     
@@ -4216,14 +4223,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-08-27-were-using-suse-linux-enterprise-desktop-10/</loc>
+    <loc>http://www.april1985.com/post/2006-08-25-bad-luck/</loc>
     
     <lastmod>2019-09-01T13:55:00.385Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-08-25-bad-luck/</loc>
+    <loc>http://www.april1985.com/post/2006-08-27-were-using-suse-linux-enterprise-desktop-10/</loc>
     
     <lastmod>2019-09-01T13:55:00.385Z</lastmod>
     
@@ -4244,13 +4251,6 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-08-21-touch-screen-theory/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.383Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.april1985.com/post/2006-08-22-google-analytics-since-august-10-from-the-statistics/</loc>
     
     <lastmod>2019-09-01T13:55:00.383Z</lastmod>
@@ -4258,9 +4258,9 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-08-21-discussion-of-the-hard-disk-spindle-motor/</loc>
+    <loc>http://www.april1985.com/post/2006-08-21-touch-screen-theory/</loc>
     
-    <lastmod>2019-09-01T13:55:00.382Z</lastmod>
+    <lastmod>2019-09-01T13:55:00.383Z</lastmod>
     
   </url>
   
@@ -4272,9 +4272,9 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-08-20-lcd-model-handbook-for-transfer/</loc>
+    <loc>http://www.april1985.com/post/2006-08-21-discussion-of-the-hard-disk-spindle-motor/</loc>
     
-    <lastmod>2019-09-01T13:55:00.381Z</lastmod>
+    <lastmod>2019-09-01T13:55:00.382Z</lastmod>
     
   </url>
   
@@ -4286,14 +4286,21 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-08-19-myself-a-usb-fan/</loc>
+    <loc>http://www.april1985.com/post/2006-08-20-lcd-model-handbook-for-transfer/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.381Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2006-08-17-music/</loc>
     
     <lastmod>2019-09-01T13:55:00.380Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-08-17-music/</loc>
+    <loc>http://www.april1985.com/post/2006-08-19-myself-a-usb-fan/</loc>
     
     <lastmod>2019-09-01T13:55:00.380Z</lastmod>
     
@@ -4321,14 +4328,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-08-14-encyclopedia-howstuffworks/</loc>
+    <loc>http://www.april1985.com/post/2006-08-14-review-the-dos-era/</loc>
     
     <lastmod>2019-09-01T13:55:00.378Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-08-14-review-the-dos-era/</loc>
+    <loc>http://www.april1985.com/post/2006-08-14-encyclopedia-howstuffworks/</loc>
     
     <lastmod>2019-09-01T13:55:00.378Z</lastmod>
     
@@ -4342,13 +4349,6 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-08-11-trick-to-use-wap-to-access-this-site/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.377Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.april1985.com/post/2006-08-13-bf2-results/</loc>
     
     <lastmod>2019-09-01T13:55:00.377Z</lastmod>
@@ -4356,7 +4356,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-08-11-3-order-matrix-with-fast-and-accurate-method-for-evaluating-matrix/</loc>
+    <loc>http://www.april1985.com/post/2006-08-11-trick-to-use-wap-to-access-this-site/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.377Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2006-08-10-google-sitemap-online-production/</loc>
     
     <lastmod>2019-09-01T13:55:00.376Z</lastmod>
     
@@ -4370,7 +4377,7 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-08-10-google-sitemap-online-production/</loc>
+    <loc>http://www.april1985.com/post/2006-08-11-3-order-matrix-with-fast-and-accurate-method-for-evaluating-matrix/</loc>
     
     <lastmod>2019-09-01T13:55:00.376Z</lastmod>
     
@@ -4405,6 +4412,13 @@
   </url>
   
   <url>
+    <loc>http://www.april1985.com/post/2006-07-05-together-to-learn-linux/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.373Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.april1985.com/post/2006-07-15-do-not-miss-the-walk-passing-mobile-phone-book-and-sms-operation-sample-program/</loc>
     
     <lastmod>2019-09-01T13:55:00.373Z</lastmod>
@@ -4412,9 +4426,9 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-07-05-together-to-learn-linux/</loc>
+    <loc>http://www.april1985.com/post/2006-06-27-two-lines-of-code-to-achieve-the-u0026quotone-button-off-screenu0026quot/</loc>
     
-    <lastmod>2019-09-01T13:55:00.373Z</lastmod>
+    <lastmod>2019-09-01T13:55:00.372Z</lastmod>
     
   </url>
   
@@ -4433,21 +4447,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-06-27-two-lines-of-code-to-achieve-the-u0026quotone-button-off-screenu0026quot/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.372Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.april1985.com/post/2006-06-20-write-something-of-my-own/</loc>
+    <loc>http://www.april1985.com/post/2006-06-19-hear-the-voice-of-the-universe/</loc>
     
     <lastmod>2019-09-01T13:55:00.371Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-06-19-hear-the-voice-of-the-universe/</loc>
+    <loc>http://www.april1985.com/post/2006-06-20-write-something-of-my-own/</loc>
     
     <lastmod>2019-09-01T13:55:00.371Z</lastmod>
     
@@ -4475,14 +4482,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-05-16-on-java-a-u003d-a-value-of-true-interpretation/</loc>
+    <loc>http://www.april1985.com/post/2006-03-18-on-the-latest-published-in-the-codeproject-article-on-mobile-phone-data-transfer/</loc>
     
     <lastmod>2019-09-01T13:55:00.369Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2006-03-18-on-the-latest-published-in-the-codeproject-article-on-mobile-phone-data-transfer/</loc>
+    <loc>http://www.april1985.com/post/2006-05-16-on-java-a-u003d-a-value-of-true-interpretation/</loc>
     
     <lastmod>2019-09-01T13:55:00.369Z</lastmod>
     
@@ -4517,13 +4524,6 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2005-10-25-net-2-0-rc-a-bug/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.366Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.april1985.com/post/2005-10-30-nokia-mobile-phone-data-transfer-on-the-part-of-some-progress/</loc>
     
     <lastmod>2019-09-01T13:55:00.366Z</lastmod>
@@ -4538,14 +4538,21 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2005-10-17-buy-printers-thoughts/</loc>
+    <loc>http://www.april1985.com/post/2005-10-25-net-2-0-rc-a-bug/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.366Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2005-10-10-beijing-line-b-ac/</loc>
     
     <lastmod>2019-09-01T13:55:00.365Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2005-10-10-beijing-line-b-ac/</loc>
+    <loc>http://www.april1985.com/post/2005-10-17-buy-printers-thoughts/</loc>
     
     <lastmod>2019-09-01T13:55:00.365Z</lastmod>
     
@@ -4566,14 +4573,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2005-10-10-beijing-line-3-peking-university-tsinghua-university-xiangshan/</loc>
+    <loc>http://www.april1985.com/post/2005-10-10-beijing-line-4-dinner/</loc>
     
     <lastmod>2019-09-01T13:55:00.363Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2005-10-10-beijing-line-4-dinner/</loc>
+    <loc>http://www.april1985.com/post/2005-10-10-beijing-line-3-peking-university-tsinghua-university-xiangshan/</loc>
     
     <lastmod>2019-09-01T13:55:00.363Z</lastmod>
     
@@ -4587,14 +4594,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2005-10-10-beijing-line-1-first-came-to-beijing/</loc>
+    <loc>http://www.april1985.com/post/2005-09-01-whim-transplant-qq/</loc>
     
     <lastmod>2019-09-01T13:55:00.362Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2005-09-01-whim-transplant-qq/</loc>
+    <loc>http://www.april1985.com/post/2005-10-10-beijing-line-1-first-came-to-beijing/</loc>
     
     <lastmod>2019-09-01T13:55:00.362Z</lastmod>
     
@@ -4615,13 +4622,6 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2005-08-17-net-compact-framework-in-decoding-gb2312/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.360Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.april1985.com/post/2005-08-16-upgrade-time-into-a-small-sense-of-0-hours/</loc>
     
     <lastmod>2019-09-01T13:55:00.360Z</lastmod>
@@ -4629,7 +4629,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2005-08-13-recently-wrote-an-open-source-software-pocketsms/</loc>
+    <loc>http://www.april1985.com/post/2005-08-17-net-compact-framework-in-decoding-gb2312/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.360Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2005-08-09-net-cf-to-access-pocket-outlook-act-3/</loc>
     
     <lastmod>2019-09-01T13:55:00.359Z</lastmod>
     
@@ -4643,7 +4650,7 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2005-08-09-net-cf-to-access-pocket-outlook-act-3/</loc>
+    <loc>http://www.april1985.com/post/2005-08-13-recently-wrote-an-open-source-software-pocketsms/</loc>
     
     <lastmod>2019-09-01T13:55:00.359Z</lastmod>
     
@@ -4664,13 +4671,6 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2005-08-01-net-cf-precise-timer-under/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.357Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.april1985.com/post/2005-08-01-control-your-pdau002639s-led/</loc>
     
     <lastmod>2019-09-01T13:55:00.357Z</lastmod>
@@ -4678,9 +4678,9 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2005-07-25-celebrate-published-articles-on-the-codeproject-as-prize-winner-june-2005/</loc>
+    <loc>http://www.april1985.com/post/2005-08-01-net-cf-precise-timer-under/</loc>
     
-    <lastmod>2019-09-01T13:55:00.356Z</lastmod>
+    <lastmod>2019-09-01T13:55:00.357Z</lastmod>
     
   </url>
   
@@ -4692,7 +4692,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2005-07-15-ii-thesaurus-easily-back-word-converter-source-code/</loc>
+    <loc>http://www.april1985.com/post/2005-07-25-celebrate-published-articles-on-the-codeproject-as-prize-winner-june-2005/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.356Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2005-07-22-at-related-regular-expressions/</loc>
     
     <lastmod>2019-09-01T13:55:00.355Z</lastmod>
     
@@ -4706,7 +4713,7 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2005-07-22-at-related-regular-expressions/</loc>
+    <loc>http://www.april1985.com/post/2005-07-15-ii-thesaurus-easily-back-word-converter-source-code/</loc>
     
     <lastmod>2019-09-01T13:55:00.355Z</lastmod>
     
@@ -4727,13 +4734,6 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2005-04-07-mobile-phone-management-software-develop-experience-on-net-platform-chapter-1-to-3/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.353Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.april1985.com/post/2005-04-02-after-breaking-up-the-sky-very-blue-very-beautiful/</loc>
     
     <lastmod>2019-09-01T13:55:00.353Z</lastmod>
@@ -4741,7 +4741,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2005-04-01-i-only-like-you/</loc>
+    <loc>http://www.april1985.com/post/2005-04-07-mobile-phone-management-software-develop-experience-on-net-platform-chapter-1-to-3/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.353Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.april1985.com/post/2005-03-17-pda-battery-info-vb-net-net-cf-source-code/</loc>
     
     <lastmod>2019-09-01T13:55:00.352Z</lastmod>
     
@@ -4755,21 +4762,21 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2005-03-17-pda-battery-info-vb-net-net-cf-source-code/</loc>
+    <loc>http://www.april1985.com/post/2005-04-01-i-only-like-you/</loc>
     
     <lastmod>2019-09-01T13:55:00.352Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2005-03-03-congratulations-6-through/</loc>
+    <loc>http://www.april1985.com/post/2005-02-24-net-platform-for-mobile-phone-management-software-for-the-time-being-come-to-an-end/</loc>
     
     <lastmod>2019-09-01T13:55:00.351Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2005-02-24-net-platform-for-mobile-phone-management-software-for-the-time-being-come-to-an-end/</loc>
+    <loc>http://www.april1985.com/post/2005-03-03-congratulations-6-through/</loc>
     
     <lastmod>2019-09-01T13:55:00.351Z</lastmod>
     
@@ -4818,6 +4825,13 @@
   </url>
   
   <url>
+    <loc>http://www.april1985.com/post/2005-02-14-net-platform-for-mobile-phone-management-software-5-obex-introduction/</loc>
+    
+    <lastmod>2019-09-01T13:55:00.347Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.april1985.com/post/2005-02-17-net-platform-for-mobile-phone-management-software-7-irmc-introduction/</loc>
     
     <lastmod>2019-09-01T13:55:00.347Z</lastmod>
@@ -4826,13 +4840,6 @@
   
   <url>
     <loc>http://www.april1985.com/post/2005-02-14-net-platform-for-mobile-phone-management-software-6-obex-application-file-transfer-part-of-the/</loc>
-    
-    <lastmod>2019-09-01T13:55:00.347Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.april1985.com/post/2005-02-14-net-platform-for-mobile-phone-management-software-5-obex-introduction/</loc>
     
     <lastmod>2019-09-01T13:55:00.347Z</lastmod>
     
@@ -4853,14 +4860,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2004-12-02-foreign-friends-sent-me-ascii_7to8-and-decode7bit-function-concise-worth-learning/</loc>
+    <loc>http://www.april1985.com/post/2005-01-21-practical-tips-fast-decoding-unicodeutf8-coding/</loc>
     
     <lastmod>2019-09-01T13:55:00.345Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2005-01-21-practical-tips-fast-decoding-unicodeutf8-coding/</loc>
+    <loc>http://www.april1985.com/post/2004-12-02-foreign-friends-sent-me-ascii_7to8-and-decode7bit-function-concise-worth-learning/</loc>
     
     <lastmod>2019-09-01T13:55:00.345Z</lastmod>
     
@@ -4881,14 +4888,14 @@
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2004-09-28-encode-charactors-to-7bitcode-or-ucs2-pdu-string-vb-net/</loc>
+    <loc>http://www.april1985.com/post/2004-07-13-test-drive-the-speed-with-vb-net/</loc>
     
     <lastmod>2019-09-01T13:55:00.343Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.april1985.com/post/2004-07-13-test-drive-the-speed-with-vb-net/</loc>
+    <loc>http://www.april1985.com/post/2004-09-28-encode-charactors-to-7bitcode-or-ucs2-pdu-string-vb-net/</loc>
     
     <lastmod>2019-09-01T13:55:00.343Z</lastmod>
     

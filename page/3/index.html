@@ -22,7 +22,46 @@
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(bp, s);
   })();
-  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2017-12-15-why-i-create-aiflygo/" class="post-title-link">我为什么要开发这款小程序？</a></h2><div class="post-info">Dec 15, 2017</div><div class="post-content"><p>2012年由于家庭的原因，我经常乘飞机往返于成都和广州。每次买机票前我都要观察一段机票的价格，然后再进行购买，但具体什么时候买很多时候都是靠拍脑袋。在买多几次机票后，我发现机票的价格变化还是有一定的规律可行。后来有一本叫做《大数据时代》的书提到了国外的一个Farecast产品，能够预测7天内的票价变化，给出买还是不买的建议。但很遗憾的是多年来国内一直没有相关的产品，这便触发了我做一款类似产品的想法。</p>
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2018-03-19-gofun/" class="post-title-link">大数据看共享汽车——GoFun篇</a></h2><div class="post-info">Mar 19, 2018</div><div class="post-content"><p>去年2月份我做过共享单车的数据分析，也分析出一些有意思的点。从2017年10月1日开始，历时3个多月，我收集了GoFun和EVCard共享汽车的公开数据。下面整理成一个互动的报告（文后有链接及代码），一起看一下共享汽车的现状。</p>
+<blockquote>
+<p>声明：该数据分析及报告仅代表个人意见，仅供参考，数据来自于API请求的结果，只包含公开的信息，不涉及用户信息。<br>引用、使用该报告引起的任何后果（包括但不限于版权、侵犯法律法规）等，由使用方承担。<br>未经许可禁止转载</p>
+</blockquote>
+<h1 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h1><p>GoFun出行是首汽集团针对移动出行推出的一款新能源共享汽车产品，秉承首汽集团作为全国最大出行服务运营企业的多年经验和优势资源，响应政府号召，把握“新能源+车联网”的全趋势，致力于整合用户碎片化的用车需求，提供便捷、绿色、快速、经济的出行服务。 GoFun出行是共享行业新兴的一种租车模式，车辆无人值守，用车全程App操作，以“分钟+公里”计算并提供汽车的即取即用、分时租赁服务，消费者可按个人用车需求预订车辆。GoFun出行已相继完成全国20余个城市的布局，其中不乏北京、上海、武汉、成都、南京等一、二线城市，更有西安、青岛、昆明、桂林、三亚等重要旅游地。</p>
+<p>我们先来看一些关于车的基本的信息。<br><img src="/images/2018/03-19/4372317-58a826288b180b61.png" alt></p>
+<p>从上面几幅图可以知道，GoFun绝大多数车型都是奇瑞的车。两座和四座的车是主流，车身小巧一方面比较节能，另一方面比较容易操作。</p>
+<p><img src="/images/2018/03-19/4372317-61caab47206ce91b.png" alt><br><img src="/images/2018/03-19/4372317-13bbc2d54991f224.png" alt></p>
+<p>为什么是奇瑞的车占据绝大部分份额呢？从网络搜索到两条新闻可以知道奇瑞是GoFun的合作伙伴，这也不足为奇了：</p>
+<ul>
+<li><a href="http://www.chinanews.com/auto/2017/03-27/8184335.shtml" target="_blank" rel="noopener">Gofun出行采购万辆奇瑞“小蚂蚁” 助力全国战略</a></li>
+<li><a href="http://ifenxi.com/archives/2355" target="_blank" rel="noopener">大众和奇瑞超2亿入股GoFun</a></li>
+</ul>
+<p>#业务概况</p>
+<p>根据采集的数据，截止2018年1月26日，GoFun目前在全国总共有10327辆车。下图是车辆增长的情况。注意，车辆数量有时候会变少，这是因为数据采集时只能采集到没在使用的汽车，所以会少一些。整体趋势来讲呈平稳上升趋势，说明目前发展状况稳定。</p>
+<p><img src="/images/2018/03-19/4372317-e24f4823388f2be8.png" alt></p>
+<p>我们再来看看车辆的数量分布。可以看出来在四川、广东、陕西、福建等省有很多的车辆，属于比较正常的情况。比较奇怪的是上海的车辆数量很少，我猜测在上海早已有竞争对手占据了市场，还不如避而求其次。</p>
+<p><img src="/images/2018/03-19/4372317-429bbaabc3e2706e.png" alt></p>
+<p>由于GoFun必须在指定地点借还，停车场的数量多少就直接影响到用户体验。随着车的增长，停车场的数量也应该有相应的增长才对，从图里面也看出停车场的增长较为平稳。截止2018年1月26日，全国总共有2887个停车场。</p>
+<p><img src="/images/2018/03-19/4372317-85f4b83138e1a5a9.png" alt></p>
+<p>在停车场各省的分布情况中，几乎是和车辆的分布接近。<br><img src="/images/2018/03-19/4372317-150aba79679f7938.png" alt></p>
+<p>我们再来看一下多少汽车共用一个停车场的情况。从图上看出，平均来看大致一个停车场目前有3辆车的规模。如果一个停车场容纳的车越多，那么用户能够拿到车的几率越大，从这方面看也是一个好事。如果停车场的数量较少，网点不密集，就会影响用户的到达性。从这张图可以看到出湖北省的比例最高，从之前的车辆数量排名看湖北省排名第5，但停车场数量排名第10，停车场数量偏少。你可以在”停车场分布”图中，具体看看武汉市的网站分布。</p>
+<p><img src="/images/2018/03-19/4372317-a166370441ba3cf5.png" alt></p>
+<h1 id="停车场分布"><a href="#停车场分布" class="headerlink" title="停车场分布"></a>停车场分布</h1><p>下图是停车场的分布图，图上标记了全国的停车场的位置，可以自由浏览。以成都市为例，作为西部重点城市，共享汽车的发展和共享单车一样的迅猛。目前GoFun的覆盖面还是比较广，主要集中在人口密集的三环境内、南边的高新区。在西边的郫都区和东边的工业区龙泉也有所分布。但从图中可以看出显然北边和东北方向都没有太多的分布，这也和城市的发展密切相关。在西边的旅游城市都江堰，GoFun也有大量的网点，这也给出行的人带来了丰富的选择。</p>
+<p><img src="/images/2018/03-19/4372317-61d5417673b5481b.png" alt></p>
+<h1 id="车辆流转情况"><a href="#车辆流转情况" class="headerlink" title="车辆流转情况"></a>车辆流转情况</h1><p>下图是三个月内车的使用次数的分布。横坐标是使用的次数，纵坐标是次数对应的车的数量。近似一个正态分布，大约70%的车都在24到72的区间。平均起来每天0.3次到1次左右。</p>
+<p><img src="/images/2018/03-19/4372317-4f0af88becebd0b1.png" alt></p>
+<p>但使用次数只是运营情况的一种体现。如果每次使用时间比较短，停车时间比较长，对GoFun也不是一个好事。下图展示了停车时长的分布。横坐标代表停车的时长（小时）最长统计到70小时，纵坐标代表有多少车次。从图上峰值是在0到2小时之间。也有连续70小时，也有1000多车次有过这样长的停车时间。</p>
+<p><img src="/images/2018/03-19/4372317-9ddaeec9d55ef1f0.png" alt></p>
+<p>下图展示了使用时长的分布。横坐标代表停车的时长（小时）最长统计到70小时，纵坐标代表有多少车次。对比停车时长的分布，使用时长的分布比较明显的集中在0到6小时之间，这也是共享出行的特点。由于GoFun有包天的租车服务，所以长期的出行的费用也是可以接受，长达70小时以上的使用时间也有1700多车次。</p>
+<p><img src="/images/2018/03-19/4372317-5f653e89968572f6.png" alt></p>
+<h1 id="车的轨迹"><a href="#车的轨迹" class="headerlink" title="车的轨迹"></a>车的轨迹</h1><p>下面这个动画展示了一辆车的直线运动的轨迹。由于我们仅能得到出发、到达地无法获得中间的轨迹，所以只能这样按照直线标注。图上展示最近几个点，以及位置迁移情况。</p>
+<p><img src="/images/2018/03-19/4372317-fc761ed1bc3cb0ab.png" alt></p>
+<p>#电池电量</p>
+<p>下面这张图展示某一辆车的电池变化情况，其中深色区域代表该车在停车场内没有被使用。</p>
+<p><img src="/images/2018/03-19/4372317-9a56d823cc98749c.png" alt></p>
+<p>#总结</p>
+<p>根据以上的分析，GoFun目前的发展势头还是稳步增长。在路上我们也越来越多的看到共享汽车的身影。以成都为例，当停车场数量、车的数量越来越多以后，出行的局限性会变的更少，相信会俘获更多的用户。</p>
+<p>#附件<br>互动报告：<a href="http://www.april1985.com/sharecar_report/report/index.html">http://www.april1985.com/sharecar_report/report/index.html</a><br>报告源代码：<a href="https://github.com/derekhe/sharecar_report" target="_blank" rel="noopener">https://github.com/derekhe/sharecar_report</a></p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2017-12-15-why-i-create-aiflygo/" class="post-title-link">我为什么要开发这款小程序？</a></h2><div class="post-info">Dec 15, 2017</div><div class="post-content"><p>2012年由于家庭的原因，我经常乘飞机往返于成都和广州。每次买机票前我都要观察一段机票的价格，然后再进行购买，但具体什么时候买很多时候都是靠拍脑袋。在买多几次机票后，我发现机票的价格变化还是有一定的规律可行。后来有一本叫做《大数据时代》的书提到了国外的一个Farecast产品，能够预测7天内的票价变化，给出买还是不买的建议。但很遗憾的是多年来国内一直没有相关的产品，这便触发了我做一款类似产品的想法。</p>
 <p>这款产品叫做“爱飞狗旅行”（简称爱飞狗），这个名字来源于英文“aiflygo”。其中的AI也有人工智能的意思。产品的核心价值在于尽最大可能回答“什么时候买机票便宜”。买机票分为两个阶段，第一个阶段是选去哪里、什么时候去， 携程、去哪儿等旅游网站已经解决了这个问题。第二阶段是什么时候买票，各大网站也提供了低价提醒等功能，帮用户预定到更便宜的票。但这些产品的并没有告诉用户最低价位是什么，从而用户很难判断是否应该能够购买，除非多观察几天，但很有可能会错过最佳购票时间。</p>
 <p>为了弥补最后的一环，这款产品首先要解决的问题的是当选定到达地点、出发日期和航班的前提下，什么时候买票最便宜。为免用户出现不会使用的情况，产品设计上我并没有标新立异，而是使用了传统的选择机票的流程。在用户选定了起降地点、时间，根据实时价格选定航班之后，传统的购票流程会显示订票的页面，而“爱飞狗”将会展示关于机票的一些购票提示。</p>
 <p>首先展示的是运用人工智结合大数据预测出的购买建议。购票建议通过历史数据和近期价格波动综合考虑出一个结果，给予用户最快的提示。</p>
@@ -169,8 +208,4 @@
 <li>注意力不集中或者有其他事务要处理时：在Pair的时候，彼此要尊重对方，不要玩手机、看其他无关的网页，除非事先取得别人的同意，否则就要等到停止结对、处理完事务后再继续。</li>
 </ul>
 <hr>
-</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2017-07-15-share-bike-crawler/" class="post-title-link">共享单车数据爬虫</a></h2><div class="post-info">Jul 15, 2017</div><div class="post-content"><p>在线实时查看共享单车的位置，并提供了API供调用，方便进行研究，<a href="http://www.dancheditu.com/" target="_blank" rel="noopener">请查看体验</a></p>
-<p>完整体验请在电脑上打开，手机可能显示不完整。由于时间所限，IE浏览器不兼容，请用chrome类似的浏览器。</p>
-<p>服务器在海外，加载速度可能不理想，请耐心等待。</p>
-<p><img src="/images/2017/07-15/4372317-44b99c22b2d84d43.png" alt="单车地图"></p>
-</div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/2/" class="prev">PREV</a><a href="/page/4/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2019 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>
+</div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/2/" class="prev">PREV</a><a href="/page/4/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2020 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

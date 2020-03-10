@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.april1985.com/"/>
-  <updated>2019-10-23T15:06:01.582Z</updated>
+  <updated>2020-03-10T01:16:43.640Z</updated>
   <id>http://www.april1985.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>新3D打印机到货Creality Ender 5</title>
+    <link href="http://www.april1985.com/post/2020-03-09-new-printer/"/>
+    <id>http://www.april1985.com/post/2020-03-09-new-printer/</id>
+    <published>2020-03-08T16:00:00.000Z</published>
+    <updated>2020-03-10T01:16:43.640Z</updated>
+    
+    <content type="html"><![CDATA[<p>15年的时候，脑袋一热，买了一个3D打印机。当时没有了解清楚情况，误买了杭州铭展网络科技的MBot3D Cube打印机。以为是个MakerBot 3D的打印机。后来研究了一些时间，写了<a href="/post/2015-03-07-3d-printing">3D打印及技巧</a>以及<a href="/post/2015-03-25-3d-printing/">20天3D打印总结</a>。</p><p>打印机很贵，多年来一直备受老婆鄙视，一直说这玩意儿是买的最不值的东西。确实也是，因为好几年都基本在吃灰，总共打印时间也就200个小时左右。究其原因，有以下几点：</p><ul><li>打印材料不好，机器没有热床，ABS无法打印，PLA打印的质量很差，稍微大型点的图形就翘边，打印失败率很高。</li><li>材料容易断丝，还是PLA本身的问题。之前买过“三绿国维”、“天威”、甚至铭展原厂的耗材，都打印质量不好。</li><li>机器的刚性不行，木质的结构晃动比较大。皮带松动，结构垂直度容易受到影响，导致打印的图形失真。比如打印的圆不是圆形。XY方向最为严重，买来不久就觉得是直线轴承出了问题，卡卡卡的响。后来自己动脑经调节了一下，但越调越乱，从上方看XY都不是垂直的。后来XY轴的塑料卡板久了出现了断裂，情形更加严重，直到最后卡皮带的卡板直接断掉。19年，厂商找了很久从库房里面找到了个塑料卡板，也算是进了ICU急救了。</li><li>XY出现波浪，即便打印速度降到50mm/s依然还是比较严重。</li><li>XY轴的丝杆似乎已经弯了，导致调平后，整个打印平面还是一个曲面，导致底板经常被烫伤。</li><li>软件支持受限。15年的时候3D打印机的切片软件还不是很好，Cura这种开源的切片软件还很初级，原厂的切片软件用起来也很差劲。18年到19年，慢慢的用到了Simplify3D等切片软件，也慢慢的把新的Cura软件给配置好了，也总算能够用上新的切片软件。</li><li>底板用的是蓝色美纹胶打印，经常会连着美纹胶一起拉起来。</li></ul><p>19年喜欢上了RC遥控车，想做一些3D打印的部件，把打印机做了一些改造升级。比如加上了晶格玻璃、DIY了热床，更换了所有的轴承，加上了皮带的弹簧，线材选用了eSUN的PLA+材料，总算解决了一部分问题。但丝杠等部件的硬伤，没有精力去弄了。经过这次维修以后，打印的质量勉强可以接受。最主要的提升在于PLA+材料，解决了断丝、PLA脆的问题。</p><p>DIY热床安装，买了个<a href="https://item.taobao.com/item.htm?spm=a1z09.2.0.0.407d2e8dYvmoAa&id=558480413539&_u=93e3bkib392" target="_blank" rel="noopener">热板</a>，一个<a href="https://detail.tmall.com/item.htm?id=546230354647&spm=a1z09.2.0.0.407d2e8dYvmoAa&_u=93e3bki7cc3" target="_blank" rel="noopener">明伟12V 20A的电源</a>，一个<a href="https://detail.tmall.com/item.htm?id=602829267893&spm=a1z09.2.0.0.407d2e8dYvmoAa&_u=93e3bkic19f" target="_blank" rel="noopener">数字温控</a></p><p>安装热板：<br><img src="/images/2020/03-09/heat-bed.jpg" alt><br><img src="/images/2020/03-09/heat-bed-2.jpg" alt></p><p>这种平台很容易粘住底层的打印线或者大型的模型而取不下来，可能是质量不行：</p><p><img src="/images/2020/03-09/broken.jpg" alt></p><p>20年由于2月份宅在家，准备弄点遥控车的车壳。打印出来一份，学了一些打磨模型，但打印的效果很差，需要打磨很久，很浪费时间。左看右看各种打印机维修的视频，想到还是买一个新的打印机算了。想想买一个打印机又要好几千，这次没有之前那么冲动，各种看youtube视频，最后看到很多老外都在用创想三维的Ender系列的打印机，一看价格还比较便宜，非常的心动。</p><p>正在打印中：<br><img src="/images/2020/03-09/printing.jpg" alt></p><p>成型，可见很多的震荡纹路：<br><img src="/images/2020/03-09/box.jpg" alt></p><p>成型：<br><img src="/images/2020/03-09/printed.jpg" alt></p><p>打印车壳：<br><img src="/images/2020/03-09/rc-shell-2.jpg" alt><br><img src="/images/2020/03-09/rc-shell-1.jpg" alt><br><img src="/images/2020/03-09/painted.jpg" alt></p><p>运动相机支架：<br><img src="/images/2020/03-09/cam.jpg" alt></p><p>3月初，打印机搞活动（其实春节就在搞活动，只是物流受到了很大的影响），Ender 3只要1000出头，Ender 5也只要1669。Ender 5还有一个Ender 5 Pro系列，有更多的升级件，只不过价格到了2499，贵了很多。再回头看看老外的评测，Ender 3只要一些少许的改造，就可以打印的很好，Ender 5的结构更好。所以就买了Ender 5。</p><p>Ender 5需要自己组装，其实很简单，几颗螺丝装好，几根线插好就可以用了。</p><p><img src="/images/2020/03-09/ender5.jpg" alt><br><img src="/images/2020/03-09/ender5-1.jpg" alt><br><img src="/images/2020/03-09/ender5-2.jpg" alt><br><img src="/images/2020/03-09/ender5-3.jpg" alt><br><img src="/images/2020/03-09/ender5-4.jpg" alt></p><p>调平还是需要手动的调平。但比之前的打印机好的是Z轴零点的位置波动比较小，就不会每次都要去调平。以前的机器Z轴的零点偏差很大，每次都要调平，非常的麻烦。XY轴花了几块钱买了个T-Smoother，据说可以有效的改善移动时候产生的波动。测试几个块块打印出来确实不错。整个机器的滑动结构采用了铝材加上V形的导轮，默认打印速度80mm/s的情况下，移动起来声音非常小，大部分的声音来自于电机的声音。上到120mm/s的时候，在中间附近会有一些共振类似的声响。但比较小的模型来说80和120的差距不大。</p><p>最后打印了一个经典的测试，在这个价位上，整体非常满意，对比之前的打印机有了本质的提升。至于底板还暂时用的原装的底板，粘性还是不错，等过段时间用旧了以后换用晶格玻璃。</p><p><img src="/images/2020/03-09/test.jpg" alt><br><img src="/images/2020/03-09/test-1.jpg" alt><br><img src="/images/2020/03-09/test-2.jpg" alt><br><img src="/images/2020/03-09/test-3.jpg" alt><br><img src="/images/2020/03-09/test-4.jpg" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;15年的时候，脑袋一热，买了一个3D打印机。当时没有了解清楚情况，误买了杭州铭展网络科技的MBot3D Cube打印机。以为是个MakerBot 3D的打印机。后来研究了一些时间，写了&lt;a href=&quot;/post/2015-03-07-3d-printing&quot;&gt;3D打印及技
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>国内机票历史价格数据库</title>
@@ -183,9 +204,9 @@
     
       <category term="机票" scheme="http://www.april1985.com/tags/%E6%9C%BA%E7%A5%A8/"/>
     
-      <category term="爱飞狗" scheme="http://www.april1985.com/tags/%E7%88%B1%E9%A3%9E%E7%8B%97/"/>
-    
       <category term="数据分析" scheme="http://www.april1985.com/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
+    
+      <category term="爱飞狗" scheme="http://www.april1985.com/tags/%E7%88%B1%E9%A3%9E%E7%8B%97/"/>
     
   </entry>
   
@@ -3142,6 +3163,8 @@
       <category term="生活" scheme="http://www.april1985.com/categories/%E7%94%9F%E6%B4%BB/"/>
     
     
+      <category term="键盘" scheme="http://www.april1985.com/tags/%E9%94%AE%E7%9B%98/"/>
+    
       <category term="拆卸" scheme="http://www.april1985.com/tags/%E6%8B%86%E5%8D%B8/"/>
     
       <category term="明基" scheme="http://www.april1985.com/tags/%E6%98%8E%E5%9F%BA/"/>
@@ -3149,8 +3172,6 @@
       <category term="海湾" scheme="http://www.april1985.com/tags/%E6%B5%B7%E6%B9%BE/"/>
     
       <category term="海贝" scheme="http://www.april1985.com/tags/%E6%B5%B7%E8%B4%9D/"/>
-    
-      <category term="键盘" scheme="http://www.april1985.com/tags/%E9%94%AE%E7%9B%98/"/>
     
   </entry>
   
@@ -3206,13 +3227,13 @@
     
       <category term="u150" scheme="http://www.april1985.com/tags/u150/"/>
     
-      <category term="键盘" scheme="http://www.april1985.com/tags/%E9%94%AE%E7%9B%98/"/>
-    
       <category term="上网本" scheme="http://www.april1985.com/tags/%E4%B8%8A%E7%BD%91%E6%9C%AC/"/>
     
       <category term="戴尔" scheme="http://www.april1985.com/tags/%E6%88%B4%E5%B0%94/"/>
     
       <category term="联想" scheme="http://www.april1985.com/tags/%E8%81%94%E6%83%B3/"/>
+    
+      <category term="键盘" scheme="http://www.april1985.com/tags/%E9%94%AE%E7%9B%98/"/>
     
   </entry>
   
@@ -4754,9 +4775,9 @@
       <category term="旅游" scheme="http://www.april1985.com/categories/%E6%97%85%E6%B8%B8/"/>
     
     
-      <category term="蜀南竹海" scheme="http://www.april1985.com/tags/%E8%9C%80%E5%8D%97%E7%AB%B9%E6%B5%B7/"/>
-    
       <category term="兴文石海" scheme="http://www.april1985.com/tags/%E5%85%B4%E6%96%87%E7%9F%B3%E6%B5%B7/"/>
+    
+      <category term="蜀南竹海" scheme="http://www.april1985.com/tags/%E8%9C%80%E5%8D%97%E7%AB%B9%E6%B5%B7/"/>
     
   </entry>
   
@@ -6200,13 +6221,13 @@
       <category term="生活" scheme="http://www.april1985.com/categories/%E7%94%9F%E6%B4%BB/"/>
     
     
-      <category term="life" scheme="http://www.april1985.com/tags/life/"/>
-    
       <category term="beg" scheme="http://www.april1985.com/tags/beg/"/>
     
       <category term="job" scheme="http://www.april1985.com/tags/job/"/>
     
       <category term="joke" scheme="http://www.april1985.com/tags/joke/"/>
+    
+      <category term="life" scheme="http://www.april1985.com/tags/life/"/>
     
   </entry>
   
