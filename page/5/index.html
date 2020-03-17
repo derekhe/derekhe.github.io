@@ -22,7 +22,24 @@
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(bp, s);
   })();
-  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2016-12-09-why-docker-use-up-all-your-disk-space/" class="post-title-link">Why docker use up all your disk space?</a></h2><div class="post-info">Dec 9, 2016</div><div class="post-content"><p>I noticed that the docker containers are using more and more disk spaces on host machine. By looking at the disk usage inside docker container, you will not see any disk usage increase. But the aufs file system is increasing.</p>
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2017-02-05-mobike-unofficial-data-analysis/" class="post-title-link">摩拜单车非官方大数据分析</a></h2><div class="post-info">Feb 5, 2017</div><div class="post-content"><p>趁着过年的清闲时光，我抓取了摩拜单车的数据并进行了大数据分析。以下数据分析自1月19日整日的数据，范围成都绕城区域以及至华阳附近（天府新区）内。成都的摩拜单车的整体情况如下：</p>
+<h3 id="标准车型和Lite车型数量相当"><a href="#标准车型和Lite车型数量相当" class="headerlink" title="标准车型和Lite车型数量相当"></a>标准车型和Lite车型数量相当</h3><p>摩拜单车在成都大约已经有6万多辆车，两种类型的车分别占有率为55%和44%，可见更为好骑的Lite版本的占有率在提高。（1为标准车，2为Lite车型）</p>
+<p><img src="/images/2017/02-05/4372317-405ce446062c7b91.png" alt="单车类型"></p>
+<h3 id="三成左右的车没有移动过"><a href="#三成左右的车没有移动过" class="headerlink" title="三成左右的车没有移动过"></a>三成左右的车没有移动过</h3><p>数据分析显示，有三成的单车并没有任何移动，这说明这些单车有可能被放在不可获取或者偏僻地方。市民的素质还有待提高啊。</p>
+<h3 id="出行距离以3公里以下为主"><a href="#出行距离以3公里以下为主" class="headerlink" title="出行距离以3公里以下为主"></a>出行距离以3公里以下为主</h3><p>数据分析显示3公里以下的出行距离占据了87.2%，这也十分符合共享单车的定位。100米以下的距离也占据了大量的数据，但认为100米以下的数据为GPS的波动，所以予以排除。</p>
+<p><img src="/images/2017/02-05/4372317-949249de77f94715.png" alt="出行距离分布"></p>
+<h3 id="单车骑行次数以5次以下居多"><a href="#单车骑行次数以5次以下居多" class="headerlink" title="单车骑行次数以5次以下居多"></a>单车骑行次数以5次以下居多</h3><p>单车的使用频率越高共享的效果越好。从摩拜单车的数据看，在流动的单车中，5次以下占据了60%左右的出行。但1次、2次的也占据了30%左右的份额，说明摩拜单车的利用率也不是很高。</p>
+<p><img src="/images/2017/02-05/4372317-b63819b5686de984.png" alt="单车骑行次数"></p>
+<p><img src="/images/2017/02-05/4372317-c2b03aee9fa7ddca.png" alt="单车骑行次数"></p>
+<h3 id="从单车看城市发展"><a href="#从单车看城市发展" class="headerlink" title="从单车看城市发展"></a>从单车看城市发展</h3><p>从摩拜单车的热图分布来看，成都已经逐步呈现“双核”发展的态势，城市的新中心天府新区正在聚集更多的人和机会。</p>
+<p><img src="/images/2017/02-05/4372317-900aca43266cc17d.png" alt="双核发展"></p>
+<p>原来的老城区占有大量的单车，在老城区，热图显示在东城区占有更多的单车，可能和这里的商业（春熙路、太古里、万达）及人口密集的小区有直接的联系。</p>
+<p><img src="/images/2017/02-05/4372317-2c5cc0f5d8bc3ada.png" alt="老城区"></p>
+<p>而在成都的南部天府新区越来越多也茁壮的发展起来，商业区域和住宅区域区分明显。在晚上，大量的单车聚集在华阳、世纪城、中和，而在上班时间，则大量聚集在软件园附近。</p>
+<p><img src="/images/2017/02-05/4372317-529e0b586124777b.png" alt="软件园夜间"></p>
+<p><img src="/images/2017/02-05/4372317-330ae930b2fc2934.png" alt="软件园白天"></p>
+<h3 id="在线网站"><a href="#在线网站" class="headerlink" title="在线网站"></a>在线网站</h3><p>如果你对数据感兴趣，我已经创建了一个网站供大家使用，请用电脑访问：<a href="http://www.april1985.com/mobike/">http://www.april1985.com/mobike/</a><br>（为节省开支，后端服务器已经关闭）</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2016-12-09-why-docker-use-up-all-your-disk-space/" class="post-title-link">Why docker use up all your disk space?</a></h2><div class="post-info">Dec 9, 2016</div><div class="post-content"><p>I noticed that the docker containers are using more and more disk spaces on host machine. By looking at the disk usage inside docker container, you will not see any disk usage increase. But the aufs file system is increasing.</p>
 <p>I found out that there are two days we can use to clean up the space:</p>
 <ol>
 <li>Restart docker service</li>
@@ -157,28 +174,4 @@
 <p>晚上住在<a href="http://hotels.ctrip.com/hotel/1562112.html#ctm_ref=hod_sr_lst_dl_n_1_1" target="_blank" rel="noopener">橡树缘连锁</a>地中海主题，也是直接过去订房，由于是周日了，所以价格也便宜150住一晚。房间装修还算比较有风格，但空调也是响，由于不是变频空调，突然制热响一下吓一跳。其他东西还算可以吧，卫浴都是TOTO的，但不知道为啥烧水一直有一股烧糊的怪味，很奇怪。没注意到上一家酒店也是不是这样。这个亲子房有一个1.5米的床，有一个1.2米的。我睡1.2米的被子，但被子短了，郁闷。</p>
 <p>睡好觉，周一回成都，在乐山买了<a href="http://www.dianping.com/shop/5383680" target="_blank" rel="noopener">王浩儿纪六孃(致江路总店)</a>买了鸭子，在<a href="http://www.dianping.com/shop/27272047" target="_blank" rel="noopener">乡村黑豆花佛光路店</a>吃了中午饭，很棒，然后就回成都了。</p>
 <p>累死哥哥了。。。。</p>
-</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2015-12-21-emei-mountain-1/" class="post-title-link">乐山峨眉游（1）</a></h2><div class="post-info">Dec 21, 2015</div><div class="post-content"><p>峨眉山半价，走起！我从来都是不打不准备的仗，周五发红包给公司群，同事推荐了好多地方，花点钱真心不错。周六早上出发开车到乐山，中午就到乐山。下了高速赶紧定位到古市香跷脚牛肉，大众点评上有个订座的功能，开车半个小时到地方。</p>
-<p>不得不说这个地方真的很火，在一条小巷子里面，有点不方便开车。在河边有免费停车的地方，，还算比较方便。下了车到店，发现这个不是一般的热闹，排号都排了很长。还好我是大众点评上先预定了的，马上安排座位，等了大概10分钟，还算幸福的啦。</p>
-<a id="more"></a>
-
-<p>牛杂牛肉粉蒸牛肉，依次点起！</p>
-<p><img src="/images/2015/12/IMG_0151.jpg" alt><br><img src="/images/2015/12/IMG_0152.jpg" alt><br><img src="/images/2015/12/IMG_0154.jpg" alt><br><img src="/images/2015/12/IMG_0156.jpg" alt></p>
-<p>房顶也有特色</p>
-<p><img src="/images/2015/12/IMG_0159.jpg" alt><br><img src="/images/2015/12/IMG_0160.jpg" alt></p>
-<p>外面卖的泡菜，要钱的哟，没点<br><img src="/images/2015/12/IMG_0164.jpg" alt><br><img src="/images/2015/12/IMG_0171.jpg" alt></p>
-<p>吃好了一顿，也就100多块钱，非常的爽。牛杂我只吃牛肚，但牛肉吃了很多，粉蒸肉也吃完了，哈哈。</p>
-<p>下午决定还是去乐山大佛一趟，去峨眉爬山时间肯定是不够了。车停在乐山大佛景区门口的景园停车场，20块钱的停车费，要了发票（这是我的特点，一定要发票），居然是那种餐饮样式的发票，盖章倒是正规的，还有刮奖。我的运气还算不错，一 5块，嘿嘿。</p>
-<p>乐山大佛我倒是很小的时候去过，已经没有记忆了，只有照片。现在自己有了儿子，带着儿子重温我小时候的记忆。</p>
-<p><img src="/images/2015/12/IMG_0181.jpg" alt="乐山大佛"></p>
-<p>小朋友还是挺厉害的，自己爬山到顶上。下栈道就有点郁闷了，第一个转弯就堵了，半天不动。想想这还是个普通的周末，要是黄金周我看怎么办。走到一半才发现，台阶太陡，路越来越窄，只有够一个人，老婆提着儿子往下走，真的有点艰难。</p>
-<p><img src="/images/2015/12/IMG_0215.jpg" alt="乐山大佛"><br><img src="/images/2015/12/IMG_0221.jpg" alt="乐山大佛"><br><img src="/images/2015/12/IMG_0223.jpg" alt="下山栈道"><br><img src="/images/2015/12/IMG_0225.jpg" alt="乐山大佛"></p>
-<p>下山以后去峨眉山了，天色有点晚，还没订酒店。酒店的问题真是让我头痛，以前遭过两次，订了酒店没法取消，小孩生病没法去，白白的损失了一千多。这算是峨眉山旅游淡季了，应该没有那么挤。到了峨眉山脚下再找酒店，发现很多酒店都没了。也没关系，一家一家的打电话，最后找到了<a href="http://hotels.ctrip.com/hotel/447011.html#ctm_ref=www_hp_bs_lst" target="_blank" rel="noopener">“凤缘酒店”</a>还有房间。</p>
-<p>老婆上去看了下房间，找了一间还不错的。讲价128一晚，携程上面订的的话要168的。停车还算不错了，虽然酒店门口只有三个位置，但后面一条巷子还有很大的停车场。老板一起带过去，免费停。房屋临街，但隔音做的不错不吵。房间有一点霉味，其他都还算好了。空调也不错，只是晚上有一些噪音，后来索性关了空调。</p>
-<p>在老板娘那里订了灵秀温泉的票，网上买138，这里买125。后来才知道我们的价格也有点贵了，在外面有一个小超市门口有一个牌牌写的110-125，110块钱其实也能买到。晚上随便在外面找个了餐厅，结果找了个巨难吃的地方，详见<a href="http://www.dianping.com/shop/44082643" target="_blank" rel="noopener">我的点评</a>：</p>
-<blockquote>
-<p>在这里吃过，价格比较贵不说，还做的相当难吃。<br>凤尾炒的全是烂七八糟的，酸菜粉丝汤的粉丝也是一股怪味，甚至酸菜里面还有一些清凉油的味道。最奇葩的苦笋，一股清凉油的味道，老板还是绝对是对的，也是醉了。。。，再也别去这里了</p>
-</blockquote>
-<p>晚上去泡温泉，温泉距离酒店还是有一点距离，走路10分钟。大冬天的好冷啊。换了票进去，每个人要把鞋子脱了给你一个号。原来是因为后续你可以用这个号开关门，然后还可以买东西，最后出来的时候拿鞋子给钱。换衣服的地方还不是很冷，要主动去要浴袍，一个人只能拿一次干的。</p>
-<p>温泉还是可以的，小孩的游泳圈没有带，有点郁闷。在外面的温泉玩了一下，赶紧到室内的温泉。室内的就要好很多了，泡了一个多小时，没有太大的感觉，回去赶紧再冲个热水澡。。。。</p>
-<p>晚上睡了个好觉，准备第二天爬山。</p>
 </div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/4/" class="prev">PREV</a><a href="/page/6/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2020 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

@@ -22,7 +22,21 @@
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(bp, s);
   })();
-  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2007-10-30-log-back/" class="post-title-link">日志回来了……</a></h2><div class="post-info">Oct 30, 2007</div><div class="post-content"><h1 id="在百度上用百度快照找回来了："><a href="#在百度上用百度快照找回来了：" class="headerlink" title="在百度上用百度快照找回来了："></a>在百度上用百度快照找回来了：</h1><p>CRYSIS OUT!</p>
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2007-11-01-think/" class="post-title-link">思考</a></h2><div class="post-info">Nov 1, 2007</div><div class="post-content"><p>我知道迟早我要来弄弯管机的控制和仿真程序的，结果这一天早早的来到了。接手了这个项目的3D显示部分的任务，也着实看到了实验室的强人的代码。</p>
+<p>弯管机的控制程序运行在工控机上面，而工控机本质是用PC机作为载体，装的XP作为操作系统。整个控制通过专业的控制卡进行。硬件方面不说，我也不是做硬件的，就从软件的角度看看代码就让我彻底晕死了。</p>
+<p>整个项目用的是VC6进行设计开发，数据库用SQL SERVER 2000。麻烦的就在这个VC6上面，彻底的古老的玩意儿了，不完全支持STL，有些莫名奇妙的vector的BUG就出现在里面。就我来看整个界面是比较简单的，没有太多动态的部分，但是整个工程的代码让我看了就彻底郁闷了——几乎所有的窗体、按钮都是慢慢用MFC凑出来的，也就是说，界面纯粹用代码写出来的。结果，这个界面变得奇丑无比，想改一下相关的东西都很麻烦，想想全是API在那儿弄过去弄过来，一会儿一个SendMessage，烦不烦！我拿到这个代码以后想添加一个东西完全无从下手，在未编译运行之前根本不知道这个窗体是什么样子的，好歹那些纯静态的窗体你给我用画出来嘛。结果由于是他们要做多国语言，不得不硬编码。至于运行起来有动态的地方(其实也就是一些类似tabControl的东东)更是摸不着头脑，只有大概猜一下，然后设置一个断点，再运行一下，看看是不是那个地方，感觉比盲人摸象还牛，毕竟盲人知道那个是象，有四条腿，总不会摸出第五条腿嘛！</p>
+<p>界面的超级抽象不说了，另一方面更强的问题在于怎么去修改这个界面。每次做个修改都要实际运行一下看看结果，不对再改，天啊，这太折磨人了。</p>
+<p>去年刚刚接触这个项目的时候，我就对当时写了一半的代码提出质疑，为什么现在开发项目还在用VC6，为什么不用.NET平台？.NET已经是很先进的一个平台了，虽然直接操作API上面有一些屏障。大家一致回答，不懂.NET，也不知道怎么用.NET来控制工控卡，还是用熟悉的VC6来做吧。其实我后悔当初为什么加进来，还不如另给我一个题目，让我从0开始！</p>
+<p>再来看看我周围的研究生，他们来的时候都或多或少学了一些C/C++，老一届的师兄因为历史的原因都说用VC6吧，所以天天抱着一本厚厚的MFC读啊读，做项目也只有用这个了，因为学了C/C++，他们认为用VC6这个投资才没有浪费。没有人告诉他们，还有C#可以满足你的要求，学学C++/CLI，生活便会开心许多。但我想，对于大多数“懒”人来说，我的这句话依然只是一句废话。</p>
+<p>其实在我接触C++/CLI之前我也有一些疑问，.NET如何去控制工控卡。VS2003时代有Managed C++ Extenstion，但其怪异的语法让人望而却步。幸亏微软没有忘记这个强力雾气，在VS2005时推出了C++/CLI。这个革命性的语言让托管和非托管语言隔阂缩小了很多。可以说目前.NET平台上，C++/CLI是最为强大的语言，他将历史和未来进行了完美的结合，让以前旧有的代码得以充分利用，也让现有的工作可以基于.NET平台，从而享受.NET带来的优势和愉悦。目前，我利用C++/CLI，已经实现把纯C++的OpenSceneGraph图形库和C#结合起来一起工作，C#专门做界面，OpenSceneGraph负责OpenGL图形显示，各司其职，将做复杂界面的挑战减小到了最小，而又不失灵活。</p>
+<p>那么工控机运行.NET程序是否那么快？据我了解现在所配置的工控机的CPU配置都达到了P4的水平，内存也多在512以上，除了第一次运行可能比较慢以外，这个配置运行.NET程序不存在任何问题。但对于开发机来说，VS2005先进的功能让很多旧电脑不堪重负，强人们的机器实在是太老了，512内存跑VS2005那是很痛苦的。为什么老板就不能升级一下我们的电脑呢？呵呵，为什么“不”这就不容多说了吧。我怕哪天学生科的老师又叫一个学生敲敲寝室的门，然后对我说，XX老师叫你好好学习。</p>
+<p>废话不多说，以我的观点来看，如此简单的工控机的界面用不着动用VC6这个老元老了，除非是需要继续进行2000年左右项目的开发，而迁移成本很高的情况下。2005年以后的工程都可以用VS2005来开发了，在嫦娥都能奔月的今天，开发工具不在进行革新，就好比原始人用石头和现代人的原子弹比拼。要知道我做PDA上面的地震数据采集的界面都比这个复杂太多，工控机优越的硬件环境足以支撑.NET平台。</p>
+<p>用C++来构造界面往往需要花费很大的精力才能调整好整个，有过MFC开发经验的人就知道这些痛苦了。要实现一个多国语言都显得很麻烦。其次，C++的内存管理始终是一个问题，即便很小心，也可能忘记new了一个数组以后(int* p=new int[count])需要用delete[] p进行删除。编译器不会给你说这个地方需要怎么做，最多给你一个Warning，但恐怕业余程序员也不屑于来更正这些Warning。错误的操作导致的内存泄露很麻烦，也不容易查找出来，而.NET的托管平台就没有这个隐患，除非你自己使用了非托管资源而未作处理。</p>
+<p>.NET的优势不仅在于以上所说的创建界面方面，整个.NET平台简化了太多的操作。XML结合序列化反序列化的使用使得存储一个结构变得轻而易举，XML以明文存储的结构数据更能很容易的进行查看，找到问题所在。而在现在的项目中，由于VC6的局限，最方便的方法莫过于直接将一个结构写二进制文件。但这样造成了严重的后果，如果以后版本升级，之前的数据文件将不再兼容，虽然有些即便看上去可以用，但值却不是一一对应，可能隐藏一些很复杂的问题。想想为什么现在Office 2007都要用XML来存储，我想，这肯定是经过了太多的兼容性的折磨的。其次微软的跨平台的野心也促使其使用工业标准。正是由于这些原因，这才带来了OpenOffice和Microsoft Office的高度兼容。</p>
+<p>再说说数据库里面存放的玩意儿。对数据库我不是太在行，对于表结构那些我没有太多的看法。当然我知道用C++调用ADO访问SQL Server在现在.NET平台下看来简直是没事找事做。强人们用了好几百行代码来写这个数据库部分，有必要么？现在系统数据库里面存储的工艺文件和管形文件是用二进制来存储的，如果要调试，就要用专门的类来进行读取，才知道里面到底有什么。我知道，C++里面操作XML不是一个简单的事情，C++缺少META信息也给序列化带来了不便。这不怪强人们，如果他们出生在我的年代，用上了.NET平台，用上了序列化和反序列化，我想他们肯定很乐意几行代码将需要的结构保存下来，而不是费尽心思去写Load和Save的代码。</p>
+<p>回过头来，当身处强人们的位置时，当机器无法快速运行VS2005时，当老板的项目逼得很急时，没有更强的专业开发人员时，作为业余的程序员，也只有选择走一些弯路。越调越多的BUG，越变越复杂的需求，无不深深的折磨着他们身心。而现在项目就要移交给我，我真想将整个项目重新规划，用.NET重写整个逻辑，用C++/CLI来操作工控卡，但，老板愿意承担其中的风险么？他愿意花时间么？一年多积累下来的代码重新以后是不是改动太大了？如果再不做一些改动，恐怕这些代码以后的路很难走。</p>
+<p>当然，项目组一起做上来的业余程序员也只能走一步算一步，越走越黑暗，越走越伤心，最终毕业了就真正解脱了——为什么程序开发这么难</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2007-10-30-log-back/" class="post-title-link">日志回来了……</a></h2><div class="post-info">Oct 30, 2007</div><div class="post-content"><h1 id="在百度上用百度快照找回来了："><a href="#在百度上用百度快照找回来了：" class="headerlink" title="在百度上用百度快照找回来了："></a>在百度上用百度快照找回来了：</h1><p>CRYSIS OUT!</p>
 <p>不知道我写这个out是DEMO已经发布的意思还是这个游戏即将从硬盘消失的out，呵呵，反正一语双关吧。</p>
 <p>今天早上一起来就发现游侠网上说crysis demo发布了，很激动啊！下午陪朋友装电脑的时间就把游戏下载完了，晚上回寝室立刻High起。先是在DX9模式下玩的，速度还行，8800GTS 1024*768全开高还比较流畅，肉眼观察就在15-30帧左右。</p>
 <p>后来为了看到very high模式的效果，切换到VISTA系统。终于知道了这个游戏的牛了，DX10模式下面，稍微复杂的场景就只有个位数的帧数…………但整个场景的渲染还是做得比较厚道的，特别是能够看到体积光的效果，看到太阳从海面升起来，看到阳光从树缝里面透过的情景，很棒！！！感觉这个游戏给Futuremark 公司做测试算了，太强悍了。估计3DMark Next会增加类似的场景吧，拭目以待！</p>
@@ -54,41 +68,4 @@
 <p>下面这个是一个测试英语单词和语法能力的网站</p>
 <p><a href="http://www.test-your-english-now.net/" target="_blank" rel="noopener">http://www.test-your-english-now.net/</a></p>
 <p>我测试了一下，2000词汇一下吧……~太次了，呵呵</p>
-</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2007-10-10-day-time-2/" class="post-title-link">国庆这段时间(2)</a></h2><div class="post-info">Oct 10, 2007</div><div class="post-content"><p><a href="/images/2007-10-5/IMG_2219.JPG"></a>国庆一二号去了瓦屋山，本来今年上半年就想去看看的，结果十一的时候才有得空闲时间。一号早上还是按照旅游的惯例早早的起床了，８点钟就正式上路了。没有走高速公路，走的是向南的大件路，一路上的收费站一个接一个，一会儿几元一会儿几元。到了眉山境内了，一个收费站处开始了进军瓦屋山的旅游路线，交了１１块钱，还没有走几步，就开始了修路和漫长的单边等待通行。天啊，本来计划２００多公里的路程中午就可以到的，结果一直持续了７０多公里的烂路和绕道，加上小雨弄得路面泥泞不堪，下午４点过才正式到达山门口，好生郁闷！<br>由于修路，这里没有旅游客车过来，所以游客都是自驾游的，显得比较冷清。进了景点大门还有二十多公里的路程到达半山腰，一路上还都在下着小雨，有些地方还有比较大雾气，不怎么看的清路。<br>图：到了半山腰，还在下小雨，应该说是水汽比较大吧</p>
-<p><a href="/images/2007-10-5/IMG_2102.JPG"></a><img src="/images/2007-10-5/image/thumb/IMG_2219.JPG" alt>国庆一二号去了瓦屋山，本来今年上半年就想去看看的，结果十一的时候才有得空闲时间。一号早上还是按照旅游的惯例早早的起床了，８点钟就正式上路了。没有走高速公路，走的是向南的大件路，一路上的收费站一个接一个，一会儿几元一会儿几元。到了眉山境内了，一个收费站处开始了进军瓦屋山的旅游路线，交了１１块钱，还没有走几步，就开始了修路和漫长的单边等待通行。天啊，本来计划２００多公里的路程中午就可以到的，结果一直持续了７０多公里的烂路和绕道，加上小雨弄得路面泥泞不堪，下午４点过才正式到达山门口，好生郁闷！<br>由于修路，这里没有旅游客车过来，所以游客都是自驾游的，显得比较冷清。进了景点大门还有二十多公里的路程到达半山腰，一路上还都在下着小雨，有些地方还有比较大雾气，不怎么看的清路。<br>图：到了半山腰，还在下小雨，应该说是水汽比较大吧</p>
-<p><a href="/images/2007-10-5/IMG_2102.JPG"></a><br>瓦屋上大多数旅游景点都在山顶上，要乘坐览车上山。瓦屋上的览车长达1600米，落差700米，这还是多平生第一次做览车，哈哈。上的时候都觉得很陡了，下的时候览车的绳索几乎就在览车箱的前面，我估计在60度左右，大多数的时候都在45度以上……一路上由于雾大，也只能隐隐约约的看到一些红叶。</p>
-<p>图：索道</p>
-<p><a href="/images/2007-10-5/IMG_2108.JPG"></a><img src="/images/2007-10-5/image/thumb/IMG_2108.JPG" alt></p>
-<p>上了山还是下雨，一直没有停过，能见度很差。到达山顶了有一个地图，我是到哪儿旅游都要拍一个导游图的，免得到时候走丢了，虽然可能门票上有旅游路线，但有些清晰度不高。</p>
-<p>图：地图</p>
-<p><a href="/images/2007-10-5/IMG_2122.JPG"></a><img src="/images/2007-10-5/image/thumb/IMG_2122.JPG" alt></p>
-<p>当时没有怎么仔细看这个地图，后来旅游路上看看到有一行关于迷魂凼(dang)的注释：瓦屋山鸳鸯池东南方向的迷魂凼，地形复杂，地质异常，入内常常出现罗盘失灵、钟表停摆等令人迷失方向的现象。有人曾误入其中受尽磨难，最后想尽办法才根据三点成一线的原理和水往低处流的自然法则逃出。关于迷魂凼的故事，可以看看下面链接，很恐怖的地方……</p>
-<ul>
-<li><a href="/images/2007-10-5/IMG_2124.JPG"></a><img src="/images/2007-10-5/image/thumb/IMG_2124.JPG" alt></li>
-</ul>
-<p>图：象尔山庄，唯一一处住宿的地方。第二天早上出发时候拍摄的</p>
-<p><a href="/images/2007-10-5/IMG_2131.JPG"></a><img src="/images/2007-10-5/image/thumb/IMG_2131.JPG" alt></p>
-<p>这次住宿不是太贵，一个人５０块钱，５个人算下来２５０块钱，便宜了１０块钱，就２４０块钱。晚上吃了些昂贵的素菜就对了，去旅游嘛，在旅游景点里面就省一些。这里的床铺都配置了电热毯，没办法，太潮湿了，被子拿出来都是湿润的。厕所也不方便，在外面有一个集中的“环保”厕所，每次上厕所都冷啊，特别是晚上，我估计气温只有几度的样子，连睡觉呼吸都觉得冰冷。</p>
-<p>第二天就正式上路了。早上６点过就醒了，其实晚上也没有睡好，被呼噜声吵醒了好几次。如果天气好的话这儿还可以看见日出、云海，不远处就峨眉山。但是早上一起来，还是白茫茫的一片，什么都看不到。８点钟吃过早餐带上行李就出发了。</p>
-<p>第一个景点是兰溪瀑布，要走３公里多的路，路上还是如昨天一样湿滑。路上很安静，有参天大树和很多箭竹以外，还能看到杜鹃花。据介绍这里“十多平方公里的原始森林，一切都处于原始自然状态，这里的植物动物完全是自然界的优生劣汰。一棵棵矗立挺拔的冷杉、铁杉等珍贵树种，有着几百年上千年的年轮，有的树见不到树皮，全是厚厚的青苔裹着，青苔上又长出娇小的杜鹃花鲜花，更显出了巨树的阳刚和杜鹃花的柔美。有的树上又寄生出其它树种，有的根从几十米的树杈上悬空垂下又突然钻入地下，苍劲的古树极力伸展着自己生存的空间，仿佛在争夺着属于自己的一方天地，尽显它们顽强的生命力。”</p>
-<p>图：沿途风光，箭竹，铁杉、冷杉等。</p>
-<p><a href="/images/2007-10-5/IMG_2165.JPG"></a><img src="/images/2007-10-5/image/thumb/IMG_2165.JPG" alt></p>
-<p>图：路上休息处小石凳</p>
-<p><a href="/images/2007-10-5/IMG_2171.JPG"></a><img src="/images/2007-10-5/image/thumb/IMG_2171.JPG" alt></p>
-<p>走了不知道多久，终于看到兰溪瀑布的指路牌了，近在眼前。1040米落差的兰溪瀑布成了这里最有名的瀑布：<br>图：兰溪瀑布源头，雾很大，看不到兰溪全貌，实属遗憾</p>
-<p><a href="/images/2007-10-5/IMG_2150.JPG"></a><img src="/images/2007-10-5/image/thumb/IMG_2150.JPG" alt></p>
-<p>然后还是长途跋涉，一路上景色依然。只是感觉雾漂泊不定。时有时无，到了最顶上的平台，反而雾基本没有了，就像风暴中心依然平静一样。</p>
-<p><a href="/images/2007-10-5/IMG_2192.JPG"></a><img src="/images/2007-10-5/image/thumb/IMG_2192.JPG" alt></p>
-<p>鸳鸯池附近有一些破房子，看来是以前有人居住或者卖东西的地方，现在已经荒弃了。鸳鸯池现在也就是两个烂水潭，很脏。看来可能池子已经被破坏了，没有什么看点了。</p>
-<p>过了鸳鸯池，就又有了弄弄的雾。我们开始了返程。</p>
-<p>总的来说山上的空气是相当不错的，很清新，风景也不错，就是雾太大了，看不了多远，这是最郁闷的。</p>
-<p>回程路上一路颠簸，我们没有走来的路线而是换成了向雅安方向的路。虽然路还是比较烂，但还是比来的时候的路好多了。几十公里烂路以后进入雅安境内就是水泥路面了，路况好了很多。</p>
-<p>到雅安后决定到上里古镇去看看。去古镇的路和走碧峰峡的路有一段是重叠的，都是山路，有一个比较窄的地方还有警察维持交通，以防堵车。</p>
-<p>到了古镇参观以后才发现其实也没有什么特别的，我爸最失望了，还以为是真正破破烂烂的“古镇”，但现在看来算是“新镇”了。去了Ｎ多个古镇，总结下来一句话：天下古镇一般样。改造后的古镇全然没有了古镇的风貌，新的门板，新的建筑，都是卖东西的，基本上都是一样的，没什么新意。特别是黄龙溪古镇啊什么的，根本就不是什么“古镇了”。以后什么ＸＸ古镇想必真是没必要去了。都是炒作啊。</p>
-<p>图：古镇小桥</p>
-<p><a href="/images/2007-10-5/IMG_2217.JPG"></a><img src="/images/2007-10-5/image/thumb/IMG_2217.JPG" alt><br>图：吃的～</p>
-<p><a href="/images/2007-10-5/IMG_2219.JPG"></a><img src="/images/2007-10-5/image/thumb/IMG_2219.JPG" alt><br>图：５个头像，哈哈，猜猜是那些人？</p>
-<p><a href="/images/2007-10-5/IMG_2225.JPG"></a><img src="/images/2007-10-5/image/thumb/IMG_2225.JPG" alt><br>图：这个还算古老</p>
-<p><a href="/images/2007-10-5/IMG_2226.JPG"></a><img src="/images/2007-10-5/image/thumb/IMG_2226.JPG" alt><br>图：好不容易找到的真正的“古”，可是已经用来堆放东西了</p>
-<p><a href="/images/2007-10-5/IMG_2229.JPG"></a><img src="/images/2007-10-5/image/thumb/IMG_2229.JPG" alt><br>晚上返程的时候在那个最窄的地方有一个大货车被迎面的小车堵住了，没法过，结果小车后面排起了长队，没办法，这个长队只能一一坡道倒车，很是麻烦。还好，将近一个多小时路就通了。晚上沿高速公路就回家了，累，什么都不想做，躺床上就睡着了。</p>
 </div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/81/" class="prev">PREV</a><a href="/page/83/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2020 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

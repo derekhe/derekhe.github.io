@@ -22,7 +22,31 @@
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(bp, s);
   })();
-  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2008-10-19-ubuntu-use-the-printer-pain/" class="post-title-link">Ubuntu下使用打印机～痛苦</a></h2><div class="post-info">Oct 19, 2008</div><div class="post-content"><p>记得好像是5.12地震以前用过打印机，后来就再也没有用过了。这会儿都10月中旬了，拿出来晒晒。</p>
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2008-10-21-summary-of-linux-sided-printing/" class="post-title-link">Linux双面打印概要</a></h2><div class="post-info">Oct 21, 2008</div><div class="post-content"><blockquote>
+<p>摘自：<a href="http://www.realss.cn/kb&amp;menuaction=phpbrain.uikb.view_article&amp;art_id=6" target="_blank" rel="noopener">http://www.realss.cn/kb&amp;menuaction=phpbrain.uikb.view_article&amp;art_id=6</a><br><strong>双面打印及小册子打印</strong></p>
+</blockquote>
+<p>网络打印机常常不能像本机上安装的打印机一样实现一步一步指导地双面打印。这样就需要操作人员格外用心，自己在打印时候先打印一面，然后去打印机前重新装纸，回到桌前再打印另一面。</p>
+<p>打印机有两种送纸方式。一般激光打印机送纸时，第一张送入的纸，将会出现在第一页(先进先出)；喷墨打印机第一张送入的纸，将会出现在最后一页。这两种打印机双面打印的方法和小册子打印方法都不同。</p>
+<p>对于激光打印机，双面打印需要先逆序打印左页，回到打印机前装纸，再正序打印右页。打印小册子时候，需要先正序打印右页，回到打印机前装纸，再逆序打印左页。</p>
+<p>对于喷墨打印机，双面打印需要先正序打印奇数页，回到打印机前装纸，再正序打印偶数页。打印小册子时候，需要先</p>
+<ol>
+<li>逆序打印左页，回到打印机前装纸，再逆序打印右页。这样打印出的小册子是先出版芯(不是先出封面)，当左页打印完的时候，需要反过来打右页，并适情况添加一张封页(用于打印封一和封四)。</li>
+<li>正序打印右页，回到打印机前装纸，再正序打印左页。这样打印出的小册子是先出封面，适合封面使用特殊纸张的情况。</li>
+</ol>
+<p><strong>从ps或pdf文件打印小册子</strong></p>
+<p>以激光打印为例，分三步：</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">zhangweiwu@joe:~&gt; psbook herzog.<span class="keyword">ps</span>  booklet.<span class="keyword">ps</span></span><br><span class="line">zhangweiwu@joe:~&gt; lpr -<span class="keyword">o</span> <span class="keyword">number</span>-<span class="keyword">up</span>=<span class="number">2</span> -<span class="keyword">o</span> page-<span class="keyword">set</span>=odd booklet.<span class="keyword">ps</span></span><br><span class="line">zhangweiwu@joe:~&gt; lpr -<span class="keyword">o</span> <span class="keyword">number</span>-<span class="keyword">up</span>=<span class="number">2</span> -<span class="keyword">o</span> page-<span class="keyword">set</span>=even -<span class="keyword">o</span> outputorder=<span class="built_in">reverse</span> booklet.<span class="keyword">ps</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>打印小册子时的检查表</strong></p>
+<p>小册子打印最容易出问题，皆因为纸张奇偶数、方向、正反面、打印质量及顺序无一不需要操心，加之打印时间长，印反面时候又容易再错。即使面面俱到，最后仍然挂一漏万。所以列出这个检查表帮助减少失误。</p>
+<ol>
+<li>检查文件版本是否正确。小册子一般是有多个版本的，确定一定是在使用最新版。</li>
+<li>检查变量设置是否正确。如EIP手册“受众”可能是管理员，而您正在准备打印用户手册。</li>
+<li>打印之前，检查目录、域代码、索引是否全部正确，是否已经设置为不显示隐藏段落和隐藏字符(否则页码可能是错的)用OpenOffice  “工具” 里的“全部更新”更新文档。</li>
+<li>保存文档以免印反面之前误关闭程序。</li>
+<li>打印时要检查设置：纸张尺寸是否正确，纸张朝向要确认是Landscape(横向)，打印精度是否正确；</li>
+</ol>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2008-10-19-ubuntu-use-the-printer-pain/" class="post-title-link">Ubuntu下使用打印机～痛苦</a></h2><div class="post-info">Oct 19, 2008</div><div class="post-content"><p>记得好像是5.12地震以前用过打印机，后来就再也没有用过了。这会儿都10月中旬了，拿出来晒晒。</p>
 <p>插上电源，接上USB，呵呵，Ubuntu真好，打印机就识别到了。来，打印个测试也看看，哟，没动静？怎么回事～！</p>
 <p>网上一搜，晕，HP的打印机Ubuntu是认识了，可是用不了。郁闷，按照大家的说法到<a href="http://hplipopensource.com/hplip-web/gethplip.html" target="_blank" rel="noopener">得到打印机驱动</a>。经过一番安装，OK了。可恶的是中间竟然要求网络连接下载一个Plug-in，看来Linux真是一个网络操作系统，不错，确实，网络不好别想用。</p>
 <p>很好，打印测试很顺利。来吧，打印那篇论文。</p>
@@ -50,15 +74,4 @@
 <p>另外一本书是昨天刚到的——BOB大叔的《敏捷软件开发：原则，模式与实践》。这书写的实在是太棒了，以至于我一天就读了１００多页，接近1/4了。看此书犹如BOB大叔手把手的在你旁边指导，非常棒！反思我做过的东东，因为大部分都是给自己做的东东，或者是一些研究性性质的东东，所以基本都没有文档的，有也是很少的注释。如果半年之后我还能改这个东东，还能理解得到，那就算好的。事实证明早期的东西都是乱七八糟的，弯管机仿真的程序写的还基本合格，但有些细节方面的东西很令人头痛。</p>
 <p>现在越开发东西越觉得心虚，反思，到底怎么做才是比较好的做法，到底在软件实践中应该注意什么？书到用时方恨少。我常常审视自己的做法是否优秀，是否真正能够提高，继续做任何项目只会提高数量，而无法提高质量，看来现在该是悬崖勒马的时候了，是停下手头的项目的时候了，认真的看看书了。我是属于“实践派”的人，往往看了点点的书就忙于实现一些东西，这样虽然兴趣很浓厚，但做了一段时间后才会发现原来总在低级阶段。停，然后补充，审视，就得到了提高。</p>
 <p>希望这些天的看书能够真正的提高自己啦！</p>
-</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2008-10-02-too-much-gcc-will-call-forwarding/" class="post-title-link">太强了……gcc也会呼叫转移～～</a></h2><div class="post-info">Oct 2, 2008</div><div class="post-content"><p>今天编译自己的代码，一句话：</p>
-<figure class="highlight xl"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="title">fc</span>-&gt;</span>B<span class="function"><span class="title">oxSize</span>=this-&gt;</span>boxSize();</span><br></pre></td></tr></table></figure>
-
-<p>编译出错，gcc编译器说：</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line">../VolumeRenderBox.cpp: In member function <span class="symbol">'osg</span>::ref_ptr&lt;osg::Group&gt; VirtualSurgery::VolumeRenderBox::createVolumeRenderBox(osg::Vec3, double)':</span><br><span class="line">../VolumeRenderBox.cpp:<span class="number">218</span>: 错误： 正在将呼叫转移到 ���A (无应答)</span><br><span class="line">make: *** [VolumeRenderBox.o] 错误 <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<p>太强了……发现gcc还可以呼叫转移，还无应答～～～真是绝了。</p>
-<p>其实上一句话写错了，应该是</p>
-<figure class="highlight xl"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="title">fc</span>-&gt;</span>B<span class="function"><span class="title">oxSize</span>=this-&gt;</span>boxSize;</span><br></pre></td></tr></table></figure>
-
-<p>整了一天的程序把成员变量都加括号了，呵呵。倒是这个编译提示真让人费解～～～</p>
 </div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/59/" class="prev">PREV</a><a href="/page/61/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2020 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

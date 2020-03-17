@@ -22,7 +22,14 @@
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(bp, s);
   })();
-  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2019-05-13-k3s/" class="post-title-link">使用k3s减少k8s成本</a></h2><div class="post-info">May 13, 2019</div><div class="post-content"><p>爱飞狗后台的数据爬虫以及数据服务器资源都部署在k8s上，使用rancher搭建。在不影响太多性能的情况下尽量选择最低配置的机器。对于内存不足的情况适当的使用交换文件代替（swap）。整个集群大致结构如下：</p>
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2019-05-27-proxy/" class="post-title-link">你要的免费Proxy资源全在这里了</a></h2><div class="post-info">May 27, 2019</div><div class="post-content"><p>地址：<a href="https://github.com/derekhe/ProxyPool" target="_blank" rel="noopener">https://github.com/derekhe/ProxyPool</a></p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>在<a href="https://item.jd.com/12575102.html" target="_blank" rel="noopener">《爬虫实战：从数据到产品》</a>一书中，我讲到了一个基于ProxyBroker的代理池。经过我的长时间的实践，这个代理池用起来非常的方便和稳定。</p>
+<p>基于<a href="https://github.com/constverum/ProxyBroker" target="_blank" rel="noopener">ProxyBroker</a>，增加了中国区域的代理资源。并引入了docker-compose，能够快速的方便的开始代理的抓取。</p>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a><a href="https://github.com/derekhe/ProxyPool#%E7%94%A8%E6%B3%95" target="_blank" rel="noopener"></a>用法</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker-compose up</span><br></pre></td></tr></table></figure>
+
+<p>然后浏览器打开<a href="http://localhost:8080/proxy.json" target="_blank" rel="noopener">http://localhost:8080/proxy.json</a> 即可得代理列表。每个代理都经过类型的验证，代理资源会随着时间增长。每个代理的有效期为一天时间。大概一天有1万左右的有效代理。</p>
+<p>由于很多代理资源在中国无法访问的网站，部署在国内的服务器上会影响资源的获取，所以推荐将服务器部署到国外的服务器。服务器推荐使用<a href="https://m.do.co/c/4bc532e3ef94" target="_blank" rel="noopener">DigitalOcean</a>，我的多个服务器都在SFO2区域，非常的稳定。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2019-05-13-k3s/" class="post-title-link">使用k3s减少k8s成本</a></h2><div class="post-info">May 13, 2019</div><div class="post-content"><p>爱飞狗后台的数据爬虫以及数据服务器资源都部署在k8s上，使用rancher搭建。在不影响太多性能的情况下尽量选择最低配置的机器。对于内存不足的情况适当的使用交换文件代替（swap）。整个集群大致结构如下：</p>
 <table>
 <thead>
 <tr>
@@ -277,37 +284,4 @@
 <h2 id="从业务上进行考虑，不需要客户感知的数据不提供或者少提供"><a href="#从业务上进行考虑，不需要客户感知的数据不提供或者少提供" class="headerlink" title="从业务上进行考虑，不需要客户感知的数据不提供或者少提供"></a>从业务上进行考虑，不需要客户感知的数据不提供或者少提供</h2><p>以单车应用来看，ofo单车并没有提供摩拜单车的预定的功能，所以在界面上也没有必要展示出单车的编号信息。在去年9月份左右，ofo单车对API进行了调整，将所有的单车编号进行随机化处理，导致ofo单车的数据目前无法爬取。哈罗单车在未登陆的情况下只提供几台单车的数据，登陆后能够展示附近所有的单车。由于需要登录，爬虫的成本会变得很高也非常的脆弱。<br>反观某大型旅游OTA网站的API，调用后返回了相当数量的额外信息，甚至在价格方面包含了两种价格，而其中一种价格并不会在界面上进行显示，这种信息非常值得怀疑是不是内部的价格。</p>
 <h2 id="盘点所有的API的使用方，谨慎一切以JavsScript开发的客户端"><a href="#盘点所有的API的使用方，谨慎一切以JavsScript开发的客户端" class="headerlink" title="盘点所有的API的使用方，谨慎一切以JavsScript开发的客户端"></a>盘点所有的API的使用方，谨慎一切以JavsScript开发的客户端</h2><p>目前手机APP层面的保护措施已经相对较多，而且大多数应用受到加密外壳的保护很难破解，想得到URL里面的签名信息的生成方式变得非常困难。然而仔细盘点一款产品的各种渠道，会发现有些产品可能会提供HTML5、公众号、小程序等入口，而这些以JavsScript生态圈的应用并未收到很好的保护。<br>以某款快递软件为例，该查询软件中提供了sign信息，基本无法知道如何生成，但在小程序中调用了类似的API并带上了sign信息，通过一个Root的安卓手机可以将小程序解包，分析JavaScript很容易的发现了sign的生成方式。另外某单车软件登陆的签名信息eption也是经过了加密处理，在小程序中也能够发现其生成的方式，马奇诺防线就这样轻松的被越过了。<br>当然小程序端的防止爬取的方式比较简单，小程序的后端可以通过微信的接口生成动态的token的方式进行用户验证，防止数据泄露。</p>
 <h2 id="做好后台的监控"><a href="#做好后台的监控" class="headerlink" title="做好后台的监控"></a>做好后台的监控</h2><p>道高一尺魔高一丈，后台API调用的日志和监控手段要重视。对于异常数量的API调用要及时分析出原因减少被利用的可能。</p>
-</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2018-03-20-evard/" class="post-title-link">大数据看共享汽车——EVCard篇</a></h2><div class="post-info">Mar 20, 2018</div><div class="post-content"><p>去年2月份我做过共享单车的数据分析，也分析出一些有意思的点。从2017年10月1日开始，历时3个多月，我收集了EVCard和GoFun共享汽车的公开数据。下面整理成一个动态的报告，一起看一下共享汽车的现状。</p>
-<blockquote>
-<p>注：该数据分析及报告仅代表个人意见，仅供参考，数据来自于API请求的结果，只包含公开的信息，不涉及用户信息。引用、使用该报告引起的任何后果（包括但不限于版权、侵犯法律法规）等，由使用方承担。</p>
-</blockquote>
-<h1 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h1><p>EVCARD品牌是上海国际汽车城新能源汽车运营服务有限公司开展的电动汽车分时租赁项目。 EVCARD电动汽车分时租赁是借助物联网技术实现的一种新型汽车分时租赁服务模式，实现了用户任意时间自行预订，任意网点自助取还的用车需求。 上海国际汽车城 新能源汽车运营服务有限公司是上海市第一家面向新能源汽车开展租赁和共享的专业公司，主要开展面向集团用户（B2B、B2B2C模式）以及私人用户（B2C）的新能源汽车长短租服务</p>
-<p>我们先来看一些关于车的基本的信息。</p>
-<p><img src="/images/2018/03-20/4372317-61ba4c1b382ce875.png" alt></p>
-<p>从上面图可以知道，EVCard的车品牌比较多，其中还是北汽、奇瑞、江淮的低端车型比较多，中端的较大的车型荣威E50也占据了11.03%的分量。高端的宝马i3也有，但极少。虽然<a href="https://www.evcard.com/models/detail/id/15.html" target="_blank" rel="noopener">EVCard官网</a>上面虽然列出了车型，但可能更新较慢和数据中的车型不一致。</p>
-<p><img src="/images/2018/03-20/4372317-d749fbc13fc836c1.png" alt></p>
-<p><img src="/images/2018/03-20/4372317-e90167c62d31178d.png" alt></p>
-<h2 id="业务概况"><a href="#业务概况" class="headerlink" title="业务概况"></a>业务概况</h2><p>根据采集的数据，截止2017年11月底，EVCard目前在全国总共有12152辆车。下图是车辆增长的情况。整体趋势来讲呈平稳上升趋势，说明目前发展状况稳定。</p>
-<p><img src="/images/2018/03-20/4372317-c3b88c69a0d18d33.png" alt></p>
-<p>我们再来看看车辆的数量分布。可以看出来在上海以及附近的省份有很多的车辆，和GoFun正好是相反。</p>
-<p><img src="/images/2018/03-20/4372317-c4244f819dc6d201.png" alt></p>
-<p>由于EVCard必须在指定地点借还，停车场的数量多少就直接影响到用户体验。随着车的增长，停车场的数量也应该有相应的增长才对，从图里面也看出停车场的增长较为平稳。截止2017年11月底，全国总共有5540个停车场，远超GoFun的2887个停车场。</p>
-<p><img src="/images/2018/03-20/4372317-40b38368b5f7c827.png" alt></p>
-<p>在停车场各省的分布情况中，几乎是和车辆的分布接近。</p>
-<p><img src="/images/2018/03-20/4372317-27f44f37647eb643.png" alt></p>
-<p>我们再来看一下多少汽车共用一个停车场的情况。从图上看出，平均来看大致一个停车场目前有2辆车的规模。如果一个停车场容纳的车越多，那么用户能够拿到车的几率越大，从这方面看也是一个好事。如果停车场的数量较少，网点不密集，就会影响用户的到达性。从这张图可以看到出有几个省的比例到了4到5，分析看来是由于这些省份的停车场数量偏少。你可以在”停车场分布”图中，具体看看停车点的分布。</p>
-<p><img src="/images/2018/03-20/4372317-b5b7008e8b221d9a.png" alt></p>
-<h1 id="停车场分布"><a href="#停车场分布" class="headerlink" title="停车场分布"></a>停车场分布</h1><p>下图是停车场的分布图，图上标记了全国的停车场的位置，可以自由浏览。上海作为EVCard的大本营，有非常丰富的网点，可想上海的用户出行是非常的方便的。</p>
-<p><img src="/images/2018/03-20/4372317-e3fbe1ca2f617230.png" alt="image.png"></p>
-<h1 id="车辆流转情况"><a href="#车辆流转情况" class="headerlink" title="车辆流转情况"></a>车辆流转情况</h1><p>下图是三个月内车的使用次数的分布。横坐标是使用的次数，纵坐标是次数对应的车的数量。0到70次占据了相当多的数量，然而130到170次之间也有一个小的起伏。平均下来有每天0.5到2次的使用频率还是不错了。</p>
-<p><img src="/images/2018/03-20/4372317-32c0ba387eec86a2.png" alt></p>
-<p>但使用次数只是运营情况的一种体现。如果每次使用时间比较短，停车时间比较长，对EVCard也不是一个好事。下图展示了停车时长的分布。横坐标代表停车的时长（小时）最长统计到70小时，纵坐标代表有多少车次。从图上看由于使用的频率比较高，停留时间集中在较短的一端比较多。</p>
-<p><img src="/images/2018/03-20/4372317-00be287cbf860075.png" alt></p>
-<p>下图展示了使用时长的分布。横坐标代表停车的时长（小时）最长统计到70小时，纵坐标代表有多少车次。对比停车时长的分布，使用时长的分布比较明显的集中在0到6小时之间，这也是共享出行的特点。由于EVCard有包天的租车服务，所以长期的出行的费用也是可以接受，长达70小时以上的使用时间也有1300多车次。</p>
-<p><img src="/images/2018/03-20/4372317-72c74bc418280742.png" alt></p>
-<h1 id="车的轨迹"><a href="#车的轨迹" class="headerlink" title="车的轨迹"></a>车的轨迹</h1><p>下面这个动画展示了一辆车的直线运动的轨迹。由于我们仅能得到出发、到达地无法获得中间的轨迹，所以只能这样按照直线标注。图上展示最近几个点，以及位置迁移情况。</p>
-<p><img src="/images/2018/03-20/4372317-164eef2161ef9961.png" alt></p>
-<h1 id="电池电量"><a href="#电池电量" class="headerlink" title="电池电量"></a>电池电量</h1><p>下面这张图展示某一辆车的电池变化情况，其中深色区域代表该车在停车场内没有被使用。<br><img src="/images/2018/03-20/4372317-b0b4fec4a30c041e.png" alt></p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>根据以上的分析，EVCard目前比较集中上海附近的省份，尤其是在上海集中优势的力量建立非常密集的网点，对于用户的使用无疑是一个好事。长期来看，停车场和车在稳步的发展，从小型车到大型车的车型的多样化，也为用户的不同出行带来了方便。。</p>
-<h1 id="附件"><a href="#附件" class="headerlink" title="附件"></a>附件</h1><p>互动网站：<a href="http://www.april1985.com/sharecar_report/evcard/report/index.html">http://www.april1985.com/sharecar_report/evcard/report/index.html</a><br>源代码：<a href="http://www.april1985.com/sharecar_report/">http://www.april1985.com/sharecar_report/</a></p>
 </div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/" class="prev">PREV</a><a href="/page/3/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2020 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

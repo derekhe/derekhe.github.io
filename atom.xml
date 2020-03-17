@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.april1985.com/"/>
-  <updated>2020-03-10T01:16:43.640Z</updated>
+  <updated>2020-03-17T14:19:15.273Z</updated>
   <id>http://www.april1985.com/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>拼音学习的一些尝试</title>
+    <link href="http://www.april1985.com/post/2020-03-17-pinyin/"/>
+    <id>http://www.april1985.com/post/2020-03-17-pinyin/</id>
+    <published>2020-03-16T16:00:00.000Z</published>
+    <updated>2020-03-17T14:19:15.273Z</updated>
+    
+    <content type="html"><![CDATA[<p>儿子学习拼音一直比较吃力，一个原因是小时候很多音发音不准导致无法正确的读出音，例如q、x、b、p、g、d等这些音，经多方咨询后在成都市天使儿童医院语音纠正一段时间以后有较大的改善。第二个原因是自身上课注意力不集中，课后没有抓紧复习，家长没有施加太大的压力，最终导致拼音一塌糊涂，基本上注音练习错误率在60%以上。</p><p>后来想用数字化的方式来帮忙做练习，做了一些尝试，但均宣告失败。有一些技术上的问题尚待解决，有一些是流程设计不太合理，还有电脑、手机的交互方式不是太方便，不熟悉键盘，满屏幕找字母很麻烦，也分散注意力。到最后还是采取了人工用字典目录听写的方式，找到薄弱的环节，然后强化巩固。经过一段时间的坚持练习，拼音有了一些进步，很多常见的错误也得以修正。</p><p>在做前期的尝试中，倒是也发现了一些有趣的东西。</p><h1 id="第一个尝试：拼音测试"><a href="#第一个尝试：拼音测试" class="headerlink" title="第一个尝试：拼音测试"></a>第一个尝试：拼音测试</h1><p>地址：<a href="https://github.com/derekhe/pinyin-test" target="_blank" rel="noopener">https://github.com/derekhe/pinyin-test</a><br>这是一个Web程序，可以随机的出题，然后选择声母韵母进行组合选择，点击声母和韵母的时候还可以听到对应的发音。通过查看这种方式期望能够尽快的搞明白拼音的组合。</p><p><img src="./images/2020/03-17/pinyin-test.png" alt></p><h2 id="发音资源来源"><a href="#发音资源来源" class="headerlink" title="发音资源来源"></a>发音资源来源</h2><ul><li>拼音声母和韵母的发音。忘了当时哪里下载的一个资源了，反正放到了MP3目录中，需要的自取</li><li>整体拼音的发音，连带音调。经过一番查找，发现<a href="https://hanyu.baidu.com/" target="_blank" rel="noopener">百度汉语</a>提供了所有汉字的发音。例如“贺”字，通过观察URL可以知道是<a href="https://appcdn.fanyi.baidu.com/zhdict/mp3/he4.mp3" target="_blank" rel="noopener">https://appcdn.fanyi.baidu.com/zhdict/mp3/he4.mp3</a>，是声母韵母的组合加上音调。</li></ul><h2 id="出题"><a href="#出题" class="headerlink" title="出题"></a>出题</h2><p>解决了两个资源来源的问题，下一步就是下载下来以及如何出题。<br>出题的方式比较简单，通过随机的组合声母韵母，通过是否能够下载对应拼音的MP3即可知道拼音是否合法。</p><h2 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h2><p>选择Web的解决方案相对比较简单，能够在多系统运行。界面方面想采用Vue来进行书写，其实React也是OK的，只是想练练手。逻辑比较简单，看下源代码就明白。</p><p>麻烦的事情是这个东西如果放到iPad上面运行，就会出现Safari内核播放音频延迟的问题，而且暂时无法解决。问题表现为点击后半天没有声音，非常影响用户体验。由于iPad上面的所有浏览器都是基于Safari的内核的，所以换成Chrome也无法解决。如果放到电脑上或者手机上就可以了。电脑鼠标或者触摸板用起来不是太方便，大部分时候都消耗到移动、点击上面了；手机上屏幕太小，点击又不是太方便。</p><p>试过一段时间后发现钥匙把所有拼音的声母韵母都放到屏幕上，只能到iPad这样的大屏幕上，而其固有的问题还是让我最终放弃了。</p><p>为了不做个App用呢？iOS开发暂时不会啊，而且没有证书无法部署。</p><h1 id="第二个尝试：听音写拼音"><a href="#第二个尝试：听音写拼音" class="headerlink" title="第二个尝试：听音写拼音"></a>第二个尝试：听音写拼音</h1><p>到二年级了，拼音还是不行，注音练习也是没有太大的用处，每次错每次改，每次改完下次还是错，比训练人工神经网络还要麻烦。后来发现听写拼音，不断的练习应该能够解决问题，并且最好在无人监督的情况下也能自己去做，知道对错。这次我就不想在iPad上面开发了，直接用Python写。</p><p>地址：<a href="https://github.com/derekhe/pinyin-practice" target="_blank" rel="noopener">https://github.com/derekhe/pinyin-practice</a></p><p>这次想做一个简单的程序，就是读音，然后拼写，电脑判断错误。</p><p><img src="./images/2020/03-17/pinyin-2.png" alt></p><p>那么是否之前找的资源可以直接用呢？并不完全是。</p><h2 id="发音资源"><a href="#发音资源" class="headerlink" title="发音资源"></a>发音资源</h2><p>有一个典型的问题是有些拼音出现的次数很少，可以忽略，比如chua这种。所以最终找到了<a href="https://github.com/derekhe/pinyin-practice/blob/master/resource/words.txt" target="_blank" rel="noopener">一份小学生所有的汉字的列表</a>，通过列表来找到所有的拼音，这样6年级所有的字的拼音就出来了。</p><p>上次用的资源我发现语音质量并不是很好，经常有发音很短促，无法听清的情况，还有一些错误的发音。最后对比了一下，使用了<a href="https://github.com/pndurette/gTTS" target="_blank" rel="noopener">google translate的TTS语音合成的</a>。这个有一个比较好的事情是可以任意组合，并且有一个选项可以生成缓慢的发音，这样更容易听清。<a href="https://github.com/derekhe/pinyin-practice/blob/master/download-mp3.py" target="_blank" rel="noopener">生成的文件下载为MP3格式保存</a>。</p><h2 id="Python发音"><a href="#Python发音" class="headerlink" title="Python发音"></a>Python发音</h2><p>我之前以为万能的Python应该不会太难，哪知道几个现成的库都不好用，有一个win32接口的库很直接，但win10下面直接报错。最后找到了个稳定的方案，使用pygame。</p><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">play_mp3</span><span class="params">(pinyinfile)</span>:</span></span><br><span class="line">    pygame.mixer.music.load(pinyinfile)</span><br><span class="line">    pygame.mixer.music.play(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">while</span> pygame.mixer.music.get_busy():</span><br><span class="line">        pygame.time.Clock().tick(<span class="number">1</span>)</span><br></pre></td></tr></table></figure><p>其他的就是一些逻辑处理了。</p><h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>根据儿子的反馈，他说不想重复的做一些已经熟悉的没问题的拼音，第二依然是键盘输入的问题，由于键盘都是大写字母，需要很费脑子转换，找键位眼睛都看花了。<br>考虑到需求越来越复杂，性价比比较低，最终还是亲自上手，在本子上做每天20分钟拼音练习解决问题。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;儿子学习拼音一直比较吃力，一个原因是小时候很多音发音不准导致无法正确的读出音，例如q、x、b、p、g、d等这些音，经多方咨询后在成都市天使儿童医院语音纠正一段时间以后有较大的改善。第二个原因是自身上课注意力不集中，课后没有抓紧复习，家长没有施加太大的压力，最终导致拼音一塌糊
+      
+    
+    </summary>
+    
+    
+      <category term="拼音" scheme="http://www.april1985.com/tags/%E6%8B%BC%E9%9F%B3/"/>
+    
+  </entry>
+  
+  <entry>
     <title>新3D打印机到货Creality Ender 5</title>
     <link href="http://www.april1985.com/post/2020-03-09-new-printer/"/>
     <id>http://www.april1985.com/post/2020-03-09-new-printer/</id>
     <published>2020-03-08T16:00:00.000Z</published>
-    <updated>2020-03-10T01:16:43.640Z</updated>
+    <updated>2020-03-10T01:27:10.026Z</updated>
     
     <content type="html"><![CDATA[<p>15年的时候，脑袋一热，买了一个3D打印机。当时没有了解清楚情况，误买了杭州铭展网络科技的MBot3D Cube打印机。以为是个MakerBot 3D的打印机。后来研究了一些时间，写了<a href="/post/2015-03-07-3d-printing">3D打印及技巧</a>以及<a href="/post/2015-03-25-3d-printing/">20天3D打印总结</a>。</p><p>打印机很贵，多年来一直备受老婆鄙视，一直说这玩意儿是买的最不值的东西。确实也是，因为好几年都基本在吃灰，总共打印时间也就200个小时左右。究其原因，有以下几点：</p><ul><li>打印材料不好，机器没有热床，ABS无法打印，PLA打印的质量很差，稍微大型点的图形就翘边，打印失败率很高。</li><li>材料容易断丝，还是PLA本身的问题。之前买过“三绿国维”、“天威”、甚至铭展原厂的耗材，都打印质量不好。</li><li>机器的刚性不行，木质的结构晃动比较大。皮带松动，结构垂直度容易受到影响，导致打印的图形失真。比如打印的圆不是圆形。XY方向最为严重，买来不久就觉得是直线轴承出了问题，卡卡卡的响。后来自己动脑经调节了一下，但越调越乱，从上方看XY都不是垂直的。后来XY轴的塑料卡板久了出现了断裂，情形更加严重，直到最后卡皮带的卡板直接断掉。19年，厂商找了很久从库房里面找到了个塑料卡板，也算是进了ICU急救了。</li><li>XY出现波浪，即便打印速度降到50mm/s依然还是比较严重。</li><li>XY轴的丝杆似乎已经弯了，导致调平后，整个打印平面还是一个曲面，导致底板经常被烫伤。</li><li>软件支持受限。15年的时候3D打印机的切片软件还不是很好，Cura这种开源的切片软件还很初级，原厂的切片软件用起来也很差劲。18年到19年，慢慢的用到了Simplify3D等切片软件，也慢慢的把新的Cura软件给配置好了，也总算能够用上新的切片软件。</li><li>底板用的是蓝色美纹胶打印，经常会连着美纹胶一起拉起来。</li></ul><p>19年喜欢上了RC遥控车，想做一些3D打印的部件，把打印机做了一些改造升级。比如加上了晶格玻璃、DIY了热床，更换了所有的轴承，加上了皮带的弹簧，线材选用了eSUN的PLA+材料，总算解决了一部分问题。但丝杠等部件的硬伤，没有精力去弄了。经过这次维修以后，打印的质量勉强可以接受。最主要的提升在于PLA+材料，解决了断丝、PLA脆的问题。</p><p>DIY热床安装，买了个<a href="https://item.taobao.com/item.htm?spm=a1z09.2.0.0.407d2e8dYvmoAa&id=558480413539&_u=93e3bkib392" target="_blank" rel="noopener">热板</a>，一个<a href="https://detail.tmall.com/item.htm?id=546230354647&spm=a1z09.2.0.0.407d2e8dYvmoAa&_u=93e3bki7cc3" target="_blank" rel="noopener">明伟12V 20A的电源</a>，一个<a href="https://detail.tmall.com/item.htm?id=602829267893&spm=a1z09.2.0.0.407d2e8dYvmoAa&_u=93e3bkic19f" target="_blank" rel="noopener">数字温控</a></p><p>安装热板：<br><img src="/images/2020/03-09/heat-bed.jpg" alt><br><img src="/images/2020/03-09/heat-bed-2.jpg" alt></p><p>这种平台很容易粘住底层的打印线或者大型的模型而取不下来，可能是质量不行：</p><p><img src="/images/2020/03-09/broken.jpg" alt></p><p>20年由于2月份宅在家，准备弄点遥控车的车壳。打印出来一份，学了一些打磨模型，但打印的效果很差，需要打磨很久，很浪费时间。左看右看各种打印机维修的视频，想到还是买一个新的打印机算了。想想买一个打印机又要好几千，这次没有之前那么冲动，各种看youtube视频，最后看到很多老外都在用创想三维的Ender系列的打印机，一看价格还比较便宜，非常的心动。</p><p>正在打印中：<br><img src="/images/2020/03-09/printing.jpg" alt></p><p>成型，可见很多的震荡纹路：<br><img src="/images/2020/03-09/box.jpg" alt></p><p>成型：<br><img src="/images/2020/03-09/printed.jpg" alt></p><p>打印车壳：<br><img src="/images/2020/03-09/rc-shell-2.jpg" alt><br><img src="/images/2020/03-09/rc-shell-1.jpg" alt><br><img src="/images/2020/03-09/painted.jpg" alt></p><p>运动相机支架：<br><img src="/images/2020/03-09/cam.jpg" alt></p><p>3月初，打印机搞活动（其实春节就在搞活动，只是物流受到了很大的影响），Ender 3只要1000出头，Ender 5也只要1669。Ender 5还有一个Ender 5 Pro系列，有更多的升级件，只不过价格到了2499，贵了很多。再回头看看老外的评测，Ender 3只要一些少许的改造，就可以打印的很好，Ender 5的结构更好。所以就买了Ender 5。</p><p>Ender 5需要自己组装，其实很简单，几颗螺丝装好，几根线插好就可以用了。</p><p><img src="/images/2020/03-09/ender5.jpg" alt><br><img src="/images/2020/03-09/ender5-1.jpg" alt><br><img src="/images/2020/03-09/ender5-2.jpg" alt><br><img src="/images/2020/03-09/ender5-3.jpg" alt><br><img src="/images/2020/03-09/ender5-4.jpg" alt></p><p>调平还是需要手动的调平。但比之前的打印机好的是Z轴零点的位置波动比较小，就不会每次都要去调平。以前的机器Z轴的零点偏差很大，每次都要调平，非常的麻烦。XY轴花了几块钱买了个T-Smoother，据说可以有效的改善移动时候产生的波动。测试几个块块打印出来确实不错。整个机器的滑动结构采用了铝材加上V形的导轮，默认打印速度80mm/s的情况下，移动起来声音非常小，大部分的声音来自于电机的声音。上到120mm/s的时候，在中间附近会有一些共振类似的声响。但比较小的模型来说80和120的差距不大。</p><p>最后打印了一个经典的测试，在这个价位上，整体非常满意，对比之前的打印机有了本质的提升。至于底板还暂时用的原装的底板，粘性还是不错，等过段时间用旧了以后换用晶格玻璃。</p><p><img src="/images/2020/03-09/test.jpg" alt><br><img src="/images/2020/03-09/test-1.jpg" alt><br><img src="/images/2020/03-09/test-2.jpg" alt><br><img src="/images/2020/03-09/test-3.jpg" alt><br><img src="/images/2020/03-09/test-4.jpg" alt></p>]]></content>
     
@@ -34,6 +57,12 @@
     
     </summary>
     
+    
+      <category term="3d打印" scheme="http://www.april1985.com/tags/3d%E6%89%93%E5%8D%B0/"/>
+    
+      <category term="ender 5" scheme="http://www.april1985.com/tags/ender-5/"/>
+    
+      <category term="创想三维" scheme="http://www.april1985.com/tags/%E5%88%9B%E6%83%B3%E4%B8%89%E7%BB%B4/"/>
     
   </entry>
   
@@ -204,9 +233,9 @@
     
       <category term="机票" scheme="http://www.april1985.com/tags/%E6%9C%BA%E7%A5%A8/"/>
     
-      <category term="数据分析" scheme="http://www.april1985.com/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
-    
       <category term="爱飞狗" scheme="http://www.april1985.com/tags/%E7%88%B1%E9%A3%9E%E7%8B%97/"/>
+    
+      <category term="数据分析" scheme="http://www.april1985.com/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
     
   </entry>
   
@@ -856,33 +885,6 @@
   </entry>
   
   <entry>
-    <title>3D打印及技巧</title>
-    <link href="http://www.april1985.com/post/2015-03-07-3d-printing/"/>
-    <id>http://www.april1985.com/post/2015-03-07-3d-printing/</id>
-    <published>2015-02-23T19:00:00.000Z</published>
-    <updated>2019-09-01T13:55:00.630Z</updated>
-    
-    <content type="html"><![CDATA[<p>春节过完，花了4699买了个mBot的木头3D打印机。为什么要买呢？这还是要起源于公司内部有个同事在年前发起的一个众筹，每人可以捐一些培训经费采购一台3D打印机，很多人响应，凑了1万多块钱，昨天问他后来买了个<a href="http://item.taobao.com/item.htm?spm=a1z09.2.9.140.Vdkbms&id=37905659431&_u=58lap0q91ae" target="_blank" rel="noopener">6600多块的</a>，那么这事情也就成了。</p><p><img src="/images/2015/03/microMsg.1425553218011.jpg" alt="硕大的箱子"><br><img src="/images/2015/03/microMsg.1425553490849.jpg" alt="开箱，其实不怎么重里面"><br><img src="/images/2015/03/microMsg.1425556501654.jpg" alt="一堆东西，工具还很好用"></p><p>为啥公司有自己还要自己买一个呢？我不怎么喜欢共用一个东西，独自拥有了怎么折腾都好，也不会受谁的限制。其实买3D打印机这个想法也不是没有，之前主要是觉得价格太贵然后加上不怎么成熟。记得前一两年最常见的创客活动就是秀3D打印机了，感觉有一个是多么的神奇。在等上个一段时间以后，现在看来各项指标都好了很多，生产厂家也逐渐的丰富了起来，是时候下手了。</p><p>开机</p><p><img src="/images/2015/03/microMsg.1425558957060.jpg" alt="只有原点开关，没有限位开关"><br><img src="/images/2015/03/microMsg.1425558992165.jpg" alt="只有原点开关，没有限位开关"><br><img src="/images/2015/03/microMsg.1425559019489.jpg" alt="只有原点开关，没有限位开关"><br><img src="/images/2015/03/microMsg.1425559032383.jpg" alt="只有原点开关，没有限位开关"></p><p>拿到打印机后，迫不及待的拆好，装上软件，很顺利的打了一个简单的测试图形。我本来叫卖家给我白色的料的，结果寄过来个透明的，打印出来的东西有点奇葩。</p><p><img src="/images/2015/03/microMsg.1425565144406.jpg" alt="卡里面的测试图形"></p><p><img src="/images/2015/03/20150305_230800.jpg" alt="撑牙刷的，打印中。。"><br><img src="/images/2015/03/microMsg.1425569307146.jpg" alt="撑牙刷的，人家打印出来是那样，我的是这样。。。汗死"></p><p>刚开始选择的层高0.1，实在是太小了，打印了好久。<br><img src="/images/2015/03/20150305_231857.jpg" alt="打印时间"></p><p>感觉不错。后来想要不直接来个猛的？下载了个埃菲尔铁塔，结果ReplicatorG花了半个多小时，最后无法生成路径。也罢，后来选了个发动机引擎来打印，结果第一个严重也是常见的问题出现了————翘边。</p><p><img src="/images/2015/03/microMsg.1425610624897.jpg" alt="ReplicateG生成很久，还不如用厂家的MPlay"><br><img src="/images/2015/03/20150306_164828.jpg" alt="刚出炉，还没有去掉底部的底座"><br><img src="/images/2015/03/20150306_164850.jpg" alt="翘边啦"><br><img src="/images/2015/03/20150306_170146.jpg" alt="拆下来的支撑"></p><p><img src="/images/2015/03/20150306_175754.jpg" alt="大图形很容易翘边"><br><img src="/images/2015/03/20150306_193755.jpg" alt="自己想当然，搞个黑胶布粘上，一点用也没"></p><p>出现翘边以后，网上搜索了一下然后打电话给技术支持。技术支持告诉我我最牢固的方式是用丙酮，但家里面有小孩不能用，挥发性大易燃易爆；美纹胶也可以，增加接触面的粗糙度，但效果不一定好；还有一个方式是3M胶，效果也比较好的。</p><p>最终我选择了3M胶。京东上睡一觉第二天就到货。第一天就废了15块钱左右，感觉还是比较值。还好用的是PLA材料，生物可降解，其实强度那些也是很棒的，之前我还担心用力捏一下就断呢。</p><p><img src="/images/2015/03/20150306_202920.jpg" alt="92克，每克1.5，算下来15块钱左右"></p><p>今天早上3M胶到了，贴上去倒是很方便，问题来了，背面的红色的胶非常难取，一般用手是抠不下来的。使了用铲子顶进去压住下面的胶，然后再配合美工刀，完美解决问题。</p><p><img src="/images/2015/03/20150307_171804.jpg" alt="很难取"></p><p>打印一个电池盒子<br><img src="/images/2015/03/microMsg.1425712978017.jpg" alt="试一下"><br><img src="/images/2015/03/microMsg.1425715047986.jpg" alt="不错"></p><p>贴上后试了一个比较长的物体，再没出现翘边了，但又有另外的问题发生。<br><img src="/images/2015/03/20150307_184909.jpg" alt="继续打印"></p><p>由于双面胶有一定的厚度，大概1.5张名片的厚度，贴胶的时候贴到了打印部件的位置，造成下面的底座和打印的工件粘合在一起，很难去除。下次一定小心点测量。</p><p><img src="/images/2015/03/20150307_185543.jpg" alt="很难去除，将就了"></p><p>还有个问题是由于两边的胶稍微高一点，会造成两边高中间低的问题。或许在零件的中间贴合一些胶能够解决。</p><p>如果不怕浪费点材料，在刚开始打印底座的时候，会打印一个图出来，当打的差不多的时候，就停下来，然后在边角的位置贴上3M胶，不要贴的太进去就好。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;春节过完，花了4699买了个mBot的木头3D打印机。为什么要买呢？这还是要起源于公司内部有个同事在年前发起的一个众筹，每人可以捐一些培训经费采购一台3D打印机，很多人响应，凑了1万多块钱，昨天问他后来买了个&lt;a href=&quot;http://item.taobao.com/i
-      
-    
-    </summary>
-    
-    
-      <category term="3D打印" scheme="http://www.april1985.com/tags/3D%E6%89%93%E5%8D%B0/"/>
-    
-      <category term="3D打印技巧" scheme="http://www.april1985.com/tags/3D%E6%89%93%E5%8D%B0%E6%8A%80%E5%B7%A7/"/>
-    
-      <category term="翘边" scheme="http://www.april1985.com/tags/%E7%BF%98%E8%BE%B9/"/>
-    
-  </entry>
-  
-  <entry>
     <title>春节</title>
     <link href="http://www.april1985.com/post/2015-02-24-spring-festival/"/>
     <id>http://www.april1985.com/post/2015-02-24-spring-festival/</id>
@@ -906,6 +908,33 @@
       <category term="春节" scheme="http://www.april1985.com/tags/%E6%98%A5%E8%8A%82/"/>
     
       <category term="香港" scheme="http://www.april1985.com/tags/%E9%A6%99%E6%B8%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>3D打印及技巧</title>
+    <link href="http://www.april1985.com/post/2015-03-07-3d-printing/"/>
+    <id>http://www.april1985.com/post/2015-03-07-3d-printing/</id>
+    <published>2015-02-23T19:00:00.000Z</published>
+    <updated>2019-09-01T13:55:00.630Z</updated>
+    
+    <content type="html"><![CDATA[<p>春节过完，花了4699买了个mBot的木头3D打印机。为什么要买呢？这还是要起源于公司内部有个同事在年前发起的一个众筹，每人可以捐一些培训经费采购一台3D打印机，很多人响应，凑了1万多块钱，昨天问他后来买了个<a href="http://item.taobao.com/item.htm?spm=a1z09.2.9.140.Vdkbms&id=37905659431&_u=58lap0q91ae" target="_blank" rel="noopener">6600多块的</a>，那么这事情也就成了。</p><p><img src="/images/2015/03/microMsg.1425553218011.jpg" alt="硕大的箱子"><br><img src="/images/2015/03/microMsg.1425553490849.jpg" alt="开箱，其实不怎么重里面"><br><img src="/images/2015/03/microMsg.1425556501654.jpg" alt="一堆东西，工具还很好用"></p><p>为啥公司有自己还要自己买一个呢？我不怎么喜欢共用一个东西，独自拥有了怎么折腾都好，也不会受谁的限制。其实买3D打印机这个想法也不是没有，之前主要是觉得价格太贵然后加上不怎么成熟。记得前一两年最常见的创客活动就是秀3D打印机了，感觉有一个是多么的神奇。在等上个一段时间以后，现在看来各项指标都好了很多，生产厂家也逐渐的丰富了起来，是时候下手了。</p><p>开机</p><p><img src="/images/2015/03/microMsg.1425558957060.jpg" alt="只有原点开关，没有限位开关"><br><img src="/images/2015/03/microMsg.1425558992165.jpg" alt="只有原点开关，没有限位开关"><br><img src="/images/2015/03/microMsg.1425559019489.jpg" alt="只有原点开关，没有限位开关"><br><img src="/images/2015/03/microMsg.1425559032383.jpg" alt="只有原点开关，没有限位开关"></p><p>拿到打印机后，迫不及待的拆好，装上软件，很顺利的打了一个简单的测试图形。我本来叫卖家给我白色的料的，结果寄过来个透明的，打印出来的东西有点奇葩。</p><p><img src="/images/2015/03/microMsg.1425565144406.jpg" alt="卡里面的测试图形"></p><p><img src="/images/2015/03/20150305_230800.jpg" alt="撑牙刷的，打印中。。"><br><img src="/images/2015/03/microMsg.1425569307146.jpg" alt="撑牙刷的，人家打印出来是那样，我的是这样。。。汗死"></p><p>刚开始选择的层高0.1，实在是太小了，打印了好久。<br><img src="/images/2015/03/20150305_231857.jpg" alt="打印时间"></p><p>感觉不错。后来想要不直接来个猛的？下载了个埃菲尔铁塔，结果ReplicatorG花了半个多小时，最后无法生成路径。也罢，后来选了个发动机引擎来打印，结果第一个严重也是常见的问题出现了————翘边。</p><p><img src="/images/2015/03/microMsg.1425610624897.jpg" alt="ReplicateG生成很久，还不如用厂家的MPlay"><br><img src="/images/2015/03/20150306_164828.jpg" alt="刚出炉，还没有去掉底部的底座"><br><img src="/images/2015/03/20150306_164850.jpg" alt="翘边啦"><br><img src="/images/2015/03/20150306_170146.jpg" alt="拆下来的支撑"></p><p><img src="/images/2015/03/20150306_175754.jpg" alt="大图形很容易翘边"><br><img src="/images/2015/03/20150306_193755.jpg" alt="自己想当然，搞个黑胶布粘上，一点用也没"></p><p>出现翘边以后，网上搜索了一下然后打电话给技术支持。技术支持告诉我我最牢固的方式是用丙酮，但家里面有小孩不能用，挥发性大易燃易爆；美纹胶也可以，增加接触面的粗糙度，但效果不一定好；还有一个方式是3M胶，效果也比较好的。</p><p>最终我选择了3M胶。京东上睡一觉第二天就到货。第一天就废了15块钱左右，感觉还是比较值。还好用的是PLA材料，生物可降解，其实强度那些也是很棒的，之前我还担心用力捏一下就断呢。</p><p><img src="/images/2015/03/20150306_202920.jpg" alt="92克，每克1.5，算下来15块钱左右"></p><p>今天早上3M胶到了，贴上去倒是很方便，问题来了，背面的红色的胶非常难取，一般用手是抠不下来的。使了用铲子顶进去压住下面的胶，然后再配合美工刀，完美解决问题。</p><p><img src="/images/2015/03/20150307_171804.jpg" alt="很难取"></p><p>打印一个电池盒子<br><img src="/images/2015/03/microMsg.1425712978017.jpg" alt="试一下"><br><img src="/images/2015/03/microMsg.1425715047986.jpg" alt="不错"></p><p>贴上后试了一个比较长的物体，再没出现翘边了，但又有另外的问题发生。<br><img src="/images/2015/03/20150307_184909.jpg" alt="继续打印"></p><p>由于双面胶有一定的厚度，大概1.5张名片的厚度，贴胶的时候贴到了打印部件的位置，造成下面的底座和打印的工件粘合在一起，很难去除。下次一定小心点测量。</p><p><img src="/images/2015/03/20150307_185543.jpg" alt="很难去除，将就了"></p><p>还有个问题是由于两边的胶稍微高一点，会造成两边高中间低的问题。或许在零件的中间贴合一些胶能够解决。</p><p>如果不怕浪费点材料，在刚开始打印底座的时候，会打印一个图出来，当打的差不多的时候，就停下来，然后在边角的位置贴上3M胶，不要贴的太进去就好。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;春节过完，花了4699买了个mBot的木头3D打印机。为什么要买呢？这还是要起源于公司内部有个同事在年前发起的一个众筹，每人可以捐一些培训经费采购一台3D打印机，很多人响应，凑了1万多块钱，昨天问他后来买了个&lt;a href=&quot;http://item.taobao.com/i
+      
+    
+    </summary>
+    
+    
+      <category term="3D打印" scheme="http://www.april1985.com/tags/3D%E6%89%93%E5%8D%B0/"/>
+    
+      <category term="3D打印技巧" scheme="http://www.april1985.com/tags/3D%E6%89%93%E5%8D%B0%E6%8A%80%E5%B7%A7/"/>
+    
+      <category term="翘边" scheme="http://www.april1985.com/tags/%E7%BF%98%E8%BE%B9/"/>
     
   </entry>
   
@@ -3091,11 +3120,11 @@
       <category term="其他" scheme="http://www.april1985.com/categories/%E5%85%B6%E4%BB%96/"/>
     
     
-      <category term="书" scheme="http://www.april1985.com/tags/%E4%B9%A6/"/>
-    
       <category term="gpu gems 3" scheme="http://www.april1985.com/tags/gpu-gems-3/"/>
     
       <category term="nvidia" scheme="http://www.april1985.com/tags/nvidia/"/>
+    
+      <category term="书" scheme="http://www.april1985.com/tags/%E4%B9%A6/"/>
     
       <category term="精粹" scheme="http://www.april1985.com/tags/%E7%B2%BE%E7%B2%B9/"/>
     
@@ -6069,9 +6098,9 @@
     
       <category term="english" scheme="http://www.april1985.com/tags/english/"/>
     
-      <category term="esl" scheme="http://www.april1985.com/tags/esl/"/>
-    
       <category term="grammar girl" scheme="http://www.april1985.com/tags/grammar-girl/"/>
+    
+      <category term="esl" scheme="http://www.april1985.com/tags/esl/"/>
     
   </entry>
   
@@ -6221,13 +6250,13 @@
       <category term="生活" scheme="http://www.april1985.com/categories/%E7%94%9F%E6%B4%BB/"/>
     
     
+      <category term="life" scheme="http://www.april1985.com/tags/life/"/>
+    
       <category term="beg" scheme="http://www.april1985.com/tags/beg/"/>
     
       <category term="job" scheme="http://www.april1985.com/tags/job/"/>
     
       <category term="joke" scheme="http://www.april1985.com/tags/joke/"/>
-    
-      <category term="life" scheme="http://www.april1985.com/tags/life/"/>
     
   </entry>
   
@@ -6365,9 +6394,9 @@
       <category term="生活" scheme="http://www.april1985.com/categories/%E7%94%9F%E6%B4%BB/"/>
     
     
-      <category term="hate" scheme="http://www.april1985.com/tags/hate/"/>
-    
       <category term="class" scheme="http://www.april1985.com/tags/class/"/>
+    
+      <category term="hate" scheme="http://www.april1985.com/tags/hate/"/>
     
       <category term="miss" scheme="http://www.april1985.com/tags/miss/"/>
     
@@ -14948,9 +14977,9 @@
       <category term="硬件" scheme="http://www.april1985.com/categories/%E7%A1%AC%E4%BB%B6/"/>
     
     
-      <category term="单片机" scheme="http://www.april1985.com/tags/%E5%8D%95%E7%89%87%E6%9C%BA/"/>
-    
       <category term="51" scheme="http://www.april1985.com/tags/51/"/>
+    
+      <category term="单片机" scheme="http://www.april1985.com/tags/%E5%8D%95%E7%89%87%E6%9C%BA/"/>
     
   </entry>
   

@@ -22,7 +22,20 @@
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(bp, s);
   })();
-  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2014-12-31-shadowsocks-is-better-on-digitalocean/" class="post-title-link">shadowsocks更适合搭建在DigitalOcean上</a></h2><div class="post-info">Dec 31, 2014</div><div class="post-content"><p>科学上网这个活，得要靠点技术。从最GoAgent、独立VPN，到SSH翻墙，现在用上好用好快的shadowsocks。但公用的shadowsocks服务器可能涉及到安全问题，谁知道后面有没有人持续的抓包呢？所以还是自己搭建一个靠谱。</p>
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2015-01-01-easy-to-understand-anjularjs-articles/" class="post-title-link">浅显易懂的AnjularJS文章</a></h2><div class="post-info">Jan 1, 2015</div><div class="post-content"><p>AngularJS的官方文档看起来总是比较晦涩，理解起来也觉得AngularJS并不是那么容易理解。这里推荐几篇小的文章，可以试着重新阅读以下，轻松愉快的写作风格能够让你很容易的理解它。</p>
+<p>AngularJS的基本组件及工作原理：<a href="http://angular-tips.com/blog/2013/08/why-does-angular-dot-js-rock/" target="_blank" rel="noopener">Why does AngularJS rocks</a>？</p>
+<p>在实际工作中，写AngularJS的程序并不是太难，难就难在如何用TDD驱动出来。甚至一些比较复杂的directive，你会发现写测试是那么的困难。TDD其实要求熟悉如何测试被测对象，下面几篇小文能够帮你从最简单的单元测试开始，详细讲解如何一步一步的写各种测试。</p>
+<p><a href="http://angular-tips.com/blog/2014/02/introduction-to-unit-test-toc/" target="_blank" rel="noopener">总目录</a>* <a href="http://angular-tips.com/blog/2014/02/introduction-to-unit-test-introduction" target="_blank" rel="noopener">Introduction</a>：简介，介绍了Jasmine如何工作的</p>
+<ul>
+<li><a href="http://angular-tips.com/blog/2014/03/introduction-to-unit-test-spies" target="_blank" rel="noopener">Spies</a>：介绍Spy是如何工作的，为后续mock更复杂的对象打下基础</li>
+<li><a href="http://angular-tips.com/blog/2014/04/introduction-to-unit-test-filters" target="_blank" rel="noopener">Filters</a>：测试最简单的AngularJS模块</li>
+<li><a href="http://angular-tips.com/blog/2014/06/introduction-to-unit-test-services" target="_blank" rel="noopener">Services</a>：测试复杂一点的Service，依赖的处理</li>
+<li><a href="http://angular-tips.com/blog/2014/06/introduction-to-unit-test-controllers" target="_blank" rel="noopener">Controllers</a>：测试Controller，依赖的处理</li>
+<li><a href="http://angular-tips.com/blog/2014/06/introduction-to-unit-test-directives" target="_blank" rel="noopener">Directives</a>：最为复杂的Directives</li>
+<li><a href="http://angular-tips.com/blog/2014/06/introduction-to-unit-test-conclusions" target="_blank" rel="noopener">Conclusions</a>：总结</li>
+</ul>
+<p><a href="http://angular-tips.com/" target="_blank" rel="noopener">Angular Tips网站</a>还有其他的一些AngularJS的文章做参考，大家可以看看。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2014-12-31-shadowsocks-is-better-on-digitalocean/" class="post-title-link">shadowsocks更适合搭建在DigitalOcean上</a></h2><div class="post-info">Dec 31, 2014</div><div class="post-content"><p>科学上网这个活，得要靠点技术。从最GoAgent、独立VPN，到SSH翻墙，现在用上好用好快的shadowsocks。但公用的shadowsocks服务器可能涉及到安全问题，谁知道后面有没有人持续的抓包呢？所以还是自己搭建一个靠谱。</p>
 <p>我用的是成都的电信的光网，所以下面的经历可能和其他的网络有差别。之前选择用了<a href="https://www.linode.com/?r=48aca8b9e959c5e0064ed57512724ca84586ca6e" target="_blank" rel="noopener">Linode</a>，优点是内存比较大，速度也比较快，有日本的线路，应该比较适合翻墙。但用过一段时间以后你会发现，其实无论哪里的Linode，搭建shadowsocks翻墙的速度还是可以的，http浏览完全不成问题，网页载入也很快。但持续下载的时候，你会发现刚开始几秒钟，可能有上百k的速度，但是过一段时间就掉了下来，到大概10kb左右。甚至后面就干脆停掉了。这样的速度，即便是用迅雷这种多线程的工具也只能跑上几十kb。我猜测，要么是Linode自身做了QOS，要么是伟大的墙做了手脚。</p>
 <p>一般来说shadowsocks隐藏了一些特征，我一个人用基本上墙也不care我。改端口一般会解决墙的问题，随后试过808. 44. 2. 22等端口，一样的情况。好吧，莫非是机房的原因？换到Linode的美国节点，速度一样的慢。无语了。</p>
 <p>好吧，那看看<a href="https://m.do.co/c/4bc532e3ef94" target="_blank" rel="noopener">DigitalOcean</a>。</p>
@@ -111,43 +124,4 @@
 <li>Prepare a clock to control the time. You can download some tiny top-most clock to use.</li>
 </ul>
 <h3 id="Rotation"><a href="#Rotation" class="headerlink" title="Rotation"></a>Rotation</h3><p>Furthermore, it is great if rotation is possible. Keeping one more persons in Australia is valuable. He or she can act as a bridge between the two countries.</p>
-</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2014-09-16-continuous-integration-process-optimization/" class="post-title-link">持续集成流程优化</a></h2><div class="post-info">Sep 16, 2014</div><div class="post-content"><p>持续集成有时候成了一种固定的模式后，就难以摆脱定式思维，其实我们还有很多可优化的空间。</p>
-<h3 id="习以为常的CI流程"><a href="#习以为常的CI流程" class="headerlink" title="习以为常的CI流程"></a>习以为常的CI流程</h3><p>我们通常习惯的CI模式基本上如下图所示，运行于Jenkins，开发基于Maven Spring AngularJS等。</p>
-<p><img src="/images/2014/09/Untitled-Diagram-1.png" alt>](/images/2014/09/Untitled-Diagram-1.png)</p>
-<p>各个步骤的用途如下：</p>
-<ul>
-<li>BUILD &amp; UNIT TEST：构建和单元测试，生成后续步骤所需要的artifacts。</li>
-<li>INTEGRATION TEST：集成测试外部依赖。</li>
-<li>END TO END TEST：有时候称之为Functional Test，测试整个系统的功能，通常运行于Windows+Jetty环境运行。成功后进行部署。</li>
-<li>DEV ENV：开发人员的测试环境，运行于Linux+Tomcat环境。</li>
-<li>SYS ENV：测试人员的环境，运行于Linux+Tomcat环境。</li>
-<li>UAT ENV：通常是business的人进行用户验收测试，运行于Linux+Tomcat环境。</li>
-</ul>
-<p>这样的步骤确保了在END TO END TEST之后的代码都是已经测试过，品质量好的代码。但我们还是发现了其中存在的若干问题。</p>
-<h3 id="问题一：DEV环境通常闲置"><a href="#问题一：DEV环境通常闲置" class="headerlink" title="问题一：DEV环境通常闲置"></a>问题一：DEV环境通常闲置</h3><p>在我经历的两个项目中，开发人员一般都在本地进行调试好了以后，不会在DEV环境再进行调试。DEV环境的唯一用途恐怕就是测试部署是否正常。所以一般情况下都闲置，利用率较低。</p>
-<h3 id="问题二：END-TO-END测试的环境和真实产品环境不匹配"><a href="#问题二：END-TO-END测试的环境和真实产品环境不匹配" class="headerlink" title="问题二：END TO END测试的环境和真实产品环境不匹配"></a>问题二：END TO END测试的环境和真实产品环境不匹配</h3><p>在目前我们的END TO END TEST阶段，主要是用本地的Jetty来运行测试，整个测试过程都是在CI的Windows服务器上进行，和真实环境中的Linux+Tomcat环境还是有差异。由于环境的差异，虽然测试可能通过，但还是可能遗留一些和环境相关的问题。</p>
-<h3 id="问题三：END-TO-END测试出错后，不容易找到问题来源"><a href="#问题三：END-TO-END测试出错后，不容易找到问题来源" class="headerlink" title="问题三：END TO END测试出错后，不容易找到问题来源"></a>问题三：END TO END测试出错后，不容易找到问题来源</h3><p>由于END TO END通常都是比较脆弱的环境，第三方的依赖的不稳定和测试工具的不稳定都很容易使之失败。失败后，开发人员通常会查看Jenkins上的日志，然后分析原因。然而这些原因非常难找，例如Protractor的Stack就基本上没太大用户，assert失败后就只能靠猜测。对于很多概率性的问题或者本地环境没有的问题，需要反复的checkin代码进行尝试，更难进行调试。</p>
-<p>另外END TO END处于比较后期，一旦发现问题需要修改某些代码然后在进行测试，将会变得异常的漫长。</p>
-<h3 id="解决方案：重新布置CI流程"><a href="#解决方案：重新布置CI流程" class="headerlink" title="解决方案：重新布置CI流程"></a>解决方案：重新布置CI流程</h3><p>我们仅仅需要做一点点小的修改，将DEV环境移到END TO END之前，就能解决上述的问题</p>
-<p><a href="/images/2014/09/Untitled-Diagram-2.png"><img src="/images/2014/09/Untitled-Diagram-2.png" alt="改进的CI流程"></a></p>
-<p>和之前的CI流程相比，DEV会在集成测试之后，直接进行部署。END TO END的测试脚本将会指向于DEV环境进行测试而不是之前的本地Jetty环境。</p>
-<h3 id="解决的问题"><a href="#解决的问题" class="headerlink" title="解决的问题"></a>解决的问题</h3><ul>
-<li>问题一：DEV环境通常闲置。</li>
-</ul>
-<blockquote>
-<p>DEV环境将作为END TO END环境的测试对象，利用率更高。</p>
-</blockquote>
-<ul>
-<li>问题二：END TO END测试的环境和真实产品环境不匹配</li>
-</ul>
-<blockquote>
-<p>DEV环境运行于和的Production一样的环境，END TO END测试更为真实可靠。</p>
-</blockquote>
-<ul>
-<li>问题三：END TO END测试出错后，不容易找到问题来源</li>
-</ul>
-<blockquote>
-<p>DEV环境可以直接访问，并且已经部署，出错后，可在本地将END TO END测试指向DEV环境，进行测试。如果是测试代码问题，修改后马上可以重新测试；如果是产品代码的问题，修改提交后只需要重新单元测试及集成测试即可，速度比之前会更快。</p>
-</blockquote>
-<h3 id="带来的问题"><a href="#带来的问题" class="headerlink" title="带来的问题"></a>带来的问题</h3><p>这样做当然也带来一个问题：对比之前，此时的DEV环境将不是可靠的一个环境。但DEV环境本来不是给开发人员玩的环境么？所以我个人认为这不是一个问题，我将其命名为TEST DEV ENV以便和之前的DEV ENV进行区分。</p>
 </div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/8/" class="prev">PREV</a><a href="/page/10/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2020 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>

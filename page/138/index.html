@@ -22,7 +22,52 @@
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(bp, s);
   })();
-  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2005-02-18-net-platform-for-mobile-phone-management-software-9-introduction-and-sms-pdu-format-parts/" class="post-title-link">.net平台手机管理软件开发(9)—— 短信部分之PDU简介及其格式</a></h2><div class="post-info">Feb 18, 2005</div><div class="post-content"><p><strong>(九) **</strong>短信部分——PDU<strong>**简介及其格式</strong><br>PDU是大多数手机短信通讯的核心，仅有少数手机只支持Text模式(例如笔者的MOTO C330)。PDU模式比起Text模式可以提供能为强大的功能，但其编码较Text模式困难。无论哪种模式，我们都可以通过AT指令控制终端实现短信的发送、接收、删除等管理。下面主要介绍PDU的构成及编码解码。<br><strong>PDU**</strong>的构成**
+  </script></head><body><header class="feature-header"><nav class="component-nav"><ul><div class="logo-container"><a href="/"><h2 class="title">我是思聪</h2></a></div><a href="/" target="_self" class="li component-nav-item"><p>现在</p></a><a href="/archives" target="_self" class="li component-nav-item"><p>曾经</p></a><ul class="shortcut-icons"><a href="https://github.com/derekhe" target="_blank"><img src="/images/github.svg" class="icon"></a><a href="/atom.xml" target="_blank"><img src="/images/rss.svg" class="icon"></a></ul></ul></nav></header><main class="container"><div id="body-container"><div id="post-list" class="left"><div class="home post-list"><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2005-02-19-net-platform-for-mobile-phone-management-software-10-decode-pdu-sms-part-of-the-vb-net/" class="post-title-link">.net平台手机管理软件开发(10)—— 短信部分 VB.NET解码PDU</a></h2><div class="post-info">Feb 19, 2005</div><div class="post-content"><p><strong>(十) **</strong>短信部分——VB.NET<strong>**解码PDU</strong></p>
+<p>早在2004年1月份我就开始初步的研究PDU的编码解码原理，对于PDU也有比较深刻的认识。随后按照3GPP协议写了一个PDU Decoder，后来写成PDU Decoder文章发表在CodeProject上面，有几个好心的外国网友给我指出了一些BUG，现在成了一个比较完善的Decoder。本文讲解编码器的构成以及我所使用的解码方法及技巧。<br><strong>解码器的构成</strong><br>NameSpace <strong>SMS</strong><br>** Decoder**
+MustInheritClass** SMSBase**
+Class ** EMS_RECEIVED**
+Class <strong>EMS_SUBMIT</strong><br>Class <strong>SMS_RECEIVED</strong><br>Class <strong>SMS_STATUS_REPORT</strong><br>Class <strong>SMS_SUBMIT</strong><br>Class <strong>PDUDecoder</strong><br><strong>SMSBase**</strong>部分**
+SMSBase类是必须继承类，它包含了PDU的基本结构以及一些相关辅助函数，是最基本的类，其他的类都是从SMSBase继承的。通过SMSBase的Shared函数GetSMSType可以得到PDU的类型，从而确定使用的Class。<br>SMSBase包含了所有短信类型所共有的基本信息部分以及一个指示短信类型的枚举SMSType，继承的类扩展其特有的基本信息部分。<br>Public SCAddressLength As Byte ‘Service Center Address length<br>Public SCAddressType As Byte ‘Service Center Type[See GSM 03.40]<br>Public SCAddressValue As String ‘Service Center nuber<br>Public FirstOctet As Byte ‘See GSM 03.40</p>
+<p>Public TP_PID As Byte<br>Public TP_DCS As Byte<br>Public TP_UDL As Byte<br>Public TP_UD As String<br>Public Text As String<br>Public Type As SMSType<br>Public UserData As String</p>
+<p>Public Enum SMSType<br>SMS_RECEIVED = 0<br>SMS_STATUS_REPORT = 2<br>SMS_SUBMIT = 1<br>EMS_RECEIVED = 64 ‘It is “Reserved” on my phone??<br>EMS_SUBMIT = 65<br>End Enum</p>
+<p>SMSBase中定义了一个必须重写的过程GetOrignalData，其参数为PDUCode，目的是为了得到PDU的基本信息。不同的短信类型具有不同的解码过程，所以作为一个必须重写的函数。<br>Public MustOverride Sub GetOrignalData(ByVal PDUCode As String)</p>
+<p>SMSBase中还有一系列的辅助函数，具体实现方法见源代码：</p>
+<p>处理PDU代码的：</p>
+<p>处理PDU代码我运用了自称为“按需裁减”的技巧，就是把需要的数据提取出来解码，然后从原PDUCode中删除这一部分，在传递给下一个函数处理。这样就不用考略具体的偏移量，简化了操作，增强了适应性。为了能够减少返回处理过的PDUCode麻烦，我使用了ByRef，执行过程以后PDUCode就自动被裁减了。<br>‘Get a byte from PDU string<br>Shared Function GetByte(ByRef PDUCode As String) As Byte<br>‘Get a string of certain length<br>Shared Function GetString(ByRef PDUCode As String, ByVal Length As Integer) As String<br>‘Get date from SCTS format<br>Shared Function GetDate(ByRef SCTS As String) As Date<br>‘Swap two bit<br>Shared Function Swap(ByRef TwoBitStr As String) As String<br>‘Get phone address<br>Shared Function GetAddress(ByRef Address As String) As String<br>Shared Function GetSMSType(ByVal PDUCode As String) As SMSBase.SMSType<br>TP-UD解码部分：<br>TP-UD的解码的任务主要集中在Unicode的解码和7BitCode的解码。其中Unicode的解码很方便，只需要将两个字节的PDUCode通过Val函数转换成为数字，在通过ChrW函数即可得到。</p>
+<p>而7BitCode就显得比较难，下面以Test四个字符简单介绍其基本原理，具体的编码方式请参考相关资料。<br>Byte1 11010100 0xD4<br>Byte2 11110010 0xF2<br>Byte3 10011100 0x9C<br>Byte4 00001110 0x0E</p>
+<p>注：各字符二进制代码：<br>T：1010100 e：1100101 s：1110011 t：1110100</p>
+<p>从这个例子可以看出一个Byte包含了一个字符的ASCII码的二进制部分及后续字符的二进制部分的低位。这样8个字符可以压缩成为7个Byte，SMS中140Byte的TP-UD长度就可以容纳160个英文字母。</p>
+<p>通过观察可以看出，只要我们从后到前把所有的二进制代码拼接到一块，就能够方便的处理，上面例子通过拼接后得到：<br>00001110100111001111001011010100</p>
+<p>我们可以直接通过从后往前的按7个一组的原则进行截取在处理就可以得到解码后的代码。为了编程的方便，我设计了一个简单易懂的解码过程，比起通过做乘除法来进行运算的简单，但最终效率不及它。但我想在普通场合应用也绰绰有余了。<br>.  Decode7Bit得到一个PDU的TP-UD部分<br>.  InvertHexString反转十六进制代码：例如123456=〉563412<br>.  Binary字符串得到反转后的十六进制代码的二进制表示。注意这里依然使用字符串来表示二进制，为了便于“拼接”和“切割”<br>.  根据charCount所提供的字符数(来自TP_UDL)按7个一组从字符串位往前截取，并用Chr函数转换成ASCII码。</p>
+<p>以下是一些函数的声明部分，具体函数请参见Blog内的PDUDecoder<br>‘Deoce a unicode string<br>Shared Function DecodeUnicode(ByVal strUnicode As String) As String<br>‘Decode 7bit to English<br>Shared Function InvertHexString(ByVal HexString As String) As String<br>Shared Function ByteToBinary(ByVal Dec As Byte) As String<br>Shared Function BinaryToInt(ByVal Binary As String) As Integer<br>Shared Function Decode7Bit(ByVal str7BitCode As String, ByVal charCount As Integer) As String</p>
+<p><strong>SMS_SUBMIT**</strong>、SMS_RECEIVED<strong>**、SMS_STATUS_REPORT</strong></p>
+<p>由于SMS_RECEIVED、SMS_STATUS_REPORT与SMS_SUBMIT比较相似，所以我重点讲讲SMS_SUBMIT。</p>
+<p>当用SMSBase的GetSMSType确定一个PDUCode为SMS_SUBMIT时，就可以声明一个SMS_SUBMIT类的实例，通过传递此PDUCode作为构造函数的参数。构造函数立即调用GetOrignalData函数解码。</p>
+<p>参考协议知道SMS_SUBMIT比SMSBase多出以下部分：<br>Public TP_MR As Byte<br>Public DesAddressLength As Byte<br>Public DesAddressType As Byte<br>Public DesAddressValue As String<br>Public TP_VP As Byte</p>
+<p>参考协议我们可以很方便的得到GetOrignalData函数的实现：<br>Public Overrides Sub GetOrignalData(ByVal PDUCode As String)<br>SCAddressLength = GetByte(PDUCode)<br>SCAddressType = GetByte(PDUCode)<br>SCAddressValue = GetAddress((GetString(PDUCode, (SCAddressLength - 1) * 2)))<br>FirstOctet = GetByte(PDUCode)</p>
+<p>TP_MR = GetByte(PDUCode)</p>
+<p>DesAddressLength = GetByte(PDUCode)<br>DesAddressType = GetByte(PDUCode)<br>DesAddressLength += DesAddressLength Mod 2<br>DesAddressValue = GetAddress((GetString(PDUCode, DesAddressLength)))</p>
+<p>TP_PID = GetByte(PDUCode)<br>TP_DCS = GetByte(PDUCode)<br>TP_VP = GetByte(PDUCode)<br>TP_UDL = GetByte(PDUCode)<br>TP_UD = GetString(PDUCode, TP_UDL * 2)<br>End Sub</p>
+<p>这就完成了整个解码过程，通过SMSBase的巧妙设计，此解码过程显得简单方便。</p>
+<p><strong>EMS_SUBMIT**</strong>、EMS_RECEIVED**</p>
+<p>对于EMS(增强型短信)，其基本结构和SMS类似，主要的区别就是Information Element(IE)。所以EMS_SUBMIT继承了SMS_SUBMIT，EMS_RECEIVED继承了SMS_RECEIVED</p>
+<p>参考3GPP协议EMS部分我们可以做出以下的结构和定义<br>Public Structure InfoElem ‘See document “How to create EMS”<br>Public Identifier As Byte<br>Public Length As Byte<br>Public Data As String<br>End Structure<br>Public TP_UDHL As Byte</p>
+<p>为了得到IE我写了一个函数：<br>Shared Function GetIE(ByVal IECode As String) As InfoElem()<br>Dim tmp As String = IECode, t As Integer = 0<br>Dim result() As InfoElem<br>Do Until IECode = “”<br>ReDim Preserve result(t)<br>With result(t)<br>.Identifier = GetByte(IECode)<br>.Length = GetByte(IECode)<br>.Data = GetString(IECode, .Length * 2)<br>End With<br>t += 1<br>Loop<br>Return result<br>End Function</p>
+<p>然后参考协议可以写出GetOrignalData函数。具体就不再赘述。</p>
+<p><strong>PDUDecoder</strong></p>
+<p>这个类的由一个结构，一个重要的解码函数，组成。</p>
+<p>结构定义了需要取得的基本信息，可以视需要修改。我这里提供一个范例<br>Public Structure BaseInfo<br>Public SourceNumber As String<br>Public DestinationNumber As String<br>Public ReceivedDate As Date<br>Public Text As String<br>Public Type As SMS.Decoder.SMSBase.SMSType<br>Public EMSTotolPiece As Integer<br>Public EMSCurrentPiece As Integer<br>Public StatusFromReport As SMS_STATUS_REPORT.EnumStatus<br>Public DestinationReceivedDate<br>End Structure</p>
+<p>解码函数的声明如下：<br>Public Shared Function Decode(ByVal PDUCode As String) As BaseInfo</p>
+<p>内部主要处理步骤如下(源代码请参考PDUDecoder)</p>
+<ol>
+<li>根据SMSBase的GetSMSType函数得到短信类型SMSType</li>
+<li>根据SMSType生成对应的类的实例</li>
+<li>解码PDU，得到基本结构</li>
+<li>通过基本结构得到BaseInfo结构里面需要的数据</li>
+<li>通过decode7bit或者decodeUnicode函数得到TP_UD数据</li>
+</ol>
+<p>到此为止，这就是整个PDU Decoder的详细介绍，具体使用可以参见Siemens Support Tool里面相关部分，在此不再赘述。</p>
+</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2005-02-18-net-platform-for-mobile-phone-management-software-9-introduction-and-sms-pdu-format-parts/" class="post-title-link">.net平台手机管理软件开发(9)—— 短信部分之PDU简介及其格式</a></h2><div class="post-info">Feb 18, 2005</div><div class="post-content"><p><strong>(九) **</strong>短信部分——PDU<strong>**简介及其格式</strong><br>PDU是大多数手机短信通讯的核心，仅有少数手机只支持Text模式(例如笔者的MOTO C330)。PDU模式比起Text模式可以提供能为强大的功能，但其编码较Text模式困难。无论哪种模式，我们都可以通过AT指令控制终端实现短信的发送、接收、删除等管理。下面主要介绍PDU的构成及编码解码。<br><strong>PDU**</strong>的构成**
 PDU是由一串由“0-9”及“A-F”组成。表面上看起来就是一组16进制的数所组成的。</p>
 <p>下面举一个发送和接收的例子。<br>.  手机发送的一个PDU串：<br>0891683108200805F011190D91683188902848F40008FF108FD9662F4E0067616D4B8BD577ED4FE</p>
 <p>对比3GPP协议得到：(二进制代码从左到右依次为高位-&gt;低位)<br><strong>短信中心地址字段</strong><br><strong>08</strong> 地址长度：8个字节，包括其后的91</p>
@@ -120,28 +165,4 @@ END:VTODO<br>END:VCALENDAR</p>
 <p>完整的vCalender包含了至少一个vEvent或者一个vTodo，因此在添加、修改vEvent、vTodo时要将其补充为一个完整的vCalender结构，否则服务端会拒绝操作。</p>
 <p>遇到的问题：</p>
 <p>在实际操作中，遇到问题最多的地方在Phonebook部分。我的手机第一次同步的时候经常出现数据库被锁的情况，用SiMoCo读取也是一样，说明是手机拒绝写操作。这时候关闭手机再重新启动就好了。至于原因，我还没有搞清楚，希望能有高人指点。</p>
-</div></article></div><div class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/post/2005-02-14-net-platform-for-mobile-phone-management-software-6-obex-application-file-transfer-part-of-the/" class="post-title-link">.net平台手机管理软件开发(6)OBEX应用——文件传输部分</a></h2><div class="post-info">Feb 14, 2005</div><div class="post-content"><p>(六) OBEX应用——文件传输部分</p>
-<p>在手机数据传输方面基本OBEX应用分为<br>l 文件传输<br>l IrMC同步</p>
-<p>文件传输又可以细分为以下基本操作<br>l 初始化连接<br>l 断开连接<br>l 设置路径<br>l 取得目录信息<br>l 创建目录<br>l 上传下载文件<br>l 删除文件或空目录</p>
-<p>在笔者的软件当中设计了OBEX这个类，里面包含了以上所有的基本操作。另外针对M55的服务端的特殊性又设计了更名、取得磁盘空间信息、移动、拷贝文件的功能。具体请参考源代码。</p>
-<p>下面具体讲述各个操作的细节。<br>l 初始化连接</p>
-<p>初始化连接包括了使手机进入OBEX状态再到发送Connect指令的一系列过程。具体流程参考下图。<br>ATÆAT^SQWE=0ÆAT^SQWE=3ÆConnectÆ连接到Folder-Listing Service</p>
-<p>其中AT^SQWE=0和AT^SQWE=3是西门子特有的隐藏的AT指令，甚至在官方的AT指令集里面都没有提到。其作用是初始化手机到OBEX模式。</p>
-<p>发送Connect指令收到手机回复以后确定Max Packet Length等参数。最后连接到Folder-Listing Service进行文件操作。如果需要IrMC同步的话，在Connect后直接连接到IrMC Sync Service即可，手机立刻进入同步模式，所有的应用程序退出。</p>
-<p>在笔者的程序中当中首先使用AT指令确定手机当前的工作，如果超时，尝试发送+++并等待1秒钟以便手机从不正常的OBEX状态中退出。然后在此发送AT，成功后即进行文件操作，否则引发一个错误。<br>l 断开连接</p>
-<p>这里的断开连接是指从OBEX模式退出到AT状态中。在AT指令中，连续发送三个0x2B然后等待一秒钟以上即可退出数据模式进入常规AT模式。<br>l 设置路径</p>
-<p>程序中使用SetPath操作设置路径。需要注意的是，可以设计两种风格的过程：一种使用绝对路径，另一种使用相对路径。</p>
-<p>对于手机而言，经笔者实践证明，使用绝对路径要比使用相对路径方便，而且更准确，但效率上稍逊，特别是在多层目录的情况下。由于手机没有能够返回当前路径的方法，所以相对路径总难以控制，只有通过程序控制，极容易出现错误。所以建议使用绝对路径。</p>
-<p>如果使用绝对路径，那么路径名将呈现path1path2这种形式。首先回到根目录，然后一级一级的到达目的。在笔者的OBEX类当中，可以看到BacktoRoot这个过程。其作用就是把当前程序路径切换到根目录以免引起混乱。<br>l 取得目录信息</p>
-<p>要取得一个目录的文件信息可以用发送Get指令。该Get指令需要一个TypeHeader，其值为x-obex/folder-listing</p>
-<p>随后服务端会返回一个xml文件，包含了整个目录的信息。例如子目录名、文件名、大小、最后修改时间。再通过xml解析后就会得到目录信息。<br>l 创建目录</p>
-<p>当SetPath的Flags的Bit1设为1并且无法找到目录时，服务端会创建这个目录并进入。</p>
-<p>请注意，再次使用SetPath并将Flags的Bit0设为1返回上层目录，否则容易引起混乱。<br>l 上传下载文件</p>
-<p>使用Put和Get命令可以实现上传和下载文件。注意所有的文件操作都在SetPath所指定的目录下进行。</p>
-<p>使用Put命令实现上传时，至少需要提供NameHeader，BodyHeader，一般还要提供LengthHeader，DateTimeHeader。大文件传输需要正确处理BodyHeader，不能超出了服务端最大所能接收的Packet的大小，否则会出现错误。</p>
-<p>需要注意的是如果当前文件存在，那么Put命令不会覆盖已有的文件而是追加，导致错误。传输文件之前需要首先删除同名文件。</p>
-<p>使用Get命令实现下载时，只需要提供NameHeader即可。具体例子参考上一节。<br>l 删除文件或空目录</p>
-<p>使用Put命令，其NameHeader指定为文件名或目录名并将BodyHeader设置为空即可。</p>
-<p>非空目录无法删除，会返回错误。</p>
-<p>西门子手机还有移动、拷贝等功能，具体实现方法请参阅OBEX源代码。</p>
 </div></article></div></div></div><div id="sidebar" class="left"><div id="about-panel"><div class="info"><div class="title">贺思聪</div><div class="bio">《爬虫实战：从数据到产品》作者，国内首个机票价格历史及预测小程序“爱飞狗旅行”作者，极客、架构师、大数据玩家。</div></div><img src="/images/avatar.png" class="avatar"></div><div id="friend-links-panel"><div class="panel-title"><p>LINKS</p></div><a href="http://github.com/derekhe" target="_blank" class="link-item"><div class="link-container"><div class="site-name">GitHub</div><div class="site-desc">http://github.com/derekhe</div></div></a><a href="http://www.jianshu.com/u/b1e713e56ea6" target="_blank" class="link-item"><div class="link-container"><div class="site-name">简书</div><div class="site-desc">http://www.jianshu.com/u/b1e713e56ea6</div></div></a><a href="https://www.linkedin.com/in/sicong-he-56a95437/" target="_blank" class="link-item"><div class="link-container"><div class="site-name">LinkedIn</div><div class="site-desc">https://www.linkedin.com/in/sicong-he-56a95437/</div></div></a></div></div></div><div class="clear"></div></main><footer class="footer-container"><div class="paginator"><a href="/page/137/" class="prev">PREV</a><a href="/page/139/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2020 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>
