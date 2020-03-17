@@ -26,7 +26,7 @@
 <p>后来想用数字化的方式来帮忙做练习，做了一些尝试，但均宣告失败。有一些技术上的问题尚待解决，有一些是流程设计不太合理，还有电脑、手机的交互方式不是太方便，不熟悉键盘，满屏幕找字母很麻烦，也分散注意力。到最后还是采取了人工用字典目录听写的方式，找到薄弱的环节，然后强化巩固。经过一段时间的坚持练习，拼音有了一些进步，很多常见的错误也得以修正。</p>
 <p>在做前期的尝试中，倒是也发现了一些有趣的东西。</p>
 <h1 id="第一个尝试：拼音测试"><a href="#第一个尝试：拼音测试" class="headerlink" title="第一个尝试：拼音测试"></a>第一个尝试：拼音测试</h1><p>地址：<a href="https://github.com/derekhe/pinyin-test" target="_blank" rel="noopener">https://github.com/derekhe/pinyin-test</a><br>这是一个Web程序，可以随机的出题，然后选择声母韵母进行组合选择，点击声母和韵母的时候还可以听到对应的发音。通过查看这种方式期望能够尽快的搞明白拼音的组合。</p>
-<p><img src="./images/2020/03-17/pinyin-test.png" alt></p>
+<p><img src="/images/2020/03-17/pinyin-test.png" alt></p>
 <h2 id="发音资源来源"><a href="#发音资源来源" class="headerlink" title="发音资源来源"></a>发音资源来源</h2><ul>
 <li>拼音声母和韵母的发音。忘了当时哪里下载的一个资源了，反正放到了MP3目录中，需要的自取</li>
 <li>整体拼音的发音，连带音调。经过一番查找，发现<a href="https://hanyu.baidu.com/" target="_blank" rel="noopener">百度汉语</a>提供了所有汉字的发音。例如“贺”字，通过观察URL可以知道是<a href="https://appcdn.fanyi.baidu.com/zhdict/mp3/he4.mp3" target="_blank" rel="noopener">https://appcdn.fanyi.baidu.com/zhdict/mp3/he4.mp3</a>，是声母韵母的组合加上音调。</li>
@@ -39,7 +39,7 @@
 <h1 id="第二个尝试：听音写拼音"><a href="#第二个尝试：听音写拼音" class="headerlink" title="第二个尝试：听音写拼音"></a>第二个尝试：听音写拼音</h1><p>到二年级了，拼音还是不行，注音练习也是没有太大的用处，每次错每次改，每次改完下次还是错，比训练人工神经网络还要麻烦。后来发现听写拼音，不断的练习应该能够解决问题，并且最好在无人监督的情况下也能自己去做，知道对错。这次我就不想在iPad上面开发了，直接用Python写。</p>
 <p>地址：<a href="https://github.com/derekhe/pinyin-practice" target="_blank" rel="noopener">https://github.com/derekhe/pinyin-practice</a></p>
 <p>这次想做一个简单的程序，就是读音，然后拼写，电脑判断错误。</p>
-<p><img src="./images/2020/03-17/pinyin-2.png" alt></p>
+<p><img src="/images/2020/03-17/pinyin-2.png" alt></p>
 <p>那么是否之前找的资源可以直接用呢？并不完全是。</p>
 <h2 id="发音资源"><a href="#发音资源" class="headerlink" title="发音资源"></a>发音资源</h2><p>有一个典型的问题是有些拼音出现的次数很少，可以忽略，比如chua这种。所以最终找到了<a href="https://github.com/derekhe/pinyin-practice/blob/master/resource/words.txt" target="_blank" rel="noopener">一份小学生所有的汉字的列表</a>，通过列表来找到所有的拼音，这样6年级所有的字的拼音就出来了。</p>
 <p>上次用的资源我发现语音质量并不是很好，经常有发音很短促，无法听清的情况，还有一些错误的发音。最后对比了一下，使用了<a href="https://github.com/pndurette/gTTS" target="_blank" rel="noopener">google translate的TTS语音合成的</a>。这个有一个比较好的事情是可以任意组合，并且有一个选项可以生成缓慢的发音，这样更容易听清。<a href="https://github.com/derekhe/pinyin-practice/blob/master/download-mp3.py" target="_blank" rel="noopener">生成的文件下载为MP3格式保存</a>。</p>
@@ -48,4 +48,4 @@
 
 <p>其他的就是一些逻辑处理了。</p>
 <h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>根据儿子的反馈，他说不想重复的做一些已经熟悉的没问题的拼音，第二依然是键盘输入的问题，由于键盘都是大写字母，需要很费脑子转换，找键位眼睛都看花了。<br>考虑到需求越来越复杂，性价比比较低，最终还是亲自上手，在本子上做每天20分钟拼音练习解决问题。</p>
-</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2020-03-09-new-printer/" class="next">NEXT</a></div><div class="copyright"><p>© 2008 - 2020 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>
+</div></article></div></div></main><footer class="footer-container"><div class="paginator"><a href="/post/2020-03-09-new-printer/" class="next">下一篇</a></div><div class="copyright"><p>© 2008 - 2020 <a href="http://www.april1985.com">贺思聪</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/AngryPowman/hexo-theme-prontera" target="_blank">hexo-theme-prontera</a>.</p></div></footer><script>var _mtac = {}; (function() {     var mta = document.createElement("script"); mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";    mta.setAttribute("name", "MTAH5");    mta.setAttribute("sid", "500490740");    var s = document.getElementsByTagName("script")[0];    s.parentNode.insertBefore(mta, s);})();</script></body></html>
